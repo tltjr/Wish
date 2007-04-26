@@ -79,10 +79,11 @@ header {
 	background: #635300; 
 } 
 #install { 
-	float: center; 
-	margin: 20px 150px; 
+	margin: 20px 175px; 
 	padding: 30px 0;
 } 
 #video { 
 	clear: both; 
+	width: 400px;
+	margin: 0 auto;
 }
