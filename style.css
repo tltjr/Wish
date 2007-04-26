@@ -1,14 +1,19 @@
 body {
 	font-size: medium;
+	font-family: serif;
 }
 
 h1 {
+	margin-top: 10px;
+	margin-bottom: 10px;
 	font-size: 300%;
 	font-weight: bold;
+	border-bottom: solid #DBD9D4 1px;
 }
 
 h2 {
 	font-size: 175%;
+	border-bottom: solid #DBD9D4 1px;
 }
 
 #wrapper {
@@ -42,3 +47,42 @@ h2 {
 header {
 }
 
+.button {
+	height: 75px;
+	width: 150px;
+	border-top: 1px solid #f7d497;
+	background: #ff8a00;
+	background: -webkit-gradient(linear, left top, left bottom, from(#de7800), to(#ff8a00));
+	background: -webkit-linear-gradient(top, #de7800, #ff8a00);
+	background: -moz-linear-gradient(top, #de7800, #ff8a00);
+	background: -ms-linear-gradient(top, #de7800, #ff8a00);
+	background: -o-linear-gradient(top, #de7800, #ff8a00);
+	padding: 25px 50px;
+	-webkit-border-radius: 8px; 
+	-moz-border-radius: 8px; border-radius: 8px; 
+	-webkit-box-shadow: rgba(0,0,0,1) 0 1px 0; 
+	-moz-box-shadow: rgba(0,0,0,1) 0 1px 0; 
+	box-shadow: rgba(0,0,0,1) 0 1px 0; 
+	text-shadow: rgba(0,0,0,.4) 0 1px 0;
+	color: white;
+	font-size: 30px;
+	font-family: Lucida Grande, sans-serif;
+	text-decoration: none; 
+	vertical-align: middle; 
+} 
+.button:hover { 
+	border-top-color: #996100; 
+	background: #996100; color: #ccc; 
+} 
+.button:active { 
+	border-top-color: #635300; 
+	background: #635300; 
+} 
+#install { 
+	float: center; 
+	margin: 20px 150px; 
+	padding: 30px 0;
+} 
+#video { 
+	clear: both; 
+}
