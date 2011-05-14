@@ -1,0 +1,42 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:WerminalModule.cs" caret="617" fromTop="21" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WerminalView.xaml" caret="473" fromTop="8" />
+      <File id="702B536A-E766-4C55-838E-14424FA8F101/f:Shell.xaml" caret="286" fromTop="4" />
+      <File id="702B536A-E766-4C55-838E-14424FA8F101/f:Shell.xaml.cs" caret="500" fromTop="19" />
+      <File id="702B536A-E766-4C55-838E-14424FA8F101/f:Bootstrapper.cs" caret="426" fromTop="15" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="702B536A-E766-4C55-838E-14424FA8F101/f:Bootstrapper.cs" caret="87" fromTop="3" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:WerminalModule.cs" caret="349" fromTop="13" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:WerminalModule.cs" caret="314" fromTop="11" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:WerminalModule.cs" caret="609" fromTop="21" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WerminalView.xaml" caret="649" fromTop="8" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WerminalView.xaml" caret="0" fromTop="0" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WerminalView.xaml" caret="649" fromTop="9" />
+      <File id="702B536A-E766-4C55-838E-14424FA8F101/f:Bootstrapper.cs" caret="811" fromTop="30" />
+      <File id="702B536A-E766-4C55-838E-14424FA8F101/f:Bootstrapper.cs" caret="603" fromTop="22" />
+      <File id="702B536A-E766-4C55-838E-14424FA8F101/f:Bootstrapper.cs" caret="407" fromTop="15" />
+      <File id="702B536A-E766-4C55-838E-14424FA8F101/f:Shell.xaml" caret="287" fromTop="4" />
+      <File id="702B536A-E766-4C55-838E-14424FA8F101/f:Shell.xaml.cs" caret="501" fromTop="19" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir>C:\Program Files (x86)\NUnit 2.5.10\bin\net-2.0\</NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+</Configuration>
