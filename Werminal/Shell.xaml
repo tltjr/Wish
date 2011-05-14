@@ -5,8 +5,8 @@
         xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock" 
         Title="Werminal" Height="350" Width="525">
     <ad:DockingManager>
-        <ad:DocumentPane>
-           <ad:DocumentContent cal:RegionManager.RegionName="MainRegion"/>
+        <ad:DocumentPane cal:RegionManager.RegionName="MainRegion">
+            <ad:DocumentContent />
         </ad:DocumentPane> 
     </ad:DockingManager>
 </Window>

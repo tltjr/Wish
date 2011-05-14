@@ -9,3 +9,4 @@ C:\src\dotnet\Werminal\WerminalModule\bin\Debug\Microsoft.Practices.Prism.dll
 C:\src\dotnet\Werminal\WerminalModule\obj\Debug\WerminalModule.dll
 C:\src\dotnet\Werminal\WerminalModule\obj\Debug\WerminalModule.pdb
 C:\src\dotnet\Werminal\WerminalModule\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\src\dotnet\Werminal\WerminalModule\bin\Debug\Microsoft.Practices.Prism.MefExtensions.dll

@@ -43,6 +43,9 @@
     <Reference Include="Microsoft.Practices.Prism">
       <HintPath>lib\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <HintPath>lib\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.Prism.UnityExtensions">
       <HintPath>lib\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>
     </Reference>
@@ -53,6 +56,7 @@
       <HintPath>lib\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -80,6 +84,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="CallbackLogger.cs" />
+    <Compile Include="RegionAdapters\AvalonDocableRegionAdapter.cs.cs" />
+    <Compile Include="RegionAdapters\AvalonDocumentRegionAdapter.cs" />
     <Compile Include="Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
       <SubType>Code</SubType>
