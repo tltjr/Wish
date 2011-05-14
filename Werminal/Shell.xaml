@@ -2,6 +2,11 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         xmlns:cal="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism" 
-        Title="MainWindow" Height="350" Width="525">
-    <ItemsControl Name="MainRegion" cal:RegionManager.RegionName="MainRegion" />
+        xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock" 
+        Title="Werminal" Height="350" Width="525">
+    <ad:DockingManager>
+        <ad:DocumentPane>
+           <ad:DocumentContent cal:RegionManager.RegionName="MainRegion"/>
+        </ad:DocumentPane> 
+    </ad:DockingManager>
 </Window>
