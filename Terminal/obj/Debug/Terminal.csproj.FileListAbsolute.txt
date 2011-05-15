@@ -1,0 +1,10 @@
+C:\PRO\Source\Catalyst\WIP\Shared\Terminal\obj\Debug\ResolveAssemblyReference.cache
+C:\PRO\Source\Catalyst\WIP\Shared\Terminal\bin\Debug\Catalyst.Shared.Terminal.dll
+C:\PRO\Source\Catalyst\WIP\Shared\Terminal\bin\Debug\Catalyst.Shared.Terminal.pdb
+C:\PRO\Source\Catalyst\WIP\Shared\Terminal\obj\Debug\Catalyst.Shared.Terminal.dll
+C:\PRO\Source\Catalyst\WIP\Shared\Terminal\obj\Debug\Catalyst.Shared.Terminal.pdb
+C:\src\dotnet\Werminal\Terminal\bin\Debug\Terminal.dll
+C:\src\dotnet\Werminal\Terminal\bin\Debug\Terminal.pdb
+C:\src\dotnet\Werminal\Terminal\obj\Debug\ResolveAssemblyReference.cache
+C:\src\dotnet\Werminal\Terminal\obj\Debug\Terminal.dll
+C:\src\dotnet\Werminal\Terminal\obj\Debug\Terminal.pdb

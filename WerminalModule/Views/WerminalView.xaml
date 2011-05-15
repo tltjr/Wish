@@ -3,9 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Terminal="clr-namespace:Terminal;assembly=Terminal"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <TextBlock Text="Hello World" Foreground="Green" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Calibri" FontSize="24" FontWeight="Bold"></TextBlock>
-    </Grid>
+        <Terminal:Terminal 
+			x:Name="Output"
+            FontFamily="Consolas"
+			Grid.Row="3"
+			VerticalScrollBarVisibility="Auto"
+			AcceptsReturn="True"
+            Focusable="True"
+			CommandEntered="CommandEntered" Loaded="OnLoaded" />
 </UserControl>

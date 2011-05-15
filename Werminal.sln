@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Werminal", "Werminal\Wermin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WerminalModule", "WerminalModule\WerminalModule.csproj", "{A79E6DEA-767F-493E-99D3-9A0B3B022E0C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terminal", "Terminal\Terminal.csproj", "{D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,16 @@ Global
 		{A79E6DEA-767F-493E-99D3-9A0B3B022E0C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{A79E6DEA-767F-493E-99D3-9A0B3B022E0C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A79E6DEA-767F-493E-99D3-9A0B3B022E0C}.Release|x86.ActiveCfg = Release|Any CPU
+		{D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

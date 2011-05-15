@@ -18,3 +18,5 @@ C:\src\dotnet\Werminal\Werminal\obj\x86\Debug\Werminal.exe
 C:\src\dotnet\Werminal\Werminal\obj\x86\Debug\Werminal.pdb
 C:\src\dotnet\Werminal\Werminal\bin\Debug\Microsoft.Practices.ServiceLocation.dll
 C:\src\dotnet\Werminal\Werminal\bin\Debug\Microsoft.Practices.Prism.MefExtensions.dll
+C:\src\dotnet\Werminal\Werminal\bin\Debug\Terminal.dll
+C:\src\dotnet\Werminal\Werminal\bin\Debug\Terminal.pdb
