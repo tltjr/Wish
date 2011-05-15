@@ -22,18 +22,18 @@ namespace WerminalModule.Views
     public partial class WerminalView : UserControl
     {
         private string _result;
-        private string _workingDirectory = @"C:\Users\tlthorn1";
+        private DirectoryManager _directoryManager;
 
         public WerminalView()
         {
             InitializeComponent();
             Keyboard.Focus(Output);
+            _directoryManager = new DirectoryManager {WorkingDirectory = @"C:\Users\tlthorn1"};
         }
 
         private void CommandEntered(object sender, Terminal.Terminal.CommandEventArgs e)
         {
-            var s = e.Command.Raw;
-            ExecuteCommandSync(s);
+            ExecuteCommandSync(e);
             Output.InsertNewPrompt();
             Output.InsertLineBeforePrompt(_result);
         }
@@ -43,33 +43,42 @@ namespace WerminalModule.Views
             Keyboard.Focus(Output);
         }
 
-        public void ExecuteCommandSync(object command)
+        public void ExecuteCommandSync(object obj)
         {
-            try
+            var e = (Terminal.Terminal.CommandEventArgs) obj;
+            var command = e.Command;
+            if(DirectoryChange(command))
             {
-                // create the ProcessStartInfo using "cmd" as the program to be run,
-                // and "/c " as the parameters.
-                // Incidentally, /c tells cmd that we want it to execute the command that follows,
-                // and then exit.
-
-                var procStartInfo =
-                    new System.Diagnostics.ProcessStartInfo("cmd", "/c " + command)
-                        {
-                            RedirectStandardOutput = true,
-                            UseShellExecute = false,
-                            CreateNoWindow = true
-                        };
-                procStartInfo.WorkingDirectory = _workingDirectory;
-
-                var proc = new System.Diagnostics.Process { StartInfo = procStartInfo };
-                proc.Start();
-                _result = proc.StandardOutput.ReadToEnd();
-                var blah = proc.StandardOutput;
+                _directoryManager.ChangeDirectory(command.Args.FirstOrDefault());
+                _result = "";
             }
-            catch (Exception objException)
+            else
             {
-                _result = objException.Message;
+                try
+                {
+                    var procStartInfo =
+                        new System.Diagnostics.ProcessStartInfo("cmd", "/c" + command.Raw)
+                            {
+                                RedirectStandardOutput = true,
+                                UseShellExecute = false,
+                                CreateNoWindow = true,
+                                WorkingDirectory = _directoryManager.WorkingDirectory
+                            };
+                    var proc = new System.Diagnostics.Process { StartInfo = procStartInfo };
+                    proc.Start();
+                    _result = proc.StandardOutput.ReadToEnd();
+                }
+                catch (Exception objException)
+                {
+                    _result = objException.Message;
+                    
+                }
             }
+        }
+
+        private bool DirectoryChange(Command command)
+        {
+            return command.Name.Equals("cd");
         }
 
         public void ExecuteCommandAsync(string command)

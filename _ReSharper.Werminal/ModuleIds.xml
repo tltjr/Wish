@@ -2,4 +2,5 @@
   <Module PersistentId="702B536A-E766-4C55-838E-14424FA8F101" ModuleId="Werminal" />
   <Module PersistentId="A79E6DEA-767F-493E-99D3-9A0B3B022E0C" ModuleId="WerminalModule" />
   <Module PersistentId="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3" ModuleId="Terminal" />
+  <Module PersistentId="3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C" ModuleId="Werminal.Testing" />
 </Modules>
