@@ -22,19 +22,20 @@ namespace WerminalModule.Views
     public partial class WerminalView : UserControl
     {
         private string _result;
-        private DirectoryManager _directoryManager;
+        private readonly DirectoryManager _directoryManager;
 
         public WerminalView()
         {
             InitializeComponent();
             Keyboard.Focus(Output);
             _directoryManager = new DirectoryManager {WorkingDirectory = @"C:\Users\tlthorn1"};
+            Output.InsertNewPrompt(_directoryManager.WorkingDirectory);
         }
 
         private void CommandEntered(object sender, Terminal.Terminal.CommandEventArgs e)
         {
             ExecuteCommandSync(e);
-            Output.InsertNewPrompt();
+            Output.InsertNewPrompt(_directoryManager.WorkingDirectory);
             Output.InsertLineBeforePrompt(_result);
         }
 
@@ -49,8 +50,15 @@ namespace WerminalModule.Views
             var command = e.Command;
             if(DirectoryChange(command))
             {
-                _directoryManager.ChangeDirectory(command.Args.FirstOrDefault());
-                _result = "";
+                var changed = _directoryManager.ChangeDirectory(command.Args.FirstOrDefault());
+                if(changed)
+                {
+                    _result = "";
+                }
+                else
+                {
+                    _result = "The system cannot find the path specified\n";
+                }
             }
             else
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Terminal;
@@ -15,9 +16,15 @@ namespace WerminalModule
             set { _workingDirectory = value; }
         }
 
-        public void ChangeDirectory(string dir)
+        public bool ChangeDirectory(string dir)
         {
+            var directoryInfo = new DirectoryInfo(dir);
+            if (!directoryInfo.Exists)
+            {
+                return false;
+            }
             WorkingDirectory = dir;
+            return true;
         }
     }
 }

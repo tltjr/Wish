@@ -36,7 +36,7 @@ namespace Terminal {
 			LastPromptIndex = -1;
 			Prompt = "> ";
 			IsInputEnabled = false;
-		    InsertNewPrompt();
+		    //InsertNewPrompt();
 			TextChanged += (s, e) => ScrollToEnd();
 		}
 
@@ -44,12 +44,13 @@ namespace Terminal {
 		// PUBLIC INTERFACE
 		// --------------------------------------------------------------------
 
-		public void InsertNewPrompt()
+		public void InsertNewPrompt(string prompt)
 		{
 		    PrintingPrompt = true;
 			if (Text.Length > 0)
 				Text += Text.EndsWith("\n") ? "" : "\n";
-			Text += Prompt;
+			Text += prompt + ">";
+		    Prompt = prompt + ">";
 			CaretIndex = Text.Length;
 			LastPromptIndex = Text.Length;
 			IsInputEnabled = true;
@@ -226,7 +227,7 @@ namespace Terminal {
 						// Print every associated command and insert a new prompt
 						foreach (string cmd in commands)
 							Text += "\n" + cmd;
-						InsertNewPrompt();
+						InsertNewPrompt(Prompt);
 						Text += line;
 						CaretIndex = Text.Length;
 					}
@@ -272,7 +273,7 @@ namespace Terminal {
 					if (commonPrefix == prefix) {
 						foreach (string file in commonPrefixFiles)
 							Text += "\n" + file;
-						InsertNewPrompt();
+						InsertNewPrompt(Prompt);
 						Text += linePrefix + lineSuffix;
 						CaretIndex = Text.Length;
 					} else {

@@ -15,8 +15,18 @@ namespace Werminal.Testing
         {
             var directoryManager = new DirectoryManager {WorkingDirectory = @"C:\Users\tlthorn1"};
             Assert.AreEqual(@"C:\Users\tlthorn1", directoryManager.WorkingDirectory);
-            directoryManager.ChangeDirectory(@"C:\temp");
+            var changed = directoryManager.ChangeDirectory(@"C:\temp");
+            Assert.True(changed);
             Assert.AreEqual(@"C:\temp", directoryManager.WorkingDirectory);
+        }
+
+        [Test]
+        public void ChangeViaFullNameInvalidDirectory()
+        {
+            var directoryManager = new DirectoryManager {WorkingDirectory = @"C:\Users\tlthorn1"};
+            var changed = directoryManager.ChangeDirectory(@"C:\nonsense");
+            Assert.False(changed);
+            Assert.AreEqual(@"C:\Users\tlthorn1", directoryManager.WorkingDirectory);
         }
 
     }
