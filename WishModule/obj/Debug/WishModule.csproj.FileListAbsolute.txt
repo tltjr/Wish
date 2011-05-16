@@ -1,0 +1,14 @@
+C:\src\dotnet\Werminal\WerminalModule\bin\Debug\WishModule.dll
+C:\src\dotnet\Werminal\WerminalModule\bin\Debug\WishModule.pdb
+C:\src\dotnet\Werminal\WerminalModule\bin\Debug\Microsoft.Practices.Prism.dll
+C:\src\dotnet\Werminal\WerminalModule\bin\Debug\Microsoft.Practices.Prism.MefExtensions.dll
+C:\src\dotnet\Werminal\WerminalModule\bin\Debug\Terminal.dll
+C:\src\dotnet\Werminal\WerminalModule\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\src\dotnet\Werminal\WerminalModule\bin\Debug\Terminal.pdb
+C:\src\dotnet\Werminal\WerminalModule\obj\Debug\ResolveAssemblyReference.cache
+C:\src\dotnet\Werminal\WerminalModule\obj\Debug\Views\WishView.baml
+C:\src\dotnet\Werminal\WerminalModule\obj\Debug\Views\WishView.g.cs
+C:\src\dotnet\Werminal\WerminalModule\obj\Debug\WishModule_MarkupCompile.cache
+C:\src\dotnet\Werminal\WerminalModule\obj\Debug\WishModule.g.resources
+C:\src\dotnet\Werminal\WerminalModule\obj\Debug\WishModule.dll
+C:\src\dotnet\Werminal\WerminalModule\obj\Debug\WishModule.pdb
