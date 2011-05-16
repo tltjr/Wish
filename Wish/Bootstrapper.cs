@@ -39,7 +39,7 @@ namespace Wish
             RegionAdapterMappings mappings = base.ConfigureRegionAdapterMappings();
             var regionBehaviourFactory = Container.GetExportedValue<IRegionBehaviorFactory>();
             mappings.RegisterMapping(typeof(DocumentPane), new AvalonDocumentRegionAdapter(regionBehaviourFactory));
-            mappings.RegisterMapping(typeof(DockablePane), new AvalonDockableRegionAdapter(regionBehaviourFactory));
+            mappings.RegisterMapping(typeof(DockablePane), new AvalonDocableRegionAdapter(regionBehaviourFactory));
 
             return mappings;
         }

@@ -1,7 +1,0 @@
-C:\src\dotnet\Wish\Wish.Infrastructure\bin\Debug\Wish.Infrastructure.dll
-C:\src\dotnet\Wish\Wish.Infrastructure\bin\Debug\Wish.Infrastructure.pdb
-C:\src\dotnet\Wish\Wish.Infrastructure\bin\Debug\Microsoft.Practices.Prism.dll
-C:\src\dotnet\Wish\Wish.Infrastructure\bin\Debug\Microsoft.Practices.ServiceLocation.dll
-C:\src\dotnet\Wish\Wish.Infrastructure\obj\Debug\ResolveAssemblyReference.cache
-C:\src\dotnet\Wish\Wish.Infrastructure\obj\Debug\Wish.Infrastructure.dll
-C:\src\dotnet\Wish\Wish.Infrastructure\obj\Debug\Wish.Infrastructure.pdb

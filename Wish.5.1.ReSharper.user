@@ -7,53 +7,8 @@
     </boolean>
   </SettingsComponent>
   <RecentFiles>
-    <RecentFiles>
-      <File id="702B536A-E766-4C55-838E-14424FA8F101/f:Shell.xaml" caret="382" fromTop="5" />
-      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml" caret="675" fromTop="8" />
-      <File id="3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C/f:DirectoryManagerTester.cs" caret="137" fromTop="7" />
-      <File id="702B536A-E766-4C55-838E-14424FA8F101/f:Shell.xaml.cs" caret="316" fromTop="10" />
-      <File id="702B536A-E766-4C55-838E-14424FA8F101/f:Bootstrapper.cs" caret="358" fromTop="5" />
-      <File id="702B536A-E766-4C55-838E-14424FA8F101/d:RegionAdapters/f:AvalonDocableRegionAdapter.cs.cs" caret="200" fromTop="8" />
-      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:WishModule.cs" caret="1027" fromTop="28" />
-      <File id="385FD9E7-C30C-4420-9D90-4ECBB3B3697C/f:TabCompletionRequestedEvent.cs" caret="247" fromTop="8" />
-      <File id="385FD9E7-C30C-4420-9D90-4ECBB3B3697C/f:CompletionManager.cs" caret="395" fromTop="19" />
-      <File id="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3/f:TerminalUtils.cs" caret="657" fromTop="18" />
-      <File id="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3/f:Command.cs" caret="272" fromTop="8" />
-      <File id="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3/f:Terminal.cs" caret="6593" fromTop="12" />
-      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="1108" fromTop="26" />
-    </RecentFiles>
-    <RecentEdits>
-      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="1393" fromTop="31" />
-      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml" caret="982" fromTop="15" />
-      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml" caret="675" fromTop="8" />
-      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:WishModule.cs" caret="1172" fromTop="29" />
-      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:WishModule.cs" caret="1089" fromTop="29" />
-      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="4280" fromTop="33" />
-      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="1200" fromTop="28" />
-      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="730" fromTop="22" />
-      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="1200" fromTop="30" />
-      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="4617" fromTop="43" />
-      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="628" fromTop="21" />
-      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="362" fromTop="15" />
-      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="83" fromTop="4" />
-      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="3776" fromTop="26" />
-      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="3886" fromTop="30" />
-      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="3985" fromTop="34" />
-      <File id="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3/f:Terminal.cs" caret="342" fromTop="10" />
-      <File id="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3/f:Terminal.cs" caret="1091" fromTop="36" />
-      <File id="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3/f:Terminal.cs" caret="903" fromTop="29" />
-      <File id="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3/f:Terminal.cs" caret="6344" fromTop="22" />
-      <File id="702B536A-E766-4C55-838E-14424FA8F101/d:RegionAdapters/f:AvalonDocableRegionAdapter.cs.cs" caret="228" fromTop="9" />
-      <File id="385FD9E7-C30C-4420-9D90-4ECBB3B3697C/f:TabCompletionRequestedEvent.cs" caret="247" fromTop="8" />
-      <File id="385FD9E7-C30C-4420-9D90-4ECBB3B3697C/f:CompletionManager.cs" caret="330" fromTop="11" />
-      <File id="385FD9E7-C30C-4420-9D90-4ECBB3B3697C/f:CompletionManager.cs" caret="242" fromTop="10" />
-      <File id="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3/f:Terminal.cs" caret="7236" fromTop="23" />
-      <File id="385FD9E7-C30C-4420-9D90-4ECBB3B3697C/f:CompletionManager.cs" caret="387" fromTop="19" />
-      <File id="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3/f:Terminal.cs" caret="7086" fromTop="18" />
-      <File id="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3/f:Terminal.cs" caret="6583" fromTop="12" />
-      <File id="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3/f:Terminal.cs" caret="7891" fromTop="37" />
-      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="1185" fromTop="28" />
-    </RecentEdits>
+    <RecentFiles />
+    <RecentEdits />
   </RecentFiles>
   <NAntValidationSettings>
     <NAntPath value="" />
@@ -65,53 +20,4 @@
     <NUnitInstallDir>C:\Program Files (x86)\NUnit 2.5.10\bin\net-2.0\</NUnitInstallDir>
     <UseAddins>Never</UseAddins>
   </UnitTestRunnerNUnit>
-  <CompletionStatisticsManager>
-    <ItemStatistics item="Default">
-      <Item value="KeyBinding`0" priority="0" />
-      <Item value="keyBinding" priority="1" />
-      <Item value="ModifierKeys`0" priority="4" />
-      <Item value="new" priority="7" />
-      <Item value="KeyBinding" priority="0" />
-      <Item value="InputBinding`0" priority="0" />
-      <Item value="void" priority="0" />
-      <Item value="object" priority="0" />
-      <Item value="var" priority="2" />
-      <Item value="KeyGesture`0" priority="0" />
-      <Item value="Key`0" priority="0" />
-      <Item value="keyGesture" priority="0" />
-      <Item value="public" priority="1" />
-      <Item value="static" priority="0" />
-      <Item value="RoutedCommand" priority="0" />
-      <Item value="_mainRegion" priority="3" />
-      <Item value="_eventAggregator" priority="2" />
-      <Item value="private" priority="2" />
-      <Item value="IRegion`0" priority="0" />
-      <Item value="IEventAggregator`0" priority="0" />
-      <Item value="mainRegion" priority="0" />
-      <Item value="eventAggregator" priority="0" />
-      <Item value="newTab" priority="0" />
-      <Item value="Popup" priority="0" />
-      <Item value="string" priority="2" />
-      <Item value="CompletionManager`0" priority="1" />
-      <Item value="input" priority="0" />
-      <Item value="completionManager" priority="0" />
-      <Item value="return" priority="0" />
-    </ItemStatistics>
-    <ItemStatistics item="Qualified:System.Windows.Input.InputBindingCollection">
-      <Item value="Add`0" priority="0" />
-    </ItemStatistics>
-    <ItemStatistics item="Qualified:@System.Windows.Input.Key">
-      <Item value="T" priority="0" />
-    </ItemStatistics>
-    <ItemStatistics item="Qualified:@System.Windows.Input.ModifierKeys">
-      <Item value="Control" priority="1" />
-      <Item value="Shift" priority="1" />
-    </ItemStatistics>
-    <ItemStatistics item="Qualified:Microsoft.Practices.Prism.Regions.IRegion">
-      <Item value="Add`0" priority="0" />
-    </ItemStatistics>
-    <ItemStatistics item="Qualified:Wish.Infrastructure.TabCompletionRequestedEvent">
-      <Item value="Publish`0" priority="0" />
-    </ItemStatistics>
-  </CompletionStatisticsManager>
 </Configuration>
