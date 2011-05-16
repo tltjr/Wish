@@ -1,0 +1,9 @@
+Fix NavigateUp. No seriously, don't leave that pile of crap
+
+First character of prompt (the drive) to upcase
+
+need to find way to make directories in prompt case correct,
+i.e. if user enters cd c:\links, but the directory is c:\Links,
+then the display should be c:\Links
+
+Handle cd ../.. as well as cd ..\.. 

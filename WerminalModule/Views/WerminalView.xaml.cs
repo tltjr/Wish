@@ -51,14 +51,7 @@ namespace WerminalModule.Views
             if(DirectoryChange(command))
             {
                 var changed = _directoryManager.ChangeDirectory(command.Args.FirstOrDefault());
-                if(changed)
-                {
-                    _result = "";
-                }
-                else
-                {
-                    _result = "The system cannot find the path specified\n";
-                }
+                _result = changed ? "" : "The system cannot find the path specified\n";
             }
             else
             {
