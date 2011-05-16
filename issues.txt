@@ -1,4 +1,8 @@
+Capture standard error
+
 Fix NavigateUp. No seriously, don't leave that pile of crap
+
+dynamically set start directory
 
 First character of prompt (the drive) to upcase
 

@@ -4,24 +4,38 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Microsoft.Practices.Prism.Events;
+using Microsoft.Practices.Prism.Regions;
 using Terminal;
 
 namespace WishModule.Views
 {
     /// <summary>
-    /// Interaction logic for WerminalView.xaml
+    /// Interaction logic for WishView.xaml
     /// </summary>
-    public partial class WerminalView : UserControl
+    public partial class WishView : UserControl
     {
         private string _result;
         private readonly DirectoryManager _directoryManager;
+        public static RoutedCommand TabNew = new RoutedCommand();
+        private IRegion _mainRegion;
+        private IEventAggregator _eventAggregator;
 
-        public WerminalView()
+        public WishView(IRegion mainRegion, IEventAggregator eventAggregator)
         {
             InitializeComponent();
             Keyboard.Focus(Output);
             _directoryManager = new DirectoryManager {WorkingDirectory = @"C:\Users\tlthorn1"};
             Output.InsertNewPrompt(_directoryManager.WorkingDirectory);
+            SetKeybindings();
+            _mainRegion = mainRegion;
+            _eventAggregator = eventAggregator;
+        }
+
+        private void SetKeybindings()
+        {
+            var keyGesture = new KeyGesture(Key.T, ModifierKeys.Control | ModifierKeys.Shift);
+            TabNew.InputGestures.Add(keyGesture);
         }
 
         private void CommandEntered(object sender, Terminal.Terminal.CommandEventArgs e)
@@ -103,13 +117,20 @@ namespace WishModule.Views
 				DependencyProperty.Register(
 					"Title",
 					typeof(string),
-					typeof(WerminalView),
+					typeof(WishView),
 					new PropertyMetadata(@"amr\tlthorn1")
 					);
-		public string Title
+
+        public string Title
 		{
 			get { return GetValue(TitleProperty) as string; }
 			set { SetValue(TitleProperty, value); }
 		}
+
+        private void NewTabRequest(object sender, ExecutedRoutedEventArgs e)
+        {
+            var newTab = new WishView(_mainRegion, _eventAggregator);
+            _mainRegion.Add(newTab);
+        }
     }
 }

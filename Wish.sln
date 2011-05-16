@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wish", "Werminal\Wish.csproj", "{702B536A-E766-4C55-838E-14424FA8F101}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wish", "Wish\Wish.csproj", "{702B536A-E766-4C55-838E-14424FA8F101}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WishModule", "WerminalModule\WishModule.csproj", "{A79E6DEA-767F-493E-99D3-9A0B3B022E0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WishModule", "WishModule\WishModule.csproj", "{A79E6DEA-767F-493E-99D3-9A0B3B022E0C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terminal", "Terminal\Terminal.csproj", "{D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wish.Testing", "Werminal.Testing\Wish.Testing.csproj", "{3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wish.Testing", "Wish.Testing\Wish.Testing.csproj", "{3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

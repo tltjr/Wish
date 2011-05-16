@@ -8,3 +8,8 @@ C:\src\dotnet\Werminal\Terminal\bin\Debug\Terminal.pdb
 C:\src\dotnet\Werminal\Terminal\obj\Debug\ResolveAssemblyReference.cache
 C:\src\dotnet\Werminal\Terminal\obj\Debug\Terminal.dll
 C:\src\dotnet\Werminal\Terminal\obj\Debug\Terminal.pdb
+C:\src\dotnet\Wish\Terminal\bin\Debug\Terminal.dll
+C:\src\dotnet\Wish\Terminal\bin\Debug\Terminal.pdb
+C:\src\dotnet\Wish\Terminal\obj\Debug\ResolveAssemblyReference.cache
+C:\src\dotnet\Wish\Terminal\obj\Debug\Terminal.dll
+C:\src\dotnet\Wish\Terminal\obj\Debug\Terminal.pdb

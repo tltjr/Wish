@@ -4,7 +4,7 @@
 library
 C#
 .cs
-C:\src\dotnet\Werminal\WerminalModule\obj\Debug\
+C:\src\dotnet\Wish\WishModule\obj\Debug\
 WishModule
 none
 false
@@ -13,7 +13,7 @@ DEBUG;TRACE
 1282953753
 
 4-770098426
-16782512748
+16-1404505358
 Views\WishView.xaml;
 
 False

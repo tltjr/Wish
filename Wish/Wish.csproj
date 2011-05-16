@@ -117,7 +117,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WerminalModule\WishModule.csproj">
+    <ProjectReference Include="..\WishModule\WishModule.csproj">
       <Project>{A79E6DEA-767F-493E-99D3-9A0B3B022E0C}</Project>
       <Name>WishModule</Name>
     </ProjectReference>

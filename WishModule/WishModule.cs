@@ -27,7 +27,7 @@ namespace WishModule
 
         public void Initialize()
         {
-            var view = new WerminalView();
+            var view = new WishView(_mainRegion, _eventAggregator);
             _mainRegion.Add(view);
         }
     }

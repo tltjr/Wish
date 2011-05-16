@@ -11,3 +11,16 @@ C:\src\dotnet\Werminal\Werminal.Testing\bin\Debug\Terminal.pdb
 C:\src\dotnet\Werminal\Werminal.Testing\obj\Debug\ResolveAssemblyReference.cache
 C:\src\dotnet\Werminal\Werminal.Testing\obj\Debug\Wish.Testing.dll
 C:\src\dotnet\Werminal\Werminal.Testing\obj\Debug\Wish.Testing.pdb
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Wish.Testing.dll
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Wish.Testing.pdb
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\nunit.framework.dll
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\WishModule.dll
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Microsoft.Practices.Prism.dll
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Terminal.dll
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Microsoft.Practices.Prism.MefExtensions.dll
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\WishModule.pdb
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Terminal.pdb
+C:\src\dotnet\Wish\Wish.Testing\obj\Debug\ResolveAssemblyReference.cache
+C:\src\dotnet\Wish\Wish.Testing\obj\Debug\Wish.Testing.dll
+C:\src\dotnet\Wish\Wish.Testing\obj\Debug\Wish.Testing.pdb
