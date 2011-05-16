@@ -106,5 +106,18 @@ namespace WerminalModule.Views
                 // Log the exception
             }
         }
+
+		public static readonly DependencyProperty TitleProperty =
+				DependencyProperty.Register(
+					"Title",
+					typeof(string),
+					typeof(WerminalView),
+					new PropertyMetadata(@"amr\tlthorn1")
+					);
+		public string Title
+		{
+			get { return GetValue(TitleProperty) as string; }
+			set { SetValue(TitleProperty, value); }
+		}
     }
 }

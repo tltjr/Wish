@@ -7,3 +7,6 @@ i.e. if user enters cd c:\links, but the directory is c:\Links,
 then the display should be c:\Links
 
 Handle cd ../.. as well as cd ..\.. 
+
+create dynamic tab titles
+
