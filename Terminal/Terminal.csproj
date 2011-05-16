@@ -57,6 +57,12 @@
     <Compile Include="Terminal.cs" />
     <Compile Include="TerminalUtils.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Wish.Infrastructure\Wish.Infrastructure.csproj">
+      <Project>{385FD9E7-C30C-4420-9D90-4ECBB3B3697C}</Project>
+      <Name>Wish.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /Y "$(TargetDir)*.*" "$(SolutionDir)$(OutDir)Modules\"</PostBuildEvent>

@@ -1,3 +1,5 @@
+implement tab completion
+
 Capture standard error
 
 Fix NavigateUp. No seriously, don't leave that pile of crap

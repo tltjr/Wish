@@ -7,9 +7,9 @@ using Microsoft.Practices.Prism.Regions;
 
 namespace Wish.RegionAdapters
 {
-    public class AvalonDocableRegionAdapter : RegionAdapterBase<DockablePane>
+    public class AvalonDockableRegionAdapter : RegionAdapterBase<DockablePane>
     {
-        public AvalonDocableRegionAdapter(IRegionBehaviorFactory factory) : base(factory) { }
+        public AvalonDockableRegionAdapter(IRegionBehaviorFactory factory) : base(factory) { }
 
         protected override IRegion CreateRegion()
         {

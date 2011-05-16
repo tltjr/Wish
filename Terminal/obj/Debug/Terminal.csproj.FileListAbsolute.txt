@@ -13,3 +13,7 @@ C:\src\dotnet\Wish\Terminal\bin\Debug\Terminal.pdb
 C:\src\dotnet\Wish\Terminal\obj\Debug\ResolveAssemblyReference.cache
 C:\src\dotnet\Wish\Terminal\obj\Debug\Terminal.dll
 C:\src\dotnet\Wish\Terminal\obj\Debug\Terminal.pdb
+C:\src\dotnet\Wish\Terminal\bin\Debug\Microsoft.Practices.Prism.dll
+C:\src\dotnet\Wish\Terminal\bin\Debug\Wish.Infrastructure.dll
+C:\src\dotnet\Wish\Terminal\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\src\dotnet\Wish\Terminal\bin\Debug\Wish.Infrastructure.pdb
