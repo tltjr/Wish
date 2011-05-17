@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using System.Windows.Media;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
 using Terminal;
@@ -20,6 +24,9 @@ namespace WishModule.Views
         public static RoutedCommand TabNew = new RoutedCommand();
         private IRegion _mainRegion;
         private IEventAggregator _eventAggregator;
+        private CompletionManager _completionManager = new CompletionManager();
+
+        private bool _activelyTabbing;
 
         public WishView(IRegion mainRegion, IEventAggregator eventAggregator)
         {
@@ -48,6 +55,34 @@ namespace WishModule.Views
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             Keyboard.Focus(Output);
+        }
+
+        protected override void OnPreviewKeyDown(KeyEventArgs e)
+        {
+            if(e.Key == Key.Tab)
+            {
+    			if (Output.CaretIndex != Output.Text.Length || Output.CaretIndex == Output.LastPromptIndex)
+    				return;
+
+    			// Get command name and associated commands
+    			string line = Output.Text.Substring(Output.LastPromptIndex);
+                TabComplete(TerminalUtils.ParseCommandLine(line));
+                e.Handled = true;
+                _activelyTabbing = true;
+            }
+            else
+            {
+                Output.PreviewKeyDown(e);
+                _activelyTabbing = false;
+            }
+        }
+
+        private void TabComplete(Command command)
+        {
+            var result = _completionManager.Complete(command, _activelyTabbing, 
+                _directoryManager.WorkingDirectory, Output.Text);
+            Output.Text = result;
+            Output.CaretIndex = result.Length;
         }
 
         public void ExecuteCommandSync(object obj)
@@ -120,6 +155,8 @@ namespace WishModule.Views
 					typeof(WishView),
 					new PropertyMetadata(@"amr\tlthorn1")
 					);
+
+
 
         public string Title
 		{

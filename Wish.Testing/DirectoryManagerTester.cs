@@ -76,7 +76,21 @@ namespace Wish.Testing
             var directoryManager = new DirectoryManager {WorkingDirectory = @"C:\Users\tlthorn1"};
             var changed = directoryManager.ChangeDirectory(@"..\..");
             Assert.True(changed);
-            Assert.AreEqual(@"C:", directoryManager.WorkingDirectory);
+            Assert.AreEqual(@"C:\", directoryManager.WorkingDirectory);
+        }
+
+        [Test]
+        public void TrailingSlashesAreTrimmed()
+        {
+            var directoryManager = new DirectoryManager {WorkingDirectory = @"C:\Users\tlthorn1\"};
+            Assert.AreEqual(@"C:\Users\tlthorn1", directoryManager.WorkingDirectory);
+        }
+
+        [Test]
+        public void TrailingUnixSlashesAreTrimmed()
+        {
+            var directoryManager = new DirectoryManager {WorkingDirectory = @"C:\Users\tlthorn1/"};
+            Assert.AreEqual(@"C:\Users\tlthorn1", directoryManager.WorkingDirectory);
         }
     }
 }

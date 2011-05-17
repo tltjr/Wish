@@ -71,7 +71,8 @@ namespace Terminal {
 		// EVENT HANDLER
 		// --------------------------------------------------------------------
 
-		protected override void OnPreviewKeyDown(KeyEventArgs e) {
+        public void PreviewKeyDown(KeyEventArgs e)
+        {
 			// If Ctrl+C is entered, raise an abortrequested event !
 			if (e.Key == Key.C) {
 				if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) {
@@ -130,25 +131,10 @@ namespace Terminal {
 				e.Handled = true;
 			}
 
-			// If input has not yet been discarded, test the key for special inputs.
-			// ENTER   => validates the input
-			// TAB     => launches command completion with registered commands
-			// CTRL+C  => raises an abort request event
-			if (!e.Handled) {
-				switch (e.Key) {
-					case Key.Enter:
-						HandleEnterKey();
-						e.Handled = true;
-						break;
-					case Key.Tab:
-						HandleTabKey();
-						e.Handled = true;
-						break;
-				}
-			}
-
-			base.OnPreviewKeyDown(e);
-		}
+            if (e.Handled || e.Key != Key.Enter) return;
+            HandleEnterKey();
+            e.Handled = true;
+        }
 
 		// --------------------------------------------------------------------
 		// VIRTUAL METHODS

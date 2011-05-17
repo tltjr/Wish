@@ -11,16 +11,26 @@ namespace WishModule
         public string WorkingDirectory { 
             get
             {
-                return _workingDirectory.Equals("C:", StringComparison.CurrentCultureIgnoreCase) ? "C:\\" : _workingDirectory;
+                return _workingDirectory.Equals("C:", StringComparison.CurrentCultureIgnoreCase) 
+                    ? "C:\\" : ParseEndingSlashes(_workingDirectory);
             }
-            set { _workingDirectory = value; }
+            set { _workingDirectory = ParseEndingSlashes(value); }
+        }
+
+        private string ParseEndingSlashes(string workingDirectory)
+        {
+            if(workingDirectory.EndsWith("\\") || workingDirectory.EndsWith("/"))
+            {
+                return workingDirectory.Substring(0, workingDirectory.Length - 1);
+            }
+            return workingDirectory;
         }
 
         public bool ChangeDirectory(string dir)
         {
             return dir.Contains(":") ? TrySetWorkingDirectory(dir) : 
                    dir.Contains("..") ? NavigateUp(dir) :
-                   TrySetWorkingDirectory(_workingDirectory + @"\" + dir);
+                   TrySetWorkingDirectory(_workingDirectory + "\\" + dir);
         }
 
         private bool NavigateUp(string dir)
@@ -84,7 +94,7 @@ namespace WishModule
             {
                 return false;
             }
-            _workingDirectory = dir;
+            _workingDirectory = ParseEndingSlashes(dir);
             return true;
         }
     }

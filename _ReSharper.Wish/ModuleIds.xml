@@ -2,4 +2,7 @@
   <Module PersistentId="702B536A-E766-4C55-838E-14424FA8F101" ModuleId="Wish" />
   <Module PersistentId="A79E6DEA-767F-493E-99D3-9A0B3B022E0C" ModuleId="WishModule" />
   <Module PersistentId="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3" ModuleId="Terminal" />
+  <Module PersistentId="ED421039-3AB4-45CB-88D9-69070B741484" ModuleId="Wish.Infrastructure" />
+  <Module PersistentId="PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" ModuleId="PresentationFramework" />
+  <Module PersistentId="3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C" ModuleId="Wish.Testing" />
 </Modules>

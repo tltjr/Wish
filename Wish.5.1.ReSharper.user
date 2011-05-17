@@ -3,12 +3,58 @@
     <string />
     <integer />
     <boolean>
+      <setting name="livetemplates.csharp.usevar">True</setting>
       <setting name="SolutionAnalysisEnabled">False</setting>
     </boolean>
   </SettingsComponent>
   <RecentFiles>
-    <RecentFiles />
-    <RecentEdits />
+    <RecentFiles>
+      <File id="702B536A-E766-4C55-838E-14424FA8F101/f:Shell.xaml" caret="382" fromTop="5" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml" caret="675" fromTop="8" />
+      <File id="702B536A-E766-4C55-838E-14424FA8F101/f:Shell.xaml.cs" caret="316" fromTop="10" />
+      <File id="702B536A-E766-4C55-838E-14424FA8F101/f:Bootstrapper.cs" caret="358" fromTop="5" />
+      <File id="702B536A-E766-4C55-838E-14424FA8F101/d:RegionAdapters/f:AvalonDocableRegionAdapter.cs.cs" caret="200" fromTop="8" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:WishModule.cs" caret="1027" fromTop="28" />
+      <File id="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3/f:Command.cs" caret="272" fromTop="8" />
+      <File id="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3/f:TerminalUtils.cs" caret="657" fromTop="18" />
+      <File id="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3/f:Terminal.cs" caret="1104" fromTop="10" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:DirectoryManager.cs" caret="717" fromTop="23" />
+      <File id="3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C/f:DirectoryManagerTester.cs" caret="0" fromTop="0" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:CompletionManager.cs" caret="1211" fromTop="21" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="369" fromTop="13" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="2928" fromTop="35" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="2928" fromTop="39" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="2928" fromTop="36" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="2928" fromTop="11" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="2928" fromTop="17" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="2928" fromTop="21" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="2928" fromTop="14" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="2928" fromTop="7" />
+      <File id="3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C/f:DirectoryManagerTester.cs" caret="3817" fromTop="38" />
+      <File id="3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C/f:DirectoryManagerTester.cs" caret="3311" fromTop="27" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:DirectoryManager.cs" caret="374" fromTop="14" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:DirectoryManager.cs" caret="718" fromTop="23" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="1371" fromTop="24" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:CompletionManager.cs" caret="188" fromTop="6" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="2497" fromTop="27" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="5448" fromTop="43" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="917" fromTop="30" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="2941" fromTop="33" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:CompletionManager.cs" caret="2655" fromTop="41" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:CompletionManager.cs" caret="2682" fromTop="40" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="2656" fromTop="25" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:CompletionManager.cs" caret="2655" fromTop="2" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:CompletionManager.cs" caret="2655" fromTop="7" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:CompletionManager.cs" caret="1594" fromTop="24" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:CompletionManager.cs" caret="2000" fromTop="35" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:CompletionManager.cs" caret="2434" fromTop="34" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:CompletionManager.cs" caret="386" fromTop="2" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/f:CompletionManager.cs" caret="597" fromTop="6" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="2829" fromTop="30" />
+      <File id="A79E6DEA-767F-493E-99D3-9A0B3B022E0C/d:Views/f:WishView.xaml.cs" caret="369" fromTop="13" />
+    </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
     <NAntPath value="" />
@@ -20,4 +66,159 @@
     <NUnitInstallDir>C:\Program Files (x86)\NUnit 2.5.10\bin\net-2.0\</NUnitInstallDir>
     <UseAddins>Never</UseAddins>
   </UnitTestRunnerNUnit>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="KeyBinding`0" priority="0" />
+      <Item value="keyBinding" priority="1" />
+      <Item value="ModifierKeys`0" priority="4" />
+      <Item value="new" priority="12" />
+      <Item value="KeyBinding" priority="0" />
+      <Item value="InputBinding`0" priority="0" />
+      <Item value="void" priority="1" />
+      <Item value="object" priority="0" />
+      <Item value="var" priority="17" />
+      <Item value="KeyGesture`0" priority="0" />
+      <Item value="Key`0" priority="1" />
+      <Item value="keyGesture" priority="0" />
+      <Item value="public" priority="2" />
+      <Item value="static" priority="0" />
+      <Item value="RoutedCommand" priority="0" />
+      <Item value="_mainRegion" priority="3" />
+      <Item value="_eventAggregator" priority="3" />
+      <Item value="private" priority="5" />
+      <Item value="IRegion`0" priority="0" />
+      <Item value="IEventAggregator`0" priority="0" />
+      <Item value="mainRegion" priority="0" />
+      <Item value="eventAggregator" priority="0" />
+      <Item value="newTab" priority="0" />
+      <Item value="Popup" priority="1" />
+      <Item value="string" priority="8" />
+      <Item value="CompletionManager`0" priority="1" />
+      <Item value="input" priority="0" />
+      <Item value="completionManager" priority="0" />
+      <Item value="return" priority="6" />
+      <Item value="HandleTabKey`0" priority="0" />
+      <Item value="if" priority="6" />
+      <Item value="e" priority="2" />
+      <Item value="Tab" priority="0" />
+      <Item value="else" priority="3" />
+      <Item value="Output" priority="4" />
+      <Item value="KeyEventArgs`0" priority="0" />
+      <Item value="true" priority="1" />
+      <Item value="Enter" priority="0" />
+      <Item value="popup" priority="1" />
+      <Item value="CompletionView" priority="0" />
+      <Item value="view" priority="0" />
+      <Item value="Label`0" priority="0" />
+      <Item value="label" priority="2" />
+      <Item value="Brush`0" priority="0" />
+      <Item value="DirectoryChange`0" priority="0" />
+      <Item value="directories" priority="0" />
+      <Item value="Where`1" priority="0" />
+      <Item value="o" priority="0" />
+      <Item value="matches" priority="1" />
+      <Item value="command" priority="4" />
+      <Item value="_directoryManager" priority="2" />
+      <Item value="workingDir" priority="3" />
+      <Item value="searchString" priority="0" />
+      <Item value="completionTarget" priority="2" />
+      <Item value="foreach" priority="0" />
+      <Item value="match" priority="0" />
+      <Item value="IEnumerable" priority="0" />
+      <Item value="length" priority="0" />
+      <Item value="newText" priority="0" />
+      <Item value="dirNames" priority="0" />
+      <Item value="bool" priority="0" />
+      <Item value="_tabin" priority="2" />
+      <Item value="false" priority="0" />
+      <Item value="IList" priority="0" />
+      <Item value="_currentTabDirs" priority="4" />
+      <Item value="_currentTabIndex" priority="6" />
+      <Item value="_currentTabOption" priority="0" />
+      <Item value="Count`1" priority="1" />
+      <Item value="arg" priority="2" />
+      <Item value="Directory`0" priority="0" />
+      <Item value="dirsInArg" priority="1" />
+      <Item value="Take`1" priority="0" />
+      <Item value="String`0" priority="0" />
+      <Item value="dirsToJoin" priority="0" />
+      <Item value="dirString" priority="1" />
+      <Item value="CurrentCultureIgnoreCase" priority="0" />
+      <Item value="workingDirectory" priority="4" />
+      <Item value="_completionManager" priority="1" />
+      <Item value="CompletionManager" priority="1" />
+      <Item value="KeyUpEvent" priority="0" />
+      <Item value="currentText" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Input.InputBindingCollection">
+      <Item value="Add`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Windows.Input.Key">
+      <Item value="T" priority="0" />
+      <Item value="Enter" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Windows.Input.ModifierKeys">
+      <Item value="Control" priority="1" />
+      <Item value="Shift" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Microsoft.Practices.Prism.Regions.IRegion">
+      <Item value="Add`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Wish.Infrastructure.TabCompletionRequestedEvent">
+      <Item value="Publish`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Input.KeyEventArgs">
+      <Item value="Key" priority="1" />
+      <Item value="Handled" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Microsoft.Practices.Prism.Events.IEventAggregator">
+      <Item value="GetEvent`1" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Controls.Primitives.Popup">
+      <Item value="Child" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Controls.Label">
+      <Item value="Content" priority="0" />
+      <Item value="Foreground" priority="0" />
+      <Item value="Background" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Windows.Media.Brushes">
+      <Item value="Aqua" priority="0" />
+      <Item value="Black" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO.Directory">
+      <Item value="GetDirectories`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:WishModule.DirectoryManager">
+      <Item value="WorkingDirectory" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.String">
+      <Item value="StartsWith`0" priority="0" />
+      <Item value="Replace`0" priority="0" />
+      <Item value="Length" priority="2" />
+      <Item value="Remove`0" priority="0" />
+      <Item value="Contains`0" priority="0" />
+      <Item value="Split`0" priority="0" />
+      <Item value="EndsWith`0" priority="1" />
+      <Item value="Substring`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Terminal.Terminal">
+      <Item value="Text" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.IEnumerable`1">
+      <Item value="ToList`1" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Terminal.TerminalUtils">
+      <Item value="ParseCommandLine`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Terminal.Command">
+      <Item value="Args" priority="4" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.IList`1">
+      <Item value="Count" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.String">
+      <Item value="Join`0" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
 </Configuration>
