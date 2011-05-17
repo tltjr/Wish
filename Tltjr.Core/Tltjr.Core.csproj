@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C}</ProjectGuid>
+    <ProjectGuid>{0BF86801-F333-4E6A-9893-907CC9B36C31}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Wish.Testing</RootNamespace>
-    <AssemblyName>Wish.Testing</AssemblyName>
+    <RootNamespace>Tltjr.Core</RootNamespace>
+    <AssemblyName>Tltjr.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,19 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompletionManagerTester.cs" />
-    <Compile Include="DirectoryManagerTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Terminal\Terminal.csproj">
-      <Project>{D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3}</Project>
-      <Name>Terminal</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WishModule\WishModule.csproj">
-      <Project>{A79E6DEA-767F-493E-99D3-9A0B3B022E0C}</Project>
-      <Name>WishModule</Name>
-    </ProjectReference>
+    <Compile Include="StringExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

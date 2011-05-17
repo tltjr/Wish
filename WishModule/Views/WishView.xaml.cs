@@ -79,8 +79,9 @@ namespace WishModule.Views
 
         private void TabComplete(Command command)
         {
-            var result = _completionManager.Complete(command, _activelyTabbing, 
-                _directoryManager.WorkingDirectory, Output.Text);
+            string result;
+            if (!_completionManager.Complete(out result, command, _activelyTabbing,
+                                             _directoryManager.WorkingDirectory, Output.Text)) return;
             Output.Text = result;
             Output.CaretIndex = result.Length;
         }

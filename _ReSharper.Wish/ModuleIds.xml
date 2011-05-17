@@ -5,4 +5,5 @@
   <Module PersistentId="ED421039-3AB4-45CB-88D9-69070B741484" ModuleId="Wish.Infrastructure" />
   <Module PersistentId="PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" ModuleId="PresentationFramework" />
   <Module PersistentId="3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C" ModuleId="Wish.Testing" />
+  <Module PersistentId="0BF86801-F333-4E6A-9893-907CC9B36C31" ModuleId="Tltjr.Core" />
 </Modules>
