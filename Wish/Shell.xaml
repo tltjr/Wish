@@ -1,4 +1,4 @@
-﻿<Window x:Class="Wish.Shell"
+﻿<Window x:Class="Wish.Desktop.Shell"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         xmlns:cal="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism" 

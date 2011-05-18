@@ -4,9 +4,9 @@ using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
-using WishModule.Views;
+using Wish.Views;
 
-namespace WishModule
+namespace Wish
 {
     [ModuleExport(typeof(WishModule))]
     public class WishModule : IModule

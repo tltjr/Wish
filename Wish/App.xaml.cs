@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Wish
+namespace Wish.Desktop
 {
     /// <summary>
     /// Interaction logic for App.xaml

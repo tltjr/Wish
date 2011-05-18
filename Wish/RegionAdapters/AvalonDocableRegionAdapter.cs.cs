@@ -5,7 +5,7 @@ using System.Windows.Data;
 using AvalonDock;
 using Microsoft.Practices.Prism.Regions;
 
-namespace Wish.RegionAdapters
+namespace Wish.Desktop.RegionAdapters
 {
     public class AvalonDocableRegionAdapter : RegionAdapterBase<DockablePane>
     {

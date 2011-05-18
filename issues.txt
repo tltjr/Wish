@@ -1,3 +1,5 @@
+scrolltoend is failing on launch
+
 Capture standard error
 
 trying to access a directory without rights is an application

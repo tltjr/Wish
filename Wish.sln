@@ -1,15 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wish", "Wish\Wish.csproj", "{702B536A-E766-4C55-838E-14424FA8F101}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wish.Desktop", "Wish\Wish.Desktop.csproj", "{702B536A-E766-4C55-838E-14424FA8F101}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WishModule", "WishModule\WishModule.csproj", "{A79E6DEA-767F-493E-99D3-9A0B3B022E0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WishModule.Orig", "WishModule\WishModule.Orig.csproj", "{A79E6DEA-767F-493E-99D3-9A0B3B022E0C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terminal", "Terminal\Terminal.csproj", "{D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wish.Testing", "Wish.Testing\Wish.Testing.csproj", "{3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tltjr.Core", "Tltjr.Core\Tltjr.Core.csproj", "{0BF86801-F333-4E6A-9893-907CC9B36C31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wish", "WishModule\Wish.csproj", "{F6A61085-69F1-499B-BFCE-E65E32BEDCC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wish.Core", "Wish.Core\Wish.Core.csproj", "{6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +75,26 @@ Global
 		{0BF86801-F333-4E6A-9893-907CC9B36C31}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{0BF86801-F333-4E6A-9893-907CC9B36C31}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{0BF86801-F333-4E6A-9893-907CC9B36C31}.Release|x86.ActiveCfg = Release|Any CPU
+		{F6A61085-69F1-499B-BFCE-E65E32BEDCC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6A61085-69F1-499B-BFCE-E65E32BEDCC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6A61085-69F1-499B-BFCE-E65E32BEDCC9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F6A61085-69F1-499B-BFCE-E65E32BEDCC9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F6A61085-69F1-499B-BFCE-E65E32BEDCC9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F6A61085-69F1-499B-BFCE-E65E32BEDCC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6A61085-69F1-499B-BFCE-E65E32BEDCC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6A61085-69F1-499B-BFCE-E65E32BEDCC9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F6A61085-69F1-499B-BFCE-E65E32BEDCC9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F6A61085-69F1-499B-BFCE-E65E32BEDCC9}.Release|x86.ActiveCfg = Release|Any CPU
+		{6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

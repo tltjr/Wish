@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Practices.Prism.Logging;
 
-namespace Wish
+namespace Wish.Desktop
 {
     public class CallbackLogger : ILoggerFacade
     {

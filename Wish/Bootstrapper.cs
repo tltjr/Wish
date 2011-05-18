@@ -6,9 +6,9 @@ using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.MefExtensions;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
-using Wish.RegionAdapters;
+using Wish.Desktop.RegionAdapters;
 
-namespace Wish
+namespace Wish.Desktop
 {
     class Bootstrapper : MefBootstrapper
     {
@@ -30,7 +30,7 @@ namespace Wish
         {
             base.ConfigureModuleCatalog();
             var moduleCatalog = (ModuleCatalog)ModuleCatalog;
-            moduleCatalog.AddModule(typeof(WishModule.WishModule));
+            moduleCatalog.AddModule(typeof(WishModule));
         }
 
         protected override RegionAdapterMappings ConfigureRegionAdapterMappings()
@@ -48,7 +48,7 @@ namespace Wish
         {
             base.ConfigureAggregateCatalog ( );
 			AggregateCatalog.Catalogs.Add ( new AssemblyCatalog ( typeof ( Shell ).Assembly ) );
-            AggregateCatalog.Catalogs.Add ( new AssemblyCatalog ( typeof ( WishModule.WishModule ).Assembly));
+            AggregateCatalog.Catalogs.Add ( new AssemblyCatalog ( typeof ( WishModule ).Assembly));
         }
 
         protected override void ConfigureContainer()

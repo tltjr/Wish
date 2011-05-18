@@ -1,19 +1,20 @@
-﻿<UserControl x:Class="WishModule.Views.WishView"
+﻿<UserControl x:Class="Wish.Views.WishView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:Terminal="clr-namespace:Terminal;assembly=Terminal" xmlns:Views="clr-namespace:WishModule.Views" mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.CommandBindings>
-        <CommandBinding Command="{x:Static Views:WishView.TabNew}" Executed="NewTabRequest"/>
-    </UserControl.CommandBindings>
-    <Terminal:Terminal 
-			x:Name="Output"
-            FontFamily="Consolas"
-			Grid.Row="3"
-			VerticalScrollBarVisibility="Auto"
-			AcceptsReturn="True"
-            Focusable="True"
-			CommandEntered="CommandEntered" Loaded="OnLoaded" />
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             Loaded="OnUserControlLoaded">
+    <TextBox Text="{Binding Path=Text, Mode=OneWay}"
+             x:Name="textBox"
+             FontFamily="{Binding Path=FontFamily, Mode=OneWay}"
+             VerticalScrollBarVisibility="Auto"
+             AcceptsReturn="True"
+             TextChanged="ScrollToEnd"
+             Focusable="True">
+        <TextBox.InputBindings>
+            <KeyBinding Command="{Binding Path=CommandEntered}" Key="Enter" />
+         </TextBox.InputBindings>
+    </TextBox>
 </UserControl>

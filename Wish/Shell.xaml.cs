@@ -2,7 +2,7 @@
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Logging;
 
-namespace Wish
+namespace Wish.Desktop
 {
     /// <summary>
     /// Interaction logic for Shell.xaml
