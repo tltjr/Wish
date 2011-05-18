@@ -14,30 +14,29 @@ namespace Terminal {
 		public bool IsSystemBeepEnabled { get; set; }
 		public string Prompt { get; set; }
 
-		public List<string> RegisteredCommands { get; private set; }
-		public List<Command> CommandLog { get; set; }
+		//public List<string> RegisteredCommands { get; private set; }
+		//public List<Command> CommandLog { get; set; }
 		public int LastPromptIndex { get; private set; }
-		public bool IsInputEnabled { get; private set; }
-        public bool PrintingPrompt { get; set; }
+		//public bool IsInputEnabled { get; private set; }
 
 
 		private int _indexInLog;
 
 		public Terminal() 
 		{
-			IsUndoEnabled = false;
-			AcceptsReturn = false;
-			AcceptsTab = false;
+			//IsUndoEnabled = false;
+			//AcceptsReturn = false;
+			//AcceptsTab = false;
 
-			RegisteredCommands = new List<string>();
-			CommandLog = new List<Command>();
+			//RegisteredCommands = new List<string>();
+			//CommandLog = new List<Command>();
 			//IsPromptInsertedAtLaunch = t;
-			IsSystemBeepEnabled = true;
+			//IsSystemBeepEnabled = true;
 			LastPromptIndex = -1;
 			Prompt = "> ";
-			IsInputEnabled = false;
+			//IsInputEnabled = false;
 		    //InsertNewPrompt();
-			TextChanged += (s, e) => ScrollToEnd();
+			//TextChanged += (s, e) => ScrollToEnd();
 		}
 
 		// --------------------------------------------------------------------
@@ -46,14 +45,13 @@ namespace Terminal {
 
 		public void InsertNewPrompt(string prompt)
 		{
-		    PrintingPrompt = true;
 			if (Text.Length > 0)
 				Text += Text.EndsWith("\n") ? "" : "\n";
 			Text += prompt + ">";
 		    Prompt = prompt + ">";
 			CaretIndex = Text.Length;
 			LastPromptIndex = Text.Length;
-			IsInputEnabled = true;
+			//IsInputEnabled = true;
 		}
 
 		public void InsertLineBeforePrompt(string text) 
@@ -71,110 +69,110 @@ namespace Terminal {
 		// EVENT HANDLER
 		// --------------------------------------------------------------------
 
-        public void PreviewKeyDown(KeyEventArgs e)
-        {
-			// If Ctrl+C is entered, raise an abortrequested event !
-			if (e.Key == Key.C) {
-				if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) {
-					RaiseAbortRequested();
-					e.Handled = true;
-					return;
-				}
-			}
+        //public void PreviewKeyDown(KeyEventArgs e)
+        //{
+        //    // If Ctrl+C is entered, raise an abortrequested event !
+        //    if (e.Key == Key.C) {
+        //        if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) {
+        //            RaiseAbortRequested();
+        //            e.Handled = true;
+        //            return;
+        //        }
+        //    }
 
-			// If input is not allowed, warn the user and discard its input.
-			if (!IsInputEnabled) {
-				if (IsSystemBeepEnabled)
-					SystemSounds.Beep.Play();
-				e.Handled = true;
-				return;
-			}
+        //    // If input is not allowed, warn the user and discard its input.
+        //    if (!IsInputEnabled) {
+        //        if (IsSystemBeepEnabled)
+        //            SystemSounds.Beep.Play();
+        //        e.Handled = true;
+        //        return;
+        //    }
 
-			// Test the caret position.
-			//
-			// 1. If located before the last prompt index
-			//    ==> Warn, set the caret at the end of input text, add text, discard the input
-			//        if user tries to erase text, else process it.
-			//
-			// 2. If located at the last prompt index and user tries to erase text
-			//    ==> Warn, discard the input.
-			//
-			// 3. If located at the last prompt index and user tries to move backward
-			//    ==> Warn, discard the input.
-			//
-			// 4. If located after (>=) the last prompt index and user presses the UP key
-			//    ==> Launch command history backward, discard the input.
-			//
-			// 5. If located after (>=) the last prompt index and user presses the UP key
-			//    ==> Launch command history forward, discard the input.
-			//
-			if (CaretIndex < LastPromptIndex) {
-				if (IsSystemBeepEnabled)
-					SystemSounds.Beep.Play();
-				CaretIndex = Text.Length;
-				e.Handled = false;
-				if (e.Key == Key.Back || e.Key == Key.Delete)
-					e.Handled = true;
-			} else if (CaretIndex == LastPromptIndex && e.Key == Key.Back) {
-				if (IsSystemBeepEnabled)
-					SystemSounds.Beep.Play();
-				e.Handled = true;
-			} else if (CaretIndex == LastPromptIndex && e.Key == Key.Left) {
-				if (IsSystemBeepEnabled)
-					SystemSounds.Beep.Play();
-				e.Handled = true;
-			} else if (CaretIndex >= LastPromptIndex && e.Key == Key.Up) {
-				HandleCommandHistoryRequest(CommandHistoryDirection.Backward);
-				e.Handled = true;
-			} else if (CaretIndex >= LastPromptIndex && e.Key == Key.Down) {
-				HandleCommandHistoryRequest(CommandHistoryDirection.Forward);
-				e.Handled = true;
-			}
+        //    // Test the caret position.
+        //    //
+        //    // 1. If located before the last prompt index
+        //    //    ==> Warn, set the caret at the end of input text, add text, discard the input
+        //    //        if user tries to erase text, else process it.
+        //    //
+        //    // 2. If located at the last prompt index and user tries to erase text
+        //    //    ==> Warn, discard the input.
+        //    //
+        //    // 3. If located at the last prompt index and user tries to move backward
+        //    //    ==> Warn, discard the input.
+        //    //
+        //    // 4. If located after (>=) the last prompt index and user presses the UP key
+        //    //    ==> Launch command history backward, discard the input.
+        //    //
+        //    // 5. If located after (>=) the last prompt index and user presses the UP key
+        //    //    ==> Launch command history forward, discard the input.
+        //    //
+        //    if (CaretIndex < LastPromptIndex) {
+        //        if (IsSystemBeepEnabled)
+        //            SystemSounds.Beep.Play();
+        //        CaretIndex = Text.Length;
+        //        e.Handled = false;
+        //        if (e.Key == Key.Back || e.Key == Key.Delete)
+        //            e.Handled = true;
+        //    } else if (CaretIndex == LastPromptIndex && e.Key == Key.Back) {
+        //        if (IsSystemBeepEnabled)
+        //            SystemSounds.Beep.Play();
+        //        e.Handled = true;
+        //    } else if (CaretIndex == LastPromptIndex && e.Key == Key.Left) {
+        //        if (IsSystemBeepEnabled)
+        //            SystemSounds.Beep.Play();
+        //        e.Handled = true;
+        //    } else if (CaretIndex >= LastPromptIndex && e.Key == Key.Up) {
+        //        HandleCommandHistoryRequest(CommandHistoryDirection.Backward);
+        //        e.Handled = true;
+        //    } else if (CaretIndex >= LastPromptIndex && e.Key == Key.Down) {
+        //        HandleCommandHistoryRequest(CommandHistoryDirection.Forward);
+        //        e.Handled = true;
+        //    }
 
-            if (e.Handled || e.Key != Key.Enter) return;
-            HandleEnterKey();
-            e.Handled = true;
-        }
+        //    if (e.Handled || e.Key != Key.Enter) return;
+        //    HandleEnterKey();
+        //    e.Handled = true;
+        //}
 
 		// --------------------------------------------------------------------
 		// VIRTUAL METHODS
 		// --------------------------------------------------------------------
 
-		protected virtual void HandleCommandHistoryRequest(CommandHistoryDirection direction) 
-		{
-			switch (direction) {
-				case CommandHistoryDirection.Backward:
-					if (_indexInLog > 0)
-						_indexInLog--;
-					if (CommandLog.Count > 0)
-					{
-					    var command = CommandLog[_indexInLog].Raw;
-                        while(command == "" && _indexInLog >= 0)
-                        {
-                            _indexInLog--;
-                            command = CommandLog[_indexInLog].Raw;
-                        }
-						Text = GetTextWithPromptSuffix(command);
-						CaretIndex = Text.Length;
-					}
-					break;
+        //protected virtual void HandleCommandHistoryRequest(CommandHistoryDirection direction) 
+        //{
+        //    switch (direction) {
+        //        case CommandHistoryDirection.Backward:
+        //            if (_indexInLog > 0)
+        //                _indexInLog--;
+        //            if (CommandLog.Count > 0)
+        //            {
+        //                var command = CommandLog[_indexInLog].Raw;
+        //                while(command == "" && _indexInLog >= 0)
+        //                {
+        //                    _indexInLog--;
+        //                    command = CommandLog[_indexInLog].Raw;
+        //                }
+        //                Text = GetTextWithPromptSuffix(command);
+        //                CaretIndex = Text.Length;
+        //            }
+        //            break;
 
-				case CommandHistoryDirection.Forward:
-					if (_indexInLog < CommandLog.Count - 1)
-						_indexInLog++;
-					if (CommandLog.Count > 0) {
-					    var command = CommandLog[_indexInLog].Raw;
-                        while(command == "" && _indexInLog < CommandLog.Count - 1)
-                        {
-                            _indexInLog++;
-                            command = CommandLog[_indexInLog].Raw;
-                        }
-						Text = GetTextWithPromptSuffix(command);
-						CaretIndex = Text.Length;
-					}
-					break;
-			}
-		}
+        //        case CommandHistoryDirection.Forward:
+        //            if (_indexInLog < CommandLog.Count - 1)
+        //                _indexInLog++;
+        //            if (CommandLog.Count > 0) {
+        //                var command = CommandLog[_indexInLog].Raw;
+        //                while(command == "" && _indexInLog < CommandLog.Count - 1)
+        //                {
+        //                    _indexInLog++;
+        //                    command = CommandLog[_indexInLog].Raw;
+        //                }
+        //                Text = GetTextWithPromptSuffix(command);
+        //                CaretIndex = Text.Length;
+        //            }
+        //            break;
+        //    }
+        //}
 
         public int IndexInLog { get { return _indexInLog; }
             set { _indexInLog = value; }}
@@ -183,64 +181,62 @@ namespace Terminal {
 		{
 			string line = Text.Substring(LastPromptIndex);
 			Text += "\n";
-			IsInputEnabled = false;
-//			LastPromptIndex = int.MaxValue;
-
-			Command cmd = TerminalUtils.ParseCommandLine(line);
-			CommandLog.Add(cmd);
-			_indexInLog = CommandLog.Count;
+			//IsInputEnabled = false;
+			var cmd = TerminalUtils.ParseCommandLine(line);
+            //CommandLog.Add(cmd);
+            //_indexInLog = CommandLog.Count;
 			RaiseCommandEntered(cmd);
 		}
 
-		protected virtual void HandleTabKey() {
-			// Command completion works only if caret is at last character
-			// and if the user already typed something.
-			if (CaretIndex != Text.Length || CaretIndex == LastPromptIndex)
-				return;
+        //protected virtual void HandleTabKey() {
+        //    // Command completion works only if caret is at last character
+        //    // and if the user already typed something.
+        //    if (CaretIndex != Text.Length || CaretIndex == LastPromptIndex)
+        //        return;
 
-			// Get command name and associated commands
-			string line = Text.Substring(LastPromptIndex);
-			string[] commands = GetAssociatedCommands(line);
+        //    // Get command name and associated commands
+        //    string line = Text.Substring(LastPromptIndex);
+        //    string[] commands = GetAssociatedCommands(line);
 
-			// If some associated command exist...
-			if (commands.Length > 0) {
-				// Get the commands common prefix
-				string commonPrefix = GetCommonPrefix(commands);
-				// If there is no more autocompletion available...
-				if (commonPrefix == line) {
-					// If there are more than one command to print
-					if (commands.Length > 1) {
-						// Print every associated command and insert a new prompt
-						foreach (string cmd in commands)
-							Text += "\n" + cmd;
-						InsertNewPrompt(Prompt);
-						Text += line;
-						CaretIndex = Text.Length;
-					}
-				} else {
-					// Erase the user input
-					Text = Text.Remove(LastPromptIndex);
-					// Insert the common prefix
-					Text += commonPrefix;
-					// Set the caret at the end of the text
-					CaretIndex = Text.Length;
-				}
-				return;
-			}
+        //    // If some associated command exist...
+        //    if (commands.Length > 0) {
+        //        // Get the commands common prefix
+        //        string commonPrefix = GetCommonPrefix(commands);
+        //        // If there is no more autocompletion available...
+        //        if (commonPrefix == line) {
+        //            // If there are more than one command to print
+        //            if (commands.Length > 1) {
+        //                // Print every associated command and insert a new prompt
+        //                foreach (string cmd in commands)
+        //                    Text += "\n" + cmd;
+        //                InsertNewPrompt(Prompt);
+        //                Text += line;
+        //                CaretIndex = Text.Length;
+        //            }
+        //        } else {
+        //            // Erase the user input
+        //            Text = Text.Remove(LastPromptIndex);
+        //            // Insert the common prefix
+        //            Text += commonPrefix;
+        //            // Set the caret at the end of the text
+        //            CaretIndex = Text.Length;
+        //        }
+        //        return;
+        //    }
 
-			// If no command exists, try path completion
-			if (line.Contains("\"") && line.Split('"').Length % 2 == 0) {
-				int idx = line.LastIndexOf('"');
-				string prefix = line.Substring(0, idx + 1);
-				string suffix = line.Substring(idx + 1, line.Length - prefix.Length);
-				CompletePath(prefix, suffix);
-			} else {
-				int idx = Math.Max(line.LastIndexOf(' '), line.LastIndexOf('\t'));
-				string prefix = line.Substring(0, idx + 1);
-				string suffix = line.Substring(idx + 1, line.Length - prefix.Length);
-				CompletePath(prefix, suffix);
-			}
-		}
+        //    // If no command exists, try path completion
+        //    if (line.Contains("\"") && line.Split('"').Length % 2 == 0) {
+        //        int idx = line.LastIndexOf('"');
+        //        string prefix = line.Substring(0, idx + 1);
+        //        string suffix = line.Substring(idx + 1, line.Length - prefix.Length);
+        //        CompletePath(prefix, suffix);
+        //    } else {
+        //        int idx = Math.Max(line.LastIndexOf(' '), line.LastIndexOf('\t'));
+        //        string prefix = line.Substring(0, idx + 1);
+        //        string suffix = line.Substring(idx + 1, line.Length - prefix.Length);
+        //        CompletePath(prefix, suffix);
+        //    }
+        //}
 
 		// --------------------------------------------------------------------
 		// CLASS SPECIFIC UTILITIES
@@ -276,9 +272,9 @@ namespace Terminal {
 			return ret + suffix;
 		}
 
-		protected string[] GetAssociatedCommands(string prefix) {
-		    return RegisteredCommands.Where(cmd => cmd.StartsWith(prefix, StringComparison.InvariantCultureIgnoreCase)).ToArray();
-		}
+        //protected string[] GetAssociatedCommands(string prefix) {
+        //    return RegisteredCommands.Where(cmd => cmd.StartsWith(prefix, StringComparison.InvariantCultureIgnoreCase)).ToArray();
+        //}
 
 		// --------------------------------------------------------------------
 		// GENERAL UTILITIES

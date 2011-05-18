@@ -1,3 +1,9 @@
+remove all terminal shit
+
+update prompt
+
+probably bad to hit view model for each key stroke
+
 scrolltoend is failing on launch
 
 Capture standard error

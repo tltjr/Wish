@@ -18,7 +18,6 @@ namespace Wish.Views
         public WishView(IRegion mainRegion, IEventAggregator eventAggregator)
         {
             InitializeComponent();
-            DataContext = new TerminalViewModel();
             _mainRegion = mainRegion;
             _eventAggregator = eventAggregator;
         }
@@ -32,6 +31,20 @@ namespace Wish.Views
         private void OnUserControlLoaded(object sender, RoutedEventArgs e)
         {
             Keyboard.Focus(textBox);
+        }
+
+        public static readonly DependencyProperty TitleProperty =
+            DependencyProperty.Register(
+                "Title",
+                typeof(string),
+                typeof(WishView),
+                new PropertyMetadata(@"amr\tlthorn1")
+                );
+
+        public string Title
+        {
+            get { return GetValue(TitleProperty) as string; }
+            set { SetValue(TitleProperty, value); }
         }
     }
 }

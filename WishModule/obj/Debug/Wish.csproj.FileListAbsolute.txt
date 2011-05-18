@@ -10,3 +10,9 @@ C:\src\dotnet\Wish\WishModule\obj\Debug\Wish_MarkupCompile.cache
 C:\src\dotnet\Wish\WishModule\obj\Debug\Wish.g.resources
 C:\src\dotnet\Wish\WishModule\obj\Debug\Wish.dll
 C:\src\dotnet\Wish\WishModule\obj\Debug\Wish.pdb
+C:\src\dotnet\Wish\WishModule\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\src\dotnet\Wish\WishModule\obj\Debug\Wish_MarkupCompile.lref
+C:\src\dotnet\Wish\WishModule\bin\Debug\Wish.Core.dll
+C:\src\dotnet\Wish\WishModule\bin\Debug\Terminal.dll
+C:\src\dotnet\Wish\WishModule\bin\Debug\Wish.Core.pdb
+C:\src\dotnet\Wish\WishModule\bin\Debug\Terminal.pdb
