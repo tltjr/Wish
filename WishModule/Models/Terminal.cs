@@ -87,7 +87,7 @@ namespace Wish.Models
             Prompt = pwd + ">";
         }
 
-		private void InsertNewPrompt()
+        public void InsertNewPrompt()
 		{
 			if (Text.Length > 0)
 				Text += Text.EndsWith("\n") ? "" : "\n";
@@ -100,7 +100,7 @@ namespace Wish.Models
             
         }
 
-		private void InsertLineBeforePrompt(string str) 
+        public void InsertLineBeforePrompt(string str) 
 		{
 			var startIndex = LastPromptIndex - Prompt.Length;
 			var oldPromptIndex = LastPromptIndex;

@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
+using Wish.Core;
 using Wish.ViewModels;
 
 namespace Wish.Views
@@ -16,6 +17,9 @@ namespace Wish.Views
         private IEventAggregator _eventAggregator;
         private IRegion _mainRegion;
         public static RoutedCommand TabNew = new RoutedCommand();
+        private readonly TerminalViewModel _terminalViewModel = new TerminalViewModel();
+        private bool _activelyTabbing;
+        private readonly CompletionManager _completionManager = new CompletionManager();
 
         public WishView(IRegion mainRegion, IEventAggregator eventAggregator)
         {
@@ -36,7 +40,28 @@ namespace Wish.Views
         {
             Keyboard.Focus(textBox);
             // need to bind late to get the title bound
-            DataContext = new TerminalViewModel();
+            DataContext = _terminalViewModel;
+        }
+
+        protected override void OnPreviewKeyDown(KeyEventArgs e)
+        {
+            var terminal = _terminalViewModel.Terminal;
+            if(e.Key == Key.Tab)
+            {
+                if(textBox.CaretIndex != textBox.Text.Length || textBox.CaretIndex == terminal.LastPromptIndex)
+                    return;
+                string result;
+                _completionManager.Complete(out result, _activelyTabbing, textBox.Text);
+                _activelyTabbing = true;
+                textBox.Text = result;
+                //textBox.CaretIndex = result.Length;
+                e.Handled = true;
+            }
+            else
+            {
+                base.OnPreviewKeyDown(e);
+                _activelyTabbing = false;
+            }
         }
 
         public static readonly DependencyProperty TitleProperty =
@@ -46,6 +71,7 @@ namespace Wish.Views
                 typeof(WishView),
                 new PropertyMetadata(@"amr\tlthorn1")
                 );
+
 
         public string Title
         {

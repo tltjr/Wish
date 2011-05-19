@@ -14,6 +14,29 @@ namespace Wish.Core
         private string _baseTabText;
         private string _currentTabOption;
 
+        public bool Complete(out string result, bool activelyTabbing, string text)
+        {
+            return activelyTabbing ? GetNextInCurrentTabList(out result) : PopulateTabListAndReturnFirst(out result);
+        }
+
+        private bool PopulateTabListAndReturnFirst(out string result)
+        {
+            _currentTabDirs = new List<string> {"A", "B", "C", "D", "E"};
+            result = "A";
+            return true;
+        }
+
+        private bool GetNextInCurrentTabList(out string result)
+        {
+            _currentTabIndex++;
+            if(_currentTabIndex >= _currentTabDirs.Count)
+            {
+                _currentTabIndex = 0;
+            }
+            result =  _currentTabDirs[_currentTabIndex];
+            return true;
+        }
+
         public bool Complete(out string result, Command command, bool activelyTabbing, string workingDirectory, string currentText)
         {
             result = String.Empty;
@@ -95,5 +118,6 @@ namespace Wish.Core
   //              return matches.Select(match => match.Replace(workingDirectory, ""));
             return matches.Select(match => match.Replace(workingDirectory + "\\", ""));
         }
+
     }
 }
