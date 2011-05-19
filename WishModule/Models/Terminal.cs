@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 using Terminal;
 
 namespace Wish.Models
@@ -64,17 +65,21 @@ namespace Wish.Models
 			if (!str.EndsWith("\n"))
 				str += "\n";
 			Text = Text.Insert(startIndex, str);
-			//CaretIndex = Text.Length;
 			LastPromptIndex = oldPromptIndex + str.Length;
             PropertyChanged(this, new PropertyChangedEventArgs("Text"));
 		}
 
-        public string ParseScript()
+        public Command ParseScript()
         {
-			string line = Text.Substring(LastPromptIndex);
+			var line = Text.Substring(LastPromptIndex);
 			Text += "\n";
-			//IsInputEnabled = false;
-			return TerminalUtils.ParseCommandLine(line).Raw;
+			return TerminalUtils.ParseCommandLine(line);
         }
+
+        public bool GetCommandType(string name)
+        {
+            return Regex.IsMatch(name, @"^(c|pop|push)d$");
+        }
+
     }
 }

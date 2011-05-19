@@ -28,10 +28,24 @@ namespace Wish.ViewModels
         private void ProcessCommand(object obj)
         {
             var powershellController = new PowershellController();
-            var script = _terminal.ParseScript();
-            var output = powershellController.RunScriptForFormattedResult(script);
-            _terminal.InsertNewPrompt();
-            _terminal.InsertLineBeforePrompt(output);
+            var command = _terminal.ParseScript();
+            var isDirChange = _terminal.GetCommandType(command.Name);
+            if(isDirChange)
+            {
+                powershellController.RunScript(command.Raw);
+                var results = powershellController.RunScriptForResult("pwd");
+                if(results.Count == 0) return;
+                var pwd = results[0];
+                _terminal.Prompt = pwd + ">";
+                _terminal.InsertNewPrompt();
+                _terminal.InsertLineBeforePrompt("\n");
+            }
+            else
+            {
+                var output = powershellController.RunScriptForFormattedResult(command.Raw);
+                _terminal.InsertNewPrompt();
+                _terminal.InsertLineBeforePrompt(output);
+            }
         }
 
     }
