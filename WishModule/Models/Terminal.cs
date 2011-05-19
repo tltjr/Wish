@@ -49,49 +49,19 @@ namespace Wish.Models
             get { return "Consolas"; }
         }
 
-		public void InsertNewPrompt()
-		{
-			if (Text.Length > 0)
-				Text += Text.EndsWith("\n") ? "" : "\n";
-		    Text += _prompt;
-			LastPromptIndex = Text.Length;
-		}
-
-        public void InsertOutput(string text)
-        {
-            
-        }
-
-		public void InsertLineBeforePrompt(string str) 
-		{
-			var startIndex = LastPromptIndex - Prompt.Length;
-			var oldPromptIndex = LastPromptIndex;
-			if (!str.EndsWith("\n"))
-				str += "\n";
-			Text = Text.Insert(startIndex, str);
-			LastPromptIndex = oldPromptIndex + str.Length;
-            PropertyChanged(this, new PropertyChangedEventArgs("Text"));
-		}
-
-        public Command ParseScript()
-        {
-			var line = Text.Substring(LastPromptIndex);
-			Text += "\n";
-			return TerminalUtils.ParseCommandLine(line);
-        }
-
-        public bool GetCommandType(string name)
-        {
-            return Regex.IsMatch(name, @"^(c|pop|push)d$");
-        }
-
         public void ProcessCommand()
         {
             var command = ParseScript();
-            var isDirChange = GetCommandType(command.Name);
+            var isDirChange = IsDirectoryChange(command.Name);
             if(isDirChange)
             {
-                ChangeDirectory(command.Raw);
+                var comm = command.Raw;
+                if(IsPromptBasedChange(command.Name))
+                {
+                    comm = comm.Insert(0, "cd ");
+                    comm += "\\";
+                }
+                ChangeDirectory(comm);
                 InsertNewPrompt();
                 InsertLineBeforePrompt("\n");
             }
@@ -103,13 +73,56 @@ namespace Wish.Models
             }
         }
 
-        public void ChangeDirectory(string target)
+        private bool IsPromptBasedChange(string name)
+        {
+            return Regex.IsMatch(name, @"^[A-Za-z]:$");
+        }
+
+        private void ChangeDirectory(string target)
         {
             _powershellController.RunScript(target);
             var results = _powershellController.RunScriptForResult("pwd");
             if (results.Count == 0) return;
             var pwd = results[0];
             Prompt = pwd + ">";
+        }
+
+		private void InsertNewPrompt()
+		{
+			if (Text.Length > 0)
+				Text += Text.EndsWith("\n") ? "" : "\n";
+		    Text += _prompt;
+			LastPromptIndex = Text.Length;
+		}
+
+        private void InsertOutput(string text)
+        {
+            
+        }
+
+		private void InsertLineBeforePrompt(string str) 
+		{
+			var startIndex = LastPromptIndex - Prompt.Length;
+			var oldPromptIndex = LastPromptIndex;
+			if (!str.EndsWith("\n"))
+				str += "\n";
+			Text = Text.Insert(startIndex, str);
+			LastPromptIndex = oldPromptIndex + str.Length;
+            PropertyChanged(this, new PropertyChangedEventArgs("Text"));
+		}
+
+        private Command ParseScript()
+        {
+			var line = Text.Substring(LastPromptIndex);
+			Text += "\n";
+			return TerminalUtils.ParseCommandLine(line);
+        }
+
+        private bool IsDirectoryChange(string name)
+        {
+            return Regex.IsMatch(name, @"^(c|pop|push)d$")
+                   || Regex.IsMatch(name, @"^cd\\$")
+                   || Regex.IsMatch(name, @"^[A-Za-z]:$");
         }
     }
 }
