@@ -18,14 +18,16 @@ namespace Wish.ViewModels
         }
 
         public ICommand CommandEntered { get; set; }
+        //public ICommand NewTabRequested { get; set; }
 
         public TerminalViewModel()
         {
             _terminal = new Models.Terminal();
-            CommandEntered = new DelegateCommand<object>(ProcessCommand);
+            CommandEntered = new DelegateCommand(ProcessCommand);
+        //    NewTabRequested = new DelegateCommand(CreateNewTab);
         }
 
-        private void ProcessCommand(object obj)
+        private void ProcessCommand()
         {
             var powershellController = new PowershellController();
             var command = _terminal.ParseScript();

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Events;
@@ -14,12 +15,15 @@ namespace Wish.Views
     {
         private IEventAggregator _eventAggregator;
         private IRegion _mainRegion;
+        public static RoutedCommand TabNew = new RoutedCommand();
 
         public WishView(IRegion mainRegion, IEventAggregator eventAggregator)
         {
             InitializeComponent();
             _mainRegion = mainRegion;
             _eventAggregator = eventAggregator;
+            var keyGesture = new KeyGesture(Key.T, ModifierKeys.Control | ModifierKeys.Shift);
+            TabNew.InputGestures.Add(keyGesture);
         }
 
         private void ScrollToEnd(object sender, TextChangedEventArgs e)
@@ -49,5 +53,10 @@ namespace Wish.Views
             set { SetValue(TitleProperty, value); }
         }
 
+        private void NewTabRequest(object sender, ExecutedRoutedEventArgs e)
+        {
+            var view = new WishView(_mainRegion, _eventAggregator);
+            _mainRegion.Add(view);
+        }
     }
 }
