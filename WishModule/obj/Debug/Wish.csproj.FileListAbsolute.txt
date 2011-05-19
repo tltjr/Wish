@@ -15,3 +15,4 @@ C:\src\dotnet\Wish\WishModule\bin\Debug\Wish.Core.dll
 C:\src\dotnet\Wish\WishModule\bin\Debug\Terminal.dll
 C:\src\dotnet\Wish\WishModule\bin\Debug\Wish.Core.pdb
 C:\src\dotnet\Wish\WishModule\bin\Debug\Terminal.pdb
+C:\src\dotnet\Wish\WishModule\obj\Debug\GeneratedInternalTypeHelper.g.cs

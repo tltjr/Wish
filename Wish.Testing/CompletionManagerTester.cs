@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using Terminal;
-using WishModule;
+using Wish.Core;
 
 namespace Wish.Testing
 {

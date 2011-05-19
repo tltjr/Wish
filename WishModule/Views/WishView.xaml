@@ -19,7 +19,6 @@
             <Binding Path="Terminal.Text" UpdateSourceTrigger="PropertyChanged"/>
         </TextBox.Text>
         <TextBox.InputBindings>
-            <KeyBinding Command="{Binding Path=NewTabRequested}" Gesture="CTRL+SHIFT+T" />
             <KeyBinding Command="{Binding Path=CommandEntered}" Key="Enter" />
          </TextBox.InputBindings>
     </TextBox>
