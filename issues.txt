@@ -1,17 +1,13 @@
+recognize cd\ c: z: d: etc as directory change
+
 remove all terminal shit
 
-update prompt
-
 probably bad to hit view model for each key stroke
-
-scrolltoend is failing on launch
 
 Capture standard error
 
 trying to access a directory without rights is an application
 crash
-
-implement cd\
 
 Fix NavigateUp. No seriously, don't leave that pile of crap
 

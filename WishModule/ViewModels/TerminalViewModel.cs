@@ -18,36 +18,16 @@ namespace Wish.ViewModels
         }
 
         public ICommand CommandEntered { get; set; }
-        //public ICommand NewTabRequested { get; set; }
 
         public TerminalViewModel()
         {
             _terminal = new Models.Terminal();
             CommandEntered = new DelegateCommand(ProcessCommand);
-        //    NewTabRequested = new DelegateCommand(CreateNewTab);
         }
 
         private void ProcessCommand()
         {
-            var powershellController = new PowershellController();
-            var command = _terminal.ParseScript();
-            var isDirChange = _terminal.GetCommandType(command.Name);
-            if(isDirChange)
-            {
-                powershellController.RunScript(command.Raw);
-                var results = powershellController.RunScriptForResult("pwd");
-                if(results.Count == 0) return;
-                var pwd = results[0];
-                _terminal.Prompt = pwd + ">";
-                _terminal.InsertNewPrompt();
-                _terminal.InsertLineBeforePrompt("\n");
-            }
-            else
-            {
-                var output = powershellController.RunScriptForFormattedResult(command.Raw);
-                _terminal.InsertNewPrompt();
-                _terminal.InsertLineBeforePrompt(output);
-            }
+            _terminal.ProcessCommand();
         }
 
     }

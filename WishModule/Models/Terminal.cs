@@ -2,13 +2,16 @@
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using Terminal;
+using Wish.Core;
 
 namespace Wish.Models
 {
     public class Terminal : INotifyPropertyChanged
     {
         private string _text = String.Empty;
-        private string _prompt = @"C:\Users\tlthorn1>";
+        private string _prompt;
+        private const string StartDirectory = @"C:\Users\tlthorn1";
+        private readonly PowershellController _powershellController = new PowershellController();
 
 		public int LastPromptIndex { get; private set; }
 
@@ -17,6 +20,7 @@ namespace Wish.Models
         public Terminal()
         {
 			LastPromptIndex = -1;
+            ChangeDirectory("cd " + StartDirectory);
             InsertNewPrompt();
         }
 
@@ -81,5 +85,31 @@ namespace Wish.Models
             return Regex.IsMatch(name, @"^(c|pop|push)d$");
         }
 
+        public void ProcessCommand()
+        {
+            var command = ParseScript();
+            var isDirChange = GetCommandType(command.Name);
+            if(isDirChange)
+            {
+                ChangeDirectory(command.Raw);
+                InsertNewPrompt();
+                InsertLineBeforePrompt("\n");
+            }
+            else
+            {
+                var output = _powershellController.RunScriptForFormattedResult(command.Raw);
+                InsertNewPrompt();
+                InsertLineBeforePrompt(output);
+            }
+        }
+
+        public void ChangeDirectory(string target)
+        {
+            _powershellController.RunScript(target);
+            var results = _powershellController.RunScriptForResult("pwd");
+            if (results.Count == 0) return;
+            var pwd = results[0];
+            Prompt = pwd + ">";
+        }
     }
 }
