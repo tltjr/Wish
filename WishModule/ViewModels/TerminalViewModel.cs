@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using Wish.Core;
 using Wish.Models;
+using Wish.Views;
 
 namespace Wish.ViewModels
 {
@@ -31,6 +33,7 @@ namespace Wish.ViewModels
             _terminal.InsertNewPrompt();
             _terminal.InsertLineBeforePrompt(output);
         }
+
     }
 
 }

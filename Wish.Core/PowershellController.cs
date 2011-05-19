@@ -23,8 +23,14 @@ namespace Wish.Core
             _pipeline = _runspace.CreatePipeline();
             _pipeline.Commands.AddScript(script);
             _pipeline.Commands.Add("Out-String");
-
-            var psObjects = _pipeline.Invoke();
+            Collection<PSObject> psObjects; 
+            try
+            {
+                psObjects = _pipeline.Invoke();
+            } catch(CommandNotFoundException e)
+            {
+                return e.Message;
+            }
             var sb = new StringBuilder();
             foreach (var psObject in psObjects)
             {

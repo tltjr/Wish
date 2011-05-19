@@ -31,6 +31,8 @@ namespace Wish.Views
         private void OnUserControlLoaded(object sender, RoutedEventArgs e)
         {
             Keyboard.Focus(textBox);
+            // need to bind late to get the title bound
+            DataContext = new TerminalViewModel();
         }
 
         public static readonly DependencyProperty TitleProperty =
@@ -46,5 +48,6 @@ namespace Wish.Views
             get { return GetValue(TitleProperty) as string; }
             set { SetValue(TitleProperty, value); }
         }
+
     }
 }

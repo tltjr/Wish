@@ -5,9 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:ViewModels="clr-namespace:Wish.ViewModels" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              Loaded="OnUserControlLoaded">
-    <UserControl.DataContext>
-        <ViewModels:TerminalViewModel/>
-    </UserControl.DataContext>
     <TextBox x:Name="textBox"
              FontFamily="{Binding Terminal.FontFamily, Mode=OneWay}"
              VerticalScrollBarVisibility="Auto"
