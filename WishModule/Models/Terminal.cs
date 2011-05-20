@@ -10,17 +10,22 @@ namespace Wish.Models
     {
         private string _text = String.Empty;
         private string _prompt;
-        private const string StartDirectory = @"C:\Users\tlthorn1";
+        private string _workingDirectory = @"C:\Users\tlthorn1";
         private readonly PowershellController _powershellController = new PowershellController();
 
 		public int LastPromptIndex { get; private set; }
+        public string WorkingDirectory
+        {
+            get { return _workingDirectory; }
+            set { _workingDirectory = value; }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Terminal()
         {
 			LastPromptIndex = -1;
-            ChangeDirectory("cd " + StartDirectory);
+            ChangeDirectory("cd " + _workingDirectory);
             InsertNewPrompt();
         }
 
@@ -84,6 +89,7 @@ namespace Wish.Models
             var results = _powershellController.RunScriptForResult("pwd");
             if (results.Count == 0) return;
             var pwd = results[0];
+            _workingDirectory = pwd.ToString();
             Prompt = pwd + ">";
         }
 

@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
+using Terminal;
 using Wish.Core;
 using Wish.ViewModels;
 
@@ -50,11 +51,15 @@ namespace Wish.Views
             {
                 if(textBox.CaretIndex != textBox.Text.Length || textBox.CaretIndex == terminal.LastPromptIndex)
                     return;
+                var line = textBox.Text.Substring(terminal.LastPromptIndex);
+                var command = TerminalUtils.ParseCommandLine(line);
                 string result;
-                _completionManager.Complete(out result, _activelyTabbing, textBox.Text);
-                _activelyTabbing = true;
-                textBox.Text = result;
-                //textBox.CaretIndex = result.Length;
+                var flag = _completionManager.Complete(out result, command, _activelyTabbing, terminal.WorkingDirectory, textBox.Text);
+                if(flag)
+                {
+                    _activelyTabbing = true;
+                    textBox.Text = result;
+                }
                 e.Handled = true;
             }
             else
