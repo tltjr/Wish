@@ -13,7 +13,7 @@ namespace Wish.Models
     {
         private string _text = String.Empty;
         private string _prompt;
-        private string _workingDirectory = @"C:\Users\tlthorn1";
+        private string _workingDirectory;
         private readonly PowershellController _powershellController = new PowershellController();
         private IRegion _region;
         private WishView _view;
@@ -27,10 +27,11 @@ namespace Wish.Models
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Terminal(IRegion region, WishView view)
+        public Terminal(IRegion region, WishView view, string workingDirectory)
         {
             _region = region;
             _view = view;
+            _workingDirectory = workingDirectory;
 			LastPromptIndex = -1;
             ChangeDirectory("cd " + _workingDirectory);
             InsertNewPrompt();

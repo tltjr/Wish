@@ -20,9 +20,9 @@ namespace Wish.ViewModels
 
         public ICommand CommandEntered { get; set; }
 
-        public TerminalViewModel(IRegion region, WishView view)
+        public TerminalViewModel(IRegion region, WishView view, string workingDirectory)
         {
-            _terminal = new Models.Terminal(region, view);
+            _terminal = new Models.Terminal(region, view, workingDirectory);
             CommandEntered = new DelegateCommand(ProcessCommand);
         }
 
