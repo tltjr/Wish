@@ -1,19 +1,22 @@
-recognize cd\ c: z: d: etc as directory change
-
 remove all terminal shit
+
+tab completion doesn't work if not first arg, 
+e.g. cp C:\temp>sample.in blast{Tab} does nothing
+
+'.' only as command causes crash
+
+rm fails for directory
 
 probably bad to hit view model for each key stroke
 
 Capture standard error
 
-trying to access a directory without rights is an application
-crash
+trying to access a directory without rights does not work and
+no error is diplayed, i.e. C:\Perflogs>ls displays nothing.
 
 Fix NavigateUp. No seriously, don't leave that pile of crap
 
-dynamically set start directory
-
-First character of prompt (the drive) to upcase
+dynamically set start directory - now will be done in WishModule
 
 need to find way to make directories in prompt case correct,
 i.e. if user enters cd c:\links, but the directory is c:\Links,
@@ -21,5 +24,5 @@ then the display should be c:\Links
 
 Handle cd ../.. as well as cd ..\.. 
 
-create dynamic tab titles
-
+tab completion fails when prompt is working directory because
+the dirString (ComMan.cs line 77) also contains the prompt.

@@ -11,6 +11,9 @@
 
     <TextBox x:Name="textBox"
              FontFamily="{Binding Terminal.FontFamily, Mode=OneWay}"
+             FontSize="{Binding Terminal.FontSize, Mode=OneWay}"
+             Background="{Binding Terminal.Background, Mode=OneWay}"
+             Foreground="{Binding Terminal.Foreground, Mode=OneWay}"
              VerticalScrollBarVisibility="Auto"
              AcceptsReturn="True"
              TextChanged="ScrollToEnd"

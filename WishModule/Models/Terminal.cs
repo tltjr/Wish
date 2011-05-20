@@ -62,6 +62,21 @@ namespace Wish.Models
             get { return "Consolas"; }
         }
 
+        public int FontSize
+        {
+            get { return 16; }
+        }
+
+        public string Background
+        {
+            get { return "Black"; }
+        }
+
+        public string Foreground
+        {
+            get { return "White"; }
+        }
+
         public void ProcessCommand()
         {
             var command = ParseScript();
