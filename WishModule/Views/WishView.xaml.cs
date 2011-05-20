@@ -18,7 +18,7 @@ namespace Wish.Views
         private IEventAggregator _eventAggregator;
         private IRegion _mainRegion;
         public static RoutedCommand TabNew = new RoutedCommand();
-        private readonly TerminalViewModel _terminalViewModel = new TerminalViewModel();
+        private readonly TerminalViewModel _terminalViewModel;
         private bool _activelyTabbing;
         private readonly CompletionManager _completionManager = new CompletionManager();
 
@@ -26,6 +26,7 @@ namespace Wish.Views
         {
             InitializeComponent();
             _mainRegion = mainRegion;
+            _terminalViewModel = new TerminalViewModel(_mainRegion, this);
             _eventAggregator = eventAggregator;
             var keyGesture = new KeyGesture(Key.T, ModifierKeys.Control | ModifierKeys.Shift);
             TabNew.InputGestures.Add(keyGesture);

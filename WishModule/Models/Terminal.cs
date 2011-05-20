@@ -1,8 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.Practices.Prism.Regions;
 using Terminal;
 using Wish.Core;
+using Wish.Views;
 
 namespace Wish.Models
 {
@@ -12,6 +15,8 @@ namespace Wish.Models
         private string _prompt;
         private string _workingDirectory = @"C:\Users\tlthorn1";
         private readonly PowershellController _powershellController = new PowershellController();
+        private IRegion _region;
+        private WishView _view;
 
 		public int LastPromptIndex { get; private set; }
         public string WorkingDirectory
@@ -22,8 +27,10 @@ namespace Wish.Models
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Terminal()
+        public Terminal(IRegion region, WishView view)
         {
+            _region = region;
+            _view = view;
 			LastPromptIndex = -1;
             ChangeDirectory("cd " + _workingDirectory);
             InsertNewPrompt();
@@ -57,6 +64,18 @@ namespace Wish.Models
         public void ProcessCommand()
         {
             var command = ParseScript();
+            if(command.Name.Equals("exit", StringComparison.InvariantCultureIgnoreCase))
+            {
+                var i = _region.Views.Count();
+                if(i > 1)
+                {
+                    _region.Remove(_view);
+                }
+                else
+                {
+                    System.Windows.Application.Current.Shutdown();
+                }
+            }
             var isDirChange = IsDirectoryChange(command.Name);
             if(isDirChange)
             {

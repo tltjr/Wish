@@ -54,7 +54,6 @@
   <ItemGroup>
     <Compile Include="Command.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Terminal.cs" />
     <Compile Include="TerminalUtils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
