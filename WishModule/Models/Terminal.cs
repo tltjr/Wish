@@ -1,8 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.Practices.Prism.Regions;
 using Terminal;
 using Wish.Core;
+using Wish.Views;
 
 namespace Wish.Models
 {
@@ -10,17 +13,27 @@ namespace Wish.Models
     {
         private string _text = String.Empty;
         private string _prompt;
-        private const string StartDirectory = @"C:\Users\tlthorn1";
+        private string _workingDirectory;
         private readonly PowershellController _powershellController = new PowershellController();
+        private IRegion _region;
+        private WishView _view;
 
 		public int LastPromptIndex { get; private set; }
+        public string WorkingDirectory
+        {
+            get { return _workingDirectory; }
+            set { _workingDirectory = value; }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Terminal()
+        public Terminal(IRegion region, WishView view, string workingDirectory)
         {
+            _region = region;
+            _view = view;
+            _workingDirectory = workingDirectory;
 			LastPromptIndex = -1;
-            ChangeDirectory("cd " + StartDirectory);
+            ChangeDirectory("cd " + _workingDirectory);
             InsertNewPrompt();
         }
 
@@ -49,9 +62,36 @@ namespace Wish.Models
             get { return "Consolas"; }
         }
 
+        public int FontSize
+        {
+            get { return 16; }
+        }
+
+        public string Background
+        {
+            get { return "Black"; }
+        }
+
+        public string Foreground
+        {
+            get { return "White"; }
+        }
+
         public void ProcessCommand()
         {
             var command = ParseScript();
+            if(command.Name.Equals("exit", StringComparison.InvariantCultureIgnoreCase))
+            {
+                var i = _region.Views.Count();
+                if(i > 1)
+                {
+                    _region.Remove(_view);
+                }
+                else
+                {
+                    System.Windows.Application.Current.Shutdown();
+                }
+            }
             var isDirChange = IsDirectoryChange(command.Name);
             if(isDirChange)
             {
@@ -84,10 +124,11 @@ namespace Wish.Models
             var results = _powershellController.RunScriptForResult("pwd");
             if (results.Count == 0) return;
             var pwd = results[0];
+            _workingDirectory = pwd.ToString();
             Prompt = pwd + ">";
         }
 
-		private void InsertNewPrompt()
+        public void InsertNewPrompt()
 		{
 			if (Text.Length > 0)
 				Text += Text.EndsWith("\n") ? "" : "\n";
@@ -100,7 +141,7 @@ namespace Wish.Models
             
         }
 
-		private void InsertLineBeforePrompt(string str) 
+        public void InsertLineBeforePrompt(string str) 
 		{
 			var startIndex = LastPromptIndex - Prompt.Length;
 			var oldPromptIndex = LastPromptIndex;

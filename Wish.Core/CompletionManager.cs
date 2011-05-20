@@ -11,41 +11,43 @@ namespace Wish.Core
     {
         private IList<string> _currentTabDirs;
         private int _currentTabIndex;
-        private string _baseTabText;
         private string _currentTabOption;
 
-        public bool Complete(out string result, Command command, bool activelyTabbing, string workingDirectory, string currentText)
+        public bool Complete(out string result, Command command, bool activelyTabbing, string workingDirectory, string text)
+        {
+            return activelyTabbing ? GetNextInCurrentTabList(out result, text) 
+                : PopulateTabListAndReturnFirst(out result, command, workingDirectory, text);
+        }
+
+        private bool PopulateTabListAndReturnFirst(out string result, Command command, string workingDirectory, string text)
         {
             result = String.Empty;
-            if (!activelyTabbing)
-            {
-                if (command.Args.Count() == 0) return false;
-                var arg = command.Args[0];
-                _currentTabIndex = 0;
-                var trimmedWorkingDir = ParseEndingSlash(workingDirectory);
-                var directories = GetDirectories(arg, trimmedWorkingDir);
-                var searchString = GetSearchString(arg, trimmedWorkingDir);
-                var matches = directories.Where(o => o.StartsWith(searchString, StringComparison.InvariantCultureIgnoreCase)).ToList();
-                _currentTabDirs = GetDirectoryNames(trimmedWorkingDir, matches).ToList();
-                if (!TryGetCurrentTabOption()) return false;
-                SetTabIndex();
-                _baseTabText = currentText.Remove(currentText.Length - arg.Length);
-                result = _baseTabText + _currentTabOption + "\\";
-                return true;
-            }
+            _currentTabIndex = 0;
+            if (command.Args.Count() == 0) return false;
+            var arg = command.Args[0];
+            var directories = GetDirectories(arg, workingDirectory);
+            var searchString = GetSearchString(arg, workingDirectory);
+            var matches =
+                directories.Where(o => o.StartsWith(searchString, StringComparison.InvariantCultureIgnoreCase)).ToList();
+            _currentTabDirs = GetDirectoryNames(workingDirectory, matches).ToList();
             if (!TryGetCurrentTabOption()) return false;
-            SetTabIndex();
-            result = _baseTabText + _currentTabOption + "\\";
+            var baseText = text.Remove(text.Length - arg.Length);
+            result = baseText + _currentTabOption + "\\";
             return true;
         }
 
-        private string ParseEndingSlash(string workingDirectory)
+        private bool GetNextInCurrentTabList(out string result, string text)
         {
-            if(workingDirectory.EndsWith("\\") || workingDirectory.EndsWith("/"))
+            var length = _currentTabDirs[_currentTabIndex].Length + 1;
+            _currentTabIndex++;
+            if(_currentTabIndex >= _currentTabDirs.Count)
             {
-                return workingDirectory.Substring(0, workingDirectory.Length - 1);
+                _currentTabIndex = 0;
             }
-            return workingDirectory;
+            result =  _currentTabDirs[_currentTabIndex];
+            var baseText = text.Remove(text.Length - length);
+            result = baseText + result + "\\";
+            return true;
         }
 
         private bool TryGetCurrentTabOption()
@@ -77,23 +79,10 @@ namespace Wish.Core
             return Regex.IsMatch(workingDirectory, @"\w:$") ? Directory.GetDirectories(workingDirectory + "\\") : Directory.GetDirectories(workingDirectory);
         }
 
-        private void SetTabIndex()
-        {
-            if (_currentTabIndex < _currentTabDirs.Count - 1)
-            {
-                _currentTabIndex++;
-            }
-            else
-            {
-                _currentTabIndex = 0;
-            }
-        }
-
         private IEnumerable<string> GetDirectoryNames(string workingDirectory, IEnumerable<string> matches)
         {
- //           if (Regex.IsMatch(workingDirectory, @"\w:\\$"))
-  //              return matches.Select(match => match.Replace(workingDirectory, ""));
             return matches.Select(match => match.Replace(workingDirectory + "\\", ""));
         }
+
     }
 }

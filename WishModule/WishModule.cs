@@ -27,7 +27,7 @@ namespace Wish
 
         public void Initialize()
         {
-            var view = new WishView(_mainRegion, _eventAggregator);
+            var view = new WishView(_mainRegion, _eventAggregator, @"C:\Users\tlthorn1");
             _mainRegion.Add(view);
         }
     }
