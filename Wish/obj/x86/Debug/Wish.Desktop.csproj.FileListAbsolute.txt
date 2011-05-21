@@ -22,3 +22,5 @@ C:\src\dotnet\Wish\Wish\bin\Debug\Wish.Core.dll
 C:\src\dotnet\Wish\Wish\bin\Debug\Terminal.dll
 C:\src\dotnet\Wish\Wish\bin\Debug\Wish.Core.pdb
 C:\src\dotnet\Wish\Wish\bin\Debug\Terminal.pdb
+C:\src\dotnet\Wish\Wish\bin\Debug\CodeBoxControl.dll
+C:\src\dotnet\Wish\Wish\bin\Debug\CodeBoxControl.pdb

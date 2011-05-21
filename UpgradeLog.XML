@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Wish">
+</Property><Property Name="Solution File" Value="C:\src\dotnet\Wish\Wish.sln">
+</Property><Property Name="Date" Value="Saturday, May 21, 2011">
+</Property><Property Name="Time" Value="16:27:43 PM">
+</Property></Properties><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\CodeBoxControl.csproj" Description="Project file successfully backed up as C:\src\dotnet\Wish\Backup\CodeBoxControl.csproj">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\CodeBox.cs" Description="File successfully backed up as C:\src\dotnet\Wish\Backup\CodeBox.cs">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\Decorations\Decoration.cs" Description="File successfully backed up as C:\src\dotnet\Wish\Backup\Decorations\Decoration.cs">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\Decorations\EDecorationType.cs" Description="File successfully backed up as C:\src\dotnet\Wish\Backup\Decorations\EDecorationType.cs">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\Decorations\ExplicitDecoration.cs" Description="File successfully backed up as C:\src\dotnet\Wish\Backup\Decorations\ExplicitDecoration.cs">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\Decorations\MultiExplicitDecoration.cs" Description="File successfully backed up as C:\src\dotnet\Wish\Backup\Decorations\MultiExplicitDecoration.cs">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\Decorations\MultiRegexDecoration.cs" Description="File successfully backed up as C:\src\dotnet\Wish\Backup\Decorations\MultiRegexDecoration.cs">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\Decorations\MultiRegexWordDecoration.cs" Description="File successfully backed up as C:\src\dotnet\Wish\Backup\Decorations\MultiRegexWordDecoration.cs">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\Decorations\MultiStringDecoration.cs" Description="File successfully backed up as C:\src\dotnet\Wish\Backup\Decorations\MultiStringDecoration.cs">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\Decorations\RegexDecoration.cs" Description="File successfully backed up as C:\src\dotnet\Wish\Backup\Decorations\RegexDecoration.cs">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\Decorations\RegexWordDecoration.cs" Description="File successfully backed up as C:\src\dotnet\Wish\Backup\Decorations\RegexWordDecoration.cs">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\Decorations\StringDecoration.cs" Description="File successfully backed up as C:\src\dotnet\Wish\Backup\Decorations\StringDecoration.cs">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\Pair.cs" Description="File successfully backed up as C:\src\dotnet\Wish\Backup\Pair.cs">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\PointCollectionHelper.cs" Description="File successfully backed up as C:\src\dotnet\Wish\Backup\PointCollectionHelper.cs">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\Properties\AssemblyInfo.cs" Description="File successfully backed up as C:\src\dotnet\Wish\Backup\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\Properties\Resources.Designer.cs" Description="File successfully backed up as C:\src\dotnet\Wish\Backup\Properties\Resources.Designer.cs">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\Properties\Settings.Designer.cs" Description="File successfully backed up as C:\src\dotnet\Wish\Backup\Properties\Settings.Designer.cs">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\StackedRectangleGeometryHelper.cs" Description="File successfully backed up as C:\src\dotnet\Wish\Backup\StackedRectangleGeometryHelper.cs">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\Properties\Settings.settings" Description="File successfully backed up as C:\src\dotnet\Wish\Backup\Properties\Settings.settings">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\Properties\Resources.resx" Description="File successfully backed up as C:\src\dotnet\Wish\Backup\Properties\Resources.resx">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\CodeBox.xaml" Description="File successfully backed up as C:\src\dotnet\Wish\Backup\CodeBox.xaml">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\CodeBoxControl.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="CodeBoxControl" Source="CodeBoxControl\CodeBoxControl.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="CodeBoxControl" Source="CodeBoxControl\CodeBoxControl.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

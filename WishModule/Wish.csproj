@@ -67,6 +67,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CodeBoxControl\CodeBoxControl.csproj">
+      <Project>{FAFC1291-82F4-4A3A-B70F-111DBF2EC194}</Project>
+      <Name>CodeBoxControl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Terminal\Terminal.csproj">
       <Project>{D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3}</Project>
       <Name>Terminal</Name>
