@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Windows;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Regions;
-using Wish.Core;
-using Wish.Models;
 using Wish.Views;
 
 namespace Wish.ViewModels
@@ -20,9 +20,9 @@ namespace Wish.ViewModels
 
         public ICommand CommandEntered { get; set; }
 
-        public TerminalViewModel(IRegion region, WishView view, string workingDirectory)
+        public TerminalViewModel(IRegion mainRegion, WishView wishView, string workingDirectory)
         {
-            _terminal = new Models.Terminal(region, view, workingDirectory);
+            _terminal = new Models.Terminal(mainRegion, wishView, workingDirectory);
             CommandEntered = new DelegateCommand(ProcessCommand);
         }
 
@@ -30,7 +30,5 @@ namespace Wish.ViewModels
         {
             _terminal.ProcessCommand();
         }
-
     }
-
 }
