@@ -18,5 +18,10 @@ namespace CodeBoxControl.Decorations
             ranges.Add(p);
             return ranges;
         }
+
+        public override bool AreRangesSorted
+        {
+            get { return true ; }
+        }
     }
 }

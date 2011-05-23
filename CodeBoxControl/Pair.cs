@@ -26,6 +26,11 @@ namespace CodeBoxControl
             Start = start;
             Length = length;
         }
+
+        public int End
+        {
+            get{return Start + Length;}
+        }
     }
 }
  

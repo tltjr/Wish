@@ -1,3 +1,7 @@
+caret invisible on black background
+
+latest version of codebox
+
 remove all terminal shit
 
 tab completion doesn't work if not first arg, 

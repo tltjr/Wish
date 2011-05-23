@@ -32,5 +32,10 @@ namespace CodeBoxControl.Decorations
             }
             return pairs;
         }
+
+        public override bool AreRangesSorted
+        {
+            get { return false; }
+        }
     }
 }

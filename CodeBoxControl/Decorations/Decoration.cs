@@ -36,5 +36,17 @@ namespace CodeBoxControl.Decorations
         }
 
         public abstract List<Pair> Ranges(string Text);
+
+        public abstract bool AreRangesSorted{get;}
+
+      
+
+        public bool IsDirty { get; protected set; }
+
+        public Decoration()
+        {
+            IsDirty = true;
+        }
+
     }
 }

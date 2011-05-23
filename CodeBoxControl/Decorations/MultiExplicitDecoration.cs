@@ -20,5 +20,10 @@ namespace CodeBoxControl.Decorations
         {
             return mColoredRanges;
         }
+
+        public override bool AreRangesSorted
+        {
+            get { return false; }
+        }
     }
 }

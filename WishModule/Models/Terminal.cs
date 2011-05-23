@@ -1,7 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Principal;
 using System.Text.RegularExpressions;
+using System.Windows.Media;
+using CodeBoxControl;
+using CodeBoxControl.Decorations;
 using Microsoft.Practices.Prism.Regions;
 using Terminal;
 using Wish.Core;
@@ -18,6 +22,9 @@ namespace Wish.Models
         private IRegion _region;
         private WishView _view;
 
+        //private readonly SyntaxHighlighter _syntaxHighlighter;
+        private readonly RegexDecoration _user;
+
 		public int LastPromptIndex { get; private set; }
         public string WorkingDirectory
         {
@@ -27,11 +34,22 @@ namespace Wish.Models
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Terminal(IRegion region, WishView view, string workingDirectory)
+        public Terminal(IRegion region, WishView view, CodeBox textBox, string workingDirectory)
         {
             _region = region;
             _view = view;
             _workingDirectory = workingDirectory;
+            textBox.Decorations.Clear();
+            var reg = WindowsIdentity.GetCurrent().Name;
+            _user = new RegexDecoration
+                        {
+                            DecorationType = EDecorationType.TextColor,
+                            Brush = new SolidColorBrush(Colors.Green),
+                            RegexString = reg
+                        };
+            textBox.Decorations.Add(_user);
+            //_syntaxHighlighter = new SyntaxHighlighter();
+            //_syntaxHighlighter.Highlight();
 			LastPromptIndex = -1;
             ChangeDirectory("cd " + _workingDirectory);
             InsertNewPrompt();
@@ -125,7 +143,13 @@ namespace Wish.Models
             if (results.Count == 0) return;
             var pwd = results[0];
             _workingDirectory = pwd.ToString();
-            Prompt = pwd + ">";
+            Prompt = WindowsIdentity.GetCurrent().Name;
+            Prompt += "@";
+            Prompt += Environment.MachineName;
+            Prompt += " ";
+            Prompt += pwd;
+            Prompt += " ";
+            Prompt += ">>";
         }
 
         public void InsertNewPrompt()

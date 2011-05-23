@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using CodeBoxControl;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Regions;
 using Wish.Views;
@@ -20,9 +21,9 @@ namespace Wish.ViewModels
 
         public ICommand CommandEntered { get; set; }
 
-        public TerminalViewModel(IRegion mainRegion, WishView wishView, string workingDirectory)
+        public TerminalViewModel(IRegion mainRegion, WishView wishView, CodeBox textBox, string workingDirectory)
         {
-            _terminal = new Models.Terminal(mainRegion, wishView, workingDirectory);
+            _terminal = new Models.Terminal(mainRegion, wishView, textBox, workingDirectory);
             CommandEntered = new DelegateCommand(ProcessCommand);
         }
 

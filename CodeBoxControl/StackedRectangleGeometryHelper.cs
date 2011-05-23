@@ -20,10 +20,11 @@ namespace CodeBoxControl
       /// Creates List of geometries for underline
       /// </summary>
       /// <returns>List of Geometries</returns>
-      public List<Geometry> BottomEdgeRectangleGeometries()
+      public  Geometry  BottomEdgeRectangleGeometry()
       {
-          List<Geometry> geoms = new List<Geometry>();
+        
           PathGeometry pg = (PathGeometry)mOrginalGeometry;
+          GeometryGroup gg = new GeometryGroup();
           foreach (PathFigure fg in pg.Figures)
           {
               PolyLineSegment pls = (PolyLineSegment)fg.Segments[0]; 
@@ -39,21 +40,21 @@ namespace CodeBoxControl
                   double right = rlMatches[rlMatches.Count - 1];
 
                   PathGeometry rpg = CreateGeometry(top, bottom, left, right);
-                  geoms.Add(rpg);
+                  gg.Children.Add(rpg);
               }
           }
-          return geoms;
+          return gg;
       }
 
       /// <summary>
-      /// Creates List of geometries for Strikethru
+      /// Creates Geometries for Strikethru
       /// </summary>
-      /// <returns>List of Geometries</returns>
-      public List<Geometry> CenterLineRectangleGeometries()
+      /// <returns>Geometrie</returns>
+      public Geometry CenterLineRectangleGeometry()
       {
-          List<Geometry> geoms = new List<Geometry>();
+         
           PathGeometry pg = (PathGeometry)mOrginalGeometry;
-
+          GeometryGroup gg = new GeometryGroup();
           foreach (PathFigure fg in pg.Figures)
           {
               PolyLineSegment pls = (PolyLineSegment)fg.Segments[0];
@@ -69,10 +70,10 @@ namespace CodeBoxControl
                   double right = rlMatches[rlMatches.Count - 1];
 
                   PathGeometry rpg = CreateGeometry(top, bottom, left, right);
-                  geoms.Add(rpg);
+                  gg.Children.Add(rpg);
               }
           }
-          return geoms;
+          return gg;
       }
 
       private static PathGeometry CreateGeometry(double top, double bottom, double left, double right)
