@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Linq;
 using System.Security.Principal;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using CodeBoxControl.Decorations;
+using GuiHelpers;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
 using Terminal;
 using Wish.Core;
-using Wish.ViewModels;
 
 namespace Wish.Views
 {
@@ -21,24 +22,22 @@ namespace Wish.Views
         private IEventAggregator _eventAggregator;
         private IRegion _mainRegion;
         public static RoutedCommand TabNew = new RoutedCommand();
-        //private readonly TerminalViewModel _terminalViewModel;
         private bool _activelyTabbing;
         private readonly CompletionManager _completionManager = new CompletionManager();
+        private readonly CommandEngine _commandEngine = new CommandEngine();
+        private readonly SyntaxHighlighter _syntaxHighlighter = new SyntaxHighlighter();
+        private readonly TextTransformations _textTransformations = new TextTransformations();
 
 
-        private string _prompt;
         private string _workingDirectory;
 
 
-        private readonly StringDecoration _user;
-		public int LastPromptIndex { get; private set; }
-        private readonly PowershellController _powershellController = new PowershellController();
+        public int LastPromptIndex { get; private set; }
 
         public WishView(IRegion mainRegion, IEventAggregator eventAggregator, string workingDirectory)
         {
             InitializeComponent();
             _mainRegion = mainRegion;
-            //_terminalViewModel = new TerminalViewModel(_mainRegion, this, textBox, workingDirectory);
             _eventAggregator = eventAggregator;
             var keyGesture = new KeyGesture(Key.T, ModifierKeys.Control | ModifierKeys.Shift);
             TabNew.InputGestures.Add(keyGesture);
@@ -47,96 +46,89 @@ namespace Wish.Views
             _workingDirectory = workingDirectory;
 
 
-            textBox.Decorations.Clear();
-            _user = new StringDecoration
-                        {
-                            DecorationType = EDecorationType.TextColor,
-                            Brush = new SolidColorBrush(Colors.Green),
-                            String = WindowsIdentity.GetCurrent().Name + "@" + Environment.MachineName
-                        };
-            textBox.Decorations.Add(_user);
-
-            textBox.Decorations.Add(new StringDecoration
-                                        {
-                                            DecorationType = EDecorationType.TextColor,
-                                            Brush = new SolidColorBrush(Colors.Red),
-                                            String = ">>"
-                                        });
+            _syntaxHighlighter.SetSyntaxHighlighting(textBox);
 
 			LastPromptIndex = -1;
-            ChangeDirectory("cd " + _workingDirectory);
+            try
+            {
+                _workingDirectory = _commandEngine.ChangeDirectory("cd " + _workingDirectory);
+            }
+            catch(Exception e)
+            {
+                throw new Exception("Invalid working directory:\t" + e.StackTrace);
+            }
+            _textTransformations.CreatePrompt(_workingDirectory);
 
-            InsertNewPrompt();
+            LastPromptIndex = _textTransformations.InsertNewPrompt(textBox);
         }
 
-        public string Prompt
-        {
-            get { return _prompt; }
-            set { _prompt = value; }
-        }
-
-
-        public void InsertNewPrompt()
-		{
-			if (textBox.Text.Length > 0)
-				textBox.Text += textBox.Text.EndsWith("\n") ? "" : "\n";
-		    textBox.Text += _prompt;
-			LastPromptIndex = textBox.Text.Length;
-		}
-
-        private void ChangeDirectory(string target)
-        {
-            _powershellController.RunScript(target);
-            var results = _powershellController.RunScriptForResult("pwd");
-            if (results.Count == 0) return;
-            var pwd = results[0];
-            _workingDirectory = pwd.ToString();
-            Prompt = WindowsIdentity.GetCurrent().Name;
-            Prompt += "@";
-            Prompt += Environment.MachineName;
-            Prompt += " ";
-            Prompt += pwd;
-            Prompt += " ";
-            Prompt += ">> ";
-        }
             
         private void ScrollToEnd(object sender, TextChangedEventArgs e)
         {
             textBox.ScrollToEnd();
             textBox.CaretIndex = textBox.Text.Length;
-            //Title = _terminalViewModel.Terminal.WorkingDirectory;
         }
 
         private void OnUserControlLoaded(object sender, RoutedEventArgs e)
         {
             Keyboard.Focus(textBox);
-            // need to bind late to get the title bound
-            //DataContext = _terminalViewModel;
         }
 
         protected override void OnPreviewKeyDown(KeyEventArgs e)
         {
-            //var terminal = _terminalViewModel.Terminal;
-            //if(e.Key == Key.Tab)
-            //{
-            //    if(textBox.CaretIndex != textBox.Text.Length || textBox.CaretIndex == terminal.LastPromptIndex)
-            //        return;
-            //    var line = textBox.Text.Substring(terminal.LastPromptIndex);
-            //    var command = TerminalUtils.ParseCommandLine(line);
-            //    string result;
-            //    var flag = _completionManager.Complete(out result, command, _activelyTabbing, terminal.WorkingDirectory, textBox.Text);
-            //    if(flag)
-            //    {
-            //        _activelyTabbing = true;
-            //        textBox.Text = result;
-            //    }
-            //    e.Handled = true;
-            //}
-            //else
-            //{
-            //    base.OnPreviewKeyDown(e);
-            //    _activelyTabbing = false;
-            //}
+            switch (e.Key)
+            {
+                case Key.Tab:
+                    {
+                        if (textBox.CaretIndex != textBox.Text.Length || textBox.CaretIndex == LastPromptIndex)
+                            return;
+                        var line = textBox.Text.Substring(LastPromptIndex);
+                        var command = TerminalUtils.ParseCommandLine(line);
+                        string result;
+                        var flag = _completionManager.Complete(out result, command, _activelyTabbing, _workingDirectory, textBox.Text);
+                        if (flag)
+                        {
+                            _activelyTabbing = true;
+                            textBox.Text = result;
+                        }
+                        e.Handled = true;
+                    }
+                    break;
+                case Key.Enter:
+                    {
+                        var command = _textTransformations.ParseScript(textBox.Text, LastPromptIndex);
+                        textBox.Text += "\n";
+                        if (!IsExit(command))
+                        {
+                            var output = _commandEngine.ProcessCommand(command);
+                            LastPromptIndex = _textTransformations.InsertNewPrompt(textBox);
+                            LastPromptIndex = _textTransformations.InsertLineBeforePrompt(textBox, output, LastPromptIndex);
+                        }
+                    }
+                    break;
+                default:
+                    base.OnPreviewKeyDown(e);
+                    _activelyTabbing = false;
+                    break;
+            }
+        }
+
+        private bool IsExit(Command command)
+        {
+            if(command.Name.Equals("exit", StringComparison.InvariantCultureIgnoreCase))
+            {
+                var i = _mainRegion.Views.Count();
+                if(i > 1)
+                {
+                    _mainRegion.Remove(this);
+                }
+                else
+                {
+                    Application.Current.Shutdown();
+                }
+                return true;
+            }
+            return false;
         }
 
         public static readonly DependencyProperty TitleProperty =
@@ -156,8 +148,8 @@ namespace Wish.Views
 
         private void NewTabRequest(object sender, ExecutedRoutedEventArgs e)
         {
-            //var view = new WishView(_mainRegion, _eventAggregator, _terminalViewModel.Terminal.WorkingDirectory);
-            //_mainRegion.Add(view);
+            var view = new WishView(_mainRegion, _eventAggregator, _workingDirectory);
+            _mainRegion.Add(view);
         }
     }
 }

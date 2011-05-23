@@ -17,3 +17,5 @@ C:\src\dotnet\Wish\WishModule\obj\Debug\Views\WishView.baml
 C:\src\dotnet\Wish\WishModule\obj\Debug\Wish.g.resources
 C:\src\dotnet\Wish\WishModule\obj\Debug\Wish.dll
 C:\src\dotnet\Wish\WishModule\obj\Debug\Wish.pdb
+C:\src\dotnet\Wish\WishModule\bin\Debug\GuiHelpers.dll
+C:\src\dotnet\Wish\WishModule\bin\Debug\GuiHelpers.pdb

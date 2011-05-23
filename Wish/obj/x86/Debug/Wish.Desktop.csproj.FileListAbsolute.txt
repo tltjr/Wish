@@ -24,3 +24,5 @@ C:\src\dotnet\Wish\Wish\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\src\dotnet\Wish\Wish\obj\x86\Debug\Wish.Desktop.exe
 C:\src\dotnet\Wish\Wish\obj\x86\Debug\Wish.Desktop.pdb
 C:\src\dotnet\Wish\Wish\bin\Debug\CodeBoxControl.pdb
+C:\src\dotnet\Wish\Wish\bin\Debug\GuiHelpers.dll
+C:\src\dotnet\Wish\Wish\bin\Debug\GuiHelpers.pdb

@@ -22,7 +22,6 @@ namespace Wish.Models
         private IRegion _region;
         private WishView _view;
 
-        //private readonly SyntaxHighlighter _syntaxHighlighter;
         private readonly RegexDecoration _user;
 
 		public int LastPromptIndex { get; private set; }
@@ -48,8 +47,7 @@ namespace Wish.Models
                             RegexString = reg
                         };
             textBox.Decorations.Add(_user);
-            //_syntaxHighlighter = new SyntaxHighlighter();
-            //_syntaxHighlighter.Highlight();
+
 			LastPromptIndex = -1;
             ChangeDirectory("cd " + _workingDirectory);
             InsertNewPrompt();
@@ -173,7 +171,7 @@ namespace Wish.Models
 				str += "\n";
 			Text = Text.Insert(startIndex, str);
 			LastPromptIndex = oldPromptIndex + str.Length;
-            PropertyChanged(this, new PropertyChangedEventArgs("Text"));
+            //PropertyChanged(this, new PropertyChangedEventArgs("Text"));
 		}
 
         private Command ParseScript()
