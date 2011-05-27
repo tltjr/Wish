@@ -3,27 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:Views="clr-namespace:Wish.Views" xmlns:CodeBoxControl="clr-namespace:CodeBoxControl;assembly=CodeBoxControl" mc:Ignorable="d" 
+             xmlns:Views="clr-namespace:Wish.Views" 
+             xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+             mc:Ignorable="d" 
              Background="White"
              d:DesignHeight="450" d:DesignWidth="500"
              Loaded="OnUserControlLoaded">
     <UserControl.CommandBindings>
         <CommandBinding Command="{x:Static Views:WishView.TabNew}" Executed="NewTabRequest"/>
     </UserControl.CommandBindings>
-
-    <CodeBoxControl:CodeBox x:Name="textBox"
+    <avalonEdit:TextEditor x:Name="textEditor"
              FontFamily="Consolas"
              FontSize="16"
-             VerticalScrollBarVisibility="Auto"
-             AcceptsReturn="True"
-             BaseForeground="Black"
              TextChanged="ScrollToEnd"
              Focusable="True">
-             <!--CodeBoxBackground="White"-->
-             <!--LineNumberMarginWidth="0"-->
-             <!--TextChanged="ScrollToEnd"-->
-        <CodeBoxControl:CodeBox.InputBindings>
+        <avalonEdit:TextEditor.InputBindings>
             <KeyBinding Command="{Binding Path=CommandEntered}" Key="Enter" />
-         </CodeBoxControl:CodeBox.InputBindings>
-    </CodeBoxControl:CodeBox>
+         </avalonEdit:TextEditor.InputBindings>
+        <avalonEdit:TextEditor.Template>
+            <ControlTemplate>
+                <ScrollViewer 
+                        Focusable="False"
+						Name="PART_ScrollViewer"
+						CanContentScroll="True"
+                        HorizontalScrollBarVisibility="Hidden"
+						Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TextArea}"
+						VerticalContentAlignment="Top"
+						HorizontalContentAlignment="Left"
+						Background="{TemplateBinding Background}"
+						Padding="{TemplateBinding Padding}"
+						BorderBrush="{TemplateBinding BorderBrush}"
+						BorderThickness="{TemplateBinding BorderThickness}"
+					/>
+            </ControlTemplate>
+        </avalonEdit:TextEditor.Template>
+    </avalonEdit:TextEditor>
 </UserControl>

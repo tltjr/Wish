@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
-using CodeBoxControl;
+using ICSharpCode.AvalonEdit;
 using Terminal;
 
 namespace GuiHelpers
@@ -25,22 +25,22 @@ namespace GuiHelpers
         }
 
         // returns LastPromptIndex
-        public int InsertNewPrompt(CodeBox codeBox)
+        public int InsertNewPrompt(TextEditor textEditor)
 		{
-			if (codeBox.Text.Length > 0)
-				codeBox.Text += codeBox.Text.EndsWith("\n") ? "" : "\n";
-		    codeBox.Text += _prompt;
-			return codeBox.Text.Length;
+			if (textEditor.Text.Length > 0)
+				textEditor.Text += textEditor.Text.EndsWith("\n") ? "" : "\n";
+		    textEditor.Text += _prompt;
+			return textEditor.Text.Length;
 		}
 
         // returns LastPromptIndex
-        public int InsertLineBeforePrompt(CodeBox codeBox, string str, int lastPromptIndex) 
+        public int InsertLineBeforePrompt(TextEditor textEditor, string str, int lastPromptIndex) 
 		{
 			var startIndex = lastPromptIndex - Prompt.Length;
 			var oldPromptIndex = lastPromptIndex;
             if (!str.EndsWith("\n"))
                 str += "\n";
-			codeBox.Text = codeBox.Text.Insert(startIndex, str);
+			textEditor.Text = textEditor.Text.Insert(startIndex, str);
 			return oldPromptIndex + str.Length;
 		}
 

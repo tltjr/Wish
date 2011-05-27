@@ -23,20 +23,22 @@
       <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CompletionManager.cs" caret="3013" fromTop="22" />
       <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/f:WishModule.cs" caret="949" fromTop="24" />
       <File id="702B536A-E766-4C55-838E-14424FA8F101/f:App.xaml" caret="229" fromTop="4" />
-      <File id="DB3AEF34-4A62-4FD0-8FBA-2C1B0E9A9776/f:SyntaxHighlighter.cs" caret="782" fromTop="20" />
       <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CommandEngine.cs" caret="1148" fromTop="36" />
       <File id="702B536A-E766-4C55-838E-14424FA8F101/f:Shell.xaml" caret="378" fromTop="5" />
       <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:PowershellController.cs" caret="1408" fromTop="23" />
-      <File id="DB3AEF34-4A62-4FD0-8FBA-2C1B0E9A9776/f:TextTransformations.cs" caret="1210" fromTop="38" />
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="2215" fromTop="23" />
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml" caret="1078" fromTop="20" />
+      <File id="DB3AEF34-4A62-4FD0-8FBA-2C1B0E9A9776/f:SyntaxHighlighter.cs" caret="255" fromTop="10" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml" caret="1070" fromTop="19" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="5541" fromTop="131" />
+      <File id="DB3AEF34-4A62-4FD0-8FBA-2C1B0E9A9776/f:TextTransformations.cs" caret="1210" fromTop="35" />
     </RecentFiles>
     <RecentEdits>
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="2202" fromTop="30" />
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="2773" fromTop="39" />
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="2317" fromTop="28" />
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="2735" fromTop="37" />
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml" caret="1046" fromTop="19" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="2315" fromTop="39" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="2279" fromTop="28" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml" caret="1071" fromTop="19" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="2279" fromTop="13" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="2168" fromTop="7" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="4115" fromTop="41" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="3665" fromTop="34" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>

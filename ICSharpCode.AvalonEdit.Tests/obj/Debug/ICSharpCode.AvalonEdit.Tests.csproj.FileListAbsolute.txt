@@ -1,0 +1,12 @@
+C:\lib\AvalonEdit\src\bin\Debug\ICSharpCode.AvalonEdit.Tests.dll.config
+C:\lib\AvalonEdit\src\bin\Debug\ICSharpCode.AvalonEdit.Tests.dll
+C:\lib\AvalonEdit\src\bin\Debug\ICSharpCode.AvalonEdit.Tests.pdb
+C:\lib\AvalonEdit\src\ICSharpCode.AvalonEdit.Tests\obj\Debug\ResolveAssemblyReference.cache
+C:\lib\AvalonEdit\src\ICSharpCode.AvalonEdit.Tests\obj\Debug\ICSharpCode.AvalonEdit.Tests.dll
+C:\lib\AvalonEdit\src\ICSharpCode.AvalonEdit.Tests\obj\Debug\ICSharpCode.AvalonEdit.Tests.pdb
+C:\src\dotnet\Wish\bin\Debug\ICSharpCode.AvalonEdit.Tests.dll.config
+C:\src\dotnet\Wish\bin\Debug\ICSharpCode.AvalonEdit.Tests.dll
+C:\src\dotnet\Wish\bin\Debug\ICSharpCode.AvalonEdit.Tests.pdb
+C:\src\dotnet\Wish\ICSharpCode.AvalonEdit.Tests\obj\Debug\ResolveAssemblyReference.cache
+C:\src\dotnet\Wish\ICSharpCode.AvalonEdit.Tests\obj\Debug\ICSharpCode.AvalonEdit.Tests.dll
+C:\src\dotnet\Wish\ICSharpCode.AvalonEdit.Tests\obj\Debug\ICSharpCode.AvalonEdit.Tests.pdb

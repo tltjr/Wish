@@ -8,4 +8,5 @@
   <Module PersistentId="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE" ModuleId="Wish.Core" />
   <Module PersistentId="DB3AEF34-4A62-4FD0-8FBA-2C1B0E9A9776" ModuleId="GuiHelpers" />
   <Module PersistentId="FAFC1291-82F4-4A3A-B70F-111DBF2EC194" ModuleId="CodeBoxControl" />
+  <Module PersistentId="6C55B776-26D4-4DB3-A6AB-87E783B2F3D1" ModuleId="ICSharpCode.AvalonEdit" />
 </Modules>

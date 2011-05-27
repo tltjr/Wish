@@ -1,9 +1,10 @@
+C:\src\dotnet\Wish\GuiHelpers\obj\Debug\ResolveAssemblyReference.cache
 C:\src\dotnet\Wish\GuiHelpers\bin\Debug\GuiHelpers.dll
 C:\src\dotnet\Wish\GuiHelpers\bin\Debug\GuiHelpers.pdb
-C:\src\dotnet\Wish\GuiHelpers\bin\Debug\CodeBoxControl.dll
+C:\src\dotnet\Wish\GuiHelpers\bin\Debug\ICSharpCode.AvalonEdit.dll
 C:\src\dotnet\Wish\GuiHelpers\bin\Debug\Terminal.dll
-C:\src\dotnet\Wish\GuiHelpers\bin\Debug\CodeBoxControl.pdb
+C:\src\dotnet\Wish\GuiHelpers\bin\Debug\ICSharpCode.AvalonEdit.pdb
+C:\src\dotnet\Wish\GuiHelpers\bin\Debug\ICSharpCode.AvalonEdit.xml
 C:\src\dotnet\Wish\GuiHelpers\bin\Debug\Terminal.pdb
-C:\src\dotnet\Wish\GuiHelpers\obj\Debug\ResolveAssemblyReference.cache
 C:\src\dotnet\Wish\GuiHelpers\obj\Debug\GuiHelpers.dll
 C:\src\dotnet\Wish\GuiHelpers\obj\Debug\GuiHelpers.pdb

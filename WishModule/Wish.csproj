@@ -65,13 +65,13 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CodeBoxControlv1\CodeBoxControl.csproj">
-      <Project>{FAFC1291-82F4-4A3A-B70F-111DBF2EC194}</Project>
-      <Name>CodeBoxControl</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GuiHelpers\GuiHelpers.csproj">
       <Project>{DB3AEF34-4A62-4FD0-8FBA-2C1B0E9A9776}</Project>
       <Name>GuiHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ICSharpCode.AvalonEdit\ICSharpCode.AvalonEdit.csproj">
+      <Project>{6C55B776-26D4-4DB3-A6AB-87E783B2F3D1}</Project>
+      <Name>ICSharpCode.AvalonEdit</Name>
     </ProjectReference>
     <ProjectReference Include="..\Terminal\Terminal.csproj">
       <Project>{D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3}</Project>
@@ -82,7 +82,9 @@
       <Name>Wish.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Views\CustomHighlighting.xshd" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

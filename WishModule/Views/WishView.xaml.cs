@@ -1,10 +1,14 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Xml;
 using GuiHelpers;
+using ICSharpCode.AvalonEdit.Document;
+using ICSharpCode.AvalonEdit.Highlighting;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
 using Terminal;
@@ -24,7 +28,7 @@ namespace Wish.Views
         private bool _activelyTabbing;
         private readonly CompletionManager _completionManager = new CompletionManager();
         private readonly CommandEngine _commandEngine = new CommandEngine();
-        private readonly SyntaxHighlighter _syntaxHighlighter = new SyntaxHighlighter();
+//        private readonly SyntaxHighlighter _syntaxHighlighter = new SyntaxHighlighter();
         private readonly TextTransformations _textTransformations = new TextTransformations();
 
         private readonly string _workingDirectory;
@@ -41,7 +45,7 @@ namespace Wish.Views
 
             _workingDirectory = workingDirectory;
 
-            _syntaxHighlighter.SetSyntaxHighlighting(textBox);
+//            _syntaxHighlighter.SetSyntaxHighlighting(textEditor);
 
 			LastPromptIndex = -1;
             try
@@ -54,19 +58,33 @@ namespace Wish.Views
             }
             _textTransformations.CreatePrompt(_workingDirectory);
 
-            LastPromptIndex = _textTransformations.InsertNewPrompt(textBox);
+            LastPromptIndex = _textTransformations.InsertNewPrompt(textEditor);
+
+
+			IHighlightingDefinition customHighlighting;
+			using (Stream s = typeof(WishView).Assembly.GetManifestResourceStream("Wish.Views.CustomHighlighting.xshd")) {
+				if (s == null)
+					throw new InvalidOperationException("Could not find embedded resource");
+				using (XmlReader reader = new XmlTextReader(s)) {
+					customHighlighting = ICSharpCode.AvalonEdit.Highlighting.Xshd.
+						HighlightingLoader.Load(reader, HighlightingManager.Instance);
+				}
+			}
+			// and register it in the HighlightingManager
+			HighlightingManager.Instance.RegisterHighlighting("Custom Highlighting", null, customHighlighting);
+            textEditor.SyntaxHighlighting = customHighlighting;
+
         }
 
             
-        private void ScrollToEnd(object sender, TextChangedEventArgs e)
+        private void ScrollToEnd(object sender, EventArgs eventArgs)
         {
-            textBox.ScrollToEnd();
-            textBox.CaretIndex = textBox.Text.Length;
+            textEditor.ScrollToEnd();
         }
 
         private void OnUserControlLoaded(object sender, RoutedEventArgs e)
         {
-            Keyboard.Focus(textBox);
+            Keyboard.Focus(textEditor);
             Title = _workingDirectory;
         }
 
@@ -76,30 +94,37 @@ namespace Wish.Views
             {
                 case Key.Tab:
                     {
-                        if (textBox.CaretIndex != textBox.Text.Length || textBox.CaretIndex == LastPromptIndex)
-                            return;
-                        var line = textBox.Text.Substring(LastPromptIndex);
+                        //if (textEditor.CaretIndex != textEditor.Text.Length || textEditor.CaretIndex == LastPromptIndex)
+                        //    return;
+                        var line = textEditor.Text.Substring(LastPromptIndex);
                         var command = TerminalUtils.ParseCommandLine(line);
                         string result;
-                        var flag = _completionManager.Complete(out result, command, _activelyTabbing, _workingDirectory, textBox.Text);
+                        var flag = _completionManager.Complete(out result, command, _activelyTabbing, _workingDirectory, textEditor.Text);
                         if (flag)
                         {
                             _activelyTabbing = true;
-                            textBox.Text = result;
+                            textEditor.Text = result;
                         }
                         e.Handled = true;
                     }
                     break;
                 case Key.Enter:
                     {
-                        var command = _textTransformations.ParseScript(textBox.Text, LastPromptIndex);
-                        textBox.Text += "\n";
+                        var command = _textTransformations.ParseScript(textEditor.Text, LastPromptIndex);
+                        textEditor.Text += "\n";
                         if (!IsExit(command))
                         {
                             var output = _commandEngine.ProcessCommand(command);
-                            LastPromptIndex = _textTransformations.InsertNewPrompt(textBox);
-                            LastPromptIndex = _textTransformations.InsertLineBeforePrompt(textBox, output, LastPromptIndex);
+                            LastPromptIndex = _textTransformations.InsertNewPrompt(textEditor);
+                            LastPromptIndex = _textTransformations.InsertLineBeforePrompt(textEditor, output, LastPromptIndex);
                         }
+                        var line = textEditor.Document.GetLineByNumber(textEditor.TextArea.Caret.Line);
+                        var length = line.Length;
+                        if(0 == length)
+                        {
+                            textEditor.TextArea.Caret.Line = textEditor.TextArea.Caret.Line - 1;
+                        }
+                        e.Handled = true;
                     }
                     break;
                 default:
