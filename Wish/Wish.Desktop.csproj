@@ -117,10 +117,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CodeBoxControl\CodeBoxControl.csproj">
-      <Project>{FAFC1291-82F4-4A3A-B70F-111DBF2EC194}</Project>
-      <Name>CodeBoxControl</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WishModule\Wish.csproj">
       <Project>{F6A61085-69F1-499B-BFCE-E65E32BEDCC9}</Project>
       <Name>Wish</Name>

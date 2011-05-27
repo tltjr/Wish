@@ -49,7 +49,7 @@
     <Compile Include="TextTransformations.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CodeBoxControl\CodeBoxControl.csproj">
+    <ProjectReference Include="..\CodeBoxControlv1\CodeBoxControl.csproj">
       <Project>{FAFC1291-82F4-4A3A-B70F-111DBF2EC194}</Project>
       <Name>CodeBoxControl</Name>
     </ProjectReference>

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Linq;
-using System.Security.Principal;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using CodeBoxControl.Decorations;
 using GuiHelpers;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
@@ -17,20 +15,19 @@ namespace Wish.Views
     /// <summary>
     /// Interaction logic for WishView.xaml
     /// </summary>
-    public partial class WishView : UserControl
+    public partial class WishView
     {
-        private IEventAggregator _eventAggregator;
-        private IRegion _mainRegion;
+        private readonly IRegion _mainRegion;
+        private readonly IEventAggregator _eventAggregator;
         public static RoutedCommand TabNew = new RoutedCommand();
+        public static RoutedCommand CommandEntered = new RoutedCommand();
         private bool _activelyTabbing;
         private readonly CompletionManager _completionManager = new CompletionManager();
         private readonly CommandEngine _commandEngine = new CommandEngine();
         private readonly SyntaxHighlighter _syntaxHighlighter = new SyntaxHighlighter();
         private readonly TextTransformations _textTransformations = new TextTransformations();
 
-
-        private string _workingDirectory;
-
+        private readonly string _workingDirectory;
 
         public int LastPromptIndex { get; private set; }
 
@@ -42,9 +39,7 @@ namespace Wish.Views
             var keyGesture = new KeyGesture(Key.T, ModifierKeys.Control | ModifierKeys.Shift);
             TabNew.InputGestures.Add(keyGesture);
 
-
             _workingDirectory = workingDirectory;
-
 
             _syntaxHighlighter.SetSyntaxHighlighting(textBox);
 
@@ -72,6 +67,7 @@ namespace Wish.Views
         private void OnUserControlLoaded(object sender, RoutedEventArgs e)
         {
             Keyboard.Focus(textBox);
+            Title = _workingDirectory;
         }
 
         protected override void OnPreviewKeyDown(KeyEventArgs e)

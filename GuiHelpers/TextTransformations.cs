@@ -38,8 +38,8 @@ namespace GuiHelpers
 		{
 			var startIndex = lastPromptIndex - Prompt.Length;
 			var oldPromptIndex = lastPromptIndex;
-			if (!str.EndsWith("\n"))
-				str += "\n";
+            if (!str.EndsWith("\n"))
+                str += "\n";
 			codeBox.Text = codeBox.Text.Insert(startIndex, str);
 			return oldPromptIndex + str.Length;
 		}

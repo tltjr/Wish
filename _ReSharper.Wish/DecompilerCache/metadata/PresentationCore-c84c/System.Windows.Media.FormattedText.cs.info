@@ -1,0 +1,22 @@
+R# version: 5.1.3000.12
+assembly PresentationCore, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35
+  file C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\v3.0\PresentationCore.dll mtime 3/2/2010 11:24:26 PM
+referenced assembly mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  file C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll mtime 2/7/2011 11:35:26 PM
+referenced assembly Microsoft.VisualC, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+  file C:\Windows\Microsoft.NET\Framework\v2.0.50727\Microsoft.VisualC.dll mtime 6/10/2009 9:23:04 PM
+referenced assembly System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  file C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll mtime 6/10/2009 9:23:18 PM
+referenced assembly WindowsBase, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35
+  file C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\v3.0\WindowsBase.dll mtime 3/2/2010 11:24:26 PM
+referenced assembly UIAutomationProvider, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35
+  file C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\v3.0\UIAutomationProvider.dll mtime 6/10/2009 9:14:46 PM
+referenced assembly UIAutomationTypes, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35
+  file C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\v3.0\UIAutomationTypes.dll mtime 6/10/2009 9:14:46 PM
+referenced assembly System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  file C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.Xml.dll mtime 6/10/2009 9:23:20 PM
+referenced assembly System.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+  file C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.Deployment.dll mtime 6/10/2009 9:23:17 PM
+no resolved referenced assembly PresentationCFFRasterizer, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35
+referenced assembly System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+  file C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.Drawing.dll mtime 6/10/2009 9:23:18 PM

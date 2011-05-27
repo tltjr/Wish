@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Views="clr-namespace:Wish.Views" xmlns:CodeBoxControl="clr-namespace:CodeBoxControl;assembly=CodeBoxControl" mc:Ignorable="d" 
+             Background="White"
              d:DesignHeight="450" d:DesignWidth="500"
              Loaded="OnUserControlLoaded">
     <UserControl.CommandBindings>
@@ -15,11 +16,12 @@
              FontSize="16"
              VerticalScrollBarVisibility="Auto"
              AcceptsReturn="True"
-             LineNumberMarginWidth="0"
-             CodeBoxBackground="White"
              BaseForeground="Black"
              TextChanged="ScrollToEnd"
              Focusable="True">
+             <!--CodeBoxBackground="White"-->
+             <!--LineNumberMarginWidth="0"-->
+             <!--TextChanged="ScrollToEnd"-->
         <CodeBoxControl:CodeBox.InputBindings>
             <KeyBinding Command="{Binding Path=CommandEntered}" Key="Enter" />
          </CodeBoxControl:CodeBox.InputBindings>

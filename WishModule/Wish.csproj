@@ -65,7 +65,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CodeBoxControl\CodeBoxControl.csproj">
+    <ProjectReference Include="..\CodeBoxControlv1\CodeBoxControl.csproj">
       <Project>{FAFC1291-82F4-4A3A-B70F-111DBF2EC194}</Project>
       <Name>CodeBoxControl</Name>
     </ProjectReference>
@@ -82,10 +82,7 @@
       <Name>Wish.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

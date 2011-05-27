@@ -1,14 +1,16 @@
 C:\src\dotnet\Wish\WishModule\bin\Debug\Wish.dll
 C:\src\dotnet\Wish\WishModule\bin\Debug\Wish.pdb
 C:\src\dotnet\Wish\WishModule\bin\Debug\CodeBoxControl.dll
+C:\src\dotnet\Wish\WishModule\bin\Debug\GuiHelpers.dll
 C:\src\dotnet\Wish\WishModule\bin\Debug\Microsoft.Practices.Prism.dll
 C:\src\dotnet\Wish\WishModule\bin\Debug\Microsoft.Practices.Prism.MefExtensions.dll
 C:\src\dotnet\Wish\WishModule\bin\Debug\Terminal.dll
 C:\src\dotnet\Wish\WishModule\bin\Debug\Wish.Core.dll
 C:\src\dotnet\Wish\WishModule\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\src\dotnet\Wish\WishModule\bin\Debug\CodeBoxControl.pdb
+C:\src\dotnet\Wish\WishModule\bin\Debug\GuiHelpers.pdb
 C:\src\dotnet\Wish\WishModule\bin\Debug\Terminal.pdb
 C:\src\dotnet\Wish\WishModule\bin\Debug\Wish.Core.pdb
-C:\src\dotnet\Wish\WishModule\bin\Debug\CodeBoxControl.pdb
 C:\src\dotnet\Wish\WishModule\obj\Debug\ResolveAssemblyReference.cache
 C:\src\dotnet\Wish\WishModule\obj\Debug\Views\WishView.g.cs
 C:\src\dotnet\Wish\WishModule\obj\Debug\Wish_MarkupCompile.cache
@@ -17,5 +19,3 @@ C:\src\dotnet\Wish\WishModule\obj\Debug\Views\WishView.baml
 C:\src\dotnet\Wish\WishModule\obj\Debug\Wish.g.resources
 C:\src\dotnet\Wish\WishModule\obj\Debug\Wish.dll
 C:\src\dotnet\Wish\WishModule\obj\Debug\Wish.pdb
-C:\src\dotnet\Wish\WishModule\bin\Debug\GuiHelpers.dll
-C:\src\dotnet\Wish\WishModule\bin\Debug\GuiHelpers.pdb
