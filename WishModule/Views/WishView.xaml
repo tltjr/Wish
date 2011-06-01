@@ -6,7 +6,7 @@
              xmlns:Views="clr-namespace:Wish.Views" 
              xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
              mc:Ignorable="d" 
-             Background="White"
+             Background="Black"
              d:DesignHeight="450" d:DesignWidth="500"
              Loaded="OnUserControlLoaded">
     <UserControl.CommandBindings>
@@ -30,7 +30,8 @@
 						Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TextArea}"
 						VerticalContentAlignment="Top"
 						HorizontalContentAlignment="Left"
-						Background="{TemplateBinding Background}"
+                        Background="Black"
+                        Foreground="White"
 						Padding="{TemplateBinding Padding}"
 						BorderBrush="{TemplateBinding BorderBrush}"
 						BorderThickness="{TemplateBinding BorderThickness}"

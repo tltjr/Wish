@@ -28,14 +28,14 @@
 		</Keywords>
 		
 		<!-- Digits -->
-		<Rule foreground="DarkBlue">
+		<!--<Rule foreground="#848484">
             \b0[xX][0-9a-fA-F]+  # hex number
         |    \b
             (    \d+(\.[0-9]+)?   #number with optional floating point
             |    \.[0-9]+         #or just starting with floating point
             )
             ([eE][+-]?[0-9]+)? # optional exponent
-        </Rule>
+        </Rule>-->
 
     <!--<Keywords fontWeight="bold" foreground="Green">
       <Word>AMR\tlthorn1@TLTHORN1-DESK1</Word>
