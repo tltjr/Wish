@@ -74,13 +74,22 @@ namespace Wish.Core
                 var dirsInArg = arg.Split('\\');
                 var dirsToJoin = dirsInArg.Take(dirsInArg.Count() - 1);
                 var dirString = String.Join("\\", dirsToJoin);
+                if(Regex.IsMatch(workingDirectory, @"\w:\\$"))
+                {
+                    return Directory.GetDirectories(workingDirectory + dirString);
+                }
                 return Directory.GetDirectories(workingDirectory + "\\" + dirString);
             }
-            return Regex.IsMatch(workingDirectory, @"\w:$") ? Directory.GetDirectories(workingDirectory + "\\") : Directory.GetDirectories(workingDirectory);
+            return Directory.GetDirectories(workingDirectory);
         }
+
 
         private IEnumerable<string> GetDirectoryNames(string workingDirectory, IEnumerable<string> matches)
         {
+            if(Regex.IsMatch(workingDirectory, @"\w:\\$"))
+            {
+                return matches.Select(match => match.Replace(workingDirectory, ""));
+            }
             return matches.Select(match => match.Replace(workingDirectory + "\\", ""));
         }
 

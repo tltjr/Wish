@@ -28,10 +28,9 @@ namespace Wish.Views
         private bool _activelyTabbing;
         private readonly CompletionManager _completionManager = new CompletionManager();
         private readonly CommandEngine _commandEngine = new CommandEngine();
-//        private readonly SyntaxHighlighter _syntaxHighlighter = new SyntaxHighlighter();
         private readonly TextTransformations _textTransformations = new TextTransformations();
 
-        private readonly string _workingDirectory;
+        private string _workingDirectory;
 
         public int LastPromptIndex { get; private set; }
 
@@ -45,12 +44,11 @@ namespace Wish.Views
 
             _workingDirectory = workingDirectory;
 
-//            _syntaxHighlighter.SetSyntaxHighlighting(textEditor);
-
 			LastPromptIndex = -1;
             try
             {
-                _workingDirectory = _commandEngine.ChangeDirectory("cd " + _workingDirectory);
+                _commandEngine.ChangeDirectory("cd " + _workingDirectory);
+                _workingDirectory = _commandEngine.WorkingDirectory;
             }
             catch(Exception e)
             {
@@ -115,6 +113,9 @@ namespace Wish.Views
                         if (!IsExit(command))
                         {
                             var output = _commandEngine.ProcessCommand(command);
+                            _workingDirectory = _commandEngine.WorkingDirectory;
+                            Title = _workingDirectory;
+                            _textTransformations.CreatePrompt(_workingDirectory);
                             LastPromptIndex = _textTransformations.InsertNewPrompt(textEditor);
                             LastPromptIndex = _textTransformations.InsertLineBeforePrompt(textEditor, output, LastPromptIndex);
                         }

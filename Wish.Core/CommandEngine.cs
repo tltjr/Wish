@@ -11,13 +11,20 @@ namespace Wish.Core
     public class CommandEngine
     {
         private readonly PowershellController _powershellController = new PowershellController();
+        private string _workingDirectory;
 
-        public string ChangeDirectory(string target)
+        public string WorkingDirectory
+        {
+            get { return _workingDirectory;  }
+            set { _workingDirectory = value; }
+        }
+
+        public void ChangeDirectory(string target)
         {
             _powershellController.RunScript(target);
             var results = _powershellController.RunScriptForResult("pwd");
             if (results.Count == 0) throw new Exception();
-            return results[0].ToString();
+            _workingDirectory = results[0].ToString();
         }
 
         public string ProcessCommand(Command command)

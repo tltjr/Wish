@@ -14,7 +14,7 @@
     </UserControl.CommandBindings>
     <avalonEdit:TextEditor x:Name="textEditor"
              FontFamily="Consolas"
-             FontSize="16"
+             FontSize="14"
              TextChanged="ScrollToEnd"
              Focusable="True">
         <avalonEdit:TextEditor.InputBindings>

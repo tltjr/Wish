@@ -41,8 +41,28 @@
       <Word>AMR\tlthorn1@TLTHORN1-DESK1</Word>
     </Keywords>-->
 
-    <Rule foreground="Green">
+    <Rule foreground="Green" fontWeight="bold">
       ^[^\s]+@[^\s]+ # standard prompt
+    </Rule>
+
+    <!-- shitty directory regex -->
+    <Rule foreground="#5555FF" fontWeight="bold">
+      ^d.*
+    </Rule>
+    
+    <!-- archives -->
+    <Rule foreground="#FF0000" fontWeight="bold">
+      .*.7z[\s]+ | .*.zip[\s]+ | .*.tgz[\s]+ | .*.tar.gz[\s]+
+    </Rule>
+    
+    <!-- executables -->
+    <Rule foreground="#2DD700" fontWeight="bold">
+      .*.exe[\s]+ | .*.bat[\s]+ | .*.cmd[\s]+ | .*.jar[\s]+ | .*.awk[\s]+ | .*.com[\s]+ | .*.csh[\s]+ | .*.js[\s]+
+    </Rule>
+    
+    <!-- images -->
+    <Rule foreground="#F66F89" fontWeight="bold">
+      .*.jpg[\s]+ | .*.gif[\s]+ | .*.bmp[\s]+ | .*.png[\s]+
     </Rule>
     
     <Keywords fontWeight="bold" foreground="Red">
