@@ -12,6 +12,7 @@ namespace Wish.Core
     {
         private readonly Runspace _runspace;
         private Pipeline _pipeline;
+        private bool _disposed;
 
         public PowershellController()
         {
@@ -55,7 +56,16 @@ namespace Wish.Core
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed) return;
+            if (!disposing) return;
+            _runspace.Dispose();
+            _disposed = true;
         }
     }
 }
