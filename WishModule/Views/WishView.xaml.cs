@@ -2,12 +2,9 @@
 using System.IO;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Xml;
 using GuiHelpers;
-using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Highlighting;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
@@ -24,11 +21,11 @@ namespace Wish.Views
         private readonly IRegion _mainRegion;
         private readonly IEventAggregator _eventAggregator;
         public static RoutedCommand TabNew = new RoutedCommand();
-        public static RoutedCommand CommandEntered = new RoutedCommand();
         private bool _activelyTabbing;
         private readonly CompletionManager _completionManager = new CompletionManager();
         private readonly CommandEngine _commandEngine = new CommandEngine();
         private readonly TextTransformations _textTransformations = new TextTransformations();
+        private readonly CommandHistory _commandHistory = new CommandHistory();
 
         private string _workingDirectory;
 
@@ -39,12 +36,35 @@ namespace Wish.Views
             InitializeComponent();
             _mainRegion = mainRegion;
             _eventAggregator = eventAggregator;
-            var keyGesture = new KeyGesture(Key.T, ModifierKeys.Control | ModifierKeys.Shift);
-            TabNew.InputGestures.Add(keyGesture);
-
             _workingDirectory = workingDirectory;
-
 			LastPromptIndex = -1;
+
+            SetInputGestures();
+            SetInitialWorkingDirectory();
+			SetSyntaxHighlighting();
+
+            _textTransformations.CreatePrompt(_workingDirectory);
+            LastPromptIndex = _textTransformations.InsertNewPrompt(textEditor);
+        }
+
+        private void SetSyntaxHighlighting()
+        {
+            IHighlightingDefinition customHighlighting;
+            using (Stream s = typeof(WishView).Assembly.GetManifestResourceStream("Wish.Views.CustomHighlighting.xshd")) {
+                if (s == null)
+                    throw new InvalidOperationException("Could not find embedded resource");
+                using (XmlReader reader = new XmlTextReader(s)) {
+                    customHighlighting = ICSharpCode.AvalonEdit.Highlighting.Xshd.
+                        HighlightingLoader.Load(reader, HighlightingManager.Instance);
+                }
+            }
+            // and register it in the HighlightingManager
+            HighlightingManager.Instance.RegisterHighlighting("Custom Highlighting", null, customHighlighting);
+            textEditor.SyntaxHighlighting = customHighlighting;
+        }
+
+        private void SetInitialWorkingDirectory()
+        {
             try
             {
                 _commandEngine.ChangeDirectory("cd " + _workingDirectory);
@@ -54,27 +74,15 @@ namespace Wish.Views
             {
                 throw new Exception("Invalid working directory:\t" + e.StackTrace);
             }
-            _textTransformations.CreatePrompt(_workingDirectory);
-
-            LastPromptIndex = _textTransformations.InsertNewPrompt(textEditor);
-
-
-			IHighlightingDefinition customHighlighting;
-			using (Stream s = typeof(WishView).Assembly.GetManifestResourceStream("Wish.Views.CustomHighlighting.xshd")) {
-				if (s == null)
-					throw new InvalidOperationException("Could not find embedded resource");
-				using (XmlReader reader = new XmlTextReader(s)) {
-					customHighlighting = ICSharpCode.AvalonEdit.Highlighting.Xshd.
-						HighlightingLoader.Load(reader, HighlightingManager.Instance);
-				}
-			}
-			// and register it in the HighlightingManager
-			HighlightingManager.Instance.RegisterHighlighting("Custom Highlighting", null, customHighlighting);
-            textEditor.SyntaxHighlighting = customHighlighting;
-
         }
 
-            
+        private void SetInputGestures()
+        {
+            var keyGesture = new KeyGesture(Key.T, ModifierKeys.Control | ModifierKeys.Shift);
+            TabNew.InputGestures.Add(keyGesture);
+        }
+
+
         private void ScrollToEnd(object sender, EventArgs eventArgs)
         {
             textEditor.ScrollToEnd();
@@ -90,6 +98,20 @@ namespace Wish.Views
         {
             switch (e.Key)
             {
+                case Key.Up:
+                    {
+                        var command = _commandHistory.GetNext();
+                        ReplaceLine(command);
+                        e.Handled = true;
+                    }
+                    break;
+                case Key.Down:
+                    {
+                        var command = _commandHistory.GetPrevious();
+                        ReplaceLine(command);
+                        e.Handled = true;
+                    }
+                    break;
                 case Key.Tab:
                     {
                         //if (textEditor.CaretIndex != textEditor.Text.Length || textEditor.CaretIndex == LastPromptIndex)
@@ -109,6 +131,7 @@ namespace Wish.Views
                 case Key.Enter:
                     {
                         var command = _textTransformations.ParseScript(textEditor.Text, LastPromptIndex);
+                        _commandHistory.Add(command);
                         textEditor.Text += "\n";
                         if (!IsExit(command))
                         {
@@ -120,8 +143,7 @@ namespace Wish.Views
                             LastPromptIndex = _textTransformations.InsertLineBeforePrompt(textEditor, output, LastPromptIndex);
                         }
                         var line = textEditor.Document.GetLineByNumber(textEditor.TextArea.Caret.Line);
-                        var length = line.Length;
-                        if(0 == length)
+                        if(0 == line.Length)
                         {
                             textEditor.TextArea.Caret.Line = textEditor.TextArea.Caret.Line - 1;
                         }
@@ -132,6 +154,25 @@ namespace Wish.Views
                     base.OnPreviewKeyDown(e);
                     _activelyTabbing = false;
                     break;
+            }
+        }
+
+        private void ReplaceLine(Command command)
+        {
+            if(null != command)
+            {
+                var raw = command.Raw;
+                var text = textEditor.Text;
+                var line = textEditor.Text.Substring(LastPromptIndex);
+                if(!String.IsNullOrEmpty(line))
+                {
+                    var baseText = text.Remove(text.Length - line.Length);
+                    textEditor.Text = baseText + raw;
+                }
+                else
+                {
+                    textEditor.Text += raw;
+                }
             }
         }
 

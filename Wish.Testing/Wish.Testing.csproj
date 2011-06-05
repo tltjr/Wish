@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHistoryTester.cs" />
     <Compile Include="CompletionManagerTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -55,10 +56,6 @@
     <ProjectReference Include="..\Wish.Core\Wish.Core.csproj">
       <Project>{6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE}</Project>
       <Name>Wish.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WishModule\WishModule.Orig.csproj">
-      <Project>{A79E6DEA-767F-493E-99D3-9A0B3B022E0C}</Project>
-      <Name>WishModule.Orig</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

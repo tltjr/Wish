@@ -1,0 +1,10 @@
+﻿<Window x:Class="Wish.Desktop.Shell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:cal="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism" 
+        xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock" 
+        Title="Wish" Height="650" Width="1025">
+    <ad:DockingManager>
+        <ad:DocumentPane cal:RegionManager.RegionName="MainRegion"/>
+    </ad:DockingManager>
+</Window>

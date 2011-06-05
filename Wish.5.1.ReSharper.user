@@ -9,13 +9,10 @@
   </SettingsComponent>
   <RecentFiles>
     <RecentFiles>
-      <File id="702B536A-E766-4C55-838E-14424FA8F101/d:RegionAdapters/f:AvalonDockableRegionAdapter.cs.cs" caret="1149" fromTop="21" />
-      <File id="702B536A-E766-4C55-838E-14424FA8F101/f:Bootstrapper.cs" caret="131" fromTop="0" />
       <File id="3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C/f:CompletionManagerTester.cs" caret="1207" fromTop="33" />
       <File id="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3/f:Command.cs" caret="674" fromTop="23" />
       <File id="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3/f:TerminalUtils.cs" caret="849" fromTop="22" />
       <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/f:WishModule.cs" caret="949" fromTop="24" />
-      <File id="702B536A-E766-4C55-838E-14424FA8F101/f:App.xaml" caret="229" fromTop="4" />
       <File id="DB3AEF34-4A62-4FD0-8FBA-2C1B0E9A9776/f:SyntaxHighlighter.cs" caret="255" fromTop="10" />
       <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CompletionManager.cs" caret="3059" fromTop="37" />
       <File id="6C55B776-26D4-4DB3-A6AB-87E783B2F3D1/d:Editing/f:SelectionLayer.cs" caret="1296" fromTop="31" />
@@ -28,10 +25,8 @@
       <File id="6C55B776-26D4-4DB3-A6AB-87E783B2F3D1/d:CodeCompletion/f:InsightWindow.xaml" caret="3764" fromTop="10" />
       <File id="6C55B776-26D4-4DB3-A6AB-87E783B2F3D1/d:CodeCompletion/f:CompletionWindowBase.cs" caret="5912" fromTop="43" />
       <File id="6C55B776-26D4-4DB3-A6AB-87E783B2F3D1/d:CodeCompletion/f:CompletionList.xaml" caret="1253" fromTop="14" />
-      <File id="702B536A-E766-4C55-838E-14424FA8F101/f:Shell.xaml" caret="488" fromTop="7" />
       <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:CustomHighlighting.xshd" caret="1592" fromTop="41" />
       <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CommandEngine.cs" caret="1362" fromTop="43" />
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml" caret="1665" fromTop="32" />
       <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:RunspaceSingleton.cs" caret="207" fromTop="7" />
       <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:PowershellController.cs" caret="1104" fromTop="26" />
       <File id="DB3AEF34-4A62-4FD0-8FBA-2C1B0E9A9776/f:TextTransformations.cs" caret="216" fromTop="10" />
@@ -39,6 +34,7 @@
       <File id="6C55B776-26D4-4DB3-A6AB-87E783B2F3D1/d:Editing/f:TextArea.cs" caret="19734" fromTop="26" />
       <File id="6C55B776-26D4-4DB3-A6AB-87E783B2F3D1/d:Rendering/f:TextView.cs" caret="30890" fromTop="34" />
       <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="3330" fromTop="10" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml" caret="0" fromTop="0" />
     </RecentFiles>
     <RecentEdits>
       <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="2315" fromTop="39" />

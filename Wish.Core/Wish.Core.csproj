@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandEngine.cs" />
+    <Compile Include="CommandHistory.cs" />
     <Compile Include="CompletionManager.cs" />
     <Compile Include="PowershellController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
