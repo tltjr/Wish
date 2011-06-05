@@ -8,7 +8,7 @@ namespace Wish.Core
 {
     public class CommandHistory
     {
-        private readonly List<Command> _commands = new List<Command>();
+        private List<Command> _commands = new List<Command>();
         private int _index;
 
         public void Add(Command command)
@@ -42,5 +42,10 @@ namespace Wish.Core
             return _commands[_index];
         }
 
+        public void Reset()
+        {
+            _commands = _commands.Where(o => !(String.IsNullOrEmpty(o.Name))).ToList();
+            _index = 0;
+        }
     }
 }

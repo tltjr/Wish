@@ -49,7 +49,6 @@
     <Compile Include="CompletionManager.cs" />
     <Compile Include="PowershellController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RunspaceSingleton.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Terminal\Terminal.csproj">

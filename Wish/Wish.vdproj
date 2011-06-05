@@ -789,7 +789,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Wish"
         "ProductCode" = "8:{B20EC9DA-F8C9-415C-9171-48B411BF5564}"
-        "PackageCode" = "8:{BB9C91F9-3B3D-467D-90A4-B74BB863FEA8}"
+        "PackageCode" = "8:{2D0E5BAF-95B4-4FE2-AE3F-F2AA6B2B9F8C}"
         "UpgradeCode" = "8:{01EB07E7-D897-43FF-9D37-6298A6CED28A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

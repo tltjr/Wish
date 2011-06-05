@@ -16,7 +16,8 @@ namespace Wish.Core
 
         public PowershellController()
         {
-            _runspace = RunspaceSingleton.RunspaceInstance;
+            _runspace = RunspaceFactory.CreateRunspace();
+            _runspace.Open();
         }
 
         public string RunScriptForFormattedResult(string script)

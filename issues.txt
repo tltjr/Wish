@@ -1,6 +1,6 @@
-caret invisible on black background
+Extra blank inserted on each loop through command history
 
-latest version of codebox
+caret invisible on black background
 
 remove all terminal shit
 
@@ -10,8 +10,6 @@ e.g. cp C:\temp>sample.in blast{Tab} does nothing
 '.' only as command causes crash
 
 rm fails for directory
-
-probably bad to hit view model for each key stroke
 
 Capture standard error
 

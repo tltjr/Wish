@@ -125,6 +125,7 @@ namespace Wish.Views
                             _activelyTabbing = true;
                             textEditor.Text = result;
                         }
+                        _commandHistory.Reset();
                         e.Handled = true;
                     }
                     break;
@@ -147,11 +148,13 @@ namespace Wish.Views
                         {
                             textEditor.TextArea.Caret.Line = textEditor.TextArea.Caret.Line - 1;
                         }
+                        _commandHistory.Reset();
                         e.Handled = true;
                     }
                     break;
                 default:
                     base.OnPreviewKeyDown(e);
+                    _commandHistory.Reset();
                     _activelyTabbing = false;
                     break;
             }
