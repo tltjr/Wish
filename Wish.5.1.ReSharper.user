@@ -10,11 +10,7 @@
   <RecentFiles>
     <RecentFiles>
       <File id="3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C/f:CompletionManagerTester.cs" caret="1207" fromTop="33" />
-      <File id="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3/f:Command.cs" caret="674" fromTop="23" />
-      <File id="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3/f:TerminalUtils.cs" caret="849" fromTop="22" />
       <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/f:WishModule.cs" caret="949" fromTop="24" />
-      <File id="DB3AEF34-4A62-4FD0-8FBA-2C1B0E9A9776/f:SyntaxHighlighter.cs" caret="255" fromTop="10" />
-      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CompletionManager.cs" caret="3059" fromTop="37" />
       <File id="6C55B776-26D4-4DB3-A6AB-87E783B2F3D1/d:Editing/f:SelectionLayer.cs" caret="1296" fromTop="31" />
       <File id="6C55B776-26D4-4DB3-A6AB-87E783B2F3D1/d:Document/f:TextUtilities.cs" caret="4380" fromTop="31" />
       <File id="6C55B776-26D4-4DB3-A6AB-87E783B2F3D1/f:AvalonEditCommands.cs" caret="1728" fromTop="39" />
@@ -26,39 +22,52 @@
       <File id="6C55B776-26D4-4DB3-A6AB-87E783B2F3D1/d:CodeCompletion/f:CompletionWindowBase.cs" caret="5912" fromTop="43" />
       <File id="6C55B776-26D4-4DB3-A6AB-87E783B2F3D1/d:CodeCompletion/f:CompletionList.xaml" caret="1253" fromTop="14" />
       <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:CustomHighlighting.xshd" caret="1592" fromTop="41" />
-      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CommandEngine.cs" caret="1362" fromTop="43" />
-      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:RunspaceSingleton.cs" caret="207" fromTop="7" />
-      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:PowershellController.cs" caret="1104" fromTop="26" />
-      <File id="DB3AEF34-4A62-4FD0-8FBA-2C1B0E9A9776/f:TextTransformations.cs" caret="216" fromTop="10" />
       <File id="6C55B776-26D4-4DB3-A6AB-87E783B2F3D1/d:Editing/f:Caret.cs" caret="13324" fromTop="55" />
-      <File id="6C55B776-26D4-4DB3-A6AB-87E783B2F3D1/d:Editing/f:TextArea.cs" caret="19734" fromTop="26" />
-      <File id="6C55B776-26D4-4DB3-A6AB-87E783B2F3D1/d:Rendering/f:TextView.cs" caret="30890" fromTop="34" />
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="3330" fromTop="10" />
       <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml" caret="0" fromTop="0" />
+      <File id="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3/f:TerminalUtils.cs" caret="479" fromTop="13" />
+      <File id="D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3/f:Command.cs" caret="0" fromTop="0" />
+      <File id="6C55B776-26D4-4DB3-A6AB-87E783B2F3D1/d:Editing/f:CaretNavigationCommandHandler.cs" caret="5377" fromTop="22" />
+      <File id="6C55B776-26D4-4DB3-A6AB-87E783B2F3D1/d:Rendering/f:TextView.cs" caret="52924" fromTop="24" />
+      <File id="6C55B776-26D4-4DB3-A6AB-87E783B2F3D1/d:Editing/f:TextArea.cs" caret="30741" fromTop="31" />
+      <File id="DB3AEF34-4A62-4FD0-8FBA-2C1B0E9A9776/f:TextTransformations.cs" caret="302" fromTop="5" />
+      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CompletionManager.cs" caret="1433" fromTop="29" />
+      <File id="3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C/f:CommandHistoryTester.cs" caret="1650" fromTop="53" />
+      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CommandHistory.cs" caret="811" fromTop="28" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="5489" fromTop="20" />
+      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CommandEngine.cs" caret="330" fromTop="12" />
+      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:PowershellController.cs" caret="465" fromTop="11" />
     </RecentFiles>
     <RecentEdits>
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="2315" fromTop="39" />
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="2279" fromTop="28" />
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml" caret="1071" fromTop="19" />
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="2279" fromTop="13" />
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="2168" fromTop="7" />
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="4115" fromTop="41" />
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="3665" fromTop="34" />
-      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CompletionManager.cs" caret="3538" fromTop="52" />
-      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CompletionManager.cs" caret="3285" fromTop="45" />
-      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CompletionManager.cs" caret="3149" fromTop="48" />
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="4683" fromTop="23" />
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml" caret="552" fromTop="8" />
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml" caret="1708" fromTop="33" />
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml" caret="1873" fromTop="38" />
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:CustomHighlighting.xshd" caret="837" fromTop="18" />
-      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:CustomHighlighting.xshd" caret="1166" fromTop="25" />
-      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:PowershellController.cs" caret="413" fromTop="14" />
-      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:PowershellController.cs" caret="1791" fromTop="50" />
-      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:PowershellController.cs" caret="2024" fromTop="60" />
-      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:PowershellController.cs" caret="2024" fromTop="48" />
-      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:PowershellController.cs" caret="2011" fromTop="47" />
-      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:PowershellController.cs" caret="1923" fromTop="41" />
+      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CommandHistory.cs" caret="1043" fromTop="27" />
+      <File id="3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C/f:CommandHistoryTester.cs" caret="748" fromTop="22" />
+      <File id="3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C/f:CommandHistoryTester.cs" caret="567" fromTop="16" />
+      <File id="3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C/f:CommandHistoryTester.cs" caret="285" fromTop="14" />
+      <File id="3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C/f:CommandHistoryTester.cs" caret="491" fromTop="20" />
+      <File id="3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C/f:CommandHistoryTester.cs" caret="670" fromTop="26" />
+      <File id="3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C/f:CommandHistoryTester.cs" caret="986" fromTop="35" />
+      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CommandHistory.cs" caret="762" fromTop="29" />
+      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CommandHistory.cs" caret="1043" fromTop="36" />
+      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CommandHistory.cs" caret="986" fromTop="37" />
+      <File id="3BE10DB9-CE1B-4BB9-B3AA-E6A011CC0A2C/f:CommandHistoryTester.cs" caret="1651" fromTop="38" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="4187" fromTop="9" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="1016" fromTop="27" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="5301" fromTop="35" />
+      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CommandHistory.cs" caret="821" fromTop="34" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="4004" fromTop="20" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="3825" fromTop="22" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="3825" fromTop="25" />
+      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CommandHistory.cs" caret="353" fromTop="9" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="5089" fromTop="41" />
+      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CommandHistory.cs" caret="189" fromTop="4" />
+      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CommandHistory.cs" caret="1056" fromTop="33" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="6521" fromTop="35" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="6284" fromTop="28" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="4939" fromTop="6" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="4093" fromTop="15" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="3827" fromTop="7" />
+      <File id="F6A61085-69F1-499B-BFCE-E65E32BEDCC9/d:Views/f:WishView.xaml.cs" caret="673" fromTop="24" />
+      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:CommandHistory.cs" caret="500" fromTop="16" />
+      <File id="6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE/f:PowershellController.cs" caret="557" fromTop="20" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
@@ -76,21 +85,21 @@
       <Item value="KeyBinding`0" priority="0" />
       <Item value="keyBinding" priority="1" />
       <Item value="ModifierKeys`0" priority="4" />
-      <Item value="new" priority="49" />
+      <Item value="new" priority="55" />
       <Item value="KeyBinding" priority="0" />
       <Item value="InputBinding`0" priority="0" />
-      <Item value="void" priority="7" />
+      <Item value="void" priority="13" />
       <Item value="object" priority="2" />
-      <Item value="var" priority="58" />
+      <Item value="var" priority="64" />
       <Item value="KeyGesture`0" priority="2" />
-      <Item value="Key`0" priority="4" />
+      <Item value="Key`0" priority="5" />
       <Item value="keyGesture" priority="0" />
-      <Item value="public" priority="28" />
+      <Item value="public" priority="35" />
       <Item value="static" priority="3" />
       <Item value="RoutedCommand" priority="0" />
       <Item value="_mainRegion" priority="6" />
       <Item value="_eventAggregator" priority="5" />
-      <Item value="private" priority="29" />
+      <Item value="private" priority="33" />
       <Item value="IRegion`0" priority="2" />
       <Item value="IEventAggregator`0" priority="1" />
       <Item value="mainRegion" priority="3" />
@@ -101,15 +110,15 @@
       <Item value="CompletionManager`0" priority="2" />
       <Item value="input" priority="0" />
       <Item value="completionManager" priority="1" />
-      <Item value="return" priority="52" />
+      <Item value="return" priority="54" />
       <Item value="HandleTabKey`0" priority="0" />
-      <Item value="if" priority="38" />
+      <Item value="if" priority="43" />
       <Item value="e" priority="8" />
       <Item value="Tab" priority="2" />
-      <Item value="else" priority="12" />
+      <Item value="else" priority="14" />
       <Item value="Output" priority="6" />
       <Item value="KeyEventArgs`0" priority="0" />
-      <Item value="true" priority="15" />
+      <Item value="true" priority="16" />
       <Item value="Enter" priority="1" />
       <Item value="popup" priority="1" />
       <Item value="CompletionView" priority="0" />
@@ -120,9 +129,9 @@
       <Item value="DirectoryChange`0" priority="0" />
       <Item value="directories" priority="1" />
       <Item value="Where`1" priority="0" />
-      <Item value="o" priority="1" />
+      <Item value="o" priority="3" />
       <Item value="matches" priority="4" />
-      <Item value="command" priority="20" />
+      <Item value="command" priority="23" />
       <Item value="_directoryManager" priority="2" />
       <Item value="workingDir" priority="3" />
       <Item value="searchString" priority="1" />
@@ -133,10 +142,10 @@
       <Item value="length" priority="0" />
       <Item value="newText" priority="0" />
       <Item value="dirNames" priority="0" />
-      <Item value="bool" priority="5" />
+      <Item value="bool" priority="6" />
       <Item value="_tabin" priority="2" />
       <Item value="false" priority="12" />
-      <Item value="IList" priority="0" />
+      <Item value="IList" priority="1" />
       <Item value="_currentTabDirs" priority="10" />
       <Item value="_currentTabIndex" priority="12" />
       <Item value="_currentTabOption" priority="3" />
@@ -145,7 +154,7 @@
       <Item value="Directory`0" priority="1" />
       <Item value="dirsInArg" priority="1" />
       <Item value="Take`1" priority="0" />
-      <Item value="String`0" priority="9" />
+      <Item value="String`0" priority="12" />
       <Item value="dirsToJoin" priority="0" />
       <Item value="dirString" priority="1" />
       <Item value="CurrentCultureIgnoreCase" priority="1" />
@@ -159,8 +168,8 @@
       <Item value="ParseEndingSlashes`0" priority="0" />
       <Item value="SetTabIndex`0" priority="0" />
       <Item value="compManager" priority="1" />
-      <Item value="Assert`0" priority="2" />
-      <Item value="result" priority="19" />
+      <Item value="Assert`0" priority="3" />
+      <Item value="result" priority="20" />
       <Item value="trimmedWorkingDir" priority="2" />
       <Item value="Regex`0" priority="3" />
       <Item value="using" priority="0" />
@@ -246,13 +255,13 @@
       <Item value="region" priority="1" />
       <Item value="ViewModels" priority="0" />
       <Item value="_view" priority="0" />
-      <Item value="int" priority="1" />
+      <Item value="int" priority="2" />
       <Item value="i" priority="1" />
       <Item value="BackgroundWorker`0" priority="0" />
       <Item value="TerminalUtils`0" priority="0" />
       <Item value="Wish" priority="1" />
       <Item value="wishView" priority="1" />
-      <Item value="readonly" priority="3" />
+      <Item value="readonly" priority="4" />
       <Item value="SyntaxHighlighter" priority="2" />
       <Item value="_syntaxHighlighter" priority="2" />
       <Item value="prompt" priority="0" />
@@ -281,10 +290,10 @@
       <Item value="TextTransformations`0" priority="0" />
       <Item value="TextTransformations" priority="0" />
       <Item value="_textTransformations" priority="1" />
-      <Item value="LastPromptIndex" priority="1" />
+      <Item value="LastPromptIndex" priority="2" />
       <Item value="enterGesture" priority="0" />
       <Item value="ScrollToEnd`0" priority="1" />
-      <Item value="null" priority="2" />
+      <Item value="null" priority="3" />
       <Item value="visibleText" priority="4" />
       <Item value="while" priority="0" />
       <Item value="formattedText" priority="9" />
@@ -305,6 +314,23 @@
       <Item value="GC`0" priority="0" />
       <Item value="_disposed" priority="1" />
       <Item value="disposing" priority="0" />
+      <Item value="List" priority="0" />
+      <Item value="List&lt;Command&gt;" priority="0" />
+      <Item value="Command`0" priority="1" />
+      <Item value="_commands" priority="9" />
+      <Item value="_index" priority="5" />
+      <Item value="history" priority="1" />
+      <Item value="Command" priority="1" />
+      <Item value="CommandHistory`0" priority="1" />
+      <Item value="_history" priority="0" />
+      <Item value="case" priority="0" />
+      <Item value="break" priority="0" />
+      <Item value="CommandHistory" priority="0" />
+      <Item value="_commandHistory" priority="2" />
+      <Item value="textEditor" priority="3" />
+      <Item value="currentCommand" priority="2" />
+      <Item value="raw" priority="0" />
+      <Item value="_inHistory" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Windows.Input.InputBindingCollection">
       <Item value="Add`0" priority="0" />
@@ -314,6 +340,7 @@
       <Item value="Enter" priority="1" />
       <Item value="Tab" priority="0" />
       <Item value="Back" priority="0" />
+      <Item value="Up" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Windows.Input.ModifierKeys">
       <Item value="Control" priority="1" />
@@ -361,8 +388,8 @@
       <Item value="Split`0" priority="0" />
       <Item value="EndsWith`0" priority="6" />
       <Item value="Substring`0" priority="4" />
-      <Item value="Equals`0" priority="1" />
-      <Item value="Insert`0" priority="0" />
+      <Item value="Equals`0" priority="2" />
+      <Item value="Insert`0" priority="1" />
       <Item value="Take`1" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Terminal.Terminal">
@@ -370,7 +397,7 @@
       <Item value="ScrollToEnd`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.IEnumerable`1">
-      <Item value="ToList`1" priority="3" />
+      <Item value="ToList`1" priority="4" />
       <Item value="Select`2" priority="0" />
       <Item value="Where`1" priority="0" />
       <Item value="ToString`0" priority="0" />
@@ -380,8 +407,8 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:Terminal.Command">
       <Item value="Args" priority="6" />
-      <Item value="Raw" priority="5" />
-      <Item value="Name" priority="3" />
+      <Item value="Raw" priority="7" />
+      <Item value="Name" priority="7" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.IList`1">
       <Item value="Count" priority="2" />
@@ -390,13 +417,13 @@
     <ItemStatistics item="Qualified:@System.String">
       <Item value="Join`0" priority="0" />
       <Item value="Empty" priority="6" />
-      <Item value="IsNullOrEmpty`0" priority="0" />
+      <Item value="IsNullOrEmpty`0" priority="4" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:WishModule.CompletionManager">
       <Item value="Complete`0" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@NUnit.Framework.Assert">
-      <Item value="AreEqual`0" priority="2" />
+      <Item value="AreEqual`0" priority="3" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.Text.RegularExpressions.Regex">
       <Item value="IsMatch`0" priority="3" />
@@ -511,8 +538,13 @@
       <Item value="Text" priority="7" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Collections.Generic.List`1">
-      <Item value="Add`0" priority="2" />
+      <Item value="Add`0" priority="3" />
       <Item value="Clear`0" priority="0" />
+      <Item value="Insert`0" priority="0" />
+      <Item value="Count" priority="2" />
+      <Item value="Where`1" priority="1" />
+      <Item value="Contains`0" priority="0" />
+      <Item value="Exists`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@CodeBoxControl.Decorations.EDecorationType">
       <Item value="TextColor" priority="0" />
@@ -559,6 +591,13 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.GC">
       <Item value="SuppressFinalize`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Wish.Core.CommandHistory">
+      <Item value="Add`0" priority="1" />
+      <Item value="GetNext`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:ICSharpCode.AvalonEdit.TextEditor">
+      <Item value="Text" priority="4" />
     </ItemStatistics>
   </CompletionStatisticsManager>
 </Configuration>
