@@ -2,4 +2,12 @@
   <ViewManager>
     <Views />
   </ViewManager>
+  <SettingsComponent>
+    <string>
+      <setting name="Description">
+      </setting>
+    </string>
+    <integer />
+    <boolean />
+  </SettingsComponent>
 </Configuration>
