@@ -25,7 +25,7 @@ namespace Wish.Core
             _pipeline = _runspace.CreatePipeline();
             _pipeline.Commands.AddScript(script);
             _pipeline.Commands.Add("Out-String");
-            Collection<PSObject> psObjects; 
+            Collection<PSObject> psObjects;
             try
             {
                 psObjects = _pipeline.Invoke();
