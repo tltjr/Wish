@@ -17,16 +17,6 @@
 			</RuleSet>
 		</Span>
 		
-		<Keywords fontWeight="bold" foreground="Blue">
-			<Word>if</Word>
-			<Word>else</Word>
-			<!-- ... -->
-		</Keywords>
-		
-		<Keywords fontWeight="bold" fontStyle="italic" foreground="Red">
-			<Word>AvalonEdit</Word>
-		</Keywords>
-		
 		<!-- Digits -->
 		<!--<Rule foreground="#848484">
             \b0[xX][0-9a-fA-F]+  # hex number

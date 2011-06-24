@@ -22,7 +22,7 @@
         "Entry"
         {
         "MsmKey" = "8:_0DFCFA03F6302277463DF48F0D9EE1F3"
-        "OwnerKey" = "8:_3AC9F1466ACF2C725B80C96C5097E687"
+        "OwnerKey" = "8:_0F9E6B84BBF353DDF9788F4D213A88AF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -34,7 +34,7 @@
         "Entry"
         {
         "MsmKey" = "8:_0DFCFA03F6302277463DF48F0D9EE1F3"
-        "OwnerKey" = "8:_0F9E6B84BBF353DDF9788F4D213A88AF"
+        "OwnerKey" = "8:_3AC9F1466ACF2C725B80C96C5097E687"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -130,12 +130,6 @@
         "Entry"
         {
         "MsmKey" = "8:_5D91CEECD4C180D7779349263DD1AAFB"
-        "OwnerKey" = "8:_3AC9F1466ACF2C725B80C96C5097E687"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5D91CEECD4C180D7779349263DD1AAFB"
         "OwnerKey" = "8:_0DFCFA03F6302277463DF48F0D9EE1F3"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -159,6 +153,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_5D91CEECD4C180D7779349263DD1AAFB"
+        "OwnerKey" = "8:_3AC9F1466ACF2C725B80C96C5097E687"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E5B6DA5F77424270A41E09798A5B0332"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -178,13 +178,13 @@
         "Entry"
         {
         "MsmKey" = "8:_F3C7C85C41BE577B58DFBC70DBC2DDE0"
-        "OwnerKey" = "8:_3C26C0444F48169EB795CE7B3C97FAFC"
+        "OwnerKey" = "8:_E5B6DA5F77424270A41E09798A5B0332"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_F3C7C85C41BE577B58DFBC70DBC2DDE0"
-        "OwnerKey" = "8:_E5B6DA5F77424270A41E09798A5B0332"
+        "OwnerKey" = "8:_3C26C0444F48169EB795CE7B3C97FAFC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -202,13 +202,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0DFCFA03F6302277463DF48F0D9EE1F3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E5B6DA5F77424270A41E09798A5B0332"
+        "OwnerKey" = "8:_F3C7C85C41BE577B58DFBC70DBC2DDE0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -220,6 +214,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E5B6DA5F77424270A41E09798A5B0332"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_0F9E6B84BBF353DDF9788F4D213A88AF"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -227,12 +227,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_3C26C0444F48169EB795CE7B3C97FAFC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F3C7C85C41BE577B58DFBC70DBC2DDE0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -274,6 +268,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0DFCFA03F6302277463DF48F0D9EE1F3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_5D91CEECD4C180D7779349263DD1AAFB"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -295,6 +295,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -311,6 +332,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -789,7 +818,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Wish"
         "ProductCode" = "8:{B20EC9DA-F8C9-415C-9171-48B411BF5564}"
-        "PackageCode" = "8:{8B9376DF-3EA5-4F7B-86E6-20F9EB5DE8ED}"
+        "PackageCode" = "8:{84BE34EB-6790-4E6D-B4A0-079D5426CCC1}"
         "UpgradeCode" = "8:{01EB07E7-D897-43FF-9D37-6298A6CED28A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
