@@ -11,8 +11,6 @@
              Loaded="OnUserControlLoaded">
     <UserControl.CommandBindings>
         <CommandBinding Command="{x:Static Views:WishView.TabNew}" Executed="ExecuteNewTab"/>
-        <CommandBinding Command="{x:Static Views:WishView.TabNext}" Executed="ExecuteTabNext" />
-        <CommandBinding Command="{x:Static Views:WishView.TabPrevious}" Executed="ExecuteTabPrevious"/>
     </UserControl.CommandBindings>
     
     <avalonEdit:TextEditor x:Name="textEditor"
@@ -20,9 +18,6 @@
              FontSize="14"
              TextChanged="ScrollToEnd"
              Focusable="True">
-        <avalonEdit:TextEditor.InputBindings>
-            <!--<KeyBinding Command="{Binding Path=CommandEntered}" Key="Enter" />-->
-         </avalonEdit:TextEditor.InputBindings>
         <avalonEdit:TextEditor.Template>
             <ControlTemplate>
                 <ScrollViewer 

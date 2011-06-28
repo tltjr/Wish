@@ -2,62 +2,47 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
-using Terminal;
+using System.Windows.Input;
+using ICSharpCode.AvalonEdit.CodeCompletion;
+using ICSharpCode.AvalonEdit.Document;
+using ICSharpCode.AvalonEdit.Editing;
 
 namespace Wish.Core
 {
     public class CompletionManager
     {
-        private IList<string> _currentTabDirs;
-        private int _currentTabIndex;
-        private string _currentTabOption;
+        private CompletionWindow _completionWindow;
+        private IList<ICompletionData> _completionData;
 
-        public bool Complete(out string result, Command command, bool activelyTabbing, string workingDirectory, string text)
+        public void CreateWindow(TextArea textArea, string arg, string workingDirectory)
         {
-            return activelyTabbing ? GetNextInCurrentTabList(out result, text) 
-                : PopulateTabListAndReturnFirst(out result, command, workingDirectory, text);
+            _completionWindow = new CompletionWindow(textArea);
+            PopulateCompletionList(arg, workingDirectory);
+            _completionWindow.Show();
+            _completionWindow.Closed += delegate
+            {
+                _completionWindow = null;
+            };
+            if(_completionData != null && _completionData.Count > 0)
+            {
+                _completionWindow.CompletionList.SelectedItem = _completionData[0];
+            }
         }
 
-        private bool PopulateTabListAndReturnFirst(out string result, Command command, string workingDirectory, string text)
+        private void PopulateCompletionList(string arg, string workingDirectory)
         {
-            result = String.Empty;
-            _currentTabIndex = 0;
-            if (command.Args.Count() == 0) return false;
-            var arg = command.Args[0];
             var directories = GetDirectories(arg, workingDirectory);
             var searchString = GetSearchString(arg, workingDirectory);
             var matches =
                 directories.Where(o => o.StartsWith(searchString, StringComparison.InvariantCultureIgnoreCase)).ToList();
-            _currentTabDirs = GetDirectoryNames(workingDirectory, matches).ToList();
-            if (!TryGetCurrentTabOption()) return false;
-            var baseText = text.Remove(text.Length - arg.Length);
-            result = baseText + _currentTabOption + "\\";
-            return true;
-        }
-
-        private bool GetNextInCurrentTabList(out string result, string text)
-        {
-            var length = _currentTabDirs[_currentTabIndex].Length + 1;
-            _currentTabIndex++;
-            if(_currentTabIndex >= _currentTabDirs.Count)
+            var names = GetDirectoryNames(workingDirectory, matches).ToList();
+            _completionData = _completionWindow.CompletionList.CompletionData;
+            foreach (var name in names)
             {
-                _currentTabIndex = 0;
+                _completionData.Add(new TabCompletionData(name, arg));
             }
-            result =  _currentTabDirs[_currentTabIndex];
-            var baseText = text.Remove(text.Length - length);
-            result = baseText + result + "\\";
-            return true;
-        }
-
-        private bool TryGetCurrentTabOption()
-        {
-            if(_currentTabIndex < _currentTabDirs.Count)
-            {
-                _currentTabOption = _currentTabDirs[_currentTabIndex];
-                return true;
-            }
-            return false;
         }
 
         private string GetSearchString(string arg, string workingDirectory)
@@ -83,7 +68,6 @@ namespace Wish.Core
             return Directory.GetDirectories(workingDirectory);
         }
 
-
         private IEnumerable<string> GetDirectoryNames(string workingDirectory, IEnumerable<string> matches)
         {
             if(Regex.IsMatch(workingDirectory, @"\w:\\$"))
@@ -93,5 +77,44 @@ namespace Wish.Core
             return matches.Select(match => match.Replace(workingDirectory + "\\", ""));
         }
 
+    }
+
+    internal class TabCompletionData : ICompletionData
+    {
+        public TabCompletionData(string text, string textToReplace)
+        {
+            Text = text;
+            Replace = textToReplace;
+        }
+
+        public System.Windows.Media.ImageSource Image
+        {
+            get { return null; }
+        }
+
+        public string Text { get; private set; }
+        public string Replace { get; private set; }
+
+        // Use this property if you want to show a fancy UIElement in the drop down list.
+        public object Content
+        {
+            get { return Text; }
+        }
+
+        public object Description
+        {
+            get { return "Description for " + Text; }
+        }
+
+        public double Priority { get { return 0; } }
+
+        public void Complete(TextArea textArea, ISegment completionSegment, EventArgs insertionRequestEventArgs)
+        {
+			//Replace(segment.Offset, segment.Length, text, null);
+            var offset = completionSegment.Offset - Replace.Length; // offset - length of the string to be replaced
+            var length = Replace.Length;
+            textArea.Document.Replace(offset, length, Text);
+            //textArea.Document.Replace(completionSegment, Text);
+        }
     }
 }

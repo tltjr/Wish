@@ -6,6 +6,9 @@ using System.Windows;
 using System.Windows.Input;
 using System.Xml;
 using GuiHelpers;
+using ICSharpCode.AvalonEdit.CodeCompletion;
+using ICSharpCode.AvalonEdit.Document;
+using ICSharpCode.AvalonEdit.Editing;
 using ICSharpCode.AvalonEdit.Highlighting;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
@@ -26,10 +29,10 @@ namespace Wish.Views
         public static RoutedCommand TabNext = new RoutedCommand();
         public static RoutedCommand TabPrevious = new RoutedCommand();
         private bool _activelyTabbing;
-        private readonly CompletionManager _completionManager = new CompletionManager();
         private readonly CommandEngine _commandEngine = new CommandEngine();
         private readonly TextTransformations _textTransformations = new TextTransformations();
         private readonly CommandHistory _commandHistory = new CommandHistory();
+        private CompletionManager _completionManager;
         private readonly TabManager _tabManager = TabManager.Instance();
 
         private string _workingDirectory;
@@ -42,25 +45,30 @@ namespace Wish.Views
             _mainRegion = mainRegion;
             _eventAggregator = eventAggregator;
             _workingDirectory = workingDirectory;
-			LastPromptIndex = -1;
+            LastPromptIndex = -1;
 
             SetInputGestures();
             SetInitialWorkingDirectory();
-			SetSyntaxHighlighting();
+            SetSyntaxHighlighting();
 
             _textTransformations.CreatePrompt(_workingDirectory);
             LastPromptIndex = _textTransformations.InsertNewPrompt(textEditor);
             _tabManager.Add(this);
             //_mainRegion.Activate(this);
+
+            textEditor.TextArea.TextEntering += TextEditorTextAreaTextEntering;
+            //textEditor.TextArea.TextEntered += TextEditorTextAreaTextEntered;
         }
 
         private void SetSyntaxHighlighting()
         {
             IHighlightingDefinition customHighlighting;
-            using (Stream s = typeof(WishView).Assembly.GetManifestResourceStream("Wish.Views.CustomHighlighting.xshd")) {
+            using (Stream s = typeof(WishView).Assembly.GetManifestResourceStream("Wish.Views.CustomHighlighting.xshd"))
+            {
                 if (s == null)
                     throw new InvalidOperationException("Could not find embedded resource");
-                using (XmlReader reader = new XmlTextReader(s)) {
+                using (XmlReader reader = new XmlTextReader(s))
+                {
                     customHighlighting = ICSharpCode.AvalonEdit.Highlighting.Xshd.
                         HighlightingLoader.Load(reader, HighlightingManager.Instance);
                 }
@@ -77,7 +85,7 @@ namespace Wish.Views
                 _commandEngine.ChangeDirectory("cd " + _workingDirectory);
                 _workingDirectory = _commandEngine.WorkingDirectory;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw new Exception("Invalid working directory:\t" + e.StackTrace);
             }
@@ -85,18 +93,17 @@ namespace Wish.Views
 
         private void SetInputGestures()
         {
-            //var cntrlShftT = new KeyGesture(Key.T, ModifierKeys.Control | ModifierKeys.Shift);
-            //TabNew.InputGestures.Add(cntrlShftT);
+            var cntrlShftT = new KeyGesture(Key.T, ModifierKeys.Control | ModifierKeys.Shift);
+            TabNew.InputGestures.Add(cntrlShftT);
 
             var controlT = new KeyGesture(Key.T, ModifierKeys.Control);
             TabNew.InputGestures.Add(controlT);
 
-            var controlPageDown = new KeyGesture(Key.PageDown, ModifierKeys.Control);
-            TabNext.InputGestures.Add(controlPageDown);
+            //var controlPageDown = new KeyGesture(Key.PageDown, ModifierKeys.Control);
+            //TabNext.InputGestures.Add(controlPageDown);
 
-            var controlTab = new KeyGesture(Key.Tab, ModifierKeys.Control);
-            TabNext.InputGestures.Add(controlTab);
-
+            //var controlTab = new KeyGesture(Key.Tab, ModifierKeys.Control);
+            //TabNext.InputGestures.Add(controlTab);
 
             //var cntrlTab = new KeyGesture(Key.Tab, ModifierKeys.Control);
             //TabNext.InputGestures.Add(cntrlTab);
@@ -123,6 +130,7 @@ namespace Wish.Views
             Keyboard.Focus(textEditor);
             Title = _workingDirectory;
         }
+
 
         protected override void OnPreviewKeyDown(KeyEventArgs e)
         {
@@ -162,72 +170,73 @@ namespace Wish.Views
                     {
                         var command = _commandHistory.GetNext();
                         ReplaceLine(command);
-                        e.Handled = true;
                     }
                     break;
                 case Key.Down:
                     {
                         var command = _commandHistory.GetPrevious();
                         ReplaceLine(command);
-                        e.Handled = true;
                     }
                     break;
                 case Key.Tab:
                     {
                         //if (textEditor.CaretIndex != textEditor.Text.Length || textEditor.CaretIndex == LastPromptIndex)
                         //    return;
-                        var line = textEditor.Text.Substring(LastPromptIndex);
-                        var command = TerminalUtils.ParseCommandLine(line);
-                        string result;
-                        var flag = _completionManager.Complete(out result, command, _activelyTabbing, _workingDirectory, textEditor.Text);
-                        if (flag)
+                        if (!_activelyTabbing)
                         {
+                            var line = textEditor.Text.Substring(LastPromptIndex);
+                            var command = TerminalUtils.ParseCommandLine(line);
+                            var arg = command.Args[0];
+                            _completionManager = new CompletionManager();
+                            _completionManager.CreateWindow(textEditor.TextArea, arg, _workingDirectory);
                             _activelyTabbing = true;
-                            textEditor.Text = result;
+                            e.Handled = true;
                         }
                         _commandHistory.Reset();
-                        e.Handled = true;
                     }
                     break;
                 case Key.Enter:
                     {
-                        var command = _textTransformations.ParseScript(textEditor.Text, LastPromptIndex);
-                        _commandHistory.Add(command);
-                        textEditor.Text += "\n";
-                        if (!IsExit(command))
+                        if(!_activelyTabbing)
                         {
-                            var output = _commandEngine.ProcessCommand(command);
-                            _workingDirectory = _commandEngine.WorkingDirectory;
-                            Title = _workingDirectory;
-                            _textTransformations.CreatePrompt(_workingDirectory);
-                            LastPromptIndex = _textTransformations.InsertNewPrompt(textEditor);
-                            LastPromptIndex = _textTransformations.InsertLineBeforePrompt(textEditor, output, LastPromptIndex);
+                            var command = _textTransformations.ParseScript(textEditor.Text, LastPromptIndex);
+                            _commandHistory.Add(command);
+                            textEditor.Text += "\n";
+                            if (!IsExit(command))
+                            {
+                                var output = _commandEngine.ProcessCommand(command);
+                                _workingDirectory = _commandEngine.WorkingDirectory;
+                                Title = _workingDirectory;
+                                _textTransformations.CreatePrompt(_workingDirectory);
+                                LastPromptIndex = _textTransformations.InsertNewPrompt(textEditor);
+                                LastPromptIndex = _textTransformations.InsertLineBeforePrompt(textEditor, output, LastPromptIndex);
+                            }
+                            var line = textEditor.Document.GetLineByNumber(textEditor.TextArea.Caret.Line);
+                            if (0 == line.Length)
+                            {
+                                textEditor.TextArea.Caret.Line = textEditor.TextArea.Caret.Line - 1;
+                            }
+                            e.Handled = true;
                         }
-                        var line = textEditor.Document.GetLineByNumber(textEditor.TextArea.Caret.Line);
-                        if(0 == line.Length)
-                        {
-                            textEditor.TextArea.Caret.Line = textEditor.TextArea.Caret.Line - 1;
-                        }
+                        _activelyTabbing = false;
                         _commandHistory.Reset();
-                        e.Handled = true;
                     }
                     break;
                 default:
                     base.OnPreviewKeyDown(e);
                     _commandHistory.Reset();
-                    _activelyTabbing = false;
                     break;
             }
         }
 
         private void ReplaceLine(Command command)
         {
-            if(null != command)
+            if (null != command)
             {
                 var raw = command.Raw;
                 var text = textEditor.Text;
                 var line = textEditor.Text.Substring(LastPromptIndex);
-                if(!String.IsNullOrEmpty(line))
+                if (!String.IsNullOrEmpty(line))
                 {
                     var baseText = text.Remove(text.Length - line.Length);
                     textEditor.Text = baseText + raw;
@@ -241,10 +250,10 @@ namespace Wish.Views
 
         private bool IsExit(Command command)
         {
-            if(command.Name.Equals("exit", StringComparison.InvariantCultureIgnoreCase))
+            if (command.Name.Equals("exit", StringComparison.InvariantCultureIgnoreCase))
             {
                 var i = _mainRegion.Views.Count();
-                if(i > 1)
+                if (i > 1)
                 {
                     _mainRegion.Remove(this);
                 }
@@ -278,24 +287,9 @@ namespace Wish.Views
             _mainRegion.Add(view);
         }
 
-        //private void TabNextRequest(object sender, ExecutedRoutedEventArgs e)
-        //{
-        //}
-
-        //private void TabPreviousRequest(object sender, ExecutedRoutedEventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        private void ExecuteTabNext(object sender, ExecutedRoutedEventArgs e)
+        void TextEditorTextAreaTextEntering(object sender, TextCompositionEventArgs e)
         {
-            var tabNext = _tabManager.Next();
-            _mainRegion.Activate(tabNext);
-        }
-
-        private void ExecuteTabPrevious(object sender, ExecutedRoutedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
+
 }

@@ -130,14 +130,25 @@ namespace ICSharpCode.AvalonEdit.CodeCompletion
 			// We have to do some key handling manually, because the default doesn't work with
 			// our simulated events.
 			// Also, the default PageUp/PageDown implementation changes the focus, so we avoid it.
+		    int index = 0;
 			switch (e.Key) {
 				case Key.Down:
 					e.Handled = true;
-					listBox.SelectIndex(listBox.SelectedIndex + 1);
+			        index = listBox.SelectedIndex + 1;
+                    if(index > listBox.Items.Count - 1)
+                    {
+                        index = 0;
+                    }
+					listBox.SelectIndex(index);
 					break;
 				case Key.Up:
 					e.Handled = true;
-					listBox.SelectIndex(listBox.SelectedIndex - 1);
+			        index = listBox.SelectedIndex - 1;
+                    if(0 == listBox.SelectedIndex)
+                    {
+                        index = listBox.Items.Count - 1;
+                    }
+					listBox.SelectIndex(index);
 					break;
 				case Key.PageDown:
 					e.Handled = true;
@@ -156,6 +167,14 @@ namespace ICSharpCode.AvalonEdit.CodeCompletion
 					listBox.SelectIndex(listBox.Items.Count - 1);
 					break;
 				case Key.Tab:
+					e.Handled = true;
+			        index = listBox.SelectedIndex + 1;
+                    if(index > listBox.Items.Count - 1)
+                    {
+                        index = 0;
+                    }
+					listBox.SelectIndex(index);
+					break;
 				case Key.Enter:
 					e.Handled = true;
 					RequestInsertion(e);

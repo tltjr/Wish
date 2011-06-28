@@ -15,7 +15,7 @@ namespace Wish.Testing
         //public void PromptTests()
         //{
         //    string result;
-        //    var compManager = new CompletionManager();
+        //    var compManager = new CompletionManagerOld();
         //    var command = new Command("cd p", "cd", new[] { "p" });
         //    var flag = compManager.Complete(out result, command, false, "c:\\", "c:\\>cd p");
         //    Assert.AreEqual("c:\\>cd PerfLogs\\", result);
@@ -27,7 +27,7 @@ namespace Wish.Testing
         //public void PTest2()
         //{
         //    string result;
-        //    var compManager = new CompletionManager();
+        //    var compManager = new CompletionManagerOld();
         //    var command2 = new Command("cd PRO\\S", "cd", new[] { "PRO\\S" });
         //    var flag = compManager.Complete(out result, command2, false, "c:\\", "c:\\>cd PRO\\S");
         //    Assert.AreEqual("c:\\>cd PRO\\Source\\", result);
