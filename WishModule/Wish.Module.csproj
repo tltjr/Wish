@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TabManager.cs" />
     <Compile Include="Views\WishView.xaml.cs">
       <DependentUpon>WishView.xaml</DependentUpon>
     </Compile>

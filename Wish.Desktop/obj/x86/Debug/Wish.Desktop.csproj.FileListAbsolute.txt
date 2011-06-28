@@ -27,8 +27,6 @@ C:\src\dotnet\Wish\Wish\bin\Debug\ICSharpCode.AvalonEdit.pdb
 C:\src\dotnet\Wish\Wish\bin\Debug\ICSharpCode.AvalonEdit.xml
 C:\src\dotnet\Wish\Wish\obj\x86\Debug\Wish.Desktop.exe
 C:\src\dotnet\Wish\Wish\obj\x86\Debug\Wish.Desktop.pdb
-C:\src\dotnet\Wish\Wish.Desktop\obj\x86\Debug\Wish.Desktop.exe
-C:\src\dotnet\Wish\Wish.Desktop\obj\x86\Debug\Wish.Desktop.pdb
 C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\Wish.Desktop.exe
 C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\Wish.Desktop.pdb
 C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\Microsoft.Practices.Prism.dll
@@ -56,3 +54,5 @@ C:\src\dotnet\Wish\Wish.Desktop\obj\x86\Debug\Wish.Desktop.g.resources
 C:\src\dotnet\Wish\Wish.Desktop\obj\x86\Debug\Wish.Desktop.Properties.Resources.resources
 C:\src\dotnet\Wish\Wish.Desktop\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\src\dotnet\Wish\Wish.Desktop\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\src\dotnet\Wish\Wish.Desktop\obj\x86\Debug\Wish.Desktop.exe
+C:\src\dotnet\Wish\Wish.Desktop\obj\x86\Debug\Wish.Desktop.pdb

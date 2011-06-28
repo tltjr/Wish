@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -18,14 +19,18 @@ namespace Wish.Views
     /// </summary>
     public partial class WishView
     {
+
         private readonly IRegion _mainRegion;
         private readonly IEventAggregator _eventAggregator;
         public static RoutedCommand TabNew = new RoutedCommand();
+        public static RoutedCommand TabNext = new RoutedCommand();
+        public static RoutedCommand TabPrevious = new RoutedCommand();
         private bool _activelyTabbing;
         private readonly CompletionManager _completionManager = new CompletionManager();
         private readonly CommandEngine _commandEngine = new CommandEngine();
         private readonly TextTransformations _textTransformations = new TextTransformations();
         private readonly CommandHistory _commandHistory = new CommandHistory();
+        private readonly TabManager _tabManager = TabManager.Instance();
 
         private string _workingDirectory;
 
@@ -45,6 +50,8 @@ namespace Wish.Views
 
             _textTransformations.CreatePrompt(_workingDirectory);
             LastPromptIndex = _textTransformations.InsertNewPrompt(textEditor);
+            _tabManager.Add(this);
+            //_mainRegion.Activate(this);
         }
 
         private void SetSyntaxHighlighting()
@@ -78,8 +85,31 @@ namespace Wish.Views
 
         private void SetInputGestures()
         {
-            var keyGesture = new KeyGesture(Key.T, ModifierKeys.Control | ModifierKeys.Shift);
-            TabNew.InputGestures.Add(keyGesture);
+            //var cntrlShftT = new KeyGesture(Key.T, ModifierKeys.Control | ModifierKeys.Shift);
+            //TabNew.InputGestures.Add(cntrlShftT);
+
+            var controlT = new KeyGesture(Key.T, ModifierKeys.Control);
+            TabNew.InputGestures.Add(controlT);
+
+            var controlPageDown = new KeyGesture(Key.PageDown, ModifierKeys.Control);
+            TabNext.InputGestures.Add(controlPageDown);
+
+            var controlTab = new KeyGesture(Key.Tab, ModifierKeys.Control);
+            TabNext.InputGestures.Add(controlTab);
+
+
+            //var cntrlTab = new KeyGesture(Key.Tab, ModifierKeys.Control);
+            //TabNext.InputGestures.Add(cntrlTab);
+
+            //var cntrlPageUp = new KeyGesture(Key.PageUp, ModifierKeys.Control);
+            //TabPrevious.InputGestures.Add(cntrlPageUp);
+
+            //KeyGesture keyGesture = new KeyGesture(Key.PageDown, ModifierKeys.Control);
+
+            //KeyBinding keyBinding = new KeyBinding(TabNext, keyGesture);
+
+            //InputBindings.Add(keyBinding);
+
         }
 
 
@@ -96,6 +126,36 @@ namespace Wish.Views
 
         protected override void OnPreviewKeyDown(KeyEventArgs e)
         {
+            foreach (InputBinding inputBinding in this.InputBindings)
+            {
+                KeyGesture keyGesture = inputBinding.Gesture as KeyGesture;
+                if (keyGesture != null && keyGesture.Key == e.Key && keyGesture.Modifiers == Keyboard.Modifiers)
+                {
+                    if (inputBinding.Command != null)
+                    {
+                        inputBinding.Command.Execute(0);
+                        e.Handled = true;
+                    }
+                }
+            }
+
+            foreach (CommandBinding cb in this.CommandBindings)
+            {
+                RoutedCommand command = cb.Command as RoutedCommand;
+                if (command != null)
+                {
+                    foreach (InputGesture inputGesture in command.InputGestures)
+                    {
+                        KeyGesture keyGesture = inputGesture as KeyGesture;
+                        if (keyGesture != null && keyGesture.Key == e.Key && keyGesture.Modifiers == Keyboard.Modifiers)
+                        {
+                            command.Execute(0, this);
+                            e.Handled = true;
+                            break;
+                        }
+                    }
+                }
+            }
             switch (e.Key)
             {
                 case Key.Up:
@@ -212,10 +272,30 @@ namespace Wish.Views
             set { SetValue(TitleProperty, value); }
         }
 
-        private void NewTabRequest(object sender, ExecutedRoutedEventArgs e)
+        private void ExecuteNewTab(object sender, ExecutedRoutedEventArgs e)
         {
             var view = new WishView(_mainRegion, _eventAggregator, _workingDirectory);
             _mainRegion.Add(view);
+        }
+
+        //private void TabNextRequest(object sender, ExecutedRoutedEventArgs e)
+        //{
+        //}
+
+        //private void TabPreviousRequest(object sender, ExecutedRoutedEventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        private void ExecuteTabNext(object sender, ExecutedRoutedEventArgs e)
+        {
+            var tabNext = _tabManager.Next();
+            _mainRegion.Activate(tabNext);
+        }
+
+        private void ExecuteTabPrevious(object sender, ExecutedRoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -88,7 +88,7 @@
     </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="CallbackLogger.cs" />
-    <Compile Include="RegionAdapters\AvalonDockableRegionAdapter.cs.cs" />
+    <Compile Include="RegionAdapters\AvalonDockableRegionAdapter.cs" />
     <Compile Include="RegionAdapters\AvalonDocumentRegionAdapter.cs" />
     <Compile Include="Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>

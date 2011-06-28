@@ -21,3 +21,16 @@ C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Wish.Core.pdb
 C:\src\dotnet\Wish\Wish.Testing\obj\Debug\ResolveAssemblyReference.cache
 C:\src\dotnet\Wish\Wish.Testing\obj\Debug\Wish.Testing.dll
 C:\src\dotnet\Wish\Wish.Testing\obj\Debug\Wish.Testing.pdb
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Microsoft.Practices.Prism.dll
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Wish.dll
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\GuiHelpers.dll
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\ICSharpCode.AvalonEdit.dll
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Microsoft.Practices.Prism.MefExtensions.dll
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Wish.pdb
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Microsoft.Practices.Prism.pdb
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Microsoft.Practices.Prism.xml
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\GuiHelpers.pdb
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\ICSharpCode.AvalonEdit.pdb
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\ICSharpCode.AvalonEdit.xml
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Microsoft.Practices.ServiceLocation.xml
