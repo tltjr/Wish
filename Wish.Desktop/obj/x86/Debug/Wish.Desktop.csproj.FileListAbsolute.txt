@@ -56,3 +56,7 @@ C:\src\dotnet\Wish\Wish.Desktop\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\src\dotnet\Wish\Wish.Desktop\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\src\dotnet\Wish\Wish.Desktop\obj\x86\Debug\Wish.Desktop.exe
 C:\src\dotnet\Wish\Wish.Desktop\obj\x86\Debug\Wish.Desktop.pdb
+C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\AvalonDock.dll
+C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\AvalonDock.pdb
+C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\de\AvalonDock.resources.dll
+C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\it-IT\AvalonDock.resources.dll
