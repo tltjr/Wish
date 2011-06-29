@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Xml;
 using GuiHelpers;
-using ICSharpCode.AvalonEdit.CodeCompletion;
-using ICSharpCode.AvalonEdit.Document;
-using ICSharpCode.AvalonEdit.Editing;
 using ICSharpCode.AvalonEdit.Highlighting;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
@@ -54,10 +50,6 @@ namespace Wish.Views
             _textTransformations.CreatePrompt(_workingDirectory);
             LastPromptIndex = _textTransformations.InsertNewPrompt(textEditor);
             _tabManager.Add(this);
-            //_mainRegion.Activate(this);
-
-            textEditor.TextArea.TextEntering += TextEditorTextAreaTextEntering;
-            //textEditor.TextArea.TextEntered += TextEditorTextAreaTextEntered;
         }
 
         private void SetSyntaxHighlighting()
@@ -73,7 +65,6 @@ namespace Wish.Views
                         HighlightingLoader.Load(reader, HighlightingManager.Instance);
                 }
             }
-            // and register it in the HighlightingManager
             HighlightingManager.Instance.RegisterHighlighting("Custom Highlighting", null, customHighlighting);
             textEditor.SyntaxHighlighting = customHighlighting;
         }
@@ -98,25 +89,6 @@ namespace Wish.Views
 
             var controlT = new KeyGesture(Key.T, ModifierKeys.Control);
             TabNew.InputGestures.Add(controlT);
-
-            //var controlPageDown = new KeyGesture(Key.PageDown, ModifierKeys.Control);
-            //TabNext.InputGestures.Add(controlPageDown);
-
-            //var controlTab = new KeyGesture(Key.Tab, ModifierKeys.Control);
-            //TabNext.InputGestures.Add(controlTab);
-
-            //var cntrlTab = new KeyGesture(Key.Tab, ModifierKeys.Control);
-            //TabNext.InputGestures.Add(cntrlTab);
-
-            //var cntrlPageUp = new KeyGesture(Key.PageUp, ModifierKeys.Control);
-            //TabPrevious.InputGestures.Add(cntrlPageUp);
-
-            //KeyGesture keyGesture = new KeyGesture(Key.PageDown, ModifierKeys.Control);
-
-            //KeyBinding keyBinding = new KeyBinding(TabNext, keyGesture);
-
-            //InputBindings.Add(keyBinding);
-
         }
 
 
@@ -134,35 +106,21 @@ namespace Wish.Views
 
         protected override void OnPreviewKeyDown(KeyEventArgs e)
         {
-            foreach (InputBinding inputBinding in this.InputBindings)
+            foreach (var inputBinding in from InputBinding inputBinding in InputBindings
+                                                  let keyGesture = inputBinding.Gesture as KeyGesture
+                                                  where (keyGesture != null && keyGesture.Key == e.Key) && keyGesture.Modifiers == Keyboard.Modifiers
+                                                  where inputBinding.Command != null
+                                                  select inputBinding)
             {
-                KeyGesture keyGesture = inputBinding.Gesture as KeyGesture;
-                if (keyGesture != null && keyGesture.Key == e.Key && keyGesture.Modifiers == Keyboard.Modifiers)
-                {
-                    if (inputBinding.Command != null)
-                    {
-                        inputBinding.Command.Execute(0);
-                        e.Handled = true;
-                    }
-                }
+                inputBinding.Command.Execute(0);
+                e.Handled = true;
             }
 
-            foreach (CommandBinding cb in this.CommandBindings)
+            foreach (var command in
+                (from CommandBinding cb in CommandBindings select cb.Command).OfType<RoutedCommand>().Where(command => (from InputGesture inputGesture in command.InputGestures select inputGesture as KeyGesture).Any(keyGesture => (keyGesture != null && keyGesture.Key == e.Key) && keyGesture.Modifiers == Keyboard.Modifiers)))
             {
-                RoutedCommand command = cb.Command as RoutedCommand;
-                if (command != null)
-                {
-                    foreach (InputGesture inputGesture in command.InputGestures)
-                    {
-                        KeyGesture keyGesture = inputGesture as KeyGesture;
-                        if (keyGesture != null && keyGesture.Key == e.Key && keyGesture.Modifiers == Keyboard.Modifiers)
-                        {
-                            command.Execute(0, this);
-                            e.Handled = true;
-                            break;
-                        }
-                    }
-                }
+                command.Execute(0, this);
+                e.Handled = true;
             }
             switch (e.Key)
             {
@@ -287,9 +245,5 @@ namespace Wish.Views
             _mainRegion.Add(view);
         }
 
-        void TextEditorTextAreaTextEntering(object sender, TextCompositionEventArgs e)
-        {
-        }
     }
-
 }

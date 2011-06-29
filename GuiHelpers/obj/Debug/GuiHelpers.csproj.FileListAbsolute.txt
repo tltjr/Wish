@@ -8,3 +8,5 @@ C:\src\dotnet\Wish\GuiHelpers\bin\Debug\Terminal.pdb
 C:\src\dotnet\Wish\GuiHelpers\obj\Debug\ResolveAssemblyReference.cache
 C:\src\dotnet\Wish\GuiHelpers\obj\Debug\GuiHelpers.dll
 C:\src\dotnet\Wish\GuiHelpers\obj\Debug\GuiHelpers.pdb
+C:\src\dotnet\Wish\GuiHelpers\bin\Debug\Wish.Core.dll
+C:\src\dotnet\Wish\GuiHelpers\bin\Debug\Wish.Core.pdb

@@ -58,12 +58,6 @@
         "Entry"
         {
         "MsmKey" = "8:_35C73D8A374C1B032C817C5DEEBDBBB4"
-        "OwnerKey" = "8:_3C26C0444F48169EB795CE7B3C97FAFC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_35C73D8A374C1B032C817C5DEEBDBBB4"
         "OwnerKey" = "8:_0F9E6B84BBF353DDF9788F4D213A88AF"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -89,6 +83,12 @@
         {
         "MsmKey" = "8:_3C26C0444F48169EB795CE7B3C97FAFC"
         "OwnerKey" = "8:_E5B6DA5F77424270A41E09798A5B0332"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3C26C0444F48169EB795CE7B3C97FAFC"
+        "OwnerKey" = "8:_F4541A11CF9B40F8188F42F2C883CF86"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -837,7 +837,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Wish"
         "ProductCode" = "8:{B20EC9DA-F8C9-415C-9171-48B411BF5564}"
-        "PackageCode" = "8:{2B5D91B0-6201-486D-B805-247CC1B6EE58}"
+        "PackageCode" = "8:{1C867B3E-3317-423A-AD4B-BCE63840085A}"
         "UpgradeCode" = "8:{01EB07E7-D897-43FF-9D37-6298A6CED28A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
