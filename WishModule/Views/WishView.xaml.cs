@@ -8,7 +8,6 @@ using GuiHelpers;
 using ICSharpCode.AvalonEdit.Highlighting;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
-using Terminal;
 using Wish.Core;
 
 namespace Wish.Views
@@ -22,12 +21,11 @@ namespace Wish.Views
         private readonly IRegion _mainRegion;
         private readonly IEventAggregator _eventAggregator;
         public static RoutedCommand TabNew = new RoutedCommand();
-        public static RoutedCommand TabNext = new RoutedCommand();
-        public static RoutedCommand TabPrevious = new RoutedCommand();
         private bool _activelyTabbing;
         private readonly CommandEngine _commandEngine = new CommandEngine();
         private readonly TextTransformations _textTransformations = new TextTransformations();
         private readonly CommandHistory _commandHistory = new CommandHistory();
+        private readonly SyntaxHighlighting _syntaxHighlighting = new SyntaxHighlighting();
         private CompletionManager _completionManager;
         private readonly TabManager _tabManager = TabManager.Instance();
 
@@ -45,35 +43,18 @@ namespace Wish.Views
 
             SetInputGestures();
             SetInitialWorkingDirectory();
-            SetSyntaxHighlighting();
+            _syntaxHighlighting.SetSyntaxHighlighting(typeof(WishView), textEditor);
 
             _textTransformations.CreatePrompt(_workingDirectory);
             LastPromptIndex = _textTransformations.InsertNewPrompt(textEditor);
             _tabManager.Add(this);
         }
 
-        private void SetSyntaxHighlighting()
-        {
-            IHighlightingDefinition customHighlighting;
-            using (Stream s = typeof(WishView).Assembly.GetManifestResourceStream("Wish.Views.CustomHighlighting.xshd"))
-            {
-                if (s == null)
-                    throw new InvalidOperationException("Could not find embedded resource");
-                using (XmlReader reader = new XmlTextReader(s))
-                {
-                    customHighlighting = ICSharpCode.AvalonEdit.Highlighting.Xshd.
-                        HighlightingLoader.Load(reader, HighlightingManager.Instance);
-                }
-            }
-            HighlightingManager.Instance.RegisterHighlighting("Custom Highlighting", null, customHighlighting);
-            textEditor.SyntaxHighlighting = customHighlighting;
-        }
-
         private void SetInitialWorkingDirectory()
         {
             try
             {
-                _commandEngine.ChangeDirectory("cd " + _workingDirectory);
+                _commandEngine.ProcessCommand(new Command("cd " + _workingDirectory, "cd", new[] {_workingDirectory}));
                 _workingDirectory = _commandEngine.WorkingDirectory;
             }
             catch (Exception e)
@@ -143,10 +124,9 @@ namespace Wish.Views
                         if (!_activelyTabbing)
                         {
                             var line = textEditor.Text.Substring(LastPromptIndex);
-                            var command = TerminalUtils.ParseCommandLine(line);
-                            var arg = command.Args[0];
+                            var command = _textTransformations.ParseCommandLine(line);
                             _completionManager = new CompletionManager();
-                            _completionManager.CreateWindow(textEditor.TextArea, arg, _workingDirectory);
+                            _completionManager.CreateWindow(textEditor.TextArea, command.Args, _workingDirectory);
                             _activelyTabbing = true;
                             e.Handled = true;
                         }

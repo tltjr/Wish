@@ -1,7 +1,5 @@
 C:\src\dotnet\Wish\Wish.Core\bin\Debug\Wish.Core.dll
 C:\src\dotnet\Wish\Wish.Core\bin\Debug\Wish.Core.pdb
-C:\src\dotnet\Wish\Wish.Core\bin\Debug\Terminal.dll
-C:\src\dotnet\Wish\Wish.Core\bin\Debug\Terminal.pdb
 C:\src\dotnet\Wish\Wish.Core\obj\Debug\ResolveAssemblyReference.cache
 C:\src\dotnet\Wish\Wish.Core\obj\Debug\Wish.Core.dll
 C:\src\dotnet\Wish\Wish.Core\obj\Debug\Wish.Core.pdb

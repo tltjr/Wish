@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
+using System.Text.RegularExpressions;
 using ICSharpCode.AvalonEdit;
-using Terminal;
+using Wish.Core;
 
 namespace GuiHelpers
 {
@@ -15,8 +16,25 @@ namespace GuiHelpers
         public Command ParseScript(string text, int lastPromptIndex)
         {
 			var line = text.Substring(lastPromptIndex);
-			return TerminalUtils.ParseCommandLine(line);
+			return ParseCommandLine(line);
         }
+
+		public Command ParseCommandLine(string line) {
+			var command = "";
+			var args = new List<string>();
+			var m = Regex.Match(line.Trim() + " ", @"^(.+?)(?:\s+|$)(.*)");
+			if (m.Success) {
+				command = m.Groups[1].Value.Trim();
+				var argsLine = m.Groups[2].Value.Trim();
+				var m2 = Regex.Match(argsLine + " ", @"(?<!\\)"".*?(?<!\\)""|[\S]+");
+				while (m2.Success) {
+					var arg = Regex.Replace(m2.Value.Trim(), @"^""(.*?)""$", "$1");
+					args.Add(arg);
+					m2 = m2.NextMatch();
+				}
+			}
+			return new Command(line, command, args.ToArray());
+		}
 
         public string Prompt
         {

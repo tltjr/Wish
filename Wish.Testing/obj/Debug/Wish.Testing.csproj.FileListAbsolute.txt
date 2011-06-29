@@ -14,9 +14,7 @@ C:\src\dotnet\Werminal\Werminal.Testing\obj\Debug\Wish.Testing.pdb
 C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Wish.Testing.dll
 C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Wish.Testing.pdb
 C:\src\dotnet\Wish\Wish.Testing\bin\Debug\nunit.framework.dll
-C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Terminal.dll
 C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Wish.Core.dll
-C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Terminal.pdb
 C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Wish.Core.pdb
 C:\src\dotnet\Wish\Wish.Testing\obj\Debug\ResolveAssemblyReference.cache
 C:\src\dotnet\Wish\Wish.Testing\obj\Debug\Wish.Testing.dll

@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="CompletionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SyntaxHighlighting.cs" />
     <Compile Include="TabCompletionData.cs" />
     <Compile Include="TextTransformations.cs" />
   </ItemGroup>
@@ -53,10 +54,6 @@
     <ProjectReference Include="..\ICSharpCode.AvalonEdit\ICSharpCode.AvalonEdit.csproj">
       <Project>{6C55B776-26D4-4DB3-A6AB-87E783B2F3D1}</Project>
       <Name>ICSharpCode.AvalonEdit</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Terminal\Terminal.csproj">
-      <Project>{D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3}</Project>
-      <Name>Terminal</Name>
     </ProjectReference>
     <ProjectReference Include="..\Wish.Core\Wish.Core.csproj">
       <Project>{6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE}</Project>

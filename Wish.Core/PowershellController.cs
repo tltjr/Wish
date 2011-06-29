@@ -8,11 +8,10 @@ using System.Text;
 
 namespace Wish.Core
 {
-    public class PowershellController : IDisposable
+    public class PowershellController
     {
         private readonly Runspace _runspace;
         private Pipeline _pipeline;
-        private bool _disposed;
 
         public PowershellController()
         {
@@ -33,6 +32,15 @@ namespace Wish.Core
             {
                 return e.Message;
             }
+            //check other streams for content
+            if(_pipeline.Error.Count > 0)
+            {
+                return _pipeline.Error.ReadToEnd().FirstOrDefault().ToString();
+            }
+            if(_pipeline.Output.Count > 0)
+            {
+                return _pipeline.Output.ReadToEnd().FirstOrDefault().ToString();
+            }
             var sb = new StringBuilder();
             foreach (var psObject in psObjects)
             {
@@ -48,25 +56,19 @@ namespace Wish.Core
             pipeline.Invoke();
         }
 
-        public Collection<PSObject> RunScriptForResult(string script)
+        private Collection<PSObject> RunScriptForResult(string script)
         {
             var pipeline = _runspace.CreatePipeline();
             pipeline.Commands.AddScript(script);
             return pipeline.Invoke();
         }
 
-        public void Dispose()
+        public string GetWorkingDirectory()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (_disposed) return;
-            if (!disposing) return;
-            _runspace.Dispose();
-            _disposed = true;
+            var pipeline = _runspace.CreatePipeline();
+            pipeline.Commands.AddScript("pwd");
+            var results = pipeline.Invoke();
+            return results.FirstOrDefault().ToString();
         }
     }
 }

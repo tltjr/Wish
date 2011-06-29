@@ -14,14 +14,14 @@ namespace GuiHelpers
         private IList<ICompletionData> _completionData;
         private readonly CompletionHelper _completionHelper = new CompletionHelper();
 
-        public void CreateWindow(TextArea textArea, string arg, string workingDirectory)
+        public void CreateWindow(TextArea textArea, string[] args, string workingDirectory)
         {
             _completionWindow = new CompletionWindow(textArea)
                                     {
                                         SizeToContent = SizeToContent.WidthAndHeight,
                                         MinWidth = 150
                                     };
-            PopulateCompletionList(arg, workingDirectory);
+            PopulateCompletionList(args.Last(), workingDirectory);
             _completionWindow.Show();
             _completionWindow.Closed += delegate
             {

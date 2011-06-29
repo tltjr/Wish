@@ -44,18 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command.cs" />
     <Compile Include="CommandEngine.cs" />
     <Compile Include="CommandHistory.cs" />
     <Compile Include="CompletionHelper.cs" />
-    <Compile Include="CompletionManagerOld.cs" />
     <Compile Include="PowershellController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Terminal\Terminal.csproj">
-      <Project>{D89C5D01-77DD-4AA3-9624-62FDC6EE0BC3}</Project>
-      <Name>Terminal</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

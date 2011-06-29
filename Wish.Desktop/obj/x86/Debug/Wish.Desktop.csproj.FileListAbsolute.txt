@@ -37,12 +37,10 @@ C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\Microsoft.Practices.Unity.dll
 C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\Wish.dll
 C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\Wish.Core.dll
 C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\GuiHelpers.dll
-C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\Terminal.dll
 C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\ICSharpCode.AvalonEdit.dll
 C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\Wish.pdb
 C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\Wish.Core.pdb
 C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\GuiHelpers.pdb
-C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\Terminal.pdb
 C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\ICSharpCode.AvalonEdit.pdb
 C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\ICSharpCode.AvalonEdit.xml
 C:\src\dotnet\Wish\Wish.Desktop\obj\x86\Debug\ResolveAssemblyReference.cache

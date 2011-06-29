@@ -4,7 +4,6 @@ using System.Linq;
 using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
-using Terminal;
 
 namespace Wish.Core
 {
@@ -19,12 +18,10 @@ namespace Wish.Core
             set { _workingDirectory = value; }
         }
 
-        public void ChangeDirectory(string target)
+        private void ChangeDirectory(string target)
         {
             _powershellController.RunScript(target);
-            var results = _powershellController.RunScriptForResult("pwd");
-            if (results.Count == 0) throw new Exception();
-            _workingDirectory = results[0].ToString();
+            _workingDirectory = _powershellController.GetWorkingDirectory();
         }
 
         public string ProcessCommand(Command command)
