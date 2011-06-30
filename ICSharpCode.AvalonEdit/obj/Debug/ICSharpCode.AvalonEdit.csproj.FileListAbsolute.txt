@@ -25,3 +25,4 @@ C:\src\dotnet\Wish\ICSharpCode.AvalonEdit\obj\Debug\themes\generic.baml
 C:\src\dotnet\Wish\ICSharpCode.AvalonEdit\obj\Debug\ICSharpCode.AvalonEdit.g.resources
 C:\src\dotnet\Wish\ICSharpCode.AvalonEdit\obj\Debug\ICSharpCode.AvalonEdit.dll
 C:\src\dotnet\Wish\ICSharpCode.AvalonEdit\obj\Debug\ICSharpCode.AvalonEdit.pdb
+C:\src\dotnet\Wish\bin\Debug\ICSharpCode.AvalonEdit.xml

@@ -8,16 +8,19 @@ namespace Wish
 {
     public class CompleteState : IState
     {
-        private Wish _wish;
+        private readonly WishModel _wish;
 
-        public CompleteState(Wish wish)
+        public CompleteState(WishModel wish)
         {
             _wish = wish;
         }
 
         public void KeyPress(KeyEventArgs e)
         {
-            throw new NotImplementedException();
+            if(e.Key == Key.Enter)
+            {
+                _wish.State = _wish.Standard;
+            }
         }
     }
 }
