@@ -23,5 +23,15 @@ namespace Wish.Views
         {
             InitializeComponent();
         }
+
+        protected override void OnLostFocus(RoutedEventArgs e)
+        {
+            //close?
+        }
+
+        public void Opened(object sender, EventArgs e)
+        {
+            searchTb.Focus();
+        }
     }
 }

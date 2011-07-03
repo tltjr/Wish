@@ -4,22 +4,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-      <Popup Name="popup1" 
-             Placement="Center" 
-             AllowsTransparency="True"
-             IsOpen="False">
-        <Grid Background="White">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Label Content="Search Command History:" 
-                       Grid.Row="0" 
-                       Foreground="White"/>
-                <TextBox Grid.Row="1" />
-            </Grid>
-      </Popup>
+             d:DesignHeight="50" d:DesignWidth="275">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="Search command history:" 
+               Grid.Row="0" 
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               FontFamily="Segoe UI"
+               FontSize="12"
+               Foreground="Black"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="245"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0">
+                <Image.Source>
+                    <BitmapImage DecodePixelWidth="25" UriSource="..\Img\search.png"/>
+                </Image.Source>
+            </Image>
+            <TextBox x:Name="searchTb"
+                     Grid.Column="1" 
+                     HorizontalAlignment="Stretch"
+                     Margin="3"/>
+        </Grid>
     </Grid>
 </UserControl>

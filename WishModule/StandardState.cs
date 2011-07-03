@@ -77,24 +77,6 @@ namespace Wish
         public void RequestHistorySearch()
         {
             var history = _wish.CommandHistory.Commands;
-            var popup = new Popup();
-            var grid = new Grid();
-            var label = new Label
-                            {
-                                Content = "Search Command History:",
-                                Background = Brushes.AliceBlue,
-                                Foreground = Brushes.Chartreuse
-                            };
-            grid.RowDefinitions.Add(new RowDefinition());
-            grid.RowDefinitions.Add(new RowDefinition());
-            grid.Children.Add(label);
-            Grid.SetRow(label, 0);
-            var textBox = new TextBox();
-            grid.Children.Add(textBox);
-            Grid.SetRow(textBox, 1);
-            popup.Child = grid;
-            popup.IsOpen = true;
-            popup.Placement = PlacementMode.Center;
         }
 
         private bool IsExit(Command command)

@@ -101,22 +101,11 @@ namespace Wish.Views
         private void ExecuteControlR(object sender, ExecutedRoutedEventArgs e)
         {
         //    _wish.RequestHistorySearch();
-            var popup = new Popup {IsOpen = true, PlacementTarget = textEditor, Placement = PlacementMode.Center};
-            var grid = new Grid();
-            var label = new Label
-                            {
-                                Content = "Search Command History:",
-                                Background = Brushes.AliceBlue,
-                                Foreground = Brushes.Chartreuse
-                            };
-            grid.RowDefinitions.Add(new RowDefinition());
-            grid.RowDefinitions.Add(new RowDefinition());
-            grid.Children.Add(label);
-            Grid.SetRow(label, 0);
-            var textBox = new TextBox();
-            grid.Children.Add(textBox);
-            Grid.SetRow(textBox, 1);
-            popup.Child = grid;
+            var popup = new Popup {IsOpen = false, PlacementTarget = textEditor, Placement = PlacementMode.Center};
+            var searchBox = new SearchBox();
+            popup.Opened += searchBox.Opened;
+            popup.Child = searchBox;
+            popup.IsOpen = true;
         }
     }
 }
