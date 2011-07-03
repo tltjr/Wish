@@ -9,5 +9,6 @@ namespace Wish
     public interface IState
     {
         void KeyPress(KeyEventArgs e);
+        void RequestHistorySearch();
     }
 }

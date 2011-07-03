@@ -11,16 +11,16 @@
              Loaded="OnUserControlLoaded">
     <UserControl.CommandBindings>
         <CommandBinding Command="{x:Static Views:WishView.TabNew}" Executed="ExecuteNewTab"/>
+        <CommandBinding Command="{x:Static Views:WishView.ControlR}" Executed="ExecuteControlR"/>
     </UserControl.CommandBindings>
-    
-    <avalonEdit:TextEditor x:Name="textEditor"
+        <avalonEdit:TextEditor x:Name="textEditor"
              FontFamily="Consolas"
              FontSize="14"
              TextChanged="ScrollToEnd"
              Focusable="True">
-        <avalonEdit:TextEditor.Template>
-            <ControlTemplate>
-                <ScrollViewer 
+            <avalonEdit:TextEditor.Template>
+                <ControlTemplate>
+                    <ScrollViewer 
                         Focusable="False"
 						Name="PART_ScrollViewer"
 						CanContentScroll="True"
@@ -32,9 +32,23 @@
                         Foreground="White"
 						Padding="{TemplateBinding Padding}"
 						BorderBrush="{TemplateBinding BorderBrush}"
-						BorderThickness="{TemplateBinding BorderThickness}"
-					/>
-            </ControlTemplate>
-        </avalonEdit:TextEditor.Template>
-    </avalonEdit:TextEditor>
+						BorderThickness="{TemplateBinding BorderThickness}" />
+                </ControlTemplate>
+            </avalonEdit:TextEditor.Template>
+        </avalonEdit:TextEditor>
+        <!--<Popup x:Name="popup1" 
+                         Placement="Center" 
+                         AllowsTransparency="True"
+                         IsOpen="False">
+            <Grid Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Content="Search Command History:" 
+                                   Grid.Row="0" 
+                                   Foreground="White"/>
+                <TextBox Grid.Row="1" />
+            </Grid>
+        </Popup>-->
 </UserControl>

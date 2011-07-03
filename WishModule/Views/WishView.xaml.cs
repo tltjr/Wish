@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using System.Windows.Media;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
 
@@ -15,6 +18,7 @@ namespace Wish.Views
         private readonly IRegion _mainRegion;
         private readonly IEventAggregator _eventAggregator;
         public static RoutedCommand TabNew = new RoutedCommand();
+        public static RoutedCommand ControlR = new RoutedCommand();
         private readonly WishModel _wish;
 
         public WishView(IRegion mainRegion, IEventAggregator eventAggregator, string workingDirectory)
@@ -33,6 +37,10 @@ namespace Wish.Views
 
             var controlT = new KeyGesture(Key.T, ModifierKeys.Control);
             TabNew.InputGestures.Add(controlT);
+
+            var controlR = new KeyGesture(Key.R, ModifierKeys.Control);
+            ControlR.InputGestures.Add(controlR);
+
         }
 
         private void ScrollToEnd(object sender, EventArgs eventArgs)
@@ -61,7 +69,8 @@ namespace Wish.Views
                 (from CommandBinding cb in CommandBindings select cb.Command)
                     .OfType<RoutedCommand>()
                     .Where(command => (from InputGesture inputGesture in command.InputGestures select inputGesture as KeyGesture)
-                    .Any(keyGesture => (keyGesture != null && keyGesture.Key == e.Key) && keyGesture.Modifiers == Keyboard.Modifiers)))
+                                        .Any(keyGesture => (keyGesture != null && keyGesture.Key == e.Key) 
+                                            && keyGesture.Modifiers == Keyboard.Modifiers)))
             {
                 command.Execute(0, this);
                 e.Handled = true;
@@ -87,6 +96,27 @@ namespace Wish.Views
         {
             var view = new WishView(_mainRegion, _eventAggregator, _wish.WorkingDirectory);
             _mainRegion.Add(view);
+        }
+
+        private void ExecuteControlR(object sender, ExecutedRoutedEventArgs e)
+        {
+        //    _wish.RequestHistorySearch();
+            var popup = new Popup {IsOpen = true, PlacementTarget = textEditor, Placement = PlacementMode.Center};
+            var grid = new Grid();
+            var label = new Label
+                            {
+                                Content = "Search Command History:",
+                                Background = Brushes.AliceBlue,
+                                Foreground = Brushes.Chartreuse
+                            };
+            grid.RowDefinitions.Add(new RowDefinition());
+            grid.RowDefinitions.Add(new RowDefinition());
+            grid.Children.Add(label);
+            Grid.SetRow(label, 0);
+            var textBox = new TextBox();
+            grid.Children.Add(textBox);
+            Grid.SetRow(textBox, 1);
+            popup.Child = grid;
         }
     }
 }

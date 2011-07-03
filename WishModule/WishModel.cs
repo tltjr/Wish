@@ -72,5 +72,9 @@ namespace Wish
             _state.KeyPress(e);
         }
 
+        public void RequestHistorySearch()
+        {
+            _state.RequestHistorySearch();
+        }
     }
 }

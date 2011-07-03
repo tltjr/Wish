@@ -10,6 +10,11 @@ namespace Wish.Core
         private List<Command> _commands = new List<Command>();
         private int _index;
 
+        public List<Command> Commands
+        {
+            get { return _commands; }
+        }
+
         public void Add(Command command)
         {
             _commands.Insert(0, command);

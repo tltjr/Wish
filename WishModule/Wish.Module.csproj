@@ -57,6 +57,9 @@
     <Compile Include="StandardState.cs" />
     <Compile Include="IState.cs" />
     <Compile Include="TabManager.cs" />
+    <Compile Include="Views\SearchBox.xaml.cs">
+      <DependentUpon>SearchBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WishView.xaml.cs">
       <DependentUpon>WishView.xaml</DependentUpon>
     </Compile>
@@ -64,6 +67,10 @@
     <Compile Include="WishModule.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\SearchBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\WishView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

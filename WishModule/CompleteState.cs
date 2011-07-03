@@ -22,5 +22,9 @@ namespace Wish
                 _wish.State = _wish.Standard;
             }
         }
+
+        public void RequestHistorySearch()
+        {
+        }
     }
 }
