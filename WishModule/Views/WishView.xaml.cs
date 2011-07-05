@@ -40,7 +40,6 @@ namespace Wish.Views
 
             var controlR = new KeyGesture(Key.R, ModifierKeys.Control);
             ControlR.InputGestures.Add(controlR);
-
         }
 
         private void ScrollToEnd(object sender, EventArgs eventArgs)
@@ -83,7 +82,7 @@ namespace Wish.Views
                 "Title",
                 typeof(string),
                 typeof(WishView),
-                new PropertyMetadata(@"amr\tlthorn1")
+                new PropertyMetadata(@"Wish")
                 );
 
         public string Title
@@ -102,10 +101,12 @@ namespace Wish.Views
         {
         //    _wish.RequestHistorySearch();
             var popup = new Popup {IsOpen = false, PlacementTarget = textEditor, Placement = PlacementMode.Center};
-            var searchBox = new SearchBox();
+            var searchBox = new SearchBox(popup);
             popup.Opened += searchBox.Opened;
+            popup.LostFocus += searchBox.LostFocus;
             popup.Child = searchBox;
             popup.IsOpen = true;
+            popup.StaysOpen = false;
         }
     }
 }

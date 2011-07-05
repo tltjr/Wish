@@ -32,3 +32,5 @@ C:\src\dotnet\Wish\Wish.Testing\bin\Debug\GuiHelpers.pdb
 C:\src\dotnet\Wish\Wish.Testing\bin\Debug\ICSharpCode.AvalonEdit.pdb
 C:\src\dotnet\Wish\Wish.Testing\bin\Debug\ICSharpCode.AvalonEdit.xml
 C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Aviad.WPF.Controls.dll
+C:\src\dotnet\Wish\Wish.Testing\bin\Debug\Aviad.WPF.Controls.pdb

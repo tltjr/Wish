@@ -45,6 +45,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_305100A03BE585B74F717FCE22B47BDB"
+        "OwnerKey" = "8:_E5B6DA5F77424270A41E09798A5B0332"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_305100A03BE585B74F717FCE22B47BDB"
+        "OwnerKey" = "8:_0F9E6B84BBF353DDF9788F4D213A88AF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_35B7DAF15CF47AAB354FDDE5B711A4D2"
         "OwnerKey" = "8:_E5B6DA5F77424270A41E09798A5B0332"
         "MsmSig" = "8:_UNDEFINED"
@@ -185,6 +197,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E5B6DA5F77424270A41E09798A5B0332"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_305100A03BE585B74F717FCE22B47BDB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -403,6 +421,37 @@
                     }
                 }
             "SourcePath" = "8:Wish.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_BF64C6BC9772400E98F1CF9F6FE18A8E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_305100A03BE585B74F717FCE22B47BDB"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Aviad.WPF.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_305100A03BE585B74F717FCE22B47BDB"
+                    {
+                    "Name" = "8:Aviad.WPF.Controls.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Aviad.WPF.Controls.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_BF64C6BC9772400E98F1CF9F6FE18A8E"
@@ -776,7 +825,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Wish"
         "ProductCode" = "8:{B20EC9DA-F8C9-415C-9171-48B411BF5564}"
-        "PackageCode" = "8:{A944F2A6-35D4-448F-B990-A95E7413C1B3}"
+        "PackageCode" = "8:{1A0E7256-F53D-4CA0-BF0A-13A9AD84EE18}"
         "UpgradeCode" = "8:{01EB07E7-D897-43FF-9D37-6298A6CED28A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

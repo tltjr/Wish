@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -19,14 +20,18 @@ namespace Wish.Views
     /// </summary>
     public partial class SearchBox : UserControl
     {
-        public SearchBox()
+        private Popup _popup;
+
+        public SearchBox(Popup popup)
         {
             InitializeComponent();
+            _popup = popup;
         }
 
-        protected override void OnLostFocus(RoutedEventArgs e)
+        public new void LostFocus(object sender, EventArgs e)
         {
-            //close?
+            //if (searchTb.IsFocused || searchTb.ListBox.IsKeyboardFocused) return;
+            //_popup.IsOpen = false;
         }
 
         public void Opened(object sender, EventArgs e)
