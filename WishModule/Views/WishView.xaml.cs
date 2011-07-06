@@ -99,14 +99,7 @@ namespace Wish.Views
 
         private void ExecuteControlR(object sender, ExecutedRoutedEventArgs e)
         {
-        //    _wish.RequestHistorySearch();
-            var popup = new Popup {IsOpen = false, PlacementTarget = textEditor, Placement = PlacementMode.Center};
-            var searchBox = new SearchBox(popup);
-            popup.Opened += searchBox.Opened;
-            popup.LostFocus += searchBox.LostFocus;
-            popup.Child = searchBox;
-            popup.IsOpen = true;
-            popup.StaysOpen = false;
+            _wish.RequestHistorySearch();
         }
     }
 }

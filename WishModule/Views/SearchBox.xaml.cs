@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wish.Core;
 
 namespace Wish.Views
 {
@@ -20,18 +21,9 @@ namespace Wish.Views
     /// </summary>
     public partial class SearchBox : UserControl
     {
-        private Popup _popup;
-
-        public SearchBox(Popup popup)
+        public SearchBox()
         {
             InitializeComponent();
-            _popup = popup;
-        }
-
-        public new void LostFocus(object sender, EventArgs e)
-        {
-            //if (searchTb.IsFocused || searchTb.ListBox.IsKeyboardFocused) return;
-            //_popup.IsOpen = false;
         }
 
         public void Opened(object sender, EventArgs e)

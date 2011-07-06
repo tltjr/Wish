@@ -20,6 +20,7 @@ C:\src\dotnet\Wish\WishModule\obj\Debug\Wish.dll
 C:\src\dotnet\Wish\WishModule\obj\Debug\Wish.pdb
 C:\src\dotnet\Wish\WishModule\obj\Debug\Views\SearchBox.baml
 C:\src\dotnet\Wish\WishModule\obj\Debug\Views\SearchBox.g.cs
-C:\src\dotnet\Wish\WishModule\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\src\dotnet\Wish\WishModule\bin\Debug\Aviad.WPF.Controls.dll
 C:\src\dotnet\Wish\WishModule\bin\Debug\Aviad.WPF.Controls.pdb
+C:\src\dotnet\Wish\WishModule\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\src\dotnet\Wish\WishModule\bin\Debug\Microsoft.Practices.Unity.dll

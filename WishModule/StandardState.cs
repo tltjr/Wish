@@ -9,6 +9,7 @@ using System.Windows.Media;
 using GuiHelpers;
 using ICSharpCode.AvalonEdit.CodeCompletion;
 using Wish.Core;
+using Wish.Views;
 
 namespace Wish
 {
@@ -26,12 +27,12 @@ namespace Wish
             switch (e.Key)
             {
                 case Key.Up:
-                    var next = _wish.CommandHistory.GetNext();
+                    var next = CommandHistory.GetNext();
                     ReplaceLine(next);
                     break;
 
                 case Key.Down:
-                    var previous = _wish.CommandHistory.GetPrevious();
+                    var previous = CommandHistory.GetPrevious();
                     ReplaceLine(previous);
                     break;
 
@@ -50,7 +51,7 @@ namespace Wish
                 case Key.Enter:
             
                     var command = _wish.TextTransformations.ParseScript(_wish.TextEditor.Text, _wish.LastPromptIndex);
-                    _wish.CommandHistory.Add(command);
+                    CommandHistory.Add(command);
                     _wish.TextEditor.Text += "\n";
                     if (!IsExit(command))
                     {
@@ -76,7 +77,12 @@ namespace Wish
 
         public void RequestHistorySearch()
         {
-            var history = _wish.CommandHistory.Commands;
+            var popup = new Popup {IsOpen = false, PlacementTarget = _wish.TextEditor, Placement = PlacementMode.Center};
+            var searchBox = new SearchBox();
+            popup.Opened += searchBox.Opened;
+            popup.Child = searchBox;
+            popup.IsOpen = true;
+            popup.StaysOpen = false;
         }
 
         private bool IsExit(Command command)

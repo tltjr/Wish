@@ -5,22 +5,22 @@ using System.Text;
 
 namespace Wish.Core
 {
-    public class CommandHistory
+    public static class CommandHistory
     {
-        private List<Command> _commands = new List<Command>();
-        private int _index;
+        private static List<Command> _commands = new List<Command>();
+        private static int _index;
 
-        public List<Command> Commands
+        public static List<Command> Commands
         {
             get { return _commands; }
         }
 
-        public void Add(Command command)
+        public static void Add(Command command)
         {
             _commands.Insert(0, command);
         }
 
-        public Command GetNext()
+        public static Command GetNext()
         {
             if (_commands.Count == 0) return null;
             if(0 == _index)
@@ -35,7 +35,7 @@ namespace Wish.Core
             return _commands[_index];
         }
 
-        public Command GetPrevious()
+        public static Command GetPrevious()
         {
             if (_commands.Count == 0) return null;
             _index--;
@@ -46,7 +46,7 @@ namespace Wish.Core
             return _commands[_index];
         }
 
-        public void Reset()
+        public static void Reset()
         {
             _commands = _commands.Where(o => !(String.IsNullOrEmpty(o.Name))).ToList();
             _index = 0;

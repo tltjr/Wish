@@ -35,7 +35,6 @@ namespace Wish
 
         public readonly CommandEngine CommandEngine = new CommandEngine();
         public readonly TextTransformations TextTransformations = new TextTransformations();
-        public readonly CommandHistory CommandHistory = new CommandHistory();
         public readonly SyntaxHighlighting SyntaxHighlighting = new SyntaxHighlighting();
 
         public WishModel(TextEditor textEditor, IRegion region, WishView view, string workingDirectory)

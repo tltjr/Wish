@@ -202,12 +202,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_305100A03BE585B74F717FCE22B47BDB"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_F3C7C85C41BE577B58DFBC70DBC2DDE0"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -233,6 +227,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_35C73D8A374C1B032C817C5DEEBDBBB4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_305100A03BE585B74F717FCE22B47BDB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -825,7 +825,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Wish"
         "ProductCode" = "8:{B20EC9DA-F8C9-415C-9171-48B411BF5564}"
-        "PackageCode" = "8:{1A0E7256-F53D-4CA0-BF0A-13A9AD84EE18}"
+        "PackageCode" = "8:{BBFE3C11-2468-4D5E-84BF-A2D376D2FB85}"
         "UpgradeCode" = "8:{01EB07E7-D897-43FF-9D37-6298A6CED28A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
