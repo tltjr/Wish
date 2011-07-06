@@ -17,9 +17,15 @@ namespace Wish
     {
         private readonly WishModel _wish;
 
+
         public StandardState(WishModel wish)
         {
             _wish = wish;
+        }
+
+        public void OnCompletionWindowClosed()
+        {
+            _wish.State = _wish.Standard;
         }
 
         public void KeyPress(KeyEventArgs e)
@@ -42,7 +48,7 @@ namespace Wish
                     var command2 = _wish.TextTransformations.ParseCommandLine(line2);
                     if(command2.Args.Count() > 0)
                     {
-                        new CompletionManager().CreateWindow(_wish.TextEditor.TextArea, command2.Args, _wish.WorkingDirectory);
+                        new CompletionManager().CreateWindow(_wish.TextEditor.TextArea, command2.Args, _wish.WorkingDirectory, OnCompletionWindowClosed);
                         _wish.State = _wish.Complete;
                     }
                     e.Handled = true;

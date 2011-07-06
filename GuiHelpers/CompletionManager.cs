@@ -14,7 +14,9 @@ namespace GuiHelpers
         private IList<ICompletionData> _completionData;
         private readonly CompletionHelper _completionHelper = new CompletionHelper();
 
-        public void CreateWindow(TextArea textArea, string[] args, string workingDirectory)
+        public delegate void OnCloseCallback();
+
+        public void CreateWindow(TextArea textArea, string[] args, string workingDirectory, OnCloseCallback onCloseDelegate)
         {
             _completionWindow = new CompletionWindow(textArea)
                                     {
@@ -26,6 +28,7 @@ namespace GuiHelpers
             _completionWindow.Closed += delegate
             {
                 _completionWindow = null;
+                onCloseDelegate.Invoke();
             };
             if (_completionData != null && _completionData.Count > 0)
             {
