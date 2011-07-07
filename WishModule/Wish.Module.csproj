@@ -57,12 +57,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActbViewModel.cs" />
-    <Compile Include="CompleteState.cs" />
-    <Compile Include="MyDataTemplateSelector.cs" />
+    <Compile Include="DefaultStrategy.cs" />
+    <Compile Include="DownStrategy.cs" />
+    <Compile Include="EnterStrategy.cs" />
+    <Compile Include="IKeyStrategy.cs" />
+    <Compile Include="InitialWorkingDirectory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StandardState.cs" />
-    <Compile Include="IState.cs" />
-    <Compile Include="TabManager.cs" />
+    <Compile Include="TabStrategy.cs" />
+    <Compile Include="UpStrategy.cs" />
     <Compile Include="Views\SearchBox.xaml.cs">
       <DependentUpon>SearchBox.xaml</DependentUpon>
     </Compile>

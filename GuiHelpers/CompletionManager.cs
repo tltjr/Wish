@@ -14,9 +14,9 @@ namespace GuiHelpers
         private IList<ICompletionData> _completionData;
         private readonly CompletionHelper _completionHelper = new CompletionHelper();
 
-        public delegate void OnCloseCallback();
+        public delegate void OnCloseDelegate();
 
-        public void CreateWindow(TextArea textArea, string[] args, string workingDirectory, OnCloseCallback onCloseDelegate)
+        public void CreateWindow(TextArea textArea, string[] args, string workingDirectory, OnCloseDelegate onCloseDelegate)
         {
             _completionWindow = new CompletionWindow(textArea)
                                     {

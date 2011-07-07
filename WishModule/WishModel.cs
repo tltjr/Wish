@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using GuiHelpers;
 using ICSharpCode.AvalonEdit;
@@ -10,70 +13,104 @@ namespace Wish
 {
     public class WishModel
     {
-        public TextEditor TextEditor;
-        public IRegion Region;
-        public WishView View;
         public string WorkingDirectory { get; set; }
 
-        public IState Standard { get; set; }
-        public IState Complete { get; set; }
-        private IState _state;
+        public TextEditor TextEditor { get; set; }
+        public WishView View;
 
-        public IState State { 
-            get { return _state; } 
-            set
-            {
-                if(value != Complete)
-                {
-                    CommandHistory.Reset();
-                }
-                _state = value;
-            } 
-        }
+        private readonly IRegion _region;
 
         public int LastPromptIndex { get; set; }
+        public bool ActivelyTabbing { get; set; }
 
-        public readonly CommandEngine CommandEngine = new CommandEngine();
-        public readonly TextTransformations TextTransformations = new TextTransformations();
-        public readonly SyntaxHighlighting SyntaxHighlighting = new SyntaxHighlighting();
+        private readonly TextTransformations _textTransformations = new TextTransformations();
+        public CommandEngine CommandEngine { get; set; }
+        private readonly SyntaxHighlighting _syntaxHighlighting = new SyntaxHighlighting();
+        private readonly InitialWorkingDirectory _iwd;
+
+        private readonly IDictionary<Key, IKeyStrategy> _strategies = new Dictionary<Key, IKeyStrategy>();
 
         public WishModel(TextEditor textEditor, IRegion region, WishView view, string workingDirectory)
         {
             TextEditor = textEditor;
-            Region = region;
+            _region = region;
             View = view;
             WorkingDirectory = workingDirectory;
             LastPromptIndex = -1;
-            Standard = new StandardState(this);
-            Complete = new CompleteState(this);
-            _state = Standard;
-            SyntaxHighlighting.SetSyntaxHighlighting(typeof(WishView), textEditor);
-            TextTransformations.CreatePrompt(WorkingDirectory);
-            LastPromptIndex = TextTransformations.InsertNewPrompt(textEditor);
-            SetInitialWorkingDirectory();
+            _syntaxHighlighting.SetSyntaxHighlighting(typeof(WishView), textEditor);
+            _textTransformations.CreatePrompt(WorkingDirectory);
+            LastPromptIndex = _textTransformations.InsertNewPrompt(textEditor);
+            CommandEngine = new CommandEngine();
+            _iwd = new InitialWorkingDirectory(CommandEngine);
+            WorkingDirectory = _iwd.Set(WorkingDirectory);
+            BootstrapKeyStrategies();
         }
 
-        private void SetInitialWorkingDirectory()
+        private void BootstrapKeyStrategies()
         {
-            try
-            {
-                CommandEngine.ProcessCommand(new Command("cd " + WorkingDirectory, "cd", new[] {WorkingDirectory}));
-                WorkingDirectory = CommandEngine.WorkingDirectory;
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Invalid working directory:\t" + e.StackTrace);
-            }
+            _strategies.Add(Key.Up, new UpStrategy(this));
+            _strategies.Add(Key.Down, new DownStrategy(this));
+            _strategies.Add(Key.Tab, new TabStrategy(this));
+            _strategies.Add(Key.Enter, new EnterStrategy(this));
         }
 
         public void KeyPress(KeyEventArgs e)
         {
-            _state.KeyPress(e);
+            IKeyStrategy strategy;
+            if(_strategies.TryGetValue(e.Key, out strategy))
+            {
+                strategy.Handle(e);
+            }
+            else
+            {
+                CommandHistory.Reset();
+            }
         }
 
         public void RequestHistorySearch()
         {
-            _state.RequestHistorySearch();
+            var popup = new Popup {IsOpen = false, PlacementTarget = TextEditor, Placement = PlacementMode.Center};
+            var searchBox = new SearchBox();
+            popup.Opened += searchBox.Opened;
+            popup.Child = searchBox;
+            popup.IsOpen = true;
+            popup.StaysOpen = false;
+        }
+
+
+        public bool IsExit(Command command)
+        {
+            if (command.Name.Equals("exit", StringComparison.InvariantCultureIgnoreCase))
+            {
+                var i = _region.Views.Count();
+                if (i > 1)
+                {
+                    _region.Remove(View);
+                }
+                else
+                {
+                    System.Windows.Application.Current.Shutdown();
+                }
+                return true;
+            }
+            return false;
+        }
+
+        public void ReplaceLine(Command command)
+        {
+            if (null == command) return;
+            var raw = command.Raw;
+            var text = TextEditor.Text;
+            var line = TextEditor.Text.Substring(LastPromptIndex);
+            if (!String.IsNullOrEmpty(line))
+            {
+                var baseText = text.Remove(text.Length - line.Length);
+                TextEditor.Text = baseText + raw;
+            }
+            else
+            {
+                TextEditor.Text += raw;
+            }
         }
     }
 }

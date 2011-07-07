@@ -9,6 +9,7 @@ namespace Wish.Core
     {
         private static List<Command> _commands = new List<Command>();
         private static int _index;
+        private static bool _dirty;
 
         public static List<Command> Commands
         {
@@ -17,11 +18,13 @@ namespace Wish.Core
 
         public static void Add(Command command)
         {
+            _dirty = true;
             _commands.Insert(0, command);
         }
 
         public static Command GetNext()
         {
+            _dirty = true;
             if (_commands.Count == 0) return null;
             if(0 == _index)
             {
@@ -37,6 +40,7 @@ namespace Wish.Core
 
         public static Command GetPrevious()
         {
+            _dirty = true;
             if (_commands.Count == 0) return null;
             _index--;
             if(_index < 0)
@@ -48,8 +52,10 @@ namespace Wish.Core
 
         public static void Reset()
         {
+            if (!_dirty) return;
             _commands = _commands.Where(o => !(String.IsNullOrEmpty(o.Name))).ToList();
             _index = 0;
+            _dirty = false;
         }
     }
 }

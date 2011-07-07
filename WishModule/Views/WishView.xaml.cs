@@ -20,6 +20,7 @@ namespace Wish.Views
         public static RoutedCommand TabNew = new RoutedCommand();
         public static RoutedCommand ControlR = new RoutedCommand();
         private readonly WishModel _wish;
+        //public readonly SyntaxHighlighting SyntaxHighlighting = new SyntaxHighlighting();
 
         public WishView(IRegion mainRegion, IEventAggregator eventAggregator, string workingDirectory)
         {
