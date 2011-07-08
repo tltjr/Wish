@@ -70,7 +70,7 @@ namespace Wish
         public void RequestHistorySearch()
         {
             var popup = new Popup {IsOpen = false, PlacementTarget = TextEditor, Placement = PlacementMode.Center};
-            var searchBox = new SearchBox();
+            var searchBox = new SearchBox(CommandEngine);
             popup.Opened += searchBox.Opened;
             popup.Child = searchBox;
             popup.IsOpen = true;

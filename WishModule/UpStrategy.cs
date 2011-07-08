@@ -18,6 +18,7 @@ namespace Wish
 
         public void Handle(KeyEventArgs e)
         {
+            if (_wishModel.ActivelyTabbing) return;
             var next = CommandHistory.GetNext();
             _wishModel.ReplaceLine(next);
         }

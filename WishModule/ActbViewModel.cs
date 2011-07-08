@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 using Wish.Core;
 
 namespace Wish
@@ -22,29 +23,17 @@ namespace Wish
                 if (_queryText == value) return;
                 _queryText = value;
                 OnPropertyChanged("QueryText");
-                _queryCollection = null;
                 OnPropertyChanged("QueryCollection");
             }
         }
 
-        private IEnumerable _queryCollection = null;
         public IEnumerable QueryCollection
         {
             get
             {
-                QueryGoogle(QueryText);
-                return _queryCollection;
+                var result = CommandHistory.Commands.Select(o => o.Raw);
+                return QueryText != null ? result.Where(o => o.Contains(QueryText)) : result;
             }
-        }
-
-        private void QueryGoogle(string searchTerm)
-        {
-            var result = CommandHistory.Commands.Select(o => o.Raw);
-            //var result = new List<string>();
-            //result.Add("ls");
-            //result.Add("dir");
-            //result.Add("cd elsewhere");
-            _queryCollection = searchTerm != null ? result.Where(o => o.Contains(searchTerm)) : result;
         }
 
         #region INotifyPropertyChanged Members
@@ -57,6 +46,16 @@ namespace Wish
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+        public void HandleKeyDown(KeyEventArgs e, object selectedItem)
+        {
+            if (Key.Enter != e.Key) return;
+            {
+                var sel = selectedItem as string;
+                //do stuff
+                e.Handled = true;
+            }
         }
     }
 }

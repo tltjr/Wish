@@ -28,7 +28,10 @@ namespace Wish.Core
             try
             {
                 psObjects = _pipeline.Invoke();
-            } catch(CommandNotFoundException e)
+                //if you wanted to catch unfound parameter exceptions here, you could try
+                // and expanded shortened versions, i.e. -rf => -recurse -force !!
+                // of course, there is probably a smarter way to do this without expensive exceptions?
+            } catch(Exception e)
             {
                 return e.Message;
             }

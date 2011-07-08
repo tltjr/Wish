@@ -26,15 +26,18 @@ namespace Wish
 
         public void Handle(KeyEventArgs e)
         {
-            var line2 = _wishModel.TextEditor.Text.Substring(_wishModel.LastPromptIndex);
-            var command2 = _textTransformations.ParseCommandLine(line2);
-            if (command2.Args.Length > 0)
+            if (_wishModel.ActivelyTabbing) return;
+            bool result = false;
+            //var line2 = _wishModel.TextEditor.Text.Substring(_wishModel.LastPromptIndex);
+            //var command2 = _textTransformations.ParseCommandLine(line2);
+            var command = _textTransformations.ParseScript(_wishModel.TextEditor.Text, _wishModel.LastPromptIndex);
+            if (command.Args.Length > 0)
             {
-                new CompletionManager().CreateWindow(_wishModel.TextEditor.TextArea, command2.Args, _wishModel.WorkingDirectory, OnCompletionWindowClosed);
+                result = new CompletionManager().CreateWindow(_wishModel.TextEditor.TextArea, command.Args, _wishModel.WorkingDirectory, OnCompletionWindowClosed);
             }
             e.Handled = true;
             CommandHistory.Reset();
-            _wishModel.ActivelyTabbing = true;
+            _wishModel.ActivelyTabbing = result;
         }
     }
 }

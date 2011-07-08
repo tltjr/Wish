@@ -44,7 +44,7 @@ namespace Aviad.WPF.Controls
     {
         private readonly FrameworkElement _dummy = new FrameworkElement();
         private Func<object, string, bool> _filter;
-        private ListBox _listBox;
+        public ListBox ListBox;
         private Popup _popup;
         private bool _suppressEvent;
         private string _textCache = "";
@@ -64,14 +64,14 @@ namespace Aviad.WPF.Controls
             {
                 if (_filter == value) return;
                 _filter = value;
-                if (_listBox == null) return;
+                if (ListBox == null) return;
                 if (_filter != null)
                 {
-                    _listBox.Items.Filter = FilterFunc;
+                    ListBox.Items.Filter = FilterFunc;
                 }
                 else
                 {
-                    _listBox.Items.Filter = null;
+                    ListBox.Items.Filter = null;
                 }
             }
         }
@@ -99,31 +99,31 @@ namespace Aviad.WPF.Controls
 
         protected void OnItemsSourceChanged(IEnumerable itemsSource)
         {
-            if (_listBox == null) return;
+            if (ListBox == null) return;
             Debug.Print("Data: " + itemsSource);
             if (itemsSource is ListCollectionView)
             {
-                _listBox.ItemsSource = new LimitedListCollectionView(((ListCollectionView) itemsSource).SourceCollection)
+                ListBox.ItemsSource = new LimitedListCollectionView(((ListCollectionView) itemsSource).SourceCollection)
                                           {Limit = MaxCompletions};
                 Debug.Print("Was ListCollectionView");
             }
             else if (itemsSource is CollectionView)
             {
-                _listBox.ItemsSource = new LimitedListCollectionView(((CollectionView) itemsSource).SourceCollection)
+                ListBox.ItemsSource = new LimitedListCollectionView(((CollectionView) itemsSource).SourceCollection)
                                           {Limit = MaxCompletions};
                 Debug.Print("Was CollectionView");
             }
             else if (itemsSource is IList)
             {
-                _listBox.ItemsSource = new LimitedListCollectionView(itemsSource) {Limit = MaxCompletions};
+                ListBox.ItemsSource = new LimitedListCollectionView(itemsSource) {Limit = MaxCompletions};
                 Debug.Print("Was IList");
             }
             else
             {
-                _listBox.ItemsSource = new LimitedCollectionView(itemsSource) {Limit = MaxCompletions};
+                ListBox.ItemsSource = new LimitedCollectionView(itemsSource) {Limit = MaxCompletions};
                 Debug.Print("Was IEnumerable");
             }
-            if (_listBox.Items.Count == 0) InternalClosePopup();
+            if (ListBox.Items.Count == 0) InternalClosePopup();
         }
 
         #endregion
@@ -166,8 +166,8 @@ namespace Aviad.WPF.Controls
 
         private void OnItemTemplateChanged(DataTemplate p)
         {
-            if (_listBox == null) return;
-            _listBox.ItemTemplate = p;
+            if (ListBox == null) return;
+            ListBox.ItemTemplate = p;
         }
 
         #endregion
@@ -195,8 +195,8 @@ namespace Aviad.WPF.Controls
 
         private void OnItemContainerStyleChanged(Style p)
         {
-            if (_listBox == null) return;
-            _listBox.ItemContainerStyle = p;
+            if (ListBox == null) return;
+            ListBox.ItemContainerStyle = p;
         }
 
         #endregion
@@ -239,8 +239,8 @@ namespace Aviad.WPF.Controls
 
         private void OnItemTemplateSelectorChanged(DataTemplateSelector p)
         {
-            if (_listBox == null) return;
-            _listBox.ItemTemplateSelector = p;
+            if (ListBox == null) return;
+            ListBox.ItemTemplateSelector = p;
         }
 
         #endregion
@@ -254,13 +254,13 @@ namespace Aviad.WPF.Controls
         private void InternalOpenPopup()
         {
             _popup.IsOpen = true;
-            if (_listBox != null) _listBox.SelectedIndex = -1;
+            if (ListBox != null) ListBox.SelectedIndex = -1;
         }
 
         public void ShowPopup()
         {
-            if (_listBox == null || _popup == null) InternalClosePopup();
-            else if (_listBox.Items.Count == 0) InternalClosePopup();
+            if (ListBox == null || _popup == null) InternalClosePopup();
+            else if (ListBox.Items.Count == 0) InternalClosePopup();
             else InternalOpenPopup();
         }
 
@@ -291,7 +291,7 @@ namespace Aviad.WPF.Controls
             // Get the binding's resulting value.
             Text = _dummy.GetValue(TextProperty).ToString();
             _suppressEvent = false;
-            _listBox.SelectedIndex = -1;
+            ListBox.SelectedIndex = -1;
             SelectAll();
         }
 
@@ -305,14 +305,14 @@ namespace Aviad.WPF.Controls
             {
                 InternalClosePopup();
             }
-            else if (_listBox != null)
+            else if (ListBox != null)
             {
                 if (_filter != null)
-                    _listBox.Items.Filter = FilterFunc;
+                    ListBox.Items.Filter = FilterFunc;
 
                 if (_popup != null)
                 {
-                    if (_listBox.Items.Count == 0)
+                    if (ListBox.Items.Count == 0)
                         InternalClosePopup();
                     else
                         InternalOpenPopup();
@@ -329,17 +329,17 @@ namespace Aviad.WPF.Controls
         {
             base.OnApplyTemplate();
             _popup = Template.FindName("PART_Popup", this) as Popup;
-            _listBox = Template.FindName("PART_ListBox", this) as ListBox;
-            if (_listBox != null)
+            ListBox = Template.FindName("PART_ListBox", this) as ListBox;
+            if (ListBox != null)
             {
-                _listBox.PreviewMouseDown += listBox_MouseUp;
-                _listBox.KeyDown += listBox_KeyDown;
+                ListBox.PreviewMouseDown += listBox_MouseUp;
+                ListBox.KeyDown += listBox_KeyDown;
                 OnItemsSourceChanged(ItemsSource);
                 OnItemTemplateChanged(ItemTemplate);
                 OnItemContainerStyleChanged(ItemContainerStyle);
                 OnItemTemplateSelectorChanged(ItemTemplateSelector);
                 if (_filter != null)
-                    _listBox.Items.Filter = FilterFunc;
+                    ListBox.Items.Filter = FilterFunc;
             }
         }
 
@@ -365,10 +365,10 @@ namespace Aviad.WPF.Controls
             }
             else if (e.Key == Key.Down)
             {
-                if (_listBox != null && o == this)
+                if (ListBox != null && o == this)
                 {
                     _suppressEvent = true;
-                    _listBox.Focus();
+                    ListBox.Focus();
                     _suppressEvent = false;
                 }
             }
@@ -382,7 +382,7 @@ namespace Aviad.WPF.Controls
                 dep = VisualTreeHelper.GetParent(dep);
             }
             if (dep == null) return;
-            object item = _listBox.ItemContainerGenerator.ItemFromContainer(dep);
+            object item = ListBox.ItemContainerGenerator.ItemFromContainer(dep);
             if (item == null) return;
             SetTextValueBySelection(item, false);
         }
@@ -390,9 +390,9 @@ namespace Aviad.WPF.Controls
         private void listBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter || e.Key == Key.Return)
-                SetTextValueBySelection(_listBox.SelectedItem, false);
+                SetTextValueBySelection(ListBox.SelectedItem, false);
             else if (e.Key == Key.Tab)
-                SetTextValueBySelection(_listBox.SelectedItem, true);
+                SetTextValueBySelection(ListBox.SelectedItem, true);
         }
     }
 }

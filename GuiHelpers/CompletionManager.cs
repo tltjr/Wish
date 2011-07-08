@@ -13,10 +13,11 @@ namespace GuiHelpers
         private CompletionWindow _completionWindow;
         private IList<ICompletionData> _completionData;
         private readonly CompletionHelper _completionHelper = new CompletionHelper();
+        private List<string> _matches;
 
         public delegate void OnCloseDelegate();
 
-        public void CreateWindow(TextArea textArea, string[] args, string workingDirectory, OnCloseDelegate onCloseDelegate)
+        public bool CreateWindow(TextArea textArea, string[] args, string workingDirectory, OnCloseDelegate onCloseDelegate)
         {
             _completionWindow = new CompletionWindow(textArea)
                                     {
@@ -24,25 +25,28 @@ namespace GuiHelpers
                                         MinWidth = 150
                                     };
             PopulateCompletionList(args.Last(), workingDirectory);
+            if (_matches.Count == 0) return false;
             _completionWindow.Show();
             _completionWindow.Closed += delegate
-            {
-                _completionWindow = null;
-                onCloseDelegate.Invoke();
-            };
+                                            {
+                                                _completionWindow = null;
+                                                onCloseDelegate.Invoke();
+                                            };
             if (_completionData != null && _completionData.Count > 0)
             {
                 _completionWindow.CompletionList.SelectedItem = _completionData[0];
             }
+            return true;
         }
 
         private void PopulateCompletionList(string arg, string workingDirectory)
         {
             var directories = _completionHelper.GetDirectories(arg, workingDirectory);
             var searchString = _completionHelper.GetSearchString(arg, workingDirectory);
-            var matches =
+            _matches =
                 directories.Where(o => o.StartsWith(searchString, StringComparison.InvariantCultureIgnoreCase)).ToList();
-            var names = _completionHelper.GetDirectoryNames(workingDirectory, matches).ToList();
+            if (0 == _matches.Count) return;
+            var names = _completionHelper.GetDirectoryNames(workingDirectory, _matches).ToList();
             _completionData = _completionWindow.CompletionList.CompletionData;
             foreach (var name in names)
             {

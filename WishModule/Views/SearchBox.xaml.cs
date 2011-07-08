@@ -21,14 +21,25 @@ namespace Wish.Views
     /// </summary>
     public partial class SearchBox : UserControl
     {
-        public SearchBox()
+        private ActbViewModel _viewModel;
+        private CommandEngine _commandEngine;
+
+        public SearchBox(CommandEngine commandEngine)
         {
             InitializeComponent();
+            _commandEngine = commandEngine;
         }
 
         public void Opened(object sender, EventArgs e)
         {
             searchTb.Focus();
+        }
+
+        protected override void OnPreviewKeyDown(KeyEventArgs e)
+        {
+            _viewModel = Resources["ViewModel"] as ActbViewModel;
+            if (null == _viewModel) return;
+            _viewModel.HandleKeyDown(e, searchTb.ListBox.SelectedItem);
         }
     }
 }

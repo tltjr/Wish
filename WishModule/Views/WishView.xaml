@@ -36,19 +36,4 @@
                 </ControlTemplate>
             </avalonEdit:TextEditor.Template>
         </avalonEdit:TextEditor>
-        <!--<Popup x:Name="popup1" 
-                         Placement="Center" 
-                         AllowsTransparency="True"
-                         IsOpen="False">
-            <Grid Background="White">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Label Content="Search Command History:" 
-                                   Grid.Row="0" 
-                                   Foreground="White"/>
-                <TextBox Grid.Row="1" />
-            </Grid>
-        </Popup>-->
 </UserControl>
