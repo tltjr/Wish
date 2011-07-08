@@ -100,6 +100,12 @@
         "Entry"
         {
         "MsmKey" = "8:_3C26C0444F48169EB795CE7B3C97FAFC"
+        "OwnerKey" = "8:_E013A68D83A768D87A8133D31DC01CB8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3C26C0444F48169EB795CE7B3C97FAFC"
         "OwnerKey" = "8:_0F9E6B84BBF353DDF9788F4D213A88AF"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -153,6 +159,24 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_E013A68D83A768D87A8133D31DC01CB8"
+        "OwnerKey" = "8:_E5B6DA5F77424270A41E09798A5B0332"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E013A68D83A768D87A8133D31DC01CB8"
+        "OwnerKey" = "8:_F4541A11CF9B40F8188F42F2C883CF86"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E013A68D83A768D87A8133D31DC01CB8"
+        "OwnerKey" = "8:_0F9E6B84BBF353DDF9788F4D213A88AF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E5B6DA5F77424270A41E09798A5B0332"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -197,6 +221,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E5B6DA5F77424270A41E09798A5B0332"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E013A68D83A768D87A8133D31DC01CB8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -675,6 +705,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E013A68D83A768D87A8133D31DC01CB8"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Tltjr.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_E013A68D83A768D87A8133D31DC01CB8"
+                    {
+                    "Name" = "8:Tltjr.Core.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Tltjr.Core.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_BF64C6BC9772400E98F1CF9F6FE18A8E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EF91680A78DB040DE939221CB2F4B10B"
             {
             "AssemblyRegister" = "3:1"
@@ -825,7 +886,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Wish"
         "ProductCode" = "8:{B20EC9DA-F8C9-415C-9171-48B411BF5564}"
-        "PackageCode" = "8:{24913D8E-C3AB-4DE6-A038-AB13FB30C8E5}"
+        "PackageCode" = "8:{9EBD5DDB-E2C0-449F-9E2F-0C0484C25FE4}"
         "UpgradeCode" = "8:{01EB07E7-D897-43FF-9D37-6298A6CED28A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

@@ -12,7 +12,6 @@ namespace Wish
     public class TabStrategy : IKeyStrategy
     {
         private readonly WishModel _wishModel;
-        private readonly TextTransformations _textTransformations = new TextTransformations();
 
         public TabStrategy(WishModel wishModel)
         {
@@ -24,13 +23,11 @@ namespace Wish
             _wishModel.ActivelyTabbing = false;
         }
 
-        public void Handle(KeyEventArgs e)
+        public string Handle(KeyEventArgs e)
         {
-            if (_wishModel.ActivelyTabbing) return;
+            if (_wishModel.ActivelyTabbing) return String.Empty;
             bool result = false;
-            //var line2 = _wishModel.TextEditor.Text.Substring(_wishModel.LastPromptIndex);
-            //var command2 = _textTransformations.ParseCommandLine(line2);
-            var command = _textTransformations.ParseScript(_wishModel.TextEditor.Text, _wishModel.LastPromptIndex);
+            var command = _wishModel.TextTransformations.ParseScript(_wishModel.TextEditor.Text);
             if (command.Args.Length > 0)
             {
                 result = new CompletionManager().CreateWindow(_wishModel.TextEditor.TextArea, command.Args, _wishModel.WorkingDirectory, OnCompletionWindowClosed);
@@ -38,6 +35,7 @@ namespace Wish
             e.Handled = true;
             CommandHistory.Reset();
             _wishModel.ActivelyTabbing = result;
+            return null;
         }
     }
 }

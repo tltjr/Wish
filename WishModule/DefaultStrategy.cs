@@ -9,9 +9,10 @@ namespace Wish
 {
     public class DefaultStrategy : IKeyStrategy
     {
-        public void Handle(KeyEventArgs e)
+        public string Handle(KeyEventArgs e)
         {
             CommandHistory.Reset();
+            return String.Empty;
         }
     }
 }

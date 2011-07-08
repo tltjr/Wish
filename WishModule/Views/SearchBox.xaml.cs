@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Tltjr.Core;
 using Wish.Core;
 
 namespace Wish.Views
@@ -21,13 +22,14 @@ namespace Wish.Views
     /// </summary>
     public partial class SearchBox : UserControl
     {
-        private ActbViewModel _viewModel;
-        private CommandEngine _commandEngine;
+        private readonly OnSelection _onSelection;
 
-        public SearchBox(CommandEngine commandEngine)
+        public delegate string OnSelection(Command command);
+
+        public SearchBox(OnSelection onSelection)
         {
             InitializeComponent();
-            _commandEngine = commandEngine;
+            _onSelection = onSelection;
         }
 
         public void Opened(object sender, EventArgs e)
@@ -37,9 +39,13 @@ namespace Wish.Views
 
         protected override void OnPreviewKeyDown(KeyEventArgs e)
         {
-            _viewModel = Resources["ViewModel"] as ActbViewModel;
-            if (null == _viewModel) return;
-            _viewModel.HandleKeyDown(e, searchTb.ListBox.SelectedItem);
+            //_viewModel = Resources["ViewModel"] as ActbViewModel;
+            if (Key.Enter != e.Key) return;
+            {
+                var selectedItem = searchTb.ListBox.SelectedItem as string;
+                _onSelection(selectedItem.ParseCommandLine());
+                e.Handled = true;
+            }
         }
     }
 }

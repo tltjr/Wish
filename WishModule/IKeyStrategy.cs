@@ -8,6 +8,6 @@ namespace Wish
 {
     public interface IKeyStrategy
     {
-        void Handle(KeyEventArgs e);
+        string Handle(KeyEventArgs e);
     }
 }

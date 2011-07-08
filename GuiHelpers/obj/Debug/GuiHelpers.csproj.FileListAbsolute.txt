@@ -8,3 +8,5 @@ C:\src\dotnet\Wish\GuiHelpers\obj\Debug\GuiHelpers.dll
 C:\src\dotnet\Wish\GuiHelpers\obj\Debug\GuiHelpers.pdb
 C:\src\dotnet\Wish\GuiHelpers\bin\Debug\Wish.Core.dll
 C:\src\dotnet\Wish\GuiHelpers\bin\Debug\Wish.Core.pdb
+C:\src\dotnet\Wish\GuiHelpers\bin\Debug\Tltjr.Core.dll
+C:\src\dotnet\Wish\GuiHelpers\bin\Debug\Tltjr.Core.pdb

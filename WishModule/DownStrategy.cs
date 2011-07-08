@@ -16,11 +16,12 @@ namespace Wish
             _wishModel = wishModel;
         }
 
-        public void Handle(KeyEventArgs e)
+        public string Handle(KeyEventArgs e)
         {
-            if (_wishModel.ActivelyTabbing) return;
+            if (_wishModel.ActivelyTabbing) return null;
             var previous = CommandHistory.GetPrevious();
-            _wishModel.ReplaceLine(previous);
+            _wishModel.TextTransformations.ReplaceLine(_wishModel.TextEditor, previous);
+            return null;
         }
     }
 }

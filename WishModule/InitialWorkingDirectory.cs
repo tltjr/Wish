@@ -15,12 +15,11 @@ namespace Wish
             _commandEngine = commandEngine;
         }
 
-        public string Set(string workingDirectory)
+        public void Set(string workingDirectory)
         {
             try
             {
                 _commandEngine.ProcessCommand(new Command("cd " + workingDirectory, "cd", new[] {workingDirectory}));
-                return _commandEngine.WorkingDirectory;
             }
             catch (Exception e)
             {

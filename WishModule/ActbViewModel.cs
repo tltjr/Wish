@@ -48,14 +48,5 @@ namespace Wish
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
-        public void HandleKeyDown(KeyEventArgs e, object selectedItem)
-        {
-            if (Key.Enter != e.Key) return;
-            {
-                var sel = selectedItem as string;
-                //do stuff
-                e.Handled = true;
-            }
-        }
     }
 }

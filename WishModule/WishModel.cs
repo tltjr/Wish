@@ -16,33 +16,27 @@ namespace Wish
         public string WorkingDirectory { get; set; }
 
         public TextEditor TextEditor { get; set; }
-        public WishView View;
-
-        private readonly IRegion _region;
-
-        public int LastPromptIndex { get; set; }
         public bool ActivelyTabbing { get; set; }
 
-        private readonly TextTransformations _textTransformations = new TextTransformations();
+        public TextTransformations TextTransformations { get; set; }
         public CommandEngine CommandEngine { get; set; }
         private readonly SyntaxHighlighting _syntaxHighlighting = new SyntaxHighlighting();
         private readonly InitialWorkingDirectory _iwd;
 
         private readonly IDictionary<Key, IKeyStrategy> _strategies = new Dictionary<Key, IKeyStrategy>();
+        private Popup _popup;
 
-        public WishModel(TextEditor textEditor, IRegion region, WishView view, string workingDirectory)
+        public WishModel(TextEditor textEditor, TextTransformations textTransformations, string workingDirectory)
         {
             TextEditor = textEditor;
-            _region = region;
-            View = view;
+            TextTransformations = textTransformations;
             WorkingDirectory = workingDirectory;
-            LastPromptIndex = -1;
             _syntaxHighlighting.SetSyntaxHighlighting(typeof(WishView), textEditor);
-            _textTransformations.CreatePrompt(WorkingDirectory);
-            LastPromptIndex = _textTransformations.InsertNewPrompt(textEditor);
+            TextTransformations.CreatePrompt(workingDirectory);
+            TextTransformations.InsertNewPrompt(textEditor);
             CommandEngine = new CommandEngine();
             _iwd = new InitialWorkingDirectory(CommandEngine);
-            WorkingDirectory = _iwd.Set(WorkingDirectory);
+            _iwd.Set(workingDirectory);
             BootstrapKeyStrategies();
         }
 
@@ -54,62 +48,56 @@ namespace Wish
             _strategies.Add(Key.Enter, new EnterStrategy(this));
         }
 
-        public void KeyPress(KeyEventArgs e)
+        public string KeyPress(KeyEventArgs e)
         {
             IKeyStrategy strategy;
             if(_strategies.TryGetValue(e.Key, out strategy))
             {
-                strategy.Handle(e);
+                WorkingDirectory = strategy.Handle(e) ?? WorkingDirectory;
+                return WorkingDirectory;
             }
-            else
+            CommandHistory.Reset();
+            return null;
+        }
+
+        public string RequestHistorySearch()
+        {
+            _popup = new Popup {IsOpen = false, PlacementTarget = TextEditor, Placement = PlacementMode.Center};
+            var searchBox = new SearchBox(Execute);
+            _popup.Opened += searchBox.Opened;
+            _popup.Child = searchBox;
+            _popup.IsOpen = true;
+            _popup.StaysOpen = false;
+            return WorkingDirectory;
+        }
+
+        private void EnsureCorrectCaretPosition()
+        {
+            var line = TextEditor.Document.GetLineByNumber(TextEditor.TextArea.Caret.Line);
+            if (0 == line.Length)
             {
-                CommandHistory.Reset();
+                TextEditor.TextArea.Caret.Line = TextEditor.TextArea.Caret.Line - 1;
             }
         }
 
-        public void RequestHistorySearch()
+        public string Execute(Command command)
         {
-            var popup = new Popup {IsOpen = false, PlacementTarget = TextEditor, Placement = PlacementMode.Center};
-            var searchBox = new SearchBox(CommandEngine);
-            popup.Opened += searchBox.Opened;
-            popup.Child = searchBox;
-            popup.IsOpen = true;
-            popup.StaysOpen = false;
+            CheckOpenPopup();
+            CommandHistory.Add(command);
+            TextEditor.Text += "\n";
+            var output = CommandEngine.ProcessCommand(command);
+            WorkingDirectory = CommandEngine.WorkingDirectory;
+            TextTransformations.HandleResults(TextEditor, output, WorkingDirectory);
+            Keyboard.Focus(TextEditor);
+            EnsureCorrectCaretPosition();
+            return WorkingDirectory;
         }
 
-
-        public bool IsExit(Command command)
+        private void CheckOpenPopup()
         {
-            if (command.Name.Equals("exit", StringComparison.InvariantCultureIgnoreCase))
+            if(null != _popup)
             {
-                var i = _region.Views.Count();
-                if (i > 1)
-                {
-                    _region.Remove(View);
-                }
-                else
-                {
-                    System.Windows.Application.Current.Shutdown();
-                }
-                return true;
-            }
-            return false;
-        }
-
-        public void ReplaceLine(Command command)
-        {
-            if (null == command) return;
-            var raw = command.Raw;
-            var text = TextEditor.Text;
-            var line = TextEditor.Text.Substring(LastPromptIndex);
-            if (!String.IsNullOrEmpty(line))
-            {
-                var baseText = text.Remove(text.Length - line.Length);
-                TextEditor.Text = baseText + raw;
-            }
-            else
-            {
-                TextEditor.Text += raw;
+                _popup.IsOpen = false;
             }
         }
     }

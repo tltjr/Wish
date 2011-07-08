@@ -60,3 +60,5 @@ C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\de\AvalonDock.resources.dll
 C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\it-IT\AvalonDock.resources.dll
 C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\Aviad.WPF.Controls.dll
 C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\Aviad.WPF.Controls.pdb
+C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\Tltjr.Core.dll
+C:\src\dotnet\Wish\Wish.Desktop\bin\Debug\Tltjr.Core.pdb

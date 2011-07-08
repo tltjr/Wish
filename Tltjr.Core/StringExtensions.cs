@@ -1,11 +1,30 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using Wish.Core;
 
 namespace Tltjr.Core
 {
     public static class StringExtensions
     {
+		public static Command ParseCommandLine(this string line) {
+			var command = "";
+			var args = new List<string>();
+			var m = Regex.Match(line.Trim() + " ", @"^(.+?)(?:\s+|$)(.*)");
+			if (m.Success) {
+				command = m.Groups[1].Value.Trim();
+				var argsLine = m.Groups[2].Value.Trim();
+				var m2 = Regex.Match(argsLine + " ", @"(?<!\\)"".*?(?<!\\)""|[\S]+");
+				while (m2.Success) {
+					var arg = Regex.Replace(m2.Value.Trim(), @"^""(.*?)""$", "$1");
+					args.Add(arg);
+					m2 = m2.NextMatch();
+				}
+			}
+			return new Command(line, command, args.ToArray());
+		}
+
         public static bool IsEmpty(this string stringValue)
         {
             return string.IsNullOrEmpty(stringValue);

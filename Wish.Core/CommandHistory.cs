@@ -19,6 +19,7 @@ namespace Wish.Core
         public static void Add(Command command)
         {
             _dirty = true;
+            if(_commands.Any(o => o.Raw.Equals(command.Raw))) return;
             _commands.Insert(0, command);
         }
 

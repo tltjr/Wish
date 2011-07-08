@@ -5,6 +5,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
 using ICSharpCode.AvalonEdit;
+using Tltjr.Core;
 using Wish.Core;
 
 namespace GuiHelpers
@@ -12,29 +13,13 @@ namespace GuiHelpers
     public class TextTransformations
     {
         private string _prompt;
+        private int _lastPromptIndex = -1;
 
-        public Command ParseScript(string text, int lastPromptIndex)
+        public Command ParseScript(string text)
         {
-			var line = text.Substring(lastPromptIndex);
-			return ParseCommandLine(line);
+			var line = text.Substring(_lastPromptIndex);
+			return line.ParseCommandLine();
         }
-
-		public Command ParseCommandLine(string line) {
-			var command = "";
-			var args = new List<string>();
-			var m = Regex.Match(line.Trim() + " ", @"^(.+?)(?:\s+|$)(.*)");
-			if (m.Success) {
-				command = m.Groups[1].Value.Trim();
-				var argsLine = m.Groups[2].Value.Trim();
-				var m2 = Regex.Match(argsLine + " ", @"(?<!\\)"".*?(?<!\\)""|[\S]+");
-				while (m2.Success) {
-					var arg = Regex.Replace(m2.Value.Trim(), @"^""(.*?)""$", "$1");
-					args.Add(arg);
-					m2 = m2.NextMatch();
-				}
-			}
-			return new Command(line, command, args.ToArray());
-		}
 
         public string Prompt
         {
@@ -42,24 +27,22 @@ namespace GuiHelpers
             set { _prompt = value; }
         }
 
-        // returns LastPromptIndex
-        public int InsertNewPrompt(TextEditor textEditor)
+        public void InsertNewPrompt(TextEditor textEditor)
 		{
 			if (textEditor.Text.Length > 0)
 				textEditor.Text += textEditor.Text.EndsWith("\n") ? "" : "\n";
 		    textEditor.Text += _prompt;
-			return textEditor.Text.Length;
+			_lastPromptIndex = textEditor.Text.Length;
 		}
 
-        // returns LastPromptIndex
-        public int InsertLineBeforePrompt(TextEditor textEditor, string str, int lastPromptIndex) 
+        public void InsertLineBeforePrompt(TextEditor textEditor, string str) 
 		{
-			var startIndex = lastPromptIndex - Prompt.Length;
-			var oldPromptIndex = lastPromptIndex;
+			var startIndex = _lastPromptIndex - Prompt.Length;
+			var oldPromptIndex = _lastPromptIndex;
             if (!str.EndsWith("\n"))
                 str += "\n";
 			textEditor.Text = textEditor.Text.Insert(startIndex, str);
-			return oldPromptIndex + str.Length;
+			_lastPromptIndex = oldPromptIndex + str.Length;
 		}
 
         public void CreatePrompt(string workingDirectory)
@@ -71,6 +54,30 @@ namespace GuiHelpers
             Prompt += workingDirectory;
             Prompt += " ";
             Prompt += ">> ";
+        }
+
+        public void HandleResults(TextEditor editor, string output, string workingDirectory)
+        {
+            CreatePrompt(workingDirectory);
+            InsertNewPrompt(editor);
+            InsertLineBeforePrompt(editor, output);
+        }
+
+        public void ReplaceLine(TextEditor editor, Command command)
+        {
+            if (null == command) return;
+            var raw = command.Raw;
+            var text = editor.Text;
+            var line = editor.Text.Substring(_lastPromptIndex);
+            if (!String.IsNullOrEmpty(line))
+            {
+                var baseText = text.Remove(text.Length - line.Length);
+                editor.Text = baseText + raw;
+            }
+            else
+            {
+                editor.Text += raw;
+            }
         }
     }
 }
