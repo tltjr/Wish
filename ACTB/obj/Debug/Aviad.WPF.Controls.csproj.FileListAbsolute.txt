@@ -37,3 +37,16 @@ C:\src\dotnet\Wish\ACTB\obj\Debug\ResGen.read.1.tlog
 C:\src\dotnet\Wish\ACTB\obj\Debug\ResGen.write.1.tlog
 C:\src\dotnet\Wish\ACTB\obj\Debug\Aviad.WPF.Controls.dll
 C:\src\dotnet\Wish\ACTB\obj\Debug\Aviad.WPF.Controls.pdb
+T:\src\dotnet\Wish\ACTB\bin\Debug\Aviad.WPF.Controls.dll
+T:\src\dotnet\Wish\ACTB\bin\Debug\Aviad.WPF.Controls.pdb
+T:\src\dotnet\Wish\ACTB\obj\Debug\ResolveAssemblyReference.cache
+T:\src\dotnet\Wish\ACTB\obj\Debug\GeneratedInternalTypeHelper.g.cs
+T:\src\dotnet\Wish\ACTB\obj\Debug\Aviad.WPF.Controls_MarkupCompile.cache
+T:\src\dotnet\Wish\ACTB\obj\Debug\Aviad.WPF.Controls_MarkupCompile.lref
+T:\src\dotnet\Wish\ACTB\obj\Debug\Themes\Generic.baml
+T:\src\dotnet\Wish\ACTB\obj\Debug\Aviad.WPF.Controls.g.resources
+T:\src\dotnet\Wish\ACTB\obj\Debug\Aviad.WPF.Controls.Properties.Resources.resources
+T:\src\dotnet\Wish\ACTB\obj\Debug\ResGen.read.1.tlog
+T:\src\dotnet\Wish\ACTB\obj\Debug\ResGen.write.1.tlog
+T:\src\dotnet\Wish\ACTB\obj\Debug\Aviad.WPF.Controls.dll
+T:\src\dotnet\Wish\ACTB\obj\Debug\Aviad.WPF.Controls.pdb

@@ -4,7 +4,7 @@
 library
 C#
 .cs
-C:\src\dotnet\Wish\WishModule\obj\Debug\
+T:\src\dotnet\Wish\WishModule\obj\Debug\
 Wish
 none
 false
@@ -12,8 +12,8 @@ DEBUG;TRACE
 
 24150388
 
-14-171150680
-221054999490
+14-60780536
+22-56857159
 Views\SearchBox.xaml;Views\WishView.xaml;
 
 True

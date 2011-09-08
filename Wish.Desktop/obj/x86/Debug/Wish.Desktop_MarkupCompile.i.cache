@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\src\dotnet\Wish\Wish.Desktop\obj\x86\Debug\
+T:\src\dotnet\Wish\Wish.Desktop\obj\x86\Debug\
 Wish.Desktop
 none
 false
 DEBUG;TRACE
-C:\src\dotnet\Wish\Wish.Desktop\App.xaml
+T:\src\dotnet\Wish\Wish.Desktop\App.xaml
 1-1509316546
 
-10870661686
-20-1259270507
+10350524625
+20346810521
 Shell.xaml;
 
 False

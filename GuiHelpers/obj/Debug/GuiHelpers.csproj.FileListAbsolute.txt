@@ -10,3 +10,15 @@ C:\src\dotnet\Wish\GuiHelpers\bin\Debug\Wish.Core.dll
 C:\src\dotnet\Wish\GuiHelpers\bin\Debug\Wish.Core.pdb
 C:\src\dotnet\Wish\GuiHelpers\bin\Debug\Tltjr.Core.dll
 C:\src\dotnet\Wish\GuiHelpers\bin\Debug\Tltjr.Core.pdb
+T:\src\dotnet\Wish\GuiHelpers\bin\Debug\GuiHelpers.dll
+T:\src\dotnet\Wish\GuiHelpers\bin\Debug\GuiHelpers.pdb
+T:\src\dotnet\Wish\GuiHelpers\bin\Debug\ICSharpCode.AvalonEdit.dll
+T:\src\dotnet\Wish\GuiHelpers\bin\Debug\Tltjr.Core.dll
+T:\src\dotnet\Wish\GuiHelpers\bin\Debug\Wish.Core.dll
+T:\src\dotnet\Wish\GuiHelpers\bin\Debug\ICSharpCode.AvalonEdit.pdb
+T:\src\dotnet\Wish\GuiHelpers\bin\Debug\ICSharpCode.AvalonEdit.xml
+T:\src\dotnet\Wish\GuiHelpers\bin\Debug\Tltjr.Core.pdb
+T:\src\dotnet\Wish\GuiHelpers\bin\Debug\Wish.Core.pdb
+T:\src\dotnet\Wish\GuiHelpers\obj\Debug\ResolveAssemblyReference.cache
+T:\src\dotnet\Wish\GuiHelpers\obj\Debug\GuiHelpers.dll
+T:\src\dotnet\Wish\GuiHelpers\obj\Debug\GuiHelpers.pdb
