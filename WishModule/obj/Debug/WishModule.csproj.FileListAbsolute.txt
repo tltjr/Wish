@@ -1,5 +1,0 @@
-C:\src\dotnet\Wish\WishModule\obj\Debug\ResolveAssemblyReference.cache
-C:\src\dotnet\Wish\WishModule\obj\Debug\Views\WishView.baml
-C:\src\dotnet\Wish\WishModule\obj\Debug\Views\WishView.g.cs
-C:\src\dotnet\Wish\WishModule\obj\Debug\WishModule_MarkupCompile.cache
-C:\src\dotnet\Wish\WishModule\obj\Debug\WishModule.g.resources
