@@ -11,17 +11,13 @@ namespace Wish
     [ModuleExport(typeof(WishModule))]
     public class WishModule : IModule
     {
-        private readonly ILoggerFacade _logger;
         private readonly IRegionManager _regionManager;
-        private readonly IEventAggregator _eventAggregator;
         private readonly IRegion _mainRegion;
 
         [ImportingConstructor]
-        public WishModule(ILoggerFacade logger, IRegionManager regionManager, IEventAggregator eventAggregator)
+        public WishModule(IRegionManager regionManager)
         {
-            _logger = logger;
             _regionManager = regionManager;
-            _eventAggregator = eventAggregator;
             _mainRegion = _regionManager.Regions["MainRegion"];
         }
 
