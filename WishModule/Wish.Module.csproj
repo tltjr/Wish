@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="ActbViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\WishViewModel.cs" />
     <Compile Include="Views\SearchBox.xaml.cs">
       <DependentUpon>SearchBox.xaml</DependentUpon>
     </Compile>
