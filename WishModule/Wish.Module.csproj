@@ -57,21 +57,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActbViewModel.cs" />
-    <Compile Include="DefaultStrategy.cs" />
-    <Compile Include="DownStrategy.cs" />
-    <Compile Include="EnterStrategy.cs" />
-    <Compile Include="IKeyStrategy.cs" />
-    <Compile Include="InitialWorkingDirectory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TabStrategy.cs" />
-    <Compile Include="UpStrategy.cs" />
     <Compile Include="Views\SearchBox.xaml.cs">
       <DependentUpon>SearchBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WishView.xaml.cs">
       <DependentUpon>WishView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WishModel.cs" />
     <Compile Include="WishModule.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -89,21 +81,9 @@
       <Project>{952E558B-6E94-49A5-BA50-EC50C044709C}</Project>
       <Name>Aviad.WPF.Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GuiHelpers\GuiHelpers.csproj">
-      <Project>{DB3AEF34-4A62-4FD0-8FBA-2C1B0E9A9776}</Project>
-      <Name>GuiHelpers</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ICSharpCode.AvalonEdit\ICSharpCode.AvalonEdit.csproj">
       <Project>{6C55B776-26D4-4DB3-A6AB-87E783B2F3D1}</Project>
       <Name>ICSharpCode.AvalonEdit</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tltjr.Core\Tltjr.Core.csproj">
-      <Project>{0BF86801-F333-4E6A-9893-907CC9B36C31}</Project>
-      <Name>Tltjr.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Wish.Core\Wish.Core.csproj">
-      <Project>{6D03D360-F5A8-42BF-BC3B-2AD0C38C9FFE}</Project>
-      <Name>Wish.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
