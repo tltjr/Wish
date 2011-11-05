@@ -2,10 +2,16 @@
 _ReSharper*
 
 # ReSharper user settings
-Wish.5.1.ReSharper.user
+*.ReSharper.user
 
 # bin directories
-bin\
+bin
 
 # obj directories
-obj\
+obj
+
+# vim swap files
+*.swp
+
+# damn suo file
+*.suo

@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using System.Windows.Media;
-using GuiHelpers;
-using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
-using Wish.Core;
+using Wish.Scripts;
 
 namespace Wish.Views
 {
@@ -18,23 +13,21 @@ namespace Wish.Views
     public partial class WishView
     {
         private readonly IRegion _mainRegion;
-        private readonly IEventAggregator _eventAggregator;
+        private readonly string _workingDirectory;
+        private readonly WishModel _wishModel;
         public static RoutedCommand TabNew = new RoutedCommand();
         public static RoutedCommand ControlR = new RoutedCommand();
-        private readonly WishModel _wish;
-        private readonly TextTransformations _textTransformations = new TextTransformations();
-        //public readonly SyntaxHighlighting SyntaxHighlighting = new SyntaxHighlighting();
 
-        public WishView(IRegion mainRegion, IEventAggregator eventAggregator, string workingDirectory)
+        public WishView(IRegion mainRegion, string workingDirectory)
         {
             InitializeComponent();
-            _mainRegion = mainRegion;
-            _eventAggregator = eventAggregator;
-            _wish = new WishModel(textEditor, _textTransformations, workingDirectory);
             SetInputGestures();
+            _mainRegion = mainRegion;
+            _workingDirectory = workingDirectory;
+            _wishModel = new WishModel(new Repl());
         }
 
-        private void SetInputGestures()
+        private static void SetInputGestures()
         {
             var cntrlShftT = new KeyGesture(Key.T, ModifierKeys.Control | ModifierKeys.Shift);
             TabNew.InputGestures.Add(cntrlShftT);
@@ -54,7 +47,9 @@ namespace Wish.Views
         private void OnUserControlLoaded(object sender, RoutedEventArgs e)
         {
             Keyboard.Focus(textEditor);
-            Title = _wish.WorkingDirectory;
+            var result = _wishModel.Start(_workingDirectory);
+            textEditor.Text = result.Text;
+            Title = result.WorkingDirectory;
         }
 
         protected override void OnPreviewKeyDown(KeyEventArgs e)
@@ -78,12 +73,30 @@ namespace Wish.Views
                 command.Execute(0, this);
                 e.Handled = true;
             }
-            var comm = _textTransformations.ParseScript(textEditor.Text);
-            if (IsExit(comm)) return;
-            var workingDir = _wish.KeyPress(e);
-            if (String.IsNullOrEmpty(workingDir)) return;
-            Title = workingDir;
+
+            var result = _wishModel.Raise(e.Key, textEditor.Text);
+
+            if (result.IsExit) Exit();
+
+            textEditor.Text = result.Text;
+            Title = result.WorkingDirectory;
+            //Title = workingDir;
         }
+
+        private void Exit()
+        {
+            var i = _mainRegion.Views.Count();
+            if (i > 1)
+            {
+                _mainRegion.Remove(this);
+            }
+            else
+            {
+                Application.Current.Shutdown();
+            }
+        }
+
+
 
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register(
@@ -101,33 +114,16 @@ namespace Wish.Views
 
         private void ExecuteNewTab(object sender, ExecutedRoutedEventArgs e)
         {
-            var view = new WishView(_mainRegion, _eventAggregator, _wish.WorkingDirectory);
+            var view = new WishView(_mainRegion, _workingDirectory);
             _mainRegion.Add(view);
         }
 
         private void ExecuteControlR(object sender, ExecutedRoutedEventArgs e)
         {
-            var workingDir = _wish.RequestHistorySearch();
-            if (String.IsNullOrEmpty(workingDir)) return;
-            Title = workingDir;
+            //var workingDir = _wish.RequestHistorySearch();
+            //if (String.IsNullOrEmpty(workingDir)) return;
+            //Title = workingDir;
         }
 
-        public bool IsExit(Command command)
-        {
-            if (command.Name.Equals("exit", StringComparison.InvariantCultureIgnoreCase))
-            {
-                var i = _mainRegion.Views.Count();
-                if (i > 1)
-                {
-                    _mainRegion.Remove(this);
-                }
-                else
-                {
-                    Application.Current.Shutdown();
-                }
-                return true;
-            }
-            return false;
-        }
     }
 }

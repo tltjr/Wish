@@ -1,104 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using GuiHelpers;
-using ICSharpCode.AvalonEdit;
-using Microsoft.Practices.Prism.Regions;
-using Wish.Core;
-using Wish.Views;
+using Wish.Common;
+using Wish.Scripts;
 
 namespace Wish
 {
     public class WishModel
     {
-        public string WorkingDirectory { get; set; }
+        private IRepl _repl;
 
-        public TextEditor TextEditor { get; set; }
-        public bool ActivelyTabbing { get; set; }
-
-        public TextTransformations TextTransformations { get; set; }
-        public CommandEngine CommandEngine { get; set; }
-        private readonly SyntaxHighlighting _syntaxHighlighting = new SyntaxHighlighting();
-        private readonly InitialWorkingDirectory _iwd;
-
-        private readonly IDictionary<Key, IKeyStrategy> _strategies = new Dictionary<Key, IKeyStrategy>();
-        private Popup _popup;
-
-        public WishModel(TextEditor textEditor, TextTransformations textTransformations, string workingDirectory)
+        public WishModel(IRepl repl)
         {
-            TextEditor = textEditor;
-            TextTransformations = textTransformations;
-            WorkingDirectory = workingDirectory;
-            _syntaxHighlighting.SetSyntaxHighlighting(typeof(WishView), textEditor);
-            TextTransformations.CreatePrompt(workingDirectory);
-            TextTransformations.InsertNewPrompt(textEditor);
-            CommandEngine = new CommandEngine();
-            _iwd = new InitialWorkingDirectory(CommandEngine);
-            _iwd.Set(workingDirectory);
-            BootstrapKeyStrategies();
+            _repl = repl;
         }
 
-        private void BootstrapKeyStrategies()
+        public CommandResult Raise(Key key, string text)
         {
-            _strategies.Add(Key.Up, new UpStrategy(this));
-            _strategies.Add(Key.Down, new DownStrategy(this));
-            _strategies.Add(Key.Tab, new TabStrategy(this));
-            _strategies.Add(Key.Enter, new EnterStrategy(this));
-        }
-
-        public string KeyPress(KeyEventArgs e)
-        {
-            IKeyStrategy strategy;
-            if(_strategies.TryGetValue(e.Key, out strategy))
+            if (key.Equals(Key.Enter))
             {
-                WorkingDirectory = strategy.Handle(e) ?? WorkingDirectory;
-                return WorkingDirectory;
+                return _repl.Loop(text);
             }
-            CommandHistory.Reset();
-            return null;
+            return new CommandResult { Handled = false, IsExit = false, Text = string.Empty, Error = "massive fail" };
         }
 
-        public string RequestHistorySearch()
+        public CommandResult Start(string workingDirectory)
         {
-            _popup = new Popup {IsOpen = false, PlacementTarget = TextEditor, Placement = PlacementMode.Center};
-            var searchBox = new SearchBox(Execute);
-            _popup.Opened += searchBox.Opened;
-            _popup.Child = searchBox;
-            _popup.IsOpen = true;
-            _popup.StaysOpen = false;
-            return WorkingDirectory;
-        }
-
-        private void EnsureCorrectCaretPosition()
-        {
-            var line = TextEditor.Document.GetLineByNumber(TextEditor.TextArea.Caret.Line);
-            if (0 == line.Length)
-            {
-                TextEditor.TextArea.Caret.Line = TextEditor.TextArea.Caret.Line - 1;
-            }
-        }
-
-        public string Execute(Command command)
-        {
-            CheckOpenPopup();
-            CommandHistory.Add(command);
-            TextEditor.Text += "\n";
-            var output = CommandEngine.ProcessCommand(command);
-            WorkingDirectory = CommandEngine.WorkingDirectory;
-            TextTransformations.HandleResults(TextEditor, output, WorkingDirectory);
-            Keyboard.Focus(TextEditor);
-            EnsureCorrectCaretPosition();
-            return WorkingDirectory;
-        }
-
-        private void CheckOpenPopup()
-        {
-            if(null != _popup)
-            {
-                _popup.IsOpen = false;
-            }
+            _repl.Start();
         }
     }
 }

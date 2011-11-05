@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Windows.Input;
-using Wish.Core;
 
 namespace Wish
 {
@@ -31,8 +26,9 @@ namespace Wish
         {
             get
             {
-                var result = CommandHistory.Commands.Select(o => o.Raw);
-                return QueryText != null ? result.Where(o => o.Contains(QueryText)) : result;
+                //var result = CommandHistory.Commands.Select(o => o.Raw);
+                //return QueryText != null ? result.Where(o => o.Contains(QueryText)) : result;
+                return null;
             }
         }
 
