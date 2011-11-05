@@ -34,21 +34,25 @@ namespace Wish.Commands.Runner
             try
             {
                 psObjects = _pipeline.Invoke();
-                //if you wanted to catch unfound parameter exceptions here, you could try
-                // and expanded shortened versions, i.e. -rf => -recurse -force !!
-                // of course, there is probably a smarter way to do this without expensive exceptions?
             } catch(Exception e)
             {
                 return e.Message;
             }
-            //check other streams for content
             if(_pipeline.Error.Count > 0)
             {
-                return _pipeline.Error.ReadToEnd().FirstOrDefault().ToString();
+                var firstOrDefault = _pipeline.Error.ReadToEnd().FirstOrDefault();
+                if (firstOrDefault != null)
+                {
+                    return firstOrDefault.ToString();
+                }
             }
             if(_pipeline.Output.Count > 0)
             {
-                return _pipeline.Output.ReadToEnd().FirstOrDefault().ToString();
+                var firstOrDefault = _pipeline.Output.ReadToEnd().FirstOrDefault();
+                if (firstOrDefault != null)
+                {
+                    return firstOrDefault.ToString();
+                }
             }
             var sb = new StringBuilder();
             foreach (var psObject in psObjects)
@@ -65,7 +69,9 @@ namespace Wish.Commands.Runner
                 var pipeline = _runspace.CreatePipeline();
                 pipeline.Commands.AddScript("pwd");
                 var results = pipeline.Invoke();
+// ReSharper disable PossibleNullReferenceException
                 return results.FirstOrDefault().ToString();
+// ReSharper restore PossibleNullReferenceException
             }
         }
     }

@@ -7,7 +7,7 @@ namespace Wish
 {
     public class WishModel
     {
-        private IRepl _repl;
+        private readonly IRepl _repl;
 
         public WishModel(IRepl repl)
         {
@@ -23,10 +23,9 @@ namespace Wish
             return new CommandResult { Handled = false, IsExit = false, Text = string.Empty, Error = "massive fail" };
         }
 
-        public CommandResult Start(string workingDirectory)
+        public CommandResult Start()
         {
-            //_repl.Start();
-            return null;
+            return _repl.Start();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Wish.Commands
         {
             var commandLine = new CommandLine(command);
             Function = new Function(commandLine.Function);
-            IsExit = Function.Name.Equals("exit", StringComparison.InvariantCultureIgnoreCase) ? true : false;
+            IsExit = Function.Name.Equals("exit", StringComparison.InvariantCultureIgnoreCase);
             Arguments = CreateArguments(commandLine.Arguments);
             Text = commandLine.Text;
             _runner = new Powershell();
@@ -42,10 +42,7 @@ namespace Wish.Commands
 
         protected IEnumerable<Argument> CreateArguments(IEnumerable<string> arguments)
         {
-            foreach (var argument in arguments)
-            {
-                yield return ArgumentFactory.Create(_runner, argument);
-            }
+            return arguments.Select(argument => ArgumentFactory.Create(_runner, argument));
         }
     }
 }

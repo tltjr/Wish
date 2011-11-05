@@ -13,17 +13,15 @@ namespace Wish.Views
     public partial class WishView
     {
         private readonly IRegion _mainRegion;
-        private readonly string _workingDirectory;
         private readonly WishModel _wishModel;
         public static RoutedCommand TabNew = new RoutedCommand();
         public static RoutedCommand ControlR = new RoutedCommand();
 
-        public WishView(IRegion mainRegion, string workingDirectory)
+        public WishView(IRegion mainRegion)
         {
             InitializeComponent();
             SetInputGestures();
             _mainRegion = mainRegion;
-            _workingDirectory = workingDirectory;
             _wishModel = new WishModel(new Repl());
         }
 
@@ -47,7 +45,7 @@ namespace Wish.Views
         private void OnUserControlLoaded(object sender, RoutedEventArgs e)
         {
             Keyboard.Focus(textEditor);
-            var result = _wishModel.Start(_workingDirectory);
+            var result = _wishModel.Start();
             textEditor.Text = result.Text;
             Title = result.WorkingDirectory;
         }
@@ -114,7 +112,7 @@ namespace Wish.Views
 
         private void ExecuteNewTab(object sender, ExecutedRoutedEventArgs e)
         {
-            var view = new WishView(_mainRegion, _workingDirectory);
+            var view = new WishView(_mainRegion);
             _mainRegion.Add(view);
         }
 
