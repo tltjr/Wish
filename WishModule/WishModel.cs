@@ -25,7 +25,8 @@ namespace Wish
 
         public CommandResult Start(string workingDirectory)
         {
-            _repl.Start();
+            //_repl.Start();
+            return null;
         }
     }
 }
