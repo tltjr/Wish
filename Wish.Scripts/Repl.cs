@@ -1,5 +1,6 @@
 ﻿using System;
 using Wish.Commands;
+using Wish.Common;
 
 namespace Wish.Scripts
 {
@@ -9,8 +10,8 @@ namespace Wish.Scripts
         ICommand Read(string text);
         void Eval(ICommand command);
         string Print();
-        string Loop(IRunner runner, string text);
-        string Loop(string text);
+        CommandResult Loop(IRunner runner, string text);
+        CommandResult Loop(string text);
     }
 
     public class Repl : IRepl
@@ -52,18 +53,24 @@ namespace Wish.Scripts
             return _text;
         }
 
-        public string Loop(IRunner runner, string text)
+        public CommandResult Loop(IRunner runner, string text)
         {
             var command = Read(runner, text);
-            Eval(command);
-            return Print();
+            return ProcessCommand(command);
         }
 
-        public string Loop(string text)
+        public CommandResult Loop(string text)
         {
             var command = Read(text);
+            return ProcessCommand(command);
+        }
+
+        private CommandResult ProcessCommand(ICommand command)
+        {
+            if (command.IsExit) return new CommandResult { IsExit = true, Handled = true };
             Eval(command);
-            return Print();
+            var result = new CommandResult {Text = Print(), IsExit = false, Handled = true };
+            return result;
         }
 
         private string GetLine(string text)

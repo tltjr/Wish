@@ -2,6 +2,7 @@
 using System.Linq;
 using Moq;
 using NUnit.Framework;
+using Wish.Commands.Runner;
 
 namespace Wish.Commands.Tests
 {
@@ -62,6 +63,34 @@ namespace Wish.Commands.Tests
         {
             CreateCommandWithRunner();
             Assert.AreEqual("testing", _command.Execute());
+        }
+
+        [Test]
+        public void TestIsExit()
+        {
+            CreateCommandWithRunner();
+            Assert.False(_command.IsExit);
+        }
+
+        [Test]
+        public void TestIsExitWithoutRunner()
+        {
+            var c = new Command("cd");
+            Assert.False(c.IsExit);
+        }
+
+        [Test]
+        public void TestIsExitTrue()
+        {
+            var c = new Command(new Powershell(), "exit");
+            Assert.True(c.IsExit);
+        }
+
+        [Test]
+        public void TestIsExitTrueWithoutRunner()
+        {
+            var c = new Command("exit");
+            Assert.True(c.IsExit);
         }
 
         [Test]

@@ -8,5 +8,6 @@ namespace Wish.Commands
         IEnumerable<string> Complete();
         Function Function { get; set; }
         IEnumerable<Argument> Arguments { get; set; }
+        bool IsExit { get; set; }
     }
 }

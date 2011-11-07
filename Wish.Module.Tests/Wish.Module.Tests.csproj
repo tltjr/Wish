@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{57915513-32AB-44B9-AA63-C2997D1A873B}</ProjectGuid>
+    <ProjectGuid>{D66C6CEE-4272-42B5-A086-0A0E4F69CFE3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Wish.Scripts</RootNamespace>
-    <AssemblyName>Wish.Scripts</AssemblyName>
+    <RootNamespace>Wish.Module.Tests</RootNamespace>
+    <AssemblyName>Wish.Module.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\Wish.Commands.Tests\bin\Debug\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -38,20 +43,24 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Prompt.cs" />
+    <Compile Include="WishModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repl.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Wish.Commands\Wish.Commands.csproj">
-      <Project>{A80A4CAC-9921-4A07-8735-A940B9775540}</Project>
-      <Name>Wish.Commands</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Wish.Common\Wish.Common.csproj">
       <Project>{4973C447-1643-462D-B58D-69929A3AF289}</Project>
       <Name>Wish.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wish.Scripts\Wish.Scripts.csproj">
+      <Project>{57915513-32AB-44B9-AA63-C2997D1A873B}</Project>
+      <Name>Wish.Scripts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WishModule\Wish.Module.csproj">
+      <Project>{F6A61085-69F1-499B-BFCE-E65E32BEDCC9}</Project>
+      <Name>Wish.Module</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Views="clr-namespace:Wish.Views" 
              xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
-             xmlns:ViewModels="clr-namespace:Wish.ViewModels" 
              mc:Ignorable="d" 
              Background="Black"
              d:DesignHeight="450" d:DesignWidth="500"
@@ -14,11 +13,7 @@
         <CommandBinding Command="{x:Static Views:WishView.TabNew}" Executed="ExecuteNewTab"/>
         <CommandBinding Command="{x:Static Views:WishView.ControlR}" Executed="ExecuteControlR"/>
     </UserControl.CommandBindings>
-    <UserControl.DataContext>
-        <ViewModels:WishViewModel x:Name="viewModel" />
-    </UserControl.DataContext>
         <avalonEdit:TextEditor x:Name="textEditor"
-             Text="{Binding Text}"
              FontFamily="Consolas"
              FontSize="14"
              TextChanged="ScrollToEnd"

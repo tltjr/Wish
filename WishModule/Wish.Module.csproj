@@ -58,13 +58,13 @@
   <ItemGroup>
     <Compile Include="ActbViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\WishViewModel.cs" />
     <Compile Include="Views\SearchBox.xaml.cs">
       <DependentUpon>SearchBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WishView.xaml.cs">
       <DependentUpon>WishView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WishModel.cs" />
     <Compile Include="WishModule.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +85,14 @@
     <ProjectReference Include="..\ICSharpCode.AvalonEdit\ICSharpCode.AvalonEdit.csproj">
       <Project>{6C55B776-26D4-4DB3-A6AB-87E783B2F3D1}</Project>
       <Name>ICSharpCode.AvalonEdit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wish.Common\Wish.Common.csproj">
+      <Project>{4973C447-1643-462D-B58D-69929A3AF289}</Project>
+      <Name>Wish.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wish.Scripts\Wish.Scripts.csproj">
+      <Project>{57915513-32AB-44B9-AA63-C2997D1A873B}</Project>
+      <Name>Wish.Scripts</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

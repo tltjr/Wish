@@ -1,5 +1,7 @@
 ﻿using System.Linq;
+using Moq;
 using NUnit.Framework;
+using Wish.Commands;
 
 namespace Wish.Scripts.Tests
 {
@@ -129,6 +131,38 @@ namespace Wish.Scripts.Tests
             var args = comm.Arguments.Select(o => o.PartialPath.Text).ToList();
             Assert.True(args.Contains(@".\blah.txt"));
             Assert.True(args.Contains(@".\targetdir"));
+        }
+
+        [Test]
+        public void LoopNonExit()
+        {
+            var mock = new Mock<IRunner>();
+            mock.Setup(o => o.Execute("> ls")).Returns("some ls output");
+            var result = _repl.Loop("> ls");
+            Assert.False(result.IsExit);
+        }
+
+        [Test]
+        public void LoopNonExitHandled()
+        {
+            var mock = new Mock<IRunner>();
+            mock.Setup(o => o.Execute("> ls")).Returns("some ls output");
+            var result = _repl.Loop("> ls");
+            Assert.True(result.Handled);
+        }
+
+        [Test]
+        public void LoopExitHandled()
+        {
+            var result = _repl.Loop("> exit");
+            Assert.True(result.Handled);
+        }
+
+        [Test]
+        public void LoopExit()
+        {
+            var result = _repl.Loop("> exit");
+            Assert.True(result.IsExit);
         }
 
         private string ExecuteLs()
