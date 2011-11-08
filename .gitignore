@@ -5,13 +5,20 @@ _ReSharper*
 *.ReSharper.user
 
 # bin directories
-bin
+[Bb]in
 
 # obj directories
-obj
+[Oo]bj
 
 # vim swap files
 *.swp
 
 # damn suo file
 *.suo
+
+#NuGet
+packages/
+
+*.user
+
+*.cache
