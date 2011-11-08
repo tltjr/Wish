@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Regions;
+using Wish.Common;
 using Wish.Scripts;
 
 namespace Wish.Views
@@ -39,6 +40,7 @@ namespace Wish.Views
 
         private void ScrollToEnd(object sender, EventArgs eventArgs)
         {
+            EnsureCorrectCaretPosition();
             textEditor.ScrollToEnd();
         }
 
@@ -47,7 +49,7 @@ namespace Wish.Views
             Keyboard.Focus(textEditor);
             var result = _wishModel.Start();
             textEditor.Text = result.Text;
-            Title = result.WorkingDirectory;
+            Title = Global.WorkingDirectory;
         }
 
         protected override void OnPreviewKeyDown(KeyEventArgs e)
@@ -75,10 +77,19 @@ namespace Wish.Views
             var result = _wishModel.Raise(e.Key, textEditor.Text);
 
             if (result.IsExit) Exit();
-
+            if (!result.Handled) return;
             textEditor.Text = result.Text;
-            Title = result.WorkingDirectory;
-            //Title = workingDir;
+            Title = Global.WorkingDirectory;
+        }
+
+        private void EnsureCorrectCaretPosition()
+        {
+            var line = textEditor.Document.GetLineByNumber(textEditor.TextArea.Caret.Line);
+            if (0 == line.Length)
+            {
+                textEditor.TextArea.Caret.Line = textEditor.TextArea.Caret.Line - 1;
+                textEditor.TextArea.Caret.Column = Global.PromptLength;
+            }
         }
 
         private void Exit()

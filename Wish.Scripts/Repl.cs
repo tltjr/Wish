@@ -22,14 +22,13 @@ namespace Wish.Scripts
         private string _text;
         private string _result;
 
-        public Repl()
-        {
-            Prompt = new Prompt {Current = @"> "};
-            LastPromptIndex = Prompt.Current.Length;
-        }
-
         public CommandResult Start()
         {
+            Prompt = new Prompt {Current = @"> "};
+            // needs to be adjusted by one for some ungodly reason
+            Global.PromptLength = Prompt.Current.Length + 1;
+            LastPromptIndex = Prompt.Current.Length;
+            _text = Prompt.Current;
             return new CommandResult {Text = _text};
         }
 

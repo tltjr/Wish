@@ -17,20 +17,23 @@ namespace Wish.Scripts.Tests
         }
 
         [Test]
-        public void NewReplPrompt()
+        public void StartReplPrompt()
         {
+            _repl.Start();
             Assert.AreEqual("> ", _repl.Prompt.Current);
         }
 
         [Test]
-        public void NewReplPromptIndex()
+        public void StartReplPromptIndex()
         {
+            _repl.Start();
             Assert.AreEqual(2, _repl.LastPromptIndex);
         }
 
         [Test]
         public void ReadFunction()
         {
+            _repl.Start();
             var command = _repl.Read("> cp ./blah.txt ./temp/blahdir");
             Assert.AreEqual("cp", command.Function.Name);
         }
@@ -38,6 +41,7 @@ namespace Wish.Scripts.Tests
         [Test]
         public void ReadArgs()
         {
+            _repl.Start();
             var command = _repl.Read("> cp ./blah.txt ./temp/blahdir");
             var args = command.Arguments.Select(o => o.PartialPath.Text).ToList();
             Assert.True(args.Contains("./blah.txt"));
@@ -64,6 +68,7 @@ namespace Wish.Scripts.Tests
         public void EvalLsContainsModeHeader()
         {
             // actual execution - relative to Wish.Scripts.Tests\bin\Debug
+            _repl.Start();
             var command = _repl.Read("> ls");
             _repl.Eval(command);
             var result = _repl.Print();
@@ -138,6 +143,7 @@ namespace Wish.Scripts.Tests
         {
             var mock = new Mock<IRunner>();
             mock.Setup(o => o.Execute("> ls")).Returns("some ls output");
+            _repl.Start();
             var result = _repl.Loop("> ls");
             Assert.False(result.IsExit);
         }
@@ -147,6 +153,7 @@ namespace Wish.Scripts.Tests
         {
             var mock = new Mock<IRunner>();
             mock.Setup(o => o.Execute("> ls")).Returns("some ls output");
+            _repl.Start();
             var result = _repl.Loop("> ls");
             Assert.True(result.Handled);
         }
@@ -154,6 +161,7 @@ namespace Wish.Scripts.Tests
         [Test]
         public void LoopExitHandled()
         {
+            _repl.Start();
             var result = _repl.Loop("> exit");
             Assert.True(result.Handled);
         }
@@ -161,12 +169,14 @@ namespace Wish.Scripts.Tests
         [Test]
         public void LoopExit()
         {
+            _repl.Start();
             var result = _repl.Loop("> exit");
             Assert.True(result.IsExit);
         }
 
         private string ExecuteLs()
         {
+            _repl.Start();
             var command = _repl.Read("> ls");
             _repl.Eval(command);
             var text = _repl.Print();
