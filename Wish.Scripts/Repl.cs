@@ -12,6 +12,7 @@ namespace Wish.Scripts
         string Print();
         CommandResult Loop(IRunner runner, string text);
         CommandResult Loop(string text);
+        CommandResult Start();
     }
 
     public class Repl : IRepl
@@ -25,6 +26,11 @@ namespace Wish.Scripts
         {
             Prompt = new Prompt {Current = @"> "};
             LastPromptIndex = Prompt.Current.Length;
+        }
+
+        public CommandResult Start()
+        {
+            return new CommandResult {Text = _text};
         }
 
         public ICommand Read(IRunner runner, string text)

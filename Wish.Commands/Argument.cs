@@ -1,4 +1,4 @@
-﻿    using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Wish.Extensions;
@@ -17,12 +17,7 @@ namespace Wish.Commands
         protected List<string> GetDirectories(string workingDirectory)
         {
             var directories = Directory.GetFileSystemEntries(workingDirectory, PartialPath.Pattern);
-            var directoryNames = new List<string>();
-            foreach (var directory in directories)
-            {
-                directoryNames.Add(PartialPath.Base + new DirectoryInfo(directory).Name);
-            }
-            return directoryNames;
+            return directories.Select(directory => PartialPath.Base + new DirectoryInfo(directory).Name).ToList();
         }
 
         protected static IEnumerable<string> QuoteSpaces(IEnumerable<string> list, string quote)
