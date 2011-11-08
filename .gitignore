@@ -22,3 +22,5 @@ packages/
 *.user
 
 *.cache
+
+_UpgradeReport_Files/
