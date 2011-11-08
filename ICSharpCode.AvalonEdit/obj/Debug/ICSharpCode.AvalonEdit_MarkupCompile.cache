@@ -4,7 +4,7 @@
 library
 C#
 .cs
-T:\src\dotnet\wish\ICSharpCode.AvalonEdit\obj\Debug\
+T:\src\dotnet\wish-all\Wish\ICSharpCode.AvalonEdit\obj\Debug\
 ICSharpCode.AvalonEdit
 none
 false
@@ -13,6 +13,6 @@ DEBUG;TRACE
 41928994542
 
 179950933079
-141142849124
+14-438158769
 CodeCompletion\CompletionList.xaml;CodeCompletion\InsightWindow.xaml;TextEditor.xaml;themes\generic.xaml;
 

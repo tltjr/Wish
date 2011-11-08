@@ -7,7 +7,7 @@ namespace Wish
 {
     public class WishModel
     {
-        private readonly IRepl _repl;
+        private IRepl _repl;
 
         public WishModel(IRepl repl)
         {
