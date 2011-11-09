@@ -49,7 +49,7 @@ namespace Wish.Views
             Keyboard.Focus(textEditor);
             var result = _wishModel.Start();
             textEditor.Text = result.Text;
-            Title = Global.WorkingDirectory;
+            Title = result.WorkingDirectory;
         }
 
         protected override void OnPreviewKeyDown(KeyEventArgs e)
@@ -76,20 +76,22 @@ namespace Wish.Views
 
             var result = _wishModel.Raise(e.Key, textEditor.Text);
 
-            if (result.IsExit) Exit();
+            if (result.IsExit)
+            {
+                Exit();
+                return;
+            }
             if (!result.Handled) return;
             textEditor.Text = result.Text;
-            Title = Global.WorkingDirectory;
+            Title = result.WorkingDirectory;
         }
 
         private void EnsureCorrectCaretPosition()
         {
             var line = textEditor.Document.GetLineByNumber(textEditor.TextArea.Caret.Line);
-            if (0 == line.Length)
-            {
-                textEditor.TextArea.Caret.Line = textEditor.TextArea.Caret.Line - 1;
-                textEditor.TextArea.Caret.Column = Global.PromptLength;
-            }
+            if (0 != line.Length) return;
+            textEditor.TextArea.Caret.Line = textEditor.TextArea.Caret.Line - 1;
+            textEditor.TextArea.Caret.Column = Global.PromptLength;
         }
 
         private void Exit()

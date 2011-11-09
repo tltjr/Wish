@@ -144,7 +144,7 @@ namespace Wish.Scripts.Tests
             var mock = new Mock<IRunner>();
             mock.Setup(o => o.Execute("> ls")).Returns("some ls output");
             _repl.Start();
-            var result = _repl.Loop("> ls");
+            var result = _repl.Loop(mock.Object, "> ls");
             Assert.False(result.IsExit);
         }
 
@@ -154,7 +154,7 @@ namespace Wish.Scripts.Tests
             var mock = new Mock<IRunner>();
             mock.Setup(o => o.Execute("> ls")).Returns("some ls output");
             _repl.Start();
-            var result = _repl.Loop("> ls");
+            var result = _repl.Loop(mock.Object, "> ls");
             Assert.True(result.Handled);
         }
 
@@ -172,6 +172,17 @@ namespace Wish.Scripts.Tests
             _repl.Start();
             var result = _repl.Loop("> exit");
             Assert.True(result.IsExit);
+        }
+
+        [Test]
+        public void WorkingDirectoryChangesReturnedInResult()
+        {
+            var mock = new Mock<IRunner>();
+            mock.Setup(o => o.Execute("cd ..")).Returns("test");
+            mock.Setup(o => o.WorkingDirectory).Returns("testdir");
+            _repl.Start();
+            var result = _repl.Loop(mock.Object, "> cd ..");
+            Assert.AreEqual("testdir", result.WorkingDirectory);
         }
 
         private string ExecuteLs()

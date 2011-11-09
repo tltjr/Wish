@@ -45,6 +45,7 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -58,6 +59,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Wish.Commands\Wish.Commands.csproj">
+      <Project>{A80A4CAC-9921-4A07-8735-A940B9775540}</Project>
+      <Name>Wish.Commands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wish.Common\Wish.Common.csproj">
       <Project>{4973C447-1643-462D-B58D-69929A3AF289}</Project>
       <Name>Wish.Common</Name>
@@ -72,6 +77,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

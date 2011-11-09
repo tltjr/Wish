@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using Wish.Commands.Runner;
+using Wish.Common;
 
 namespace Wish.Commands
 {
     public class Command : ICommand
     {
         private readonly IRunner _runner;
+        private readonly CommandLine _commandLine;
         public Function Function { get; set; }
         public IEnumerable<Argument> Arguments { get; set; }
         public bool IsExit { get; set; }
@@ -21,17 +23,24 @@ namespace Wish.Commands
 
         public Command(string command)
         {
-            var commandLine = new CommandLine(command);
-            Function = new Function(commandLine.Function);
+            _commandLine = new CommandLine(command);
+            Function = new Function(_commandLine.Function);
             IsExit = Function.Name.Equals("exit", StringComparison.InvariantCultureIgnoreCase);
-            Arguments = CreateArguments(commandLine.Arguments);
-            Text = commandLine.Text;
+            Arguments = CreateArguments(_commandLine.Arguments);
+            Text = _commandLine.Text;
             _runner = new Powershell();
         }
 
-        public string Execute()
+        public CommandResult Execute()
         {
-            return _runner.Execute(Text);
+            var text = _runner.Execute(Text);
+            var result = new CommandResult { Text = text };
+            var dirChange = _commandLine.IsDirectoryCommand();
+            if(dirChange)
+            {
+                result.WorkingDirectory = _runner.WorkingDirectory;
+            }
+            return result;
         }
 
         public IEnumerable<string> Complete()

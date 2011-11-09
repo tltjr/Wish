@@ -22,7 +22,6 @@ namespace Wish
 
         public void Initialize()
         {
-            Global.WorkingDirectory = @"T:\src\dotnet";
             var view = new WishView(_mainRegion);
             _mainRegion.Add(view);
         }

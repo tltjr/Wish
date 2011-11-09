@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using Wish.Common;
 
 namespace Wish.Commands
 {
     public interface ICommand
     {
-        string Execute();
+        CommandResult Execute();
         IEnumerable<string> Complete();
         Function Function { get; set; }
         IEnumerable<Argument> Arguments { get; set; }

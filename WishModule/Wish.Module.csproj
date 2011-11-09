@@ -45,6 +45,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management.Automation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xaml" />
@@ -85,6 +86,10 @@
     <ProjectReference Include="..\ICSharpCode.AvalonEdit\ICSharpCode.AvalonEdit.csproj">
       <Project>{6C55B776-26D4-4DB3-A6AB-87E783B2F3D1}</Project>
       <Name>ICSharpCode.AvalonEdit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wish.Commands\Wish.Commands.csproj">
+      <Project>{A80A4CAC-9921-4A07-8735-A940B9775540}</Project>
+      <Name>Wish.Commands</Name>
     </ProjectReference>
     <ProjectReference Include="..\Wish.Common\Wish.Common.csproj">
       <Project>{4973C447-1643-462D-B58D-69929A3AF289}</Project>

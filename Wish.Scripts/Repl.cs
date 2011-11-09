@@ -20,7 +20,7 @@ namespace Wish.Scripts
         public Prompt Prompt { get; set; }
         public int LastPromptIndex { get; set; }
         private string _text;
-        private string _result;
+        private CommandResult _result;
 
         public CommandResult Start()
         {
@@ -61,21 +61,30 @@ namespace Wish.Scripts
         public CommandResult Loop(IRunner runner, string text)
         {
             var command = Read(runner, text);
-            return ProcessCommand(command);
+            ProcessCommand(command);
+            return _result;
         }
 
         public CommandResult Loop(string text)
         {
             var command = Read(text);
-            return ProcessCommand(command);
+            ProcessCommand(command);
+            return _result;
         }
 
-        private CommandResult ProcessCommand(ICommand command)
+        private void ProcessCommand(ICommand command)
         {
-            if (command.IsExit) return new CommandResult { IsExit = true, Handled = true };
-            Eval(command);
-            var result = new CommandResult {Text = Print(), IsExit = false, Handled = true };
-            return result;
+            if (command.IsExit)
+            {
+                _result = new CommandResult { IsExit = true, Handled = true };
+            }
+            else
+            {
+                Eval(command);
+                _result.Text = Print();
+                _result.IsExit = false;
+                _result.Handled = true;
+            }
         }
 
         private string GetLine(string text)
@@ -95,9 +104,11 @@ namespace Wish.Scripts
 		{
 			var startIndex = LastPromptIndex - Prompt.Current.Length;
 			var oldPromptIndex = LastPromptIndex;
-            _result += _result.EndsWith("\n") ? String.Empty : "\n";
-            _text = _text.Insert(startIndex, _result);
-			LastPromptIndex = oldPromptIndex + _result.Length;
+            var temp = _result.Text;
+            temp += temp.EndsWith("\n") ? String.Empty : "\n";
+            _text = _text.Insert(startIndex, temp);
+			LastPromptIndex = oldPromptIndex + temp.Length;
+            _result.Text = temp;
 		}
     }
 

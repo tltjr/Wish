@@ -1,6 +1,9 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Configuration;
+using System.Windows.Input;
 using Moq;
 using NUnit.Framework;
+using Wish.Commands;
 using Wish.Common;
 using Wish.Scripts;
 
@@ -10,18 +13,21 @@ namespace Wish.Module.Tests
     public class WishModelTests
     {
         private WishModel _wishModel;
+        private static TestRunner _testRunner;
 
         [SetUp]
         public void Init()
         {
             var mock = CreateMock("stub", true, false, string.Empty);
-            _wishModel = new WishModel(mock.Object);
+            _testRunner = new TestRunner();
+            _wishModel = new WishModel(mock.Object, _testRunner);
         }
 
         private static Mock<IRepl> CreateMock(string input, bool handled, bool isExit, string text)
         {
             var mock = new Mock<IRepl>();
-            mock.Setup(o => o.Loop(input))
+            mock.Setup(o => o.Start()).Returns(new CommandResult { Text = "test" });
+            mock.Setup(o => o.Loop(_testRunner, input))
                 .Returns(new CommandResult { Handled = handled, IsExit = isExit, Text = text });
             return mock;
         }
@@ -44,7 +50,7 @@ namespace Wish.Module.Tests
         public void RaiseEnterOnExitReturnsIsExitTrue()
         {
             var mock = CreateMock(@"> exit", true, true, string.Empty);
-            _wishModel = new WishModel(mock.Object);
+            _wishModel = new WishModel(mock.Object, _testRunner);
             var result = _wishModel.Raise(Key.Enter, @"> exit");
             Assert.True(result.IsExit);
         }
@@ -53,7 +59,7 @@ namespace Wish.Module.Tests
         public void RaiseEnterOnExitReturnsHandledTrue()
         {
             var mock = CreateMock(@"> exit", true, true, string.Empty);
-            _wishModel = new WishModel(mock.Object);
+            _wishModel = new WishModel(mock.Object, _testRunner);
             var result = _wishModel.Raise(Key.Enter, @"> exit");
             Assert.True(result.Handled);
         }
@@ -62,7 +68,7 @@ namespace Wish.Module.Tests
         public void RaiseEnterOnExitReturnsTextEmpty()
         {
             var mock = CreateMock(@"> exit", true, true, string.Empty);
-            _wishModel = new WishModel(mock.Object);
+            _wishModel = new WishModel(mock.Object, _testRunner);
             var result = _wishModel.Raise(Key.Enter, @"> exit");
             Assert.AreEqual(result.Text, string.Empty);
         }
@@ -71,9 +77,29 @@ namespace Wish.Module.Tests
         public void RaiseEnterOnExitReturnsNullError()
         {
             var mock = CreateMock(@"> exit", true, true, string.Empty);
-            _wishModel = new WishModel(mock.Object);
+            _wishModel = new WishModel(mock.Object, _testRunner);
             var result = _wishModel.Raise(Key.Enter, @"> exit");
             Assert.IsNull(result.Error);
+        }
+
+        [Test]
+        public void StartReturnsWorkingDirectory()
+        {
+            var result = _wishModel.Start();
+            Assert.AreEqual(@"T:\src\dotnet", result.WorkingDirectory);
+        }
+    }
+
+    public class TestRunner : IRunner
+    {
+        public string Execute(string line)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string WorkingDirectory
+        {
+            get { throw new NotImplementedException(); }
         }
     }
 }

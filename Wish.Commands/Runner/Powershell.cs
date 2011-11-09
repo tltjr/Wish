@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Linq;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
@@ -20,13 +20,6 @@ namespace Wish.Commands.Runner
 
         public string Execute(string line)
         {
-            var pshell = PowerShell.Create();
-            pshell.AddCommand(line);
-            var output = new List<string>();
-            pshell.Invoke(line, output);
-
-
-
             _pipeline = _runspace.CreatePipeline();
             _pipeline.Commands.AddScript(line);
             _pipeline.Commands.Add("Out-String");

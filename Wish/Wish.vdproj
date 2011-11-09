@@ -39,6 +39,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_331BEAA3766300D7104F59CD94C60BEA"
+        "OwnerKey" = "8:_9EE86CE3C70FD0111A89486FFBD02AF3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_40CB957F4B603F6F423EB5B715DA4D72"
         "OwnerKey" = "8:_E5B6DA5F77424270A41E09798A5B0332"
         "MsmSig" = "8:_UNDEFINED"
@@ -172,7 +178,7 @@
         "Entry"
         {
         "MsmKey" = "8:_B769EB498156BC9139161146C3748FA3"
-        "OwnerKey" = "8:_E5B6DA5F77424270A41E09798A5B0332"
+        "OwnerKey" = "8:_331BEAA3766300D7104F59CD94C60BEA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -185,6 +191,12 @@
         {
         "MsmKey" = "8:_B769EB498156BC9139161146C3748FA3"
         "OwnerKey" = "8:_9EE86CE3C70FD0111A89486FFBD02AF3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B769EB498156BC9139161146C3748FA3"
+        "OwnerKey" = "8:_E5B6DA5F77424270A41E09798A5B0332"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -226,13 +238,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B769EB498156BC9139161146C3748FA3"
+        "OwnerKey" = "8:_509B1AB34D89256F54E5B4AF0AE5DC2E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_509B1AB34D89256F54E5B4AF0AE5DC2E"
+        "OwnerKey" = "8:_B769EB498156BC9139161146C3748FA3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -891,7 +903,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Wish"
         "ProductCode" = "8:{B20EC9DA-F8C9-415C-9171-48B411BF5564}"
-        "PackageCode" = "8:{DBE4E447-FCFA-4928-A2B7-971BDD469F6A}"
+        "PackageCode" = "8:{46E88CA5-1F8A-49A0-B9DF-79F69D91CA65}"
         "UpgradeCode" = "8:{01EB07E7-D897-43FF-9D37-6298A6CED28A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

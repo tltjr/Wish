@@ -90,6 +90,10 @@
       <Project>{A80A4CAC-9921-4A07-8735-A940B9775540}</Project>
       <Name>Wish.Commands</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Wish.Common\Wish.Common.csproj">
+      <Project>{4973C447-1643-462D-B58D-69929A3AF289}</Project>
+      <Name>Wish.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Test\abcd.dll">
