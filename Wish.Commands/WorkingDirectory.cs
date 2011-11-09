@@ -1,7 +1,7 @@
 ﻿namespace Wish.Commands
 {
-    public class WorkingDirectory
-    {
-        public string Current { get; set; }
-    }
+    //public class WorkingDirectory
+    //{
+    //    public string Current { get; set; }
+    //}
 }

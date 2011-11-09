@@ -142,7 +142,7 @@ namespace Wish.Scripts.Tests
         public void LoopNonExit()
         {
             var mock = new Mock<IRunner>();
-            mock.Setup(o => o.Execute("> ls")).Returns("some ls output");
+            mock.Setup(o => o.Execute("ls")).Returns("some ls output");
             _repl.Start();
             var result = _repl.Loop(mock.Object, "> ls");
             Assert.False(result.IsExit);
@@ -152,7 +152,7 @@ namespace Wish.Scripts.Tests
         public void LoopNonExitHandled()
         {
             var mock = new Mock<IRunner>();
-            mock.Setup(o => o.Execute("> ls")).Returns("some ls output");
+            mock.Setup(o => o.Execute("ls")).Returns("some ls output");
             _repl.Start();
             var result = _repl.Loop(mock.Object, "> ls");
             Assert.True(result.Handled);
