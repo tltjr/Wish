@@ -17,31 +17,42 @@ namespace Wish.Scripts
 
     public class Repl : IRepl
     {
-        public Prompt Prompt { get; set; }
+        private Prompt _prompt;
+        // for testing purposes
+        public Prompt Prompt
+        {
+            get { return _prompt; }
+            set
+            {
+                _prompt = value;
+                LastPromptIndex = _prompt.Current.Length;
+            }
+        }
         public int LastPromptIndex { get; set; }
-        private string _text;
+        public string Text { get; set; }
         private CommandResult _result;
 
         public CommandResult Start()
         {
-            Prompt = new Prompt {Current = @"> "};
+            _prompt = new Prompt();
             // needs to be adjusted by one for some ungodly reason
-            Global.PromptLength = Prompt.Current.Length + 1;
-            LastPromptIndex = Prompt.Current.Length;
-            _text = Prompt.Current;
-            return new CommandResult {Text = _text};
+            LastPromptIndex = _prompt.Current.Length;
+            Text = _prompt.Current;
+            var command = new Command("cd " + _prompt.WorkingDirectory);
+            command.Execute();
+            return new CommandResult {Text = Text, WorkingDirectory = _prompt.WorkingDirectory};
         }
 
         public ICommand Read(IRunner runner, string text)
         {
-            _text = text;
+            Text = text;
             var line = GetLine(text);
             return new Command(runner, line);
         }
 
         public ICommand Read(string text)
         {
-            _text = text;
+            Text = text;
             var line = GetLine(text);
             return new Command(line);
         }
@@ -49,19 +60,21 @@ namespace Wish.Scripts
         public void Eval(ICommand command)
         {
             _result = command.Execute();
+            _prompt.Update(_result.WorkingDirectory);
         }
 
         public string Print()
         {
             InsertNewPrompt();
             InsertLineBeforePrompt();
-            return _text;
+            return Text;
         }
 
         public CommandResult Loop(IRunner runner, string text)
         {
             var command = Read(runner, text);
             ProcessCommand(command);
+            _result.WorkingDirectory = _prompt.WorkingDirectory;
             return _result;
         }
 
@@ -69,6 +82,7 @@ namespace Wish.Scripts
         {
             var command = Read(text);
             ProcessCommand(command);
+            _result.WorkingDirectory = _prompt.WorkingDirectory;
             return _result;
         }
 
@@ -94,19 +108,19 @@ namespace Wish.Scripts
 
         private void InsertNewPrompt()
 		{
-			if (_text.Length > 0)
-				_text += _text.EndsWith("\n") ? String.Empty : "\n";
-		    _text += Prompt.Current;
-			LastPromptIndex = _text.Length;
+			if (Text.Length > 0)
+				Text += Text.EndsWith("\n") ? String.Empty : "\n";
+		    Text += _prompt.Current;
+			LastPromptIndex = Text.Length;
 		}
 
         private void InsertLineBeforePrompt() 
 		{
-			var startIndex = LastPromptIndex - Prompt.Current.Length;
+			var startIndex = LastPromptIndex - _prompt.Current.Length;
 			var oldPromptIndex = LastPromptIndex;
             var temp = _result.Text;
             temp += temp.EndsWith("\n") ? String.Empty : "\n";
-            _text = _text.Insert(startIndex, temp);
+            Text = Text.Insert(startIndex, temp);
 			LastPromptIndex = oldPromptIndex + temp.Length;
             _result.Text = temp;
 		}

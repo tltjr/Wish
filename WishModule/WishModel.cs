@@ -12,7 +12,6 @@ namespace Wish
     {
         private readonly IRepl _repl;
         private readonly IRunner _runner;
-        private string _workingDirectory;
 
         public WishModel(IRepl repl)
         {
@@ -30,35 +29,14 @@ namespace Wish
         {
             if (key.Equals(Key.Enter))
             {
-                var result = _repl.Loop(_runner, text);
-                if (result.WorkingDirectory != null && _workingDirectory != result.WorkingDirectory)
-                {
-                    _workingDirectory = result.WorkingDirectory;
-                }
-                else
-                {
-                    result.WorkingDirectory = _workingDirectory;
-                }
-                return result;
+                return _repl.Loop(_runner, text);
             }
             return new CommandResult { Handled = false, IsExit = false, Text = string.Empty, Error = "massive fail" };
         }
 
         public CommandResult Start()
         {
-            _workingDirectory = ConfigurationManager.AppSettings["WorkingDirectory"];
-            ChangeDirectory();
-            var result = _repl.Start();
-            result.WorkingDirectory = _workingDirectory ?? Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%");
-            return result;
-        }
-
-        private void ChangeDirectory()
-        {
-            if(null != _workingDirectory)
-            {
-                _repl.Eval(new Command("cd " + _workingDirectory));
-            }
+            return _repl.Start();
         }
     }
 }

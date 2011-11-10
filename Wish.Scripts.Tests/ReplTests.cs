@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Moq;
 using NUnit.Framework;
 using Wish.Commands;
@@ -19,21 +20,27 @@ namespace Wish.Scripts.Tests
         [Test]
         public void StartReplPrompt()
         {
-            _repl.Start();
+            StartAndOverrideDefaultPrompt();
             Assert.AreEqual("> ", _repl.Prompt.Current);
+        }
+
+        private void StartAndOverrideDefaultPrompt()
+        {
+            _repl.Start();
+            _repl.Prompt = new Prompt { Current = "> " };
         }
 
         [Test]
         public void StartReplPromptIndex()
         {
-            _repl.Start();
+            StartAndOverrideDefaultPrompt();
             Assert.AreEqual(2, _repl.LastPromptIndex);
         }
 
         [Test]
         public void ReadFunction()
         {
-            _repl.Start();
+            StartAndOverrideDefaultPrompt();
             var command = _repl.Read("> cp ./blah.txt ./temp/blahdir");
             Assert.AreEqual("cp", command.Function.Name);
         }
@@ -41,7 +48,7 @@ namespace Wish.Scripts.Tests
         [Test]
         public void ReadArgs()
         {
-            _repl.Start();
+            StartAndOverrideDefaultPrompt();
             var command = _repl.Read("> cp ./blah.txt ./temp/blahdir");
             var args = command.Arguments.Select(o => o.PartialPath.Text).ToList();
             Assert.True(args.Contains("./blah.txt"));
@@ -68,7 +75,7 @@ namespace Wish.Scripts.Tests
         public void EvalLsContainsModeHeader()
         {
             // actual execution - relative to Wish.Scripts.Tests\bin\Debug
-            _repl.Start();
+            StartAndOverrideDefaultPrompt();
             var command = _repl.Read("> ls");
             _repl.Eval(command);
             var result = _repl.Print();
@@ -143,7 +150,7 @@ namespace Wish.Scripts.Tests
         {
             var mock = new Mock<IRunner>();
             mock.Setup(o => o.Execute("ls")).Returns("some ls output");
-            _repl.Start();
+            StartAndOverrideDefaultPrompt();
             var result = _repl.Loop(mock.Object, "> ls");
             Assert.False(result.IsExit);
         }
@@ -153,7 +160,7 @@ namespace Wish.Scripts.Tests
         {
             var mock = new Mock<IRunner>();
             mock.Setup(o => o.Execute("ls")).Returns("some ls output");
-            _repl.Start();
+            StartAndOverrideDefaultPrompt();
             var result = _repl.Loop(mock.Object, "> ls");
             Assert.True(result.Handled);
         }
@@ -161,7 +168,7 @@ namespace Wish.Scripts.Tests
         [Test]
         public void LoopExitHandled()
         {
-            _repl.Start();
+            StartAndOverrideDefaultPrompt();
             var result = _repl.Loop("> exit");
             Assert.True(result.Handled);
         }
@@ -169,7 +176,7 @@ namespace Wish.Scripts.Tests
         [Test]
         public void LoopExit()
         {
-            _repl.Start();
+            StartAndOverrideDefaultPrompt();
             var result = _repl.Loop("> exit");
             Assert.True(result.IsExit);
         }
@@ -180,14 +187,30 @@ namespace Wish.Scripts.Tests
             var mock = new Mock<IRunner>();
             mock.Setup(o => o.Execute("cd ..")).Returns("test");
             mock.Setup(o => o.WorkingDirectory).Returns("testdir");
-            _repl.Start();
+            StartAndOverrideDefaultPrompt();
             var result = _repl.Loop(mock.Object, "> cd ..");
             Assert.AreEqual("testdir", result.WorkingDirectory);
         }
 
-        private string ExecuteLs()
+        [Test]
+        public void PromptDefaultsToHomeDirectory()
         {
             _repl.Start();
+            var expected = Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%") + ">> ";
+            Assert.AreEqual(expected, _repl.Text);
+        }
+
+        [Test]
+        public void DirectoryChangesReflectedInPrompt()
+        {
+            StartAndOverrideDefaultPrompt();
+            _repl.Loop("> cd ..");
+            Assert.AreEqual(@"C:\Users >>", _repl.Prompt.Current);
+        }
+
+        private string ExecuteLs()
+        {
+            StartAndOverrideDefaultPrompt();
             var command = _repl.Read("> ls");
             _repl.Eval(command);
             var text = _repl.Print();
