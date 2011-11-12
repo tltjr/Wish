@@ -6,7 +6,6 @@ using System.Windows.Input;
 using System.Xml;
 using ICSharpCode.AvalonEdit.Highlighting;
 using Microsoft.Practices.Prism.Regions;
-using Wish.Common;
 using Wish.Scripts;
 
 namespace Wish.Views
@@ -20,6 +19,7 @@ namespace Wish.Views
         private readonly WishModel _wishModel;
         public static RoutedCommand TabNew = new RoutedCommand();
         public static RoutedCommand ControlR = new RoutedCommand();
+        private int _promptLength;
 
         public WishView(IRegion mainRegion)
         {
@@ -88,6 +88,7 @@ namespace Wish.Views
             if (!result.Handled) return;
             textEditor.Text = result.Text;
             Title = result.WorkingDirectory;
+            _promptLength = result.PromptLength;
         }
 
         private void EnsureCorrectCaretPosition()
@@ -95,7 +96,7 @@ namespace Wish.Views
             var line = textEditor.Document.GetLineByNumber(textEditor.TextArea.Caret.Line);
             if (0 != line.Length) return;
             textEditor.TextArea.Caret.Line = textEditor.TextArea.Caret.Line - 1;
-            textEditor.TextArea.Caret.Column = Global.PromptLength;
+            textEditor.TextArea.Caret.Column = _promptLength;
         }
 
         private void Exit()
@@ -110,8 +111,6 @@ namespace Wish.Views
                 Application.Current.Shutdown();
             }
         }
-
-
 
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register(
@@ -140,7 +139,7 @@ namespace Wish.Views
             //Title = workingDir;
         }
 
-        public void SetSyntaxHighlighting()
+        private void SetSyntaxHighlighting()
         {
             IHighlightingDefinition customHighlighting;
             var type = typeof(WishView);

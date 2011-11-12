@@ -28,7 +28,6 @@ namespace Wish.Scripts
             if (workingDirectory == null) return;
             WorkingDirectory = workingDirectory;
             Current = workingDirectory + " >> ";
-            Global.PromptLength = Current.Length + 1;
         }
     }
 }

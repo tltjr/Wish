@@ -35,12 +35,16 @@ namespace Wish.Scripts
         public CommandResult Start()
         {
             _prompt = new Prompt();
-            // needs to be adjusted by one for some ungodly reason
             LastPromptIndex = _prompt.Current.Length;
             Text = _prompt.Current;
             var command = new Command("cd " + _prompt.WorkingDirectory);
             command.Execute();
-            return new CommandResult {Text = Text, WorkingDirectory = _prompt.WorkingDirectory};
+            return new CommandResult
+                       {
+                           Text = Text,
+                           WorkingDirectory = _prompt.WorkingDirectory,
+                           PromptLength = _prompt.Current.Length + 1
+                       };
         }
 
         public ICommand Read(IRunner runner, string text)
@@ -61,6 +65,7 @@ namespace Wish.Scripts
         {
             _result = command.Execute();
             _prompt.Update(_result.WorkingDirectory);
+            _result.PromptLength = _prompt.Current.Length + 1;
         }
 
         public string Print()
