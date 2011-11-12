@@ -1,7 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using System.Xml;
+using ICSharpCode.AvalonEdit.Highlighting;
 using Microsoft.Practices.Prism.Regions;
 using Wish.Common;
 using Wish.Scripts;
@@ -22,6 +25,7 @@ namespace Wish.Views
         {
             InitializeComponent();
             SetInputGestures();
+            SetSyntaxHighlighting();
             _mainRegion = mainRegion;
             _wishModel = new WishModel(new Repl());
         }
@@ -134,6 +138,26 @@ namespace Wish.Views
             //var workingDir = _wish.RequestHistorySearch();
             //if (String.IsNullOrEmpty(workingDir)) return;
             //Title = workingDir;
+        }
+
+        public void SetSyntaxHighlighting()
+        {
+            IHighlightingDefinition customHighlighting;
+            var type = typeof(WishView);
+            using (Stream s = type.Assembly.GetManifestResourceStream("Wish.Views.CustomHighlighting.xshd"))
+            {
+                if (s == null)
+                {
+                    throw new InvalidOperationException("Could not find embedded resource");
+                }
+                using (XmlReader reader = new XmlTextReader(s))
+                {
+                    customHighlighting = ICSharpCode.AvalonEdit.Highlighting.Xshd.
+                        HighlightingLoader.Load(reader, HighlightingManager.Instance);
+                }
+            }
+            HighlightingManager.Instance.RegisterHighlighting("Custom Highlighting", null, customHighlighting);
+            textEditor.SyntaxHighlighting = customHighlighting;
         }
 
     }
