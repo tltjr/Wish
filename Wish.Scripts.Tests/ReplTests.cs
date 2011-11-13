@@ -203,6 +203,37 @@ namespace Wish.Scripts.Tests
             Assert.AreEqual(@"T:\src\dotnet\wish-all\Wish\Wish.Scripts.Tests\bin >> ", _repl.Prompt.Current);
         }
 
+        [Test]
+        public void HistoryRequest()
+        {
+            _repl.Start();
+            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ", _repl.Text);
+            _repl.Eval(new Command("ls"));
+            var result = _repl.Up();
+            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ls", result.Text);
+            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ls", _repl.Text);
+        }
+
+        [Test]
+        public void HistoryRequestBlank()
+        {
+            _repl.Start();
+            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ", _repl.Text);
+            _repl.Eval(new Command("ls"));
+            var result = _repl.Up();
+            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ls", result.Text);
+            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ls", _repl.Text);
+            var result2 = _repl.Up();
+            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ", result2.Text);
+            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ", _repl.Text);
+        }
+
+        [Test]
+        public void HistoryRequestWithExistingTypingReplacesTyping()
+        {
+            
+        }
+
         private string ExecuteLs()
         {
             StartAndOverrideDefaultPrompt();

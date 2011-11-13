@@ -4,17 +4,6 @@ using Wish.Common;
 
 namespace Wish.Scripts
 {
-    public interface IRepl
-    {
-        ICommand Read(IRunner runner, string text);
-        ICommand Read(string text);
-        void Eval(ICommand command);
-        string Print();
-        CommandResult Loop(IRunner runner, string text);
-        CommandResult Loop(string text);
-        CommandResult Start();
-    }
-
     public class Repl : IRepl
     {
         private Prompt _prompt;
@@ -31,6 +20,7 @@ namespace Wish.Scripts
         public int LastPromptIndex { get; set; }
         public string Text { get; set; }
         private CommandResult _result;
+        private readonly History _history = new History();
 
         public CommandResult Start()
         {
@@ -63,6 +53,7 @@ namespace Wish.Scripts
 
         public void Eval(ICommand command)
         {
+            _history.Add(command);
             _result = command.Execute();
             _prompt.Update(_result.WorkingDirectory);
             _result.PromptLength = _prompt.Current.Length + 1;
@@ -89,6 +80,13 @@ namespace Wish.Scripts
             ProcessCommand(command);
             _result.WorkingDirectory = _prompt.WorkingDirectory;
             return _result;
+        }
+
+        public CommandResult Up()
+        {
+            var command = _history.Up();
+            Text += command.ToString();
+            return new CommandResult { Text = Text };
         }
 
         private void ProcessCommand(ICommand command)
@@ -129,6 +127,7 @@ namespace Wish.Scripts
 			LastPromptIndex = oldPromptIndex + temp.Length;
             _result.Text = temp;
 		}
+
     }
 
 }
