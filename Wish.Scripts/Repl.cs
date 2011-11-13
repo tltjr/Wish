@@ -85,7 +85,19 @@ namespace Wish.Scripts
         public CommandResult Up()
         {
             var command = _history.Up();
-            Text += command.ToString();
+            return AppendToBaseText(command);
+        }
+
+        public CommandResult Down()
+        {
+            var command = _history.Down();
+            return AppendToBaseText(command);
+        }
+
+        private CommandResult AppendToBaseText(ICommand command)
+        {
+            var baseText = Text.Substring(0, LastPromptIndex);
+            Text = baseText + command;
             return new CommandResult { Text = Text };
         }
 

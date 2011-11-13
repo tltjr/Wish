@@ -231,7 +231,24 @@ namespace Wish.Scripts.Tests
         [Test]
         public void HistoryRequestWithExistingTypingReplacesTyping()
         {
-            
+            _repl.Start();
+            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ", _repl.Text);
+            _repl.Text += "some gibberish a user typed in";
+            _repl.Eval(new Command("ls"));
+            var result = _repl.Up();
+            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ls", result.Text);
+            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ls", _repl.Text);
+        }
+
+        [Test]
+        public void Down()
+        {
+            _repl.Start();
+            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ", _repl.Text);
+            _repl.Eval(new Command("ls"));
+            var result = _repl.Down();
+            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ls", result.Text);
+            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ls", _repl.Text);
         }
 
         private string ExecuteLs()
