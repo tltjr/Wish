@@ -80,6 +80,12 @@ namespace Wish.Module.Tests
             var result = _wishModel.Raise(Key.Enter, @"> exit");
             Assert.IsNull(result.Error);
         }
+
+        [Test]
+        public void RaiseUp()
+        {
+            
+        }
     }
 
     public class TestRunner : IRunner

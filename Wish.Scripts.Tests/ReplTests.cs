@@ -203,52 +203,54 @@ namespace Wish.Scripts.Tests
             Assert.AreEqual(@"T:\src\dotnet\wish-all\Wish\Wish.Scripts.Tests\bin >> ", _repl.Prompt.Current);
         }
 
+        private const string BaseText = @"C:\Users\tlthorn1.AMR >> ";
+        private const string UpdatedText = @"C:\Users\tlthorn1.AMR >> "  + "ls";
+
         [Test]
         public void HistoryRequest()
         {
             _repl.Start();
-            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ", _repl.Text);
+            Assert.AreEqual(BaseText, _repl.Text);
             _repl.Eval(new Command("ls"));
-            var result = _repl.Up();
-            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ls", result.Text);
-            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ls", _repl.Text);
+            var result = _repl.Up(BaseText);
+            Assert.AreEqual(UpdatedText, result.Text);
+            Assert.AreEqual(UpdatedText, _repl.Text);
         }
 
         [Test]
         public void HistoryRequestBlank()
         {
             _repl.Start();
-            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ", _repl.Text);
+            Assert.AreEqual(BaseText, _repl.Text);
             _repl.Eval(new Command("ls"));
-            var result = _repl.Up();
-            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ls", result.Text);
-            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ls", _repl.Text);
-            var result2 = _repl.Up();
-            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ", result2.Text);
-            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ", _repl.Text);
+            var result = _repl.Up(BaseText);
+            Assert.AreEqual(UpdatedText, result.Text);
+            Assert.AreEqual(UpdatedText, _repl.Text);
+            var result2 = _repl.Up(UpdatedText);
+            Assert.AreEqual(BaseText, result2.Text);
+            Assert.AreEqual(BaseText, _repl.Text);
         }
 
         [Test]
         public void HistoryRequestWithExistingTypingReplacesTyping()
         {
             _repl.Start();
-            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ", _repl.Text);
-            _repl.Text += "some gibberish a user typed in";
+            Assert.AreEqual(BaseText, _repl.Text);
             _repl.Eval(new Command("ls"));
-            var result = _repl.Up();
-            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ls", result.Text);
-            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ls", _repl.Text);
+            var result = _repl.Up(BaseText + "some gibberish a user typed in");
+            Assert.AreEqual(UpdatedText, result.Text);
+            Assert.AreEqual(UpdatedText, _repl.Text);
         }
 
         [Test]
         public void Down()
         {
             _repl.Start();
-            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ", _repl.Text);
+            Assert.AreEqual(BaseText, _repl.Text);
             _repl.Eval(new Command("ls"));
-            var result = _repl.Down();
-            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ls", result.Text);
-            Assert.AreEqual(@"C:\Users\tlthorn1.AMR >> ls", _repl.Text);
+            var result = _repl.Down(UpdatedText);
+            Assert.AreEqual(UpdatedText, result.Text);
+            Assert.AreEqual(UpdatedText, _repl.Text);
         }
 
         private string ExecuteLs()

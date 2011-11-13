@@ -82,14 +82,16 @@ namespace Wish.Scripts
             return _result;
         }
 
-        public CommandResult Up()
+        public CommandResult Up(string text)
         {
+            Text = text;
             var command = _history.Up();
             return AppendToBaseText(command);
         }
 
-        public CommandResult Down()
+        public CommandResult Down(string text)
         {
+            Text = text;
             var command = _history.Down();
             return AppendToBaseText(command);
         }
