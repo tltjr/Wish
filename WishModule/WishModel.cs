@@ -25,9 +25,11 @@ namespace Wish
 
         public CommandResult Raise(Key key, string text)
         {
-            if (key.Equals(Key.Enter))
+            switch (key)
             {
-                return _repl.Loop(_runner, text);
+                case Key.Enter: return _repl.Loop(_runner, text);
+                case Key.Up: return _repl.Up(text);
+                case Key.Down: return _repl.Down(text);
             }
             return new CommandResult { Handled = false, IsExit = false, Text = string.Empty, Error = "massive fail" };
         }

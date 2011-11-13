@@ -86,6 +86,7 @@ namespace Wish.Views
                 return;
             }
             if (!result.Handled) return;
+            e.Handled = true;
             textEditor.Text = result.Text;
             Title = result.WorkingDirectory;
             _promptLength = result.PromptLength;

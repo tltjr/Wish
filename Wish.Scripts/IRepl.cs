@@ -12,5 +12,7 @@ namespace Wish.Scripts
         CommandResult Loop(IRunner runner, string text);
         CommandResult Loop(string text);
         CommandResult Start();
+        CommandResult Up(string text);
+        CommandResult Down(string text);
     }
 }

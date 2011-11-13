@@ -100,7 +100,7 @@ namespace Wish.Scripts
         {
             var baseText = Text.Substring(0, LastPromptIndex);
             Text = baseText + command;
-            return new CommandResult { Text = Text };
+            return new CommandResult { Text = Text, Handled = true};
         }
 
         private void ProcessCommand(ICommand command)
