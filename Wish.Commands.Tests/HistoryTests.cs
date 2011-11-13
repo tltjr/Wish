@@ -76,5 +76,13 @@ namespace Wish.Commands.Tests
             var result = _history.Up();
             Assert.AreEqual(expected, result);
         }
+
+        [Test]
+        public void ResetSetsIndexToNegOne()
+        {
+            _history.Add(new Command(""));
+            _history.Reset();
+            Assert.AreEqual(-1, _history.Index);
+        }
     }
 }

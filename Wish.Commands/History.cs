@@ -1,26 +1,28 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Wish.Commands
 {
     public class History
     {
-        private IList<ICommand> _history = new List<ICommand>();
-        private int _index = -1;
+        private readonly IList<ICommand> _history = new List<ICommand>();
+        // public for testing purposes only
+        public int Index = -1;
 
         public ICommand Up()
         {
             if(_history.Count > 0)
             {
-                _index++;
-                if(_index > _history.Count - 1)
+                Index++;
+                if(Index > _history.Count - 1)
                 {
-                    _index = -1;
+                    Index = -1;
                 }
-                if (_index == -1)
+                if (Index == -1)
                 {
                     return new Command(string.Empty);
                 }
-                return _history[_index];
+                return _history[Index];
             }
             return null;
         }
@@ -32,16 +34,21 @@ namespace Wish.Commands
 
         public ICommand Down()
         {
-            _index--;
-            if (_index == -1)
+            Index--;
+            if (Index == -1)
             {
                 return new Command(string.Empty);
             }
-            if (_index < -1)
+            if (Index < -1)
             {
-                _index = _history.Count - 1;
+                Index = _history.Count - 1;
             }
-            return _history[_index];
+            return _history[Index];
+        }
+
+        public void Reset()
+        {
+            Index = -1;
         }
     }
 }

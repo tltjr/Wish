@@ -81,13 +81,6 @@ namespace Wish.Module.Tests
             var result = _wishModel.Raise(Key.Enter, @"> exit");
             Assert.IsNull(result.Error);
         }
-
-        [Test]
-        public void StartReturnsWorkingDirectory()
-        {
-            var result = _wishModel.Start();
-            Assert.AreEqual(@"T:\src\dotnet", result.WorkingDirectory);
-        }
     }
 
     public class TestRunner : IRunner

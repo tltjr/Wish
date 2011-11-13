@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using Moq;
 using NUnit.Framework;
@@ -17,17 +18,11 @@ namespace Wish.Scripts.Tests
             _repl = new Repl();
         }
 
-        [Test]
-        public void StartReplPrompt()
-        {
-            StartAndOverrideDefaultPrompt();
-            Assert.AreEqual("> ", _repl.Prompt.Current);
-        }
-
         private void StartAndOverrideDefaultPrompt()
         {
             _repl.Start();
             _repl.Prompt = new Prompt { Current = "> " };
+            _repl.Eval(new Command("cd " + Directory.GetCurrentDirectory()));
         }
 
         [Test]
@@ -196,7 +191,7 @@ namespace Wish.Scripts.Tests
         public void PromptDefaultsToHomeDirectory()
         {
             _repl.Start();
-            var expected = Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%") + ">> ";
+            var expected = Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%") + " >> ";
             Assert.AreEqual(expected, _repl.Text);
         }
 
@@ -205,7 +200,7 @@ namespace Wish.Scripts.Tests
         {
             StartAndOverrideDefaultPrompt();
             _repl.Loop("> cd ..");
-            Assert.AreEqual(@"C:\Users >>", _repl.Prompt.Current);
+            Assert.AreEqual(@"T:\src\dotnet\wish-all\Wish\Wish.Scripts.Tests\bin >> ", _repl.Prompt.Current);
         }
 
         private string ExecuteLs()
