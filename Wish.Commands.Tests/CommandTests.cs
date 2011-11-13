@@ -95,6 +95,13 @@ namespace Wish.Commands.Tests
         }
 
         [Test]
+        public void TestToString()
+        {
+            var c = new Command("cd blah");
+            Assert.AreEqual("cd blah", c.ToString());
+        }
+
+        [Test]
         public void DirectoryCommandsReturnWorkingDirectory()
         {
             CreateCommandWithRunner();

@@ -53,5 +53,15 @@ namespace Wish.Commands
         {
             return arguments.Select(argument => ArgumentFactory.Create(_runner, argument));
         }
+
+        public override string ToString()
+        {
+            return _commandLine.Text;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return ((Command)obj)._commandLine.Text.Equals(_commandLine.Text);
+        }
     }
 }

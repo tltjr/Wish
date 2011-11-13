@@ -53,6 +53,7 @@
     <Compile Include="DirectoryCommand.cs" />
     <Compile Include="Function.cs" />
     <Compile Include="Completable.cs" />
+    <Compile Include="History.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="IRunner.cs" />
     <Compile Include="PartialPath.cs" />
