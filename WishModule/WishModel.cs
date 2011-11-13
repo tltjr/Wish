@@ -1,6 +1,4 @@
-﻿using System;
-using System.Configuration;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Wish.Commands;
 using Wish.Commands.Runner;
 using Wish.Common;
