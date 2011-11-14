@@ -34,16 +34,20 @@ namespace Wish.Commands
 
         public ICommand Down()
         {
-            Index--;
-            if (Index == -1)
+            if (_history.Count > 0)
             {
-                return new Command(string.Empty);
+                Index--;
+                if (Index == -1)
+                {
+                    return new Command(string.Empty);
+                }
+                if (Index < -1)
+                {
+                    Index = _history.Count - 1;
+                }
+                return _history[Index];
             }
-            if (Index < -1)
-            {
-                Index = _history.Count - 1;
-            }
-            return _history[Index];
+            return null;
         }
 
         public void Reset()

@@ -84,5 +84,12 @@ namespace Wish.Commands.Tests
             _history.Reset();
             Assert.AreEqual(-1, _history.Index);
         }
+
+        [Test]
+        public void DownHandlesEmptyHistory()
+        {
+            var result = _history.Down();
+            Assert.IsNull(result);
+        }
     }
 }

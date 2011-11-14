@@ -88,8 +88,13 @@ namespace Wish.Views
             if (!result.Handled) return;
             e.Handled = true;
             textEditor.Text = result.Text;
-            Title = result.WorkingDirectory;
+            var wdir = result.WorkingDirectory;
+            if (null != wdir)
+            {
+                Title = result.WorkingDirectory;
+            }
             _promptLength = result.PromptLength;
+            textEditor.ScrollToEnd();
         }
 
         private void EnsureCorrectCaretPosition()
