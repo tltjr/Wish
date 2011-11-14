@@ -84,6 +84,13 @@ namespace Wish.Commands.Tests
         }
 
         [Test]
+        public void IsDirectoryCommandCdSlash()
+        {
+            var commandLine = new CommandLine(@"cd\");
+            Assert.True(commandLine.IsDirectoryCommand());
+        }
+
+        [Test]
         public void IsDirectoryCommandPartialMatchFalse()
         {
             var commandLine = new CommandLine(@"cdd");

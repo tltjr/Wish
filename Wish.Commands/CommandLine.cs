@@ -6,7 +6,7 @@ namespace Wish.Commands
 {
     public class CommandLine
     {
-        private static readonly List<string> DirectoryCommands = new List<string> { @"^pushd$", @"^popd$", @"^(\w):$", @"^(\w)d$" };
+        private static readonly List<string> DirectoryCommands = new List<string> { @"^pushd$", @"^popd$", @"^(\w):$", @"^(\w)d$", @"^cd\\$" };
 
         public string Text { get; set; }
 
