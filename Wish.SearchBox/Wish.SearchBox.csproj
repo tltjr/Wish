@@ -67,9 +67,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Img\search.png">
+    <Resource Include="Img\search.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

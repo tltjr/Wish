@@ -45,7 +45,7 @@
             </Grid.ColumnDefinitions>
             <Image Grid.Column="0">
                 <Image.Source>
-                    <BitmapImage DecodePixelWidth="25" UriSource="..\Img\search.png"/>
+                    <BitmapImage DecodePixelWidth="25" UriSource="/Wish.SearchBox;component/Img/search.png"/>
                 </Image.Source>
             </Image>
             <Controls:AutoCompleteTextBox x:Name="searchTb"
