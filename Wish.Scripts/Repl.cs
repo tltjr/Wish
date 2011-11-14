@@ -33,7 +33,8 @@ namespace Wish.Scripts
                        {
                            Text = Text,
                            WorkingDirectory = _prompt.WorkingDirectory,
-                           PromptLength = _prompt.Current.Length + 1
+                           PromptLength = _prompt.Current.Length + 1,
+                           Handled = false
                        };
         }
 

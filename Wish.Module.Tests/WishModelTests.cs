@@ -98,6 +98,26 @@ namespace Wish.Module.Tests
             _wishModel.Raise(Key.Down, "doesnt matter");
             mock.Verify(o => o.Down("doesnt matter"));
         }
+
+        [Test]
+        public void FirstStart()
+        {
+            var mock = CreateMockRepl(@"blah", true, true, string.Empty);
+            _wishModel = new WishModel(mock.Object, _testRunner);
+            var result = _wishModel.Start();
+            mock.Verify(o => o.Start(), Times.Exactly(1));
+            Assert.AreEqual("test", result.Text);
+        }
+
+        [Test]
+        public void SecondStart()
+        {
+            var mock = CreateMockRepl(@"blah", true, true, string.Empty);
+            _wishModel = new WishModel(mock.Object, _testRunner);
+            _wishModel.Start();
+            var result = _wishModel.Start();
+            Assert.True(result.Handled);
+        }
     }
 
     public class TestRunner : IRunner

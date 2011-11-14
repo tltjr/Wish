@@ -10,6 +10,7 @@ namespace Wish
     {
         private readonly IRepl _repl;
         private readonly IRunner _runner;
+        private bool _started;
 
         public WishModel(IRepl repl)
         {
@@ -36,7 +37,12 @@ namespace Wish
 
         public CommandResult Start()
         {
-            return _repl.Start();
+            if (!_started)
+            {
+                _started = true;
+                return _repl.Start();
+            }
+            return new CommandResult { Handled = true };
         }
     }
 }

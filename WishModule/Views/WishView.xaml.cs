@@ -52,6 +52,7 @@ namespace Wish.Views
         {
             Keyboard.Focus(textEditor);
             var result = _wishModel.Start();
+            if (result.Handled) return;
             textEditor.Text = result.Text;
             Title = result.WorkingDirectory;
         }
