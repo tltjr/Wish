@@ -1,9 +1,9 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
 
 namespace Wish.Commands
 {
-    public class History
+    public class History : IEnumerable<ICommand>
     {
         private readonly IList<ICommand> _history = new List<ICommand>();
         // public for testing purposes only
@@ -53,6 +53,16 @@ namespace Wish.Commands
         public void Reset()
         {
             Index = -1;
+        }
+
+        public IEnumerator<ICommand> GetEnumerator()
+        {
+            return _history.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

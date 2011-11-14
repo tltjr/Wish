@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
 namespace Wish.SearchBox.ViewModels
 {
@@ -10,6 +11,7 @@ namespace Wish.SearchBox.ViewModels
         public IEnumerable WaitMessage { get { return _waitMessage; } }
 
         private string _queryText;
+
         public string QueryText
         {
             get { return _queryText; }
@@ -26,11 +28,11 @@ namespace Wish.SearchBox.ViewModels
         {
             get
             {
-                //var result = CommandHistory.Commands.Select(o => o.Raw);
-                //return QueryText != null ? result.Where(o => o.Contains(QueryText)) : result;
-                return null;
+                return QueryText != null ? BaseCollection.Where(o => o.Contains(QueryText)) : BaseCollection;
             }
         }
+
+        public IEnumerable<string> BaseCollection { get; set; }
 
         #region INotifyPropertyChanged Members
 

@@ -1,4 +1,7 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Linq;
+using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using Wish.Commands;
 using Wish.Commands.Runner;
 using Wish.Common;
@@ -28,11 +31,11 @@ namespace Wish
         {
             switch (key)
             {
-                case Key.Enter: return _repl.Loop(_runner, text);
+                case Key.Enter: return Execute(text);
                 case Key.Up: return _repl.Up(text);
                 case Key.Down: return _repl.Down(text);
             }
-            return new CommandResult { Handled = false, IsExit = false, Text = string.Empty, Error = "massive fail" };
+            return new CommandResult { Handled = false };
         }
 
         public CommandResult Start()
@@ -42,7 +45,25 @@ namespace Wish
                 _started = true;
                 return _repl.Start();
             }
-            return new CommandResult { Handled = true };
+            return new CommandResult
+                       {
+                           Handled = true
+                       };
+        }
+
+        public CommandResult Execute(string text)
+        {
+            return _repl.Loop(_runner, text);
+        }
+
+        public void RequestHistorySearch(Popup popup, Action<string> callback)
+        {
+            var history = _repl.History.Select(x => x.ToString());
+            var searchBox = new SearchBox.Views.SearchBox(history, callback);
+            popup.Opened += searchBox.Opened;
+            popup.Child = searchBox;
+            popup.IsOpen = true;
+            popup.StaysOpen = false;
         }
     }
 }

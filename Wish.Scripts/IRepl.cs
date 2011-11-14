@@ -14,5 +14,6 @@ namespace Wish.Scripts
         CommandResult Start();
         CommandResult Up(string text);
         CommandResult Down(string text);
+        History History { get; set; }
     }
 }

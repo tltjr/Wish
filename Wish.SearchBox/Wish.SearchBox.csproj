@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Aviad.WPF.Controls">
-      <HintPath>..\lib\Aviad.WPF.Controls.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -53,7 +50,16 @@
       <DependentUpon>SearchBox.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ACTB\Aviad.WPF.Controls.csproj">
+      <Project>{952E558B-6E94-49A5-BA50-EC50C044709C}</Project>
+      <Name>Aviad.WPF.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wish.Common\Wish.Common.csproj">
+      <Project>{4973C447-1643-462D-B58D-69929A3AF289}</Project>
+      <Name>Wish.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Views\SearchBox.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -99,7 +99,7 @@ namespace Aviad.WPF.Controls
 
         protected void OnItemsSourceChanged(IEnumerable itemsSource)
         {
-            if (ListBox == null) return;
+            if (ListBox == null || itemsSource == null) return;
             Debug.Print("Data: " + itemsSource);
             if (itemsSource is ListCollectionView)
             {

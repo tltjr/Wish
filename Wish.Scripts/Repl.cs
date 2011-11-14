@@ -20,10 +20,11 @@ namespace Wish.Scripts
         public int LastPromptIndex { get; set; }
         public string Text { get; set; }
         private CommandResult _result;
-        private readonly History _history = new History();
+        public History History { get; set; }
 
         public CommandResult Start()
         {
+            History = new History();
             _prompt = new Prompt();
             LastPromptIndex = _prompt.Current.Length;
             Text = _prompt.Current;
@@ -54,7 +55,7 @@ namespace Wish.Scripts
 
         public void Eval(ICommand command)
         {
-            _history.Add(command);
+            History.Add(command);
             _result = command.Execute();
             _prompt.Update(_result.WorkingDirectory);
             _result.PromptLength = _prompt.Current.Length + 1;
@@ -86,14 +87,14 @@ namespace Wish.Scripts
         public CommandResult Up(string text)
         {
             Text = text;
-            var command = _history.Up();
+            var command = History.Up();
             return AppendToBaseText(command);
         }
 
         public CommandResult Down(string text)
         {
             Text = text;
-            var command = _history.Down();
+            var command = History.Down();
             return AppendToBaseText(command);
         }
 

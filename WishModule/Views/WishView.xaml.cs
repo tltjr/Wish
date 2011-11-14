@@ -1,11 +1,12 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Xml;
 using ICSharpCode.AvalonEdit.Highlighting;
 using Microsoft.Practices.Prism.Regions;
+using Wish.Common;
 using Wish.Scripts;
 
 namespace Wish.Views
@@ -80,22 +81,7 @@ namespace Wish.Views
             }
 
             var result = _wishModel.Raise(e.Key, textEditor.Text);
-
-            if (result.IsExit)
-            {
-                Exit();
-                return;
-            }
-            if (!result.Handled) return;
-            e.Handled = true;
-            textEditor.Text = result.Text;
-            var wdir = result.WorkingDirectory;
-            if (null != wdir)
-            {
-                Title = result.WorkingDirectory;
-            }
-            _promptLength = result.PromptLength;
-            textEditor.ScrollToEnd();
+            ProcessCommandResult(result, false);
         }
 
         private void EnsureCorrectCaretPosition()
@@ -127,6 +113,8 @@ namespace Wish.Views
                 new PropertyMetadata(@"Wish")
                 );
 
+        private Popup _popup;
+
         public string Title
         {
             get { return GetValue(TitleProperty) as string; }
@@ -141,16 +129,52 @@ namespace Wish.Views
 
         private void ExecuteControlR(object sender, ExecutedRoutedEventArgs e)
         {
-            //var workingDir = _wish.RequestHistorySearch();
-            //if (String.IsNullOrEmpty(workingDir)) return;
-            //Title = workingDir;
+            _popup = new Popup {IsOpen = false, PlacementTarget = textEditor, Placement = PlacementMode.Center};
+            _wishModel.RequestHistorySearch(_popup, Process);
+        }
+
+        private void Process(string text)
+        {
+            var result = _wishModel.Raise(Key.Enter, textEditor.Text + text);
+            ProcessCommandResult(result, true);
+        }
+
+        private void ProcessCommandResult(CommandResult result, bool clearPopups)
+        {
+            if (clearPopups)
+            {
+                ClearPopups();
+                textEditor.Focus();
+            }
+            if (result.IsExit)
+            {
+                Exit();
+                return;
+            }
+            if (!result.Handled) return;
+            textEditor.Text = result.Text;
+            var wdir = result.WorkingDirectory;
+            if (null != wdir)
+            {
+                Title = result.WorkingDirectory;
+            }
+            _promptLength = result.PromptLength;
+            textEditor.ScrollToEnd();
+        }
+
+        private void ClearPopups()
+        {
+            if(null != _popup)
+            {
+                _popup.IsOpen = false;
+            }
         }
 
         private void SetSyntaxHighlighting()
         {
             IHighlightingDefinition customHighlighting;
             var type = typeof(WishView);
-            using (Stream s = type.Assembly.GetManifestResourceStream("Wish.Views.CustomHighlighting.xshd"))
+            using (var s = type.Assembly.GetManifestResourceStream("Wish.Views.CustomHighlighting.xshd"))
             {
                 if (s == null)
                 {

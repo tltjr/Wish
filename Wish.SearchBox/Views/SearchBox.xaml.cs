@@ -1,22 +1,23 @@
 ﻿using System;
-using System.Windows.Controls;
+using System.Collections.Generic;
 using System.Windows.Input;
+using Wish.SearchBox.ViewModels;
 
 namespace Wish.SearchBox.Views
 {
     /// <summary>
     /// Interaction logic for SearchBox.xaml
     /// </summary>
-    public partial class SearchBox : UserControl
+    public partial class SearchBox
     {
-        private readonly OnSelection _onSelection;
+        private readonly Action<string> _onSelectionCallback;
 
-        public delegate string OnSelection(string command);
-
-        public SearchBox(OnSelection onSelection)
+        public SearchBox(IEnumerable<string> history, Action<string> callback)
         {
             InitializeComponent();
-            _onSelection = onSelection;
+            _onSelectionCallback = callback;
+            var viewModel = Resources["ViewModel"] as TabCompletionViewModel;
+            if (viewModel != null) viewModel.BaseCollection = history;
         }
 
         public void Opened(object sender, EventArgs e)
@@ -26,11 +27,10 @@ namespace Wish.SearchBox.Views
 
         protected override void OnPreviewKeyDown(KeyEventArgs e)
         {
-            //_viewModel = Resources["ViewModel"] as TabCompletionViewModel;
             if (Key.Enter != e.Key) return;
             {
                 var selectedItem = searchTb.ListBox.SelectedItem as string;
-                _onSelection(selectedItem);
+                _onSelectionCallback(selectedItem);
                 e.Handled = true;
             }
         }

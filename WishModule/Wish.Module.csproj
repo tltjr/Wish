@@ -87,6 +87,10 @@
       <Project>{57915513-32AB-44B9-AA63-C2997D1A873B}</Project>
       <Name>Wish.Scripts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Wish.SearchBox\Wish.SearchBox.csproj">
+      <Project>{33FB3D82-071C-4467-A130-39C1335848BA}</Project>
+      <Name>Wish.SearchBox</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\CustomHighlighting.xshd">
