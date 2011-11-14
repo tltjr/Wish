@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wish.Module.Tests", "Wish.M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wish.Common", "Wish.Common\Wish.Common.csproj", "{4973C447-1643-462D-B58D-69929A3AF289}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wish.SearchBox", "Wish.SearchBox\Wish.SearchBox.csproj", "{33FB3D82-071C-4467-A130-39C1335848BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -194,6 +196,16 @@ Global
 		{4973C447-1643-462D-B58D-69929A3AF289}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{4973C447-1643-462D-B58D-69929A3AF289}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{4973C447-1643-462D-B58D-69929A3AF289}.Release|x86.ActiveCfg = Release|Any CPU
+		{33FB3D82-071C-4467-A130-39C1335848BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33FB3D82-071C-4467-A130-39C1335848BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33FB3D82-071C-4467-A130-39C1335848BA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{33FB3D82-071C-4467-A130-39C1335848BA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{33FB3D82-071C-4467-A130-39C1335848BA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{33FB3D82-071C-4467-A130-39C1335848BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33FB3D82-071C-4467-A130-39C1335848BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33FB3D82-071C-4467-A130-39C1335848BA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{33FB3D82-071C-4467-A130-39C1335848BA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{33FB3D82-071C-4467-A130-39C1335848BA}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F6A61085-69F1-499B-BFCE-E65E32BEDCC9}</ProjectGuid>
+    <ProjectGuid>{33FB3D82-071C-4467-A130-39C1335848BA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Wish</RootNamespace>
-    <AssemblyName>Wish</AssemblyName>
+    <RootNamespace>Wish.SearchBox</RootNamespace>
+    <AssemblyName>Wish.SearchBox</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,23 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.Prism">
-      <HintPath>..\lib\Microsoft.Practices.Prism.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
-      <HintPath>..\lib\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\Microsoft.Practices.Unity.dll</HintPath>
+    <Reference Include="Aviad.WPF.Controls">
+      <HintPath>..\lib\Aviad.WPF.Controls.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Management.Automation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -58,42 +48,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\WishView.xaml.cs">
-      <DependentUpon>WishView.xaml</DependentUpon>
+    <Compile Include="ViewModels\TabCompletionViewModel.cs" />
+    <Compile Include="Views\SearchBox.xaml.cs">
+      <DependentUpon>SearchBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WishModel.cs" />
-    <Compile Include="WishModule.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Page Include="Views\WishView.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\SearchBox.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ICSharpCode.AvalonEdit\ICSharpCode.AvalonEdit.csproj">
-      <Project>{6C55B776-26D4-4DB3-A6AB-87E783B2F3D1}</Project>
-      <Name>ICSharpCode.AvalonEdit</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Wish.Commands\Wish.Commands.csproj">
-      <Project>{A80A4CAC-9921-4A07-8735-A940B9775540}</Project>
-      <Name>Wish.Commands</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Wish.Common\Wish.Common.csproj">
-      <Project>{4973C447-1643-462D-B58D-69929A3AF289}</Project>
-      <Name>Wish.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Wish.Scripts\Wish.Scripts.csproj">
-      <Project>{57915513-32AB-44B9-AA63-C2997D1A873B}</Project>
-      <Name>Wish.Scripts</Name>
-    </ProjectReference>
+    <Content Include="Img\search.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\CustomHighlighting.xshd">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

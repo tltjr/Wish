@@ -63,5 +63,11 @@ namespace Wish.Commands
         {
             return ((Command)obj)._commandLine.Text.Equals(_commandLine.Text);
         }
+
+        public override int GetHashCode()
+        {
+            return _commandLine.Text.GetHashCode();
+        }
+
     }
 }
