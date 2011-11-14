@@ -24,3 +24,5 @@ packages/
 *.cache
 
 _UpgradeReport_Files/
+
+*.vdproj
