@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Security.Principal;
+using System.Text;
 
 namespace Wish.Scripts
 {
@@ -25,8 +27,16 @@ namespace Wish.Scripts
         public void Update(string workingDirectory)
         {
             if (workingDirectory == null) return;
+            var sb = new StringBuilder();
             WorkingDirectory = workingDirectory;
-            Current = workingDirectory + " >> ";
+            sb.Append(WindowsIdentity.GetCurrent().Name);
+            sb.Append("@");
+            sb.Append(Environment.MachineName);
+            sb.Append(" ");
+            sb.Append(workingDirectory);
+            sb.Append(" ");
+            sb.Append(">> ");
+            Current = sb.ToString();
         }
     }
 }
