@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:ViewModels="clr-namespace:Wish.SearchBox.ViewModels"
              xmlns:Controls="clr-namespace:Aviad.WPF.Controls;assembly=Aviad.WPF.Controls" mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="275">
+             d:DesignHeight="53" d:DesignWidth="285">
     <UserControl.Resources>
         <ViewModels:TabCompletionViewModel x:Key="ViewModel"/>
         <CollectionViewSource x:Key="xml">
@@ -26,24 +26,28 @@
             <TextBlock Text="{Binding}" Background="Gainsboro"/>
         </DataTemplate>-->
     </UserControl.Resources>
-    <Grid Background="White">
+    <Grid>
+    	<Grid.Background>
+    		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    			<GradientStop Color="Black" Offset="0"/>
+    			<GradientStop Color="#FF7E51FD" Offset="1"/>
+    		</LinearGradientBrush>
+    	</Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="0.45*"/>
+            <RowDefinition Height="0.55*"/>
         </Grid.RowDefinitions>
         <Label Content="Search command history:" 
-               Grid.Row="0" 
-               HorizontalAlignment="Left"
-               VerticalAlignment="Center"
+               Grid.Row="0"
                FontFamily="Segoe UI"
-               FontSize="12"
-               Foreground="Black"/>
+               FontSize="10"
+               Foreground="White" Margin="1,0,-0.493,0"/>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="30"/>
                 <ColumnDefinition Width="245"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0">
+            <Image Grid.Column="0" Margin="4,6,4,7" RenderTransformOrigin="-3.091,5.562">
                 <Image.Source>
                     <BitmapImage DecodePixelWidth="25" UriSource="/Wish.SearchBox;component/Img/search.png"/>
                 </Image.Source>
@@ -51,18 +55,12 @@
             <Controls:AutoCompleteTextBox x:Name="searchTb"
                                           Grid.Column="1" 
                                           HorizontalAlignment="Stretch"
-                                          Margin="3"
-                                          Text="{Binding Source={StaticResource ViewModel}, Path=QueryText, UpdateSourceTrigger=PropertyChanged}"
-                                          Width="250"
-                                          Height="25"
+                                          Margin="3,3,-4,0"
+                                          Height="23"
                                           VerticalAlignment="Top" 
                                           ItemsSource="{Binding Source={StaticResource xml}}" 
+                                          Text="{Binding Source={StaticResource ViewModel}, Path=QueryText, UpdateSourceTrigger=PropertyChanged}"
                                           Binding="{Binding XPath=suggestion/@data}" />
-                                          <!--ItemTemplateSelector="{StaticResource TemplateSelector}"-->
-            <!--<TextBox x:Name="searchTb"
-                     Grid.Column="1" 
-                     HorizontalAlignment="Stretch"
-                     Margin="3"/>-->
         </Grid>
     </Grid>
 </UserControl>

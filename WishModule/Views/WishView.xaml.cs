@@ -81,7 +81,9 @@ namespace Wish.Views
             }
 
             var result = _wishModel.Raise(e.Key, textEditor.Text);
-            ProcessCommandResult(result, false);
+            var next = result.ProcessCommandResult(textEditor);
+            Title = next.Title;
+            _promptLength = next.PromptLength;
         }
 
         private void EnsureCorrectCaretPosition()
@@ -129,38 +131,25 @@ namespace Wish.Views
 
         private void ExecuteControlR(object sender, ExecutedRoutedEventArgs e)
         {
-            _popup = new Popup {IsOpen = false, PlacementTarget = textEditor, Placement = PlacementMode.Center};
+            _popup = new Popup {IsOpen = false, PlacementTarget = textEditor, Placement = PlacementMode.Center, Width = 285};
             _wishModel.RequestHistorySearch(_popup, Process);
         }
 
         private void Process(string text)
         {
             var result = _wishModel.Raise(Key.Enter, textEditor.Text + text);
-            ProcessCommandResult(result, true);
-        }
-
-        private void ProcessCommandResult(CommandResult result, bool clearPopups)
-        {
-            if (clearPopups)
-            {
-                ClearPopups();
-                textEditor.Focus();
-            }
             if (result.IsExit)
             {
                 Exit();
                 return;
             }
-            if (!result.Handled) return;
-            textEditor.Text = result.Text;
-            var wdir = result.WorkingDirectory;
-            if (null != wdir)
-            {
-                Title = result.WorkingDirectory;
-            }
-            _promptLength = result.PromptLength;
-            textEditor.ScrollToEnd();
+            var next = result.ProcessCommandResult(textEditor);
+            Title = next.Title;
+            _promptLength = next.PromptLength;
+            textEditor.Focus();
+            ClearPopups();
         }
+
 
         private void ClearPopups()
         {
