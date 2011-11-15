@@ -122,7 +122,8 @@ namespace Wish.Scripts
 
         private string GetLine(string text)
         {
-            return text.Substring(LastPromptIndex);
+            var line = text.Substring(LastPromptIndex);
+            return line.Trim();
         }
 
         private void InsertNewPrompt()

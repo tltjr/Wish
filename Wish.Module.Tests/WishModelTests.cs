@@ -35,7 +35,14 @@ namespace Wish.Module.Tests
         public void RaiseKeyPressUnregisteredKeyNotHandled()
         {
             var result = _wishModel.Raise(Key.A, "stub");
-            Assert.False(result.FullyProcessed);
+            Assert.False(result.Handled);
+        }
+
+        [Test]
+        public void RaiseKeyPressUnregisteredKeyFullyProcessed()
+        {
+            var result = _wishModel.Raise(Key.A, "stub");
+            Assert.True(result.FullyProcessed);
         }
 
         [Test]
