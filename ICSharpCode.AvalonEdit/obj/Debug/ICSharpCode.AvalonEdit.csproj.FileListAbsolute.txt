@@ -51,4 +51,3 @@ T:\src\dotnet\wish-all\Wish\ICSharpCode.AvalonEdit\obj\Debug\themes\generic.baml
 T:\src\dotnet\wish-all\Wish\ICSharpCode.AvalonEdit\obj\Debug\ICSharpCode.AvalonEdit.g.resources
 T:\src\dotnet\wish-all\Wish\ICSharpCode.AvalonEdit\obj\Debug\ICSharpCode.AvalonEdit.dll
 T:\src\dotnet\wish-all\Wish\ICSharpCode.AvalonEdit\obj\Debug\ICSharpCode.AvalonEdit.pdb
-T:\src\dotnet\wish-all\Wish\bin\Debug\ICSharpCode.AvalonEdit.xml
