@@ -81,9 +81,7 @@ namespace Wish.Views
             }
 
             var result = _wishModel.Raise(e.Key, textEditor.Text);
-            var next = result.ProcessCommandResult(textEditor);
-            Title = next.Title;
-            _promptLength = next.PromptLength;
+            ProcessCommandResult(result, false);
         }
 
         private void EnsureCorrectCaretPosition()
@@ -138,18 +136,31 @@ namespace Wish.Views
         private void Process(string text)
         {
             var result = _wishModel.Raise(Key.Enter, textEditor.Text + text);
+            ProcessCommandResult(result, true);
+        }
+
+        private void ProcessCommandResult(CommandResult result, bool clearPopups)
+        {
+            if (clearPopups)
+            {
+                ClearPopups();
+                textEditor.Focus();
+            }
             if (result.IsExit)
             {
                 Exit();
                 return;
             }
-            var next = result.ProcessCommandResult(textEditor);
-            Title = next.Title;
-            _promptLength = next.PromptLength;
-            textEditor.Focus();
-            ClearPopups();
+            if (!result.Handled) return;
+            textEditor.Text = result.Text;
+            var wdir = result.WorkingDirectory;
+            if (null != wdir)
+            {
+                Title = result.WorkingDirectory;
+            }
+            _promptLength = result.PromptLength;
+            textEditor.ScrollToEnd();
         }
-
 
         private void ClearPopups()
         {
