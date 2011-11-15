@@ -53,7 +53,7 @@ namespace Wish.Views
         {
             Keyboard.Focus(textEditor);
             var result = _wishModel.Start();
-            if (result.Handled) return;
+            if (result.FullyProcessed) return;
             textEditor.Text = result.Text;
             Title = result.WorkingDirectory;
         }
@@ -81,7 +81,14 @@ namespace Wish.Views
             }
 
             var result = _wishModel.Raise(e.Key, textEditor.Text);
+            if (result.IsExit)
+            {
+                Exit();
+                return;
+            }
+            if (result.FullyProcessed) return;
             ProcessCommandResult(result, false);
+            e.Handled = result.Handled;
         }
 
         private void EnsureCorrectCaretPosition()
@@ -151,7 +158,6 @@ namespace Wish.Views
                 Exit();
                 return;
             }
-            if (!result.Handled) return;
             textEditor.Text = result.Text;
             var wdir = result.WorkingDirectory;
             if (null != wdir)

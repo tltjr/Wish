@@ -35,7 +35,7 @@ namespace Wish
                 case Key.Up: return _repl.Up(text);
                 case Key.Down: return _repl.Down(text);
             }
-            return new CommandResult { Handled = false };
+            return new CommandResult { FullyProcessed = true };
         }
 
         public CommandResult Start()
@@ -47,7 +47,7 @@ namespace Wish
             }
             return new CommandResult
                        {
-                           Handled = true
+                           FullyProcessed = true
                        };
         }
 

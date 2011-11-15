@@ -151,13 +151,13 @@ namespace Wish.Scripts.Tests
         }
 
         [Test]
-        public void LoopNonExitHandled()
+        public void LoopNonExitNotHandled()
         {
             var mock = new Mock<IRunner>();
             mock.Setup(o => o.Execute("ls")).Returns("some ls output");
             StartAndOverrideDefaultPrompt();
             var result = _repl.Loop(mock.Object, "> ls");
-            Assert.True(result.Handled);
+            Assert.False(result.FullyProcessed);
         }
 
         [Test]
@@ -165,7 +165,7 @@ namespace Wish.Scripts.Tests
         {
             StartAndOverrideDefaultPrompt();
             var result = _repl.Loop("> exit");
-            Assert.True(result.Handled);
+            Assert.True(result.FullyProcessed);
         }
 
         [Test]

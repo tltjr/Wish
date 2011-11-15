@@ -27,7 +27,7 @@ namespace Wish.Module.Tests
             var mock = new Mock<IRepl>();
             mock.Setup(o => o.Start()).Returns(new CommandResult { Text = "test" });
             mock.Setup(o => o.Loop(_testRunner, input))
-                .Returns(new CommandResult { Handled = handled, IsExit = isExit, Text = text });
+                .Returns(new CommandResult { FullyProcessed = handled, IsExit = isExit, Text = text });
             return mock;
         }
 
@@ -35,7 +35,7 @@ namespace Wish.Module.Tests
         public void RaiseKeyPressUnregisteredKeyNotHandled()
         {
             var result = _wishModel.Raise(Key.A, "stub");
-            Assert.False(result.Handled);
+            Assert.False(result.FullyProcessed);
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace Wish.Module.Tests
             var mock = CreateMockRepl(@"> exit", true, true, string.Empty);
             _wishModel = new WishModel(mock.Object, _testRunner);
             var result = _wishModel.Raise(Key.Enter, @"> exit");
-            Assert.True(result.Handled);
+            Assert.True(result.FullyProcessed);
         }
 
         [Test]
@@ -116,7 +116,7 @@ namespace Wish.Module.Tests
             _wishModel = new WishModel(mock.Object, _testRunner);
             _wishModel.Start();
             var result = _wishModel.Start();
-            Assert.True(result.Handled);
+            Assert.True(result.FullyProcessed);
         }
     }
 

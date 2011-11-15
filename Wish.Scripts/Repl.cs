@@ -35,7 +35,7 @@ namespace Wish.Scripts
                            Text = Text,
                            WorkingDirectory = _prompt.WorkingDirectory,
                            PromptLength = _prompt.Current.Length + 1,
-                           Handled = false
+                           FullyProcessed = false
                        };
         }
 
@@ -102,21 +102,21 @@ namespace Wish.Scripts
         {
             var baseText = Text.Substring(0, LastPromptIndex);
             Text = baseText + command;
-            return new CommandResult { Text = Text, Handled = true};
+            return new CommandResult { Text = Text, FullyProcessed = false, Handled = true};
         }
 
         private void ProcessCommand(ICommand command)
         {
             if (command.IsExit)
             {
-                _result = new CommandResult { IsExit = true, Handled = true };
+                _result = new CommandResult { IsExit = true, FullyProcessed = true };
             }
             else
             {
                 Eval(command);
                 _result.Text = Print();
                 _result.IsExit = false;
-                _result.Handled = true;
+                _result.FullyProcessed = false;
             }
         }
 
