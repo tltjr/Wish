@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using ICSharpCode.AvalonEdit;
+using ICSharpCode.AvalonEdit.CodeCompletion;
 using Wish.Commands;
 using Wish.Commands.Runner;
 using Wish.Common;
@@ -27,15 +30,39 @@ namespace Wish
             _runner = runner;
         }
 
-        public CommandResult Raise(Key key, string text)
+        public CommandResult Raise(Key key, TextEditor textEditor)
         {
             switch (key)
             {
-                case Key.Enter: return Execute(text);
-                case Key.Up: return _repl.Up(text);
-                case Key.Down: return _repl.Down(text);
+                case Key.Enter: return Execute(textEditor.Text);
+                case Key.Up: return _repl.Up(textEditor.Text);
+                case Key.Down: return _repl.Down(textEditor.Text);
+                case Key.Tab:
+                    return Complete(textEditor);
             }
             return new CommandResult { FullyProcessed = true };
+        }
+
+        private CommandResult Complete(TextEditor textEditor)
+        {
+            var command = _repl.Read(textEditor.Text);
+            var arg = command.Arguments.Last();
+            var completions = command.Complete().ToList();
+            if(completions.Count() == 0) return new CommandResult { FullyProcessed = true, Handled = true };
+            var completionWindow = new CompletionWindow(textEditor.TextArea)
+                                {
+                                    SizeToContent = SizeToContent.WidthAndHeight,
+                                    MinWidth = 150
+                                };
+            var completionData = completionWindow.CompletionList.CompletionData;
+            foreach (var completion in completions)
+            {
+                completionData.Add(new CompletionData(arg.PartialPath.Text, completion));
+            }
+            if (completionData.Count == 0) return new CommandResult { FullyProcessed = true, Handled = true };
+            completionWindow.Show();
+            completionWindow.CompletionList.SelectedItem = completionData[0];
+            return new CommandResult{ FullyProcessed = true, Handled = false };
         }
 
         public CommandResult Start()

@@ -80,7 +80,7 @@ namespace Wish.Views
                 e.Handled = true;
             }
 
-            var result = _wishModel.Raise(e.Key, textEditor.Text);
+            var result = _wishModel.Raise(e.Key, textEditor);
             if (result.IsExit)
             {
                 Exit();
@@ -142,7 +142,8 @@ namespace Wish.Views
 
         private void Process(string text)
         {
-            var result = _wishModel.Raise(Key.Enter, textEditor.Text + text);
+            textEditor.Text += text;
+            var result = _wishModel.Raise(Key.Enter, textEditor);
             ProcessCommandResult(result, true);
         }
 
