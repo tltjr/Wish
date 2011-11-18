@@ -9,6 +9,11 @@ namespace Wish.Commands
         // public for testing purposes only
         public int Index = -1;
 
+        public int Count
+        {
+            get { return _history.Count; }
+        }
+
         public ICommand Up()
         {
             if(_history.Count > 0)
@@ -29,6 +34,7 @@ namespace Wish.Commands
 
         public void Add(ICommand command)
         {
+            if (_history.Contains(command)) return;
             _history.Insert(0, command);
         }
 

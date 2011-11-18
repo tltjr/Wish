@@ -91,5 +91,13 @@ namespace Wish.Commands.Tests
             var result = _history.Down();
             Assert.IsNull(result);
         }
+
+        [Test]
+        public void NoDuplicates()
+        {
+            AddLs();
+            _history.Add(new Command("ls"));
+            Assert.AreEqual(1, _history.Count);
+        }
     }
 }
