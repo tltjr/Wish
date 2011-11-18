@@ -20,6 +20,8 @@ namespace Wish.Views
         private readonly WishModel _wishModel;
         public static RoutedCommand TabNew = new RoutedCommand();
         public static RoutedCommand ControlR = new RoutedCommand();
+        public static RoutedCommand ControlP = new RoutedCommand();
+        public static RoutedCommand ControlN = new RoutedCommand();
         private int _promptLength;
         private State _state;
 
@@ -43,6 +45,12 @@ namespace Wish.Views
 
             var controlR = new KeyGesture(Key.R, ModifierKeys.Control);
             ControlR.InputGestures.Add(controlR);
+
+            var controlP = new KeyGesture(Key.P, ModifierKeys.Control);
+            ControlP.InputGestures.Add(controlP);
+
+            var controlN = new KeyGesture(Key.N, ModifierKeys.Control);
+            ControlN.InputGestures.Add(controlN);
         }
 
         private void ScrollToEnd(object sender, EventArgs eventArgs)
@@ -205,5 +213,16 @@ namespace Wish.Views
             textEditor.SyntaxHighlighting = customHighlighting;
         }
 
+        private void ExecuteControlP(object sender, ExecutedRoutedEventArgs e)
+        {
+            var result = _wishModel.Raise(Key.Up, textEditor.Text);
+            ProcessCommandResult(result, true);
+        }
+
+        private void ExecuteControlN(object sender, ExecutedRoutedEventArgs e)
+        {
+            var result = _wishModel.Raise(Key.Down, textEditor.Text);
+            ProcessCommandResult(result, true);
+        }
     }
 }

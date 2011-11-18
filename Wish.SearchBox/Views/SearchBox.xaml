@@ -8,9 +8,9 @@
     <UserControl.Resources>
         <DataTemplate x:Key="dataTemplate">
             <TextBlock Text="{Binding}"
-                       Width="200"
-                       FontFamily="Segoe UI"
-                       FontSize="10"/>
+                       Width="241"
+                       FontFamily="Consolas"
+                       FontSize="14"/>
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
@@ -42,6 +42,7 @@
             <Controls:AutoCompleteTextBox x:Name="searchTb"
                                           Grid.Column="1" 
                                           HorizontalAlignment="Stretch"
+                                          FontFamily="Consolas"
                                           Margin="3,3,-4,0"
                                           Height="23"
                                           VerticalAlignment="Top" 

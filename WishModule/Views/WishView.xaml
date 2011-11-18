@@ -12,6 +12,8 @@
     <UserControl.CommandBindings>
         <CommandBinding Command="{x:Static Views:WishView.TabNew}" Executed="ExecuteNewTab"/>
         <CommandBinding Command="{x:Static Views:WishView.ControlR}" Executed="ExecuteControlR"/>
+        <CommandBinding Command="{x:Static Views:WishView.ControlP}" Executed="ExecuteControlP"/>
+        <CommandBinding Command="{x:Static Views:WishView.ControlN}" Executed="ExecuteControlN"/>
     </UserControl.CommandBindings>
         <avalonEdit:TextEditor x:Name="textEditor"
              FontFamily="Consolas"
