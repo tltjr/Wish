@@ -21,6 +21,7 @@ namespace Wish.Views
         public static RoutedCommand TabNew = new RoutedCommand();
         public static RoutedCommand ControlR = new RoutedCommand();
         private int _promptLength;
+        private State _state;
 
         public WishView(IRegion mainRegion)
         {
@@ -29,6 +30,7 @@ namespace Wish.Views
             SetSyntaxHighlighting();
             _mainRegion = mainRegion;
             _wishModel = new WishModel(new Repl());
+            _state = State.Normal;
         }
 
         private static void SetInputGestures()
@@ -79,16 +81,22 @@ namespace Wish.Views
                 command.Execute(0, this);
                 e.Handled = true;
             }
-
-            var result = _wishModel.Raise(e.Key, textEditor);
+            if (_state.Equals(State.Tabbing)) return;
+            var result = e.Key.Equals(Key.Tab) ? _wishModel.Complete(textEditor, StateNormal) : _wishModel.Raise(e.Key, textEditor.Text);
             if (result.IsExit)
             {
                 Exit();
                 return;
             }
+            _state = result.State;
             if (result.FullyProcessed) return;
             ProcessCommandResult(result, false);
             e.Handled = result.Handled;
+        }
+
+        private void StateNormal()
+        {
+            _state = State.Normal;
         }
 
         private void EnsureCorrectCaretPosition()
@@ -142,8 +150,8 @@ namespace Wish.Views
 
         private void Process(string text)
         {
-            textEditor.Text += text;
-            var result = _wishModel.Raise(Key.Enter, textEditor);
+            var result = _wishModel.Raise(Key.Enter, textEditor.Text + text);
+            _state = result.State;
             ProcessCommandResult(result, true);
         }
 

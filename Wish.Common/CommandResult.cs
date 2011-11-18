@@ -13,5 +13,8 @@ namespace Wish.Common
         public string Error { get; set; }
         public string WorkingDirectory { get; set; }
         public int PromptLength { get; set; }
+        public State State { get; set; }
     }
+
+    public enum State { Normal, Tabbing }
 }

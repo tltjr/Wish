@@ -30,20 +30,18 @@ namespace Wish
             _runner = runner;
         }
 
-        public CommandResult Raise(Key key, TextEditor textEditor)
+        public CommandResult Raise(Key key, string text)
         {
             switch (key)
             {
-                case Key.Enter: return Execute(textEditor.Text);
-                case Key.Up: return _repl.Up(textEditor.Text);
-                case Key.Down: return _repl.Down(textEditor.Text);
-                case Key.Tab:
-                    return Complete(textEditor);
+                case Key.Enter: return Execute(text);
+                case Key.Up: return _repl.Up(text);
+                case Key.Down: return _repl.Down(text);
             }
             return new CommandResult { FullyProcessed = true };
         }
 
-        private CommandResult Complete(TextEditor textEditor)
+        public CommandResult Complete(TextEditor textEditor, Action onClosed)
         {
             var command = _repl.Read(textEditor.Text);
             var arg = command.Arguments.Last();
@@ -61,8 +59,13 @@ namespace Wish
             }
             if (completionData.Count == 0) return new CommandResult { FullyProcessed = true, Handled = true };
             completionWindow.Show();
-            completionWindow.CompletionList.SelectedItem = completionData[0];
-            return new CommandResult{ FullyProcessed = true, Handled = false };
+            completionWindow.Closed += delegate
+                                            {
+                                                completionWindow = null;
+                                                onClosed.Invoke();
+                                            };
+            //completionWindow.CompletionList.SelectedItem = completionData[0];
+            return new CommandResult{ FullyProcessed = true, Handled = false, State = State.Tabbing};
         }
 
         public CommandResult Start()
