@@ -67,5 +67,20 @@ namespace Wish.Commands.Tests
             var result = GetResults("wi");
             Assert.True(result.Contains("'.\\with space'"));
         }
+
+        [Test]
+        public void AlreadyDotSlashed()
+        {
+            var result = GetResults(@".\sam");
+            Assert.True(result.Contains(@".\sample"));
+        }
+
+        [Test]
+        public void AlreadyDotSlashedNested()
+        {
+            var result = GetResults(@".\dir1\sub").ToList();
+            Assert.True(result.Contains(@".\dir1\subdir1"));
+            Assert.True(result.Contains(@".\dir1\subdir2"));
+        }
     }
 }

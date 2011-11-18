@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace Wish.Commands
 {
@@ -15,7 +14,18 @@ namespace Wish.Commands
         public override IEnumerable<string> Complete()
         {
             var list = GetDirectories(_runner.WorkingDirectory);
-            var dotSlashed = list.Select(o => @".\" + o).ToList();
+            var dotSlashed = new List<string>();
+            foreach (var dir in list)
+            {
+                if(!dir.Contains(@".\"))
+                {
+                    dotSlashed.Add(@".\" + dir);
+                }
+                else
+                {
+                    dotSlashed.Add(dir);
+                }
+            }
             return QuoteSpaces(dotSlashed, "'");
         }
     }
