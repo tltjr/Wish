@@ -12,6 +12,11 @@ namespace Wish.SearchBox.ViewModels
 
         private string _queryText;
 
+        public TabCompletionViewModel(IEnumerable<string> history)
+        {
+            BaseCollection = history;
+        }
+
         public string QueryText
         {
             get { return _queryText; }
@@ -28,7 +33,8 @@ namespace Wish.SearchBox.ViewModels
         {
             get
             {
-                return QueryText != null ? BaseCollection.Where(o => o.Contains(QueryText)) : BaseCollection;
+                var matches = QueryText != null ? BaseCollection.Where(o => o.Contains(QueryText)) : BaseCollection;
+                return matches;
             }
         }
 

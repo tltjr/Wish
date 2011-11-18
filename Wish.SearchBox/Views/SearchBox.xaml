@@ -3,28 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:ViewModels="clr-namespace:Wish.SearchBox.ViewModels"
              xmlns:Controls="clr-namespace:Aviad.WPF.Controls;assembly=Aviad.WPF.Controls" mc:Ignorable="d" 
              d:DesignHeight="53" d:DesignWidth="285">
     <UserControl.Resources>
-        <ViewModels:TabCompletionViewModel x:Key="ViewModel"/>
-        <CollectionViewSource x:Key="xml">
-            <CollectionViewSource.Source>
-                <PriorityBinding>
-                    <Binding Source="{StaticResource ViewModel}"
-                             Path="QueryCollection"
-                             IsAsync="True"/>
-                    <Binding Source="{StaticResource ViewModel}" Path="WaitMessage"/>
-                </PriorityBinding>
-            </CollectionViewSource.Source>
-        </CollectionViewSource>
-        <!--<Wish:MyDataTemplateSelector x:Key="TemplateSelector"/>
-        <DataTemplate x:Key="WaitTemplate">
-            <TextBlock Text="{Binding}" />
+        <DataTemplate x:Key="dataTemplate">
+            <TextBlock Text="{Binding}"
+                       Width="200"
+                       FontFamily="Segoe UI"
+                       FontSize="10"/>
         </DataTemplate>
-        <DataTemplate x:Key="ItemTemplate">
-            <TextBlock Text="{Binding}" Background="Gainsboro"/>
-        </DataTemplate>-->
     </UserControl.Resources>
     <Grid>
     	<Grid.Background>
@@ -58,9 +45,9 @@
                                           Margin="3,3,-4,0"
                                           Height="23"
                                           VerticalAlignment="Top" 
-                                          ItemsSource="{Binding Source={StaticResource xml}}" 
-                                          Text="{Binding Source={StaticResource ViewModel}, Path=QueryText, UpdateSourceTrigger=PropertyChanged}"
-                                          Binding="{Binding XPath=suggestion/@data}" />
+                                          ItemTemplate="{StaticResource dataTemplate}"
+                                          ItemsSource="{Binding Path=QueryCollection}"
+                                          Text="{Binding Path=QueryText, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
     </Grid>
 </UserControl>

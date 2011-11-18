@@ -16,8 +16,7 @@ namespace Wish.SearchBox.Views
         {
             InitializeComponent();
             _onSelectionCallback = callback;
-            var viewModel = Resources["ViewModel"] as TabCompletionViewModel;
-            if (viewModel != null) viewModel.BaseCollection = history;
+            DataContext = new TabCompletionViewModel(history);
         }
 
         public void Opened(object sender, EventArgs e)
