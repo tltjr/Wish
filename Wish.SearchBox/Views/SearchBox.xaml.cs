@@ -10,13 +10,17 @@ namespace Wish.SearchBox.Views
     /// </summary>
     public partial class SearchBox
     {
-        private readonly Action<string> _onSelectionCallback;
+        private readonly ViewModelDictionary _viewModelDictionary = new ViewModelDictionary();
+        private readonly SearchBoxViewModel _viewModel;
+        private readonly Action<string> _onSelected;
 
-        public SearchBox(IEnumerable<string> history, Action<string> callback)
+        public SearchBox(SearchType type, IEnumerable<string> uniqueList, Action<string> callback)
         {
             InitializeComponent();
-            _onSelectionCallback = callback;
-            DataContext = new TabCompletionViewModel(history);
+            _onSelected = callback;
+            _viewModel = _viewModelDictionary[type];
+            _viewModel.BaseCollection = uniqueList;
+            DataContext = _viewModel;
         }
 
         public void Opened(object sender, EventArgs e)
@@ -27,11 +31,8 @@ namespace Wish.SearchBox.Views
         protected override void OnPreviewKeyDown(KeyEventArgs e)
         {
             if (Key.Enter != e.Key) return;
-            {
-                var selectedItem = searchTb.ListBox.SelectedItem as string;
-                _onSelectionCallback(selectedItem);
-                e.Handled = true;
-            }
+            var selected = searchTb.ListBox.SelectedItem as string;
+            _viewModel.HandleEnter(e, _onSelected, selected);
         }
     }
 }

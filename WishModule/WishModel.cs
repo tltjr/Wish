@@ -9,6 +9,7 @@ using Wish.Commands;
 using Wish.Commands.Runner;
 using Wish.Common;
 using Wish.Scripts;
+using Wish.SearchBox;
 
 namespace Wish
 {
@@ -89,7 +90,17 @@ namespace Wish
         public void RequestHistorySearch(Popup popup, Action<string> callback)
         {
             var history = _repl.History.Select(x => x.ToString());
-            var searchBox = new SearchBox.Views.SearchBox(history, callback);
+            var searchBox = new SearchBox.Views.SearchBox(SearchType.CommandHistory, history, callback);
+            popup.Opened += searchBox.Opened;
+            popup.Child = searchBox;
+            popup.IsOpen = true;
+            popup.StaysOpen = false;
+        }
+
+        public void RequestRecentDirectory(Popup popup, Action<string> callback)
+        {
+            var dirs = _repl.RecentDirectories;
+            var searchBox = new SearchBox.Views.SearchBox(SearchType.RecentDirectories, dirs, callback);
             popup.Opened += searchBox.Opened;
             popup.Child = searchBox;
             popup.IsOpen = true;

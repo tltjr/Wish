@@ -21,10 +21,12 @@ namespace Wish.Scripts
         public string Text { get; set; }
         private CommandResult _result;
         public History History { get; set; }
+        public UniqueList<string> RecentDirectories { get; set; }
 
         public CommandResult Start()
         {
             History = new History();
+            RecentDirectories = new UniqueList<string>();
             _prompt = new Prompt();
             LastPromptIndex = _prompt.Current.Length;
             Text = _prompt.Current;
@@ -57,7 +59,9 @@ namespace Wish.Scripts
         {
             History.Add(command);
             _result = command.Execute();
-            _prompt.Update(_result.WorkingDirectory);
+            var workingDirectory = _result.WorkingDirectory;
+            RecentDirectories.Add(workingDirectory);
+            _prompt.Update(workingDirectory);
             _result.PromptLength = _prompt.Current.Length + 1;
         }
 

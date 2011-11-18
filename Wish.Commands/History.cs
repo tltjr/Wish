@@ -1,74 +1,40 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Wish.Common;
 
 namespace Wish.Commands
 {
-    public class History : IEnumerable<ICommand>
+    public class History : UniqueList<ICommand>
     {
-        private readonly IList<ICommand> _history = new List<ICommand>();
-        // public for testing purposes only
         public int Index = -1;
-
-        public int Count
-        {
-            get { return _history.Count; }
-        }
 
         public ICommand Up()
         {
-            if(_history.Count > 0)
+            if (Count == 0) return null;
+            Index++;
+            if(Index > Count - 1)
             {
-                Index++;
-                if(Index > _history.Count - 1)
-                {
-                    Index = -1;
-                }
-                if (Index == -1)
-                {
-                    return new Command(string.Empty);
-                }
-                return _history[Index];
+                Index = -1;
             }
-            return null;
-        }
-
-        public void Add(ICommand command)
-        {
-            if (_history.Contains(command)) return;
-            _history.Insert(0, command);
+            return Index == -1 ? new Command(string.Empty) : this[Index];
         }
 
         public ICommand Down()
         {
-            if (_history.Count > 0)
+            if (Count == 0) return null;
+            Index--;
+            if (Index == -1)
             {
-                Index--;
-                if (Index == -1)
-                {
-                    return new Command(string.Empty);
-                }
-                if (Index < -1)
-                {
-                    Index = _history.Count - 1;
-                }
-                return _history[Index];
+                return new Command(string.Empty);
             }
-            return null;
+            if (Index < -1)
+            {
+                Index = Count - 1;
+            }
+            return this[Index];
         }
 
         public void Reset()
         {
             Index = -1;
-        }
-
-        public IEnumerator<ICommand> GetEnumerator()
-        {
-            return _history.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
     }
 }

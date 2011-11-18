@@ -8,7 +8,7 @@
     <UserControl.Resources>
         <DataTemplate x:Key="dataTemplate">
             <TextBlock Text="{Binding}"
-                       Width="241"
+                       MinWidth="241"
                        FontFamily="Consolas"
                        FontSize="14"/>
         </DataTemplate>
@@ -17,7 +17,7 @@
     	<Grid.Background>
     		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
     			<GradientStop Color="Black" Offset="0"/>
-    			<GradientStop Color="#FF7E51FD" Offset="1"/>
+    			<GradientStop Color="{Binding Path=Color}" Offset="1"/>
     		</LinearGradientBrush>
     	</Grid.Background>
         <Grid.RowDefinitions>
