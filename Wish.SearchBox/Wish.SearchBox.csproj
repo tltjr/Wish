@@ -62,6 +62,10 @@
       <Project>{4973C447-1643-462D-B58D-69929A3AF289}</Project>
       <Name>Wish.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Wish.Extensions\Wish.Extensions.csproj">
+      <Project>{4593E460-0B6D-4F53-B514-0FB39C43D021}</Project>
+      <Name>Wish.Extensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\SearchBox.xaml">

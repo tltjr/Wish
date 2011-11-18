@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
+using Wish.Extensions;
 
 namespace Wish.SearchBox.ViewModels
 {
@@ -30,7 +31,7 @@ namespace Wish.SearchBox.ViewModels
         {
             get
             {
-                var matches = QueryText != null ? BaseCollection.Where(o => o.Contains(QueryText)) : BaseCollection;
+                var matches = QueryText != null ? BaseCollection.Where(o => o.Contains(QueryText, StringComparison.InvariantCultureIgnoreCase)) : BaseCollection;
                 return matches;
             }
         }

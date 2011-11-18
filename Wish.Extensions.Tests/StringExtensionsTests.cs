@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace Wish.Extensions.Tests
 {
@@ -15,6 +16,18 @@ namespace Wish.Extensions.Tests
         public void TestSurroundDoubleQuote()
         {
             Assert.AreEqual("\"test\"", "test".Surround("\""));
+        }
+
+        [Test]
+        public void TestContainsIgnoreCase()
+        {
+            Assert.True("test".Contains("T", StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        [Test]
+        public void TestContainsSpecifyingCaseSensitivity()
+        {
+            Assert.False("test".Contains("T", StringComparison.InvariantCulture));
         }
     }
 }
