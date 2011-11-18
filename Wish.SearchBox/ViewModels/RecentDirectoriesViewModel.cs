@@ -15,5 +15,10 @@ namespace Wish.SearchBox.ViewModels
             onSelection("cd " + selected);
             e.Handled = true;
         }
+
+        public override string Text
+        {
+            get { return "Search Recent Directories: "; }
+        }
     }
 }

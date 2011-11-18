@@ -24,7 +24,7 @@
             <RowDefinition Height="0.45*"/>
             <RowDefinition Height="0.55*"/>
         </Grid.RowDefinitions>
-        <Label Content="Search command history:" 
+        <Label Content="{Binding Path=Text}" 
                Grid.Row="0"
                FontFamily="Segoe UI"
                FontSize="10"

@@ -12,6 +12,7 @@ namespace Wish.SearchBox.ViewModels
     {
         public IEnumerable<string> BaseCollection { get; set; }
         public abstract string Color { get; }
+        public abstract string Text { get; }
         public abstract void HandleEnter(KeyEventArgs e, Action<string> onSelection, string selected);
         private string _queryText;
 
