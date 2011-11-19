@@ -191,7 +191,7 @@ namespace Wish.Scripts.Tests
         public void PromptDefaultsToHomeDirectory()
         {
             _repl.Start();
-            var expected = Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%") + " >> ";
+            var expected = @"AMR\tlthorn1@TLTHORN1-DESK1 " + Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%") + " >> ";
             Assert.AreEqual(expected, _repl.Text);
         }
 
@@ -200,11 +200,11 @@ namespace Wish.Scripts.Tests
         {
             StartAndOverrideDefaultPrompt();
             _repl.Loop("> cd ..");
-            Assert.AreEqual(@"T:\src\dotnet\wish-all\Wish\Wish.Scripts.Tests\bin >> ", _repl.Prompt.Current);
+            Assert.AreEqual(@"AMR\tlthorn1@TLTHORN1-DESK1 T:\src\dotnet\wish-all\Wish\Wish.Scripts.Tests\bin >> ", _repl.Prompt.Current);
         }
 
-        private const string BaseText = @"C:\Users\tlthorn1.AMR >> ";
-        private const string UpdatedText = @"C:\Users\tlthorn1.AMR >> "  + "ls";
+        private const string BaseText = @"AMR\tlthorn1@TLTHORN1-DESK1 C:\Users\tlthorn1.AMR >> ";
+        private const string UpdatedText = @"AMR\tlthorn1@TLTHORN1-DESK1 C:\Users\tlthorn1.AMR >> "  + "ls";
 
         [Test]
         public void HistoryRequest()
