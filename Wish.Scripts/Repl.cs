@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Wish.Commands;
 using Wish.Common;
 
@@ -22,11 +23,13 @@ namespace Wish.Scripts
         private CommandResult _result;
         public History History { get; set; }
         public UniqueList<string> RecentDirectories { get; set; }
+        public UniqueList<string> RecentArguments { get; set; }
 
         public CommandResult Start()
         {
             History = new History();
             RecentDirectories = new UniqueList<string>();
+            RecentArguments = new UniqueList<string>();
             _prompt = new Prompt();
             LastPromptIndex = _prompt.Current.Length;
             Text = _prompt.Current;
@@ -58,6 +61,7 @@ namespace Wish.Scripts
         public void Eval(ICommand command)
         {
             History.Add(command);
+            RecentArguments.AddRange(command.Arguments.Select(o => o.PartialPath.Text));
             _result = command.Execute();
             var workingDirectory = _result.WorkingDirectory;
             RecentDirectories.Add(workingDirectory);

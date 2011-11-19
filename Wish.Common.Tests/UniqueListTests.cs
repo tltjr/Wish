@@ -38,5 +38,14 @@ namespace Wish.Common.Tests
             _uniqueList.Add(null);
             Assert.AreEqual(1, _uniqueList.Count);
         }
+
+        [Test]
+        public void AddRangeEnforcesSameRulesAsAdd()
+        {
+            var ins = new System.Collections.Generic.List<string> {"one", "one", null};
+            _uniqueList = new UniqueList<string>();
+            _uniqueList.AddRange(ins);
+            Assert.AreEqual(1, _uniqueList.Count);
+        }
     }
 }

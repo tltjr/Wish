@@ -12,5 +12,13 @@ namespace Wish.Common
             if (Contains(item)) return;
             Insert(0, item);
         }
+
+        public new void AddRange(IEnumerable<T> items)
+        {
+            foreach (var item in items)
+            {
+                Add(item);
+            }
+        }
     }
 }
