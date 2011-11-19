@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls.Primitives;
@@ -90,17 +91,24 @@ namespace Wish
         public void RequestHistorySearch(Popup popup, Action<string> callback)
         {
             var history = _repl.History.Select(x => x.ToString());
-            var searchBox = new SearchBox.Views.SearchBox(SearchType.CommandHistory, history, callback);
-            popup.Opened += searchBox.Opened;
-            popup.Child = searchBox;
-            popup.IsOpen = true;
-            popup.StaysOpen = false;
+            CreatePopup(popup, callback, history, SearchType.CommandHistory);
         }
 
         public void RequestRecentDirectory(Popup popup, Action<string> callback)
         {
             var dirs = _repl.RecentDirectories;
-            var searchBox = new SearchBox.Views.SearchBox(SearchType.RecentDirectories, dirs, callback);
+            CreatePopup(popup, callback, dirs, SearchType.RecentDirectories);
+        }
+
+        public void RequestRecentArgument(Popup popup, Action<string> callback)
+        {
+            var args = _repl.RecentArguments;
+            CreatePopup(popup, callback, args, SearchType.RecentArguments);
+        }
+
+        private static void CreatePopup(Popup popup, Action<string> callback, IEnumerable<string> args, SearchType type)
+        {
+            var searchBox = new SearchBox.Views.SearchBox(type, args, callback);
             popup.Opened += searchBox.Opened;
             popup.Child = searchBox;
             popup.IsOpen = true;

@@ -23,6 +23,7 @@ namespace Wish.Views
         public static RoutedCommand ControlP = new RoutedCommand();
         public static RoutedCommand ControlN = new RoutedCommand();
         public static RoutedCommand ControlD = new RoutedCommand();
+        public static RoutedCommand ControlA = new RoutedCommand();
         private int _promptLength;
         private State _state;
 
@@ -55,6 +56,9 @@ namespace Wish.Views
 
             var controlD = new KeyGesture(Key.D, ModifierKeys.Control);
             ControlD.InputGestures.Add(controlD);
+
+            var controlA = new KeyGesture(Key.A, ModifierKeys.Control);
+            ControlA.InputGestures.Add(controlA);
         }
 
         private void ScrollToEnd(object sender, EventArgs eventArgs)
@@ -233,6 +237,18 @@ namespace Wish.Views
         {
             _popup = new Popup {IsOpen = false, PlacementTarget = textEditor, Placement = PlacementMode.Center, Width = 285};
             _wishModel.RequestRecentDirectory(_popup, Process);
+        }
+
+        private void ExecuteControlA(object sender, ExecutedRoutedEventArgs e)
+        {
+            _popup = new Popup {IsOpen = false, PlacementTarget = textEditor, Placement = PlacementMode.Center, Width = 285};
+            _wishModel.RequestRecentArgument(_popup, Append);
+        }
+
+        private void Append(string obj)
+        {
+            textEditor.Text += obj;
+            ClearPopups();
         }
     }
 }

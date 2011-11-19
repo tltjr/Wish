@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModelDictionary.cs" />
-    <Compile Include="ViewModels\ArgumentHistoryViewModel.cs" />
+    <Compile Include="ViewModels\RecentArgumentsViewModel.cs" />
     <Compile Include="ViewModels\CommandHistoryViewModel.cs" />
     <Compile Include="ViewModels\RecentDirectoriesViewModel.cs" />
     <Compile Include="ViewModels\SearchBoxViewModel.cs" />

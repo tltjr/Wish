@@ -21,5 +21,6 @@ namespace Wish.Scripts
         CommandResult Down(string text);
         History History { get; set; }
         UniqueList<string> RecentDirectories { get; set; }
+        UniqueList<string> RecentArguments { get; set; }
     }
 }

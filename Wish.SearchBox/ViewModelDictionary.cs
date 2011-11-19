@@ -6,7 +6,8 @@ namespace Wish.SearchBox
     public enum SearchType
     {
         RecentDirectories,
-        CommandHistory
+        CommandHistory,
+        RecentArguments
     };
 
     public class ViewModelDictionary
@@ -17,6 +18,7 @@ namespace Wish.SearchBox
         {
             _dictionary.Add(SearchType.CommandHistory, new CommandHistoryViewModel());
             _dictionary.Add(SearchType.RecentDirectories, new RecentDirectoriesViewModel());
+            _dictionary.Add(SearchType.RecentArguments, new RecentArgumentsViewModel());
         }
 
         public SearchBoxViewModel this[SearchType type]
