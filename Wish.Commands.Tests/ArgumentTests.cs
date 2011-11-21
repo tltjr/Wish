@@ -46,6 +46,20 @@ namespace Wish.Commands.Tests
         }
 
         [Test]
+        public void CompletePromptBasedArg()
+        {
+            var results = GetResult(@"T:\sr");
+            Assert.AreEqual(@"T:\src", results.First());
+        }
+
+        [Test]
+        public void CompletePromptBasedArgWithMultipleSegments()
+        {
+            var results = GetResult(@"T:\src\dotne");
+            Assert.AreEqual(@"T:\src\dotnet", results.First());
+        }
+
+        [Test]
         [Ignore]
         public void CompleteQuotedArg()
         {

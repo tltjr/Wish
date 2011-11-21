@@ -17,13 +17,13 @@ namespace Wish.Commands
             var dotSlashed = new List<string>();
             foreach (var dir in list)
             {
-                if(!dir.Contains(@".\"))
+                if(dir.Contains(@".\") || dir.Contains(@":"))
                 {
-                    dotSlashed.Add(@".\" + dir);
+                    dotSlashed.Add(dir);
                 }
                 else
                 {
-                    dotSlashed.Add(dir);
+                    dotSlashed.Add(@".\" + dir);
                 }
             }
             return QuoteSpaces(dotSlashed, "'");

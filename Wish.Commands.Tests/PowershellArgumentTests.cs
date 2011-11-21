@@ -82,5 +82,12 @@ namespace Wish.Commands.Tests
             Assert.True(result.Contains(@".\dir1\subdir1"));
             Assert.True(result.Contains(@".\dir1\subdir2"));
         }
+
+        [Test]
+        public void PromptArgumentsArentDotSlashed()
+        {
+            var results = GetResults(@"T:\sr");
+            Assert.True(results.Contains(@"T:\src"));
+        }
     }
 }

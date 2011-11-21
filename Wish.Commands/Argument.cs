@@ -16,8 +16,28 @@ namespace Wish.Commands
 
         protected List<string> GetDirectories(string workingDirectory)
         {
-            var directories = Directory.GetFileSystemEntries(workingDirectory, PartialPath.Pattern);
+            string[] directories;
+            directories = GetStringDirectories(workingDirectory);
             return directories.Select(directory => PartialPath.Base + new DirectoryInfo(directory).Name).ToList();
+        }
+
+        private string[] GetStringDirectories(string workingDirectory)
+        {
+            var pattern = PartialPath.Pattern;
+            if (pattern.Contains(":"))
+            {
+                var split = pattern.Split('\\');
+                var segments = split.Take(split.Count() - 1).ToList();
+                var basePath = GetBasePath(segments);
+                var searchPattern = split.Last();
+                return Directory.GetFileSystemEntries(basePath, searchPattern);
+            }
+            return Directory.GetFileSystemEntries(workingDirectory, PartialPath.Pattern);
+        }
+
+        private static string GetBasePath(List<string> segments)
+        {
+            return (segments.Count() > 1) ? string.Join("\\", segments) : segments.First() + "\\";
         }
 
         protected static IEnumerable<string> QuoteSpaces(IEnumerable<string> list, string quote)
