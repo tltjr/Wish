@@ -43,6 +43,7 @@ namespace Wish
             return new CommandResult { FullyProcessed = true };
         }
 
+        private CompletionWindow _completionWindow;
         public CommandResult Complete(TextEditor textEditor, Action onClosed)
         {
             var command = _repl.Read(textEditor.Text);
@@ -61,22 +62,22 @@ namespace Wish
                 completions = command.Function.Complete().ToList();
             }
             if(completions.Count() == 0) return new CommandResult { FullyProcessed = true, Handled = true };
-            var completionWindow = new CompletionWindow(textEditor.TextArea)
-                                {
-                                    SizeToContent = SizeToContent.WidthAndHeight,
-                                    MinWidth = 150
-                                };
-            var completionData = completionWindow.CompletionList.CompletionData;
+            _completionWindow = new CompletionWindow(textEditor.TextArea)
+                                             {
+                                                 SizeToContent = SizeToContent.WidthAndHeight,
+                                                 MinWidth = 150
+                                             };
+            var completionData = _completionWindow.CompletionList.CompletionData;
             foreach (var completion in completions)
             {
                 completionData.Add(new CompletionData(completionTarget, completion));
             }
             if (completionData.Count == 0) return new CommandResult { FullyProcessed = true, Handled = true };
-            completionWindow.Show();
-            completionWindow.Closed += delegate
+            _completionWindow.Show();
+            _completionWindow.Closed += delegate
                                             {
                                                 onClosed.Invoke();
-                                                completionWindow = null;
+                                                _completionWindow = null;
                                             };
             //completionWindow.CompletionList.SelectedItem = completionData[0];
             return new CommandResult{ FullyProcessed = true, Handled = false, State = State.Tabbing };
@@ -125,6 +126,11 @@ namespace Wish
             popup.Child = searchBox;
             popup.IsOpen = true;
             popup.StaysOpen = false;
+        }
+
+        public void CloseCompletionWindow()
+        {
+            _completionWindow.Close();
         }
     }
 }

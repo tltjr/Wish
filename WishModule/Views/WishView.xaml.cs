@@ -100,6 +100,10 @@ namespace Wish.Views
             if (_state.Equals(State.Tabbing))
             {
                 if (e.Key.Equals(Key.Enter) || e.Key.Equals(Key.Tab)) return;
+                if (e.Key.Equals(Key.Escape))
+                {
+                    _wishModel.CloseCompletionWindow();
+                }
                 e.Handled = true;
                 return;
             }
