@@ -47,13 +47,19 @@ namespace Wish
         {
             var command = _repl.Read(textEditor.Text);
             var args = command.Arguments.ToList();
-            if(!args.Any())
+            string completionTarget;
+            List<string> completions;
+            if(args.Any())
             {
-                return new CommandResult { FullyProcessed = true, Handled = true };
+                var arg = args.Last();
+                completionTarget = arg.PartialPath.Text;
+                completions = command.Complete().ToList();
             }
-            var arg = args.Last();
-            var completionTarget = arg.PartialPath.Text;
-            var completions = command.Complete().ToList();
+            else
+            {
+                completionTarget = command.Function.Name;
+                completions = command.Function.Complete().ToList();
+            }
             if(completions.Count() == 0) return new CommandResult { FullyProcessed = true, Handled = true };
             var completionWindow = new CompletionWindow(textEditor.TextArea)
                                 {

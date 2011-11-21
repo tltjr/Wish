@@ -25,7 +25,9 @@ namespace Wish.Commands
             {
                 if(String.IsNullOrEmpty(directory)) continue;
                 var directoryInfo = new DirectoryInfo(directory);
-                result.AddRange(directoryInfo.Executables());
+                var exes = directoryInfo.Executables();
+                var matches = exes.Where(o => o.StartsWith(Name));
+                result.AddRange(matches);
             }
             return result;
         }
