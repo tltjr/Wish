@@ -97,7 +97,12 @@ namespace Wish.Views
                 command.Execute(0, this);
                 e.Handled = true;
             }
-            if (_state.Equals(State.Tabbing)) return;
+            if (_state.Equals(State.Tabbing))
+            {
+                if (e.Key.Equals(Key.Enter) || e.Key.Equals(Key.Tab)) return;
+                e.Handled = true;
+                return;
+            }
             var result = e.Key.Equals(Key.Tab) ? _wishModel.Complete(textEditor, StateNormal) : _wishModel.Raise(e.Key, textEditor.Text);
             if (result.IsExit)
             {

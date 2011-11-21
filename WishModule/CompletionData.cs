@@ -34,7 +34,7 @@ namespace Wish
 
         public object Description
         {
-            get { return _completion; }
+            get { return null; }
         }
 
         public double Priority

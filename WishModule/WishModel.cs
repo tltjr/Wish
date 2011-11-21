@@ -46,7 +46,13 @@ namespace Wish
         public CommandResult Complete(TextEditor textEditor, Action onClosed)
         {
             var command = _repl.Read(textEditor.Text);
-            var arg = command.Arguments.Last();
+            var args = command.Arguments.ToList();
+            if(!args.Any())
+            {
+                return new CommandResult { FullyProcessed = true, Handled = true };
+            }
+            var arg = args.Last();
+            var completionTarget = arg.PartialPath.Text;
             var completions = command.Complete().ToList();
             if(completions.Count() == 0) return new CommandResult { FullyProcessed = true, Handled = true };
             var completionWindow = new CompletionWindow(textEditor.TextArea)
@@ -57,17 +63,17 @@ namespace Wish
             var completionData = completionWindow.CompletionList.CompletionData;
             foreach (var completion in completions)
             {
-                completionData.Add(new CompletionData(arg.PartialPath.Text, completion));
+                completionData.Add(new CompletionData(completionTarget, completion));
             }
             if (completionData.Count == 0) return new CommandResult { FullyProcessed = true, Handled = true };
             completionWindow.Show();
             completionWindow.Closed += delegate
                                             {
-                                                completionWindow = null;
                                                 onClosed.Invoke();
+                                                completionWindow = null;
                                             };
             //completionWindow.CompletionList.SelectedItem = completionData[0];
-            return new CommandResult{ FullyProcessed = true, Handled = false, State = State.Tabbing};
+            return new CommandResult{ FullyProcessed = true, Handled = false, State = State.Tabbing };
         }
 
         public CommandResult Start()
