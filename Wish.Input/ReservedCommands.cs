@@ -1,24 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text.RegularExpressions;
-using Wish.Common;
 
 namespace Wish.Input
 {
     public class ReservedCommands
     {
-        private static readonly List<string> ReservedCommandList = new List<string> { @"^git push*" };
+        private static readonly List<string> ReservedCommandList = new List<string> { @"^git push*", @"mongo*" };
        
         public bool IsReservedCommand(string command)
         {
-            foreach (var pattern in ReservedCommandList)
-            {
-                if (Regex.IsMatch(command, pattern, RegexOptions.IgnoreCase))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return ReservedCommandList.Any(pattern => Regex.IsMatch(command, pattern, RegexOptions.IgnoreCase));
         }
 
         public void Execute(string text, string workingDirectory)

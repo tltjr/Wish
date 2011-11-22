@@ -114,9 +114,9 @@ namespace Wish.Views
                 return;
             }
             _state = result.State;
+            e.Handled = result.Handled;
             if (result.FullyProcessed) return;
             ProcessCommandResult(result, false);
-            e.Handled = result.Handled;
         }
 
         private void StateNormal()
