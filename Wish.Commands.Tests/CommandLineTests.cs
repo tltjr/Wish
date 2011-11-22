@@ -42,69 +42,6 @@ namespace Wish.Commands.Tests
         }
 
         [Test]
-        public void IsDirectoryCommand()
-        {
-            var commandLine = new CommandLine(@"c:");
-            Assert.True(commandLine.IsDirectoryCommand());
-        }
-
-        [Test]
-        public void IsDirectoryCommandCaseInsensitive()
-        {
-            var commandLine = new CommandLine(@"C:");
-            Assert.True(commandLine.IsDirectoryCommand());
-        }
-
-        [Test]
-        public void IsDirectoryCommandBasic()
-        {
-            var commandLine = new CommandLine(@"cd somefile somedir");
-            Assert.True(commandLine.IsDirectoryCommand());
-        }
-
-        [Test]
-        public void IsDirectoryCommandOtherDrives()
-        {
-            var commandLine = new CommandLine(@"z:");
-            Assert.True(commandLine.IsDirectoryCommand());
-        }
-
-        [Test]
-        public void IsDirectoryCommandPushD()
-        {
-            var commandLine = new CommandLine(@"pushd");
-            Assert.True(commandLine.IsDirectoryCommand());
-        }
-
-        [Test]
-        public void IsDirectoryCommandPopD()
-        {
-            var commandLine = new CommandLine(@"popd");
-            Assert.True(commandLine.IsDirectoryCommand());
-        }
-
-        [Test]
-        public void IsDirectoryCommandCdSlash()
-        {
-            var commandLine = new CommandLine(@"cd\");
-            Assert.True(commandLine.IsDirectoryCommand());
-        }
-
-        [Test]
-        public void IsDirectoryCommandPartialMatchFalse()
-        {
-            var commandLine = new CommandLine(@"cdd");
-            Assert.False(commandLine.IsDirectoryCommand());
-        }
-
-        [Test]
-        public void IsDirectoryCommandPartialMatchEndFalse()
-        {
-            var commandLine = new CommandLine(@"ccd");
-            Assert.False(commandLine.IsDirectoryCommand());
-        }
-
-        [Test]
         public void EmptyArgs()
         {
             var commandLine = new CommandLine(string.Empty);

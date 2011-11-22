@@ -109,6 +109,18 @@ namespace Wish.Commands.Tests
         }
 
         [Test]
+        public void NonDirectoryCommandsAlsoReturnWorkingDirectory()
+        {
+            const string command = @"command";
+            var mock = new Mock<IRunner>();
+            mock.Setup(o => o.Execute(command)).Returns("testing");
+            mock.Setup(o => o.WorkingDirectory).Returns(@"T:\somewhere\somedir");
+            _command = new Command(mock.Object, command);
+            var result = _command.Execute();
+            Assert.AreEqual(@"T:\somewhere\somedir", result.WorkingDirectory);
+        }
+
+        [Test]
         [Ignore]
         public void SetAStandardForUnityContainerAndMeetItOrRemoveIt()
         {

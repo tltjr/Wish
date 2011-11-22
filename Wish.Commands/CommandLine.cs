@@ -6,8 +6,6 @@ namespace Wish.Commands
 {
     public class CommandLine
     {
-        private static readonly List<string> DirectoryCommands = new List<string> { @"^pushd$", @"^popd$", @"^(\w):$", @"^(\w)d$", @"^cd\\$" };
-
         public string Text { get; set; }
 
         public CommandLine(string line)
@@ -40,18 +38,6 @@ namespace Wish.Commands
                 }
                 return args;
             }
-        }
-
-        public bool IsDirectoryCommand()
-        {
-            foreach (var pattern in DirectoryCommands)
-            {
-                if (Regex.IsMatch(Function, pattern, RegexOptions.IgnoreCase))
-                {
-                    return true;
-                }
-            }
-            return false;
         }
     }
 }
