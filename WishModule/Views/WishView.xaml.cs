@@ -99,15 +99,20 @@ namespace Wish.Views
             }
             if (_state.Equals(State.Tabbing))
             {
-                if (e.Key.Equals(Key.Enter) || e.Key.Equals(Key.Tab)) return;
-                if (e.Key.Equals(Key.Escape))
+                switch (e.Key)
                 {
-                    _wishModel.CloseCompletionWindow();
+                    case Key.Enter:
+                        return;
+                    case Key.Tab:
+                        return;
+                    case Key.Escape:
+                        _wishModel.CloseCompletionWindow();
+                        break;
                 }
                 e.Handled = true;
                 return;
-            }
-            var result = e.Key.Equals(Key.Tab) ? _wishModel.Complete(textEditor, StateNormal) : _wishModel.Raise(e.Key, Title, textEditor.Text);
+        }
+            var result = e.Key.Equals(Key.Tab) ? _wishModel.Complete(textEditor, StateNormal, Execute) : _wishModel.Raise(e.Key, Title, textEditor.Text);
             if (result.IsExit)
             {
                 Exit();
@@ -118,6 +123,12 @@ namespace Wish.Views
             if (result.FullyProcessed) return;
             ProcessCommandResult(result, false);
         }
+
+		void Execute()
+		{
+		    var result = _wishModel.Raise(Key.Enter, Title, textEditor.Text);
+            ProcessCommandResult(result, true);
+		}
 
         private void StateNormal()
         {

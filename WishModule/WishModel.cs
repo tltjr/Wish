@@ -45,7 +45,7 @@ namespace Wish
         }
 
         private CompletionWindow _completionWindow;
-        public CommandResult Complete(TextEditor textEditor, Action onClosed)
+        public CommandResult Complete(TextEditor textEditor, Action onClosed, Action execute)
         {
             var command = _repl.Read(textEditor.Text);
             var args = command.Arguments.ToList();
@@ -81,6 +81,10 @@ namespace Wish
                                                 onClosed.Invoke();
                                                 _completionWindow = null;
                                             };
+            _completionWindow.CompletionList.InsertionRequested += delegate
+                                                                       {
+                                                                           execute.Invoke();
+                                                                       };
             //completionWindow.CompletionList.SelectedItem = completionData[0];
             return new CommandResult{ FullyProcessed = true, Handled = false, State = State.Tabbing };
         }
@@ -142,5 +146,6 @@ namespace Wish
         {
             _completionWindow.Close();
         }
+
     }
 }
