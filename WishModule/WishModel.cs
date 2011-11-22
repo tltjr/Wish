@@ -33,11 +33,11 @@ namespace Wish
             _runner = runner;
         }
 
-        public CommandResult Raise(Key key, string text)
+        public CommandResult Raise(Key key, string workingDirectory, string text)
         {
             switch (key)
             {
-                case Key.Enter: return Execute(text);
+                case Key.Enter: return Execute(text, workingDirectory);
                 case Key.Up: return _repl.Up(text);
                 case Key.Down: return _repl.Down(text);
             }
@@ -97,12 +97,17 @@ namespace Wish
                        };
         }
 
-        public CommandResult Execute(string text)
+        public CommandResult Execute(string text, string workingDirectory)
         {
             var reserved = new ReservedCommands();
             var commandLine = _repl.Read(text).CommandLine.Text;
             var isReserved = reserved.IsReservedCommand(commandLine);
-            return isReserved ? reserved.Execute(text) : _repl.Loop(_runner, text);
+            if (isReserved)
+            {
+                reserved.Execute(commandLine, workingDirectory);
+                return new CommandResult {FullyProcessed = true, Handled = true};
+            }
+            return _repl.Loop(_runner, text);
         }
 
         public void RequestHistorySearch(Popup popup, Action<string> callback)

@@ -107,7 +107,7 @@ namespace Wish.Views
                 e.Handled = true;
                 return;
             }
-            var result = e.Key.Equals(Key.Tab) ? _wishModel.Complete(textEditor, StateNormal) : _wishModel.Raise(e.Key, textEditor.Text);
+            var result = e.Key.Equals(Key.Tab) ? _wishModel.Complete(textEditor, StateNormal) : _wishModel.Raise(e.Key, Title, textEditor.Text);
             if (result.IsExit)
             {
                 Exit();
@@ -175,7 +175,7 @@ namespace Wish.Views
 
         private void Process(string text)
         {
-            var result = _wishModel.Raise(Key.Enter, textEditor.Text + text);
+            var result = _wishModel.Raise(Key.Enter, Title, textEditor.Text + text);
             _state = result.State;
             ProcessCommandResult(result, true);
         }
@@ -232,13 +232,13 @@ namespace Wish.Views
 
         private void ExecuteControlP(object sender, ExecutedRoutedEventArgs e)
         {
-            var result = _wishModel.Raise(Key.Up, textEditor.Text);
+            var result = _wishModel.Raise(Key.Up, Title, textEditor.Text);
             ProcessCommandResult(result, true);
         }
 
         private void ExecuteControlN(object sender, ExecutedRoutedEventArgs e)
         {
-            var result = _wishModel.Raise(Key.Down, textEditor.Text);
+            var result = _wishModel.Raise(Key.Down, Title, textEditor.Text);
             ProcessCommandResult(result, true);
         }
 

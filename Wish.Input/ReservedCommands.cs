@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Wish.Common;
 
@@ -20,9 +21,14 @@ namespace Wish.Input
             return false;
         }
 
-        public CommandResult Execute(string text)
+        public void Execute(string text, string workingDirectory)
         {
-            return null;
+            var psi = new ProcessStartInfo("cmd.exe");
+            psi.Arguments = string.Format("/k \"{0}\"", text);
+            psi.CreateNoWindow = false;
+            psi.UseShellExecute = true;
+            psi.WorkingDirectory = workingDirectory;
+            Process.Start(psi);
         }
     }
 }
