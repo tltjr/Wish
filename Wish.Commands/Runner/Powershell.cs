@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Configuration;
 using System.Linq;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;

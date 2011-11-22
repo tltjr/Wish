@@ -7,6 +7,7 @@ namespace Wish.Commands
     {
         CommandResult Execute();
         IEnumerable<string> Complete();
+        CommandLine CommandLine { get; set; }
         Function Function { get; set; }
         IEnumerable<Argument> Arguments { get; set; }
         bool IsExit { get; set; }

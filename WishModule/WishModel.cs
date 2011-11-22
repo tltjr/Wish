@@ -9,6 +9,7 @@ using ICSharpCode.AvalonEdit.CodeCompletion;
 using Wish.Commands;
 using Wish.Commands.Runner;
 using Wish.Common;
+using Wish.Input;
 using Wish.Scripts;
 using Wish.SearchBox;
 
@@ -98,7 +99,10 @@ namespace Wish
 
         public CommandResult Execute(string text)
         {
-            return _repl.Loop(_runner, text);
+            var reserved = new ReservedCommands();
+            var commandLine = _repl.Read(text).CommandLine.Text;
+            var isReserved = reserved.IsReservedCommand(commandLine);
+            return isReserved ? reserved.Execute(text) : _repl.Loop(_runner, text);
         }
 
         public void RequestHistorySearch(Popup popup, Action<string> callback)

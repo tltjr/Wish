@@ -9,7 +9,7 @@ namespace Wish.Commands
     public class Command : ICommand
     {
         private readonly IRunner _runner;
-        private readonly CommandLine _commandLine;
+        public CommandLine CommandLine { get; set; }
         public Function Function { get; set; }
         public IEnumerable<Argument> Arguments { get; set; }
         public bool IsExit { get; set; }
@@ -23,11 +23,11 @@ namespace Wish.Commands
 
         public Command(string command)
         {
-            _commandLine = new CommandLine(command);
-            Function = new Function(_commandLine.Function);
+            CommandLine = new CommandLine(command);
+            Function = new Function(CommandLine.Function);
             IsExit = Function.Name.Equals("exit", StringComparison.InvariantCultureIgnoreCase);
-            Arguments = CreateArguments(_commandLine.Arguments);
-            Text = _commandLine.Text;
+            Arguments = CreateArguments(CommandLine.Arguments);
+            Text = CommandLine.Text;
             _runner = new Powershell();
         }
 
@@ -35,7 +35,7 @@ namespace Wish.Commands
         {
             var text = _runner.Execute(Text);
             var result = new CommandResult { Text = text };
-            var dirChange = _commandLine.IsDirectoryCommand();
+            var dirChange = CommandLine.IsDirectoryCommand();
             if(dirChange)
             {
                 result.WorkingDirectory = _runner.WorkingDirectory;
@@ -56,17 +56,17 @@ namespace Wish.Commands
 
         public override string ToString()
         {
-            return _commandLine.Text;
+            return CommandLine.Text;
         }
 
         public override bool Equals(object obj)
         {
-            return ((Command)obj)._commandLine.Text.Equals(_commandLine.Text);
+            return ((Command)obj).CommandLine.Text.Equals(CommandLine.Text);
         }
 
         public override int GetHashCode()
         {
-            return _commandLine.Text.GetHashCode();
+            return CommandLine.Text.GetHashCode();
         }
 
     }

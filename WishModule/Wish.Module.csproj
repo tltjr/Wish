@@ -84,6 +84,10 @@
       <Project>{4973C447-1643-462D-B58D-69929A3AF289}</Project>
       <Name>Wish.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Wish.Input\Wish.Input.csproj">
+      <Project>{7F67FEDC-310F-4036-B9AE-F1D075C9E8E1}</Project>
+      <Name>Wish.Input</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wish.Scripts\Wish.Scripts.csproj">
       <Project>{57915513-32AB-44B9-AA63-C2997D1A873B}</Project>
       <Name>Wish.Scripts</Name>
