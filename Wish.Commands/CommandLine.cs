@@ -27,14 +27,15 @@ namespace Wish.Commands
             get
             {
                 var args = new List<string>();
-                var m = Regex.Match(Text.Trim() + " ", @"^(.+?)(?:\s+|$)(.*)");
-                var argsLine = m.Groups[2].Value.Trim();
-                var m2 = Regex.Match(argsLine + " ", @"(?<!\\)"".*?(?<!\\)""|[\S]+");
-                while (m2.Success)
+                var match = Regex.Match(Text.Trim() + " ", @"^(.+?)(?:\s+|$)(.*)");
+                var argsLine = match.Groups[2].Value.Trim();
+                var pattern = argsLine.Contains("'") ? @"[^\s']+|'[^']*'[^\s]+|'[^']*'" : @"(?<!\\)"".*?(?<!\\)""|[\S]+";
+                var argMatches = Regex.Match(argsLine + " ", pattern);
+                while (argMatches.Success)
                 {
-                    var arg = Regex.Replace(m2.Value.Trim(), @"^""(.*?)""$", "$1");
+                    var arg = Regex.Replace(argMatches.Value.Trim(), @"^""(.*?)""$", "$1");
                     args.Add(arg);
-                    m2 = m2.NextMatch();
+                    argMatches = argMatches.NextMatch();
                 }
                 return args;
             }

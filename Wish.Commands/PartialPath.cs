@@ -3,10 +3,12 @@
     public class PartialPath
     {
         public string Text { get; set; }
+        public string CompletionTarget { get; set; }
 
         public PartialPath(string text)
         {
-            Text = text;
+            CompletionTarget = text;
+            Text = text.Replace("'", string.Empty);
         }
 
         public string Pattern

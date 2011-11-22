@@ -60,9 +60,10 @@ namespace Wish.Commands.Tests
         }
 
         [Test]
-        [Ignore]
         public void CompleteQuotedArg()
         {
+            var results = GetResult(@"'T:\src'\dotne");
+            Assert.AreEqual(@"T:\src\dotnet", results.First());
         }
 
 

@@ -50,7 +50,6 @@
     <Compile Include="CmdArgument.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="CommandLine.cs" />
-    <Compile Include="DirectoryCommand.cs" />
     <Compile Include="Function.cs" />
     <Compile Include="Completable.cs" />
     <Compile Include="History.cs" />

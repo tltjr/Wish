@@ -16,12 +16,11 @@ namespace Wish.Commands
 
         protected List<string> GetDirectories(string workingDirectory)
         {
-            string[] directories;
-            directories = GetStringDirectories(workingDirectory);
+            var directories = GetStringDirectories(workingDirectory);
             return directories.Select(directory => PartialPath.Base + new DirectoryInfo(directory).Name).ToList();
         }
 
-        private string[] GetStringDirectories(string workingDirectory)
+        private IEnumerable<string> GetStringDirectories(string workingDirectory)
         {
             var pattern = PartialPath.Pattern;
             if (pattern.Contains(":"))
