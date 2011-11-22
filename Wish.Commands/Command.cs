@@ -34,12 +34,7 @@ namespace Wish.Commands
         public CommandResult Execute()
         {
             var text = _runner.Execute(Text);
-            var result = new CommandResult { Text = text };
-            var dirChange = CommandLine.IsDirectoryCommand();
-            if(dirChange)
-            {
-                result.WorkingDirectory = _runner.WorkingDirectory;
-            }
+            var result = new CommandResult {Text = text, WorkingDirectory = _runner.WorkingDirectory};
             return result;
         }
 
