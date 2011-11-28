@@ -72,7 +72,6 @@ namespace Wish
             var completionData = _completionWindow.CompletionList.CompletionData;
             foreach (var completion in completions)
             {
-                // completionTarget is currently incorrect when quoted. Need to include both start and end quote
                 completionData.Add(new CompletionData(completionTarget, completion));
             }
             if (completionData.Count == 0) return new CommandResult { FullyProcessed = true, Handled = true };
@@ -86,7 +85,6 @@ namespace Wish
                                                                        {
                                                                            wishArgs.Execute.Invoke();
                                                                        };
-            //completionWindow.CompletionList.SelectedItem = completionData[0];
             return new CommandResult{ FullyProcessed = true, Handled = false, State = Common.State.Tabbing  };
         }
 

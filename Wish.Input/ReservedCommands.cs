@@ -16,11 +16,13 @@ namespace Wish.Input
 
         public void Execute(string text, string workingDirectory)
         {
-            var psi = new ProcessStartInfo("cmd.exe");
-            psi.Arguments = string.Format("/k \"{0}\"", text);
-            psi.CreateNoWindow = false;
-            psi.UseShellExecute = true;
-            psi.WorkingDirectory = workingDirectory;
+            var psi = new ProcessStartInfo("cmd.exe")
+                          {
+                              Arguments = string.Format("/k \"{0}\"", text),
+                              CreateNoWindow = false,
+                              UseShellExecute = true,
+                              WorkingDirectory = workingDirectory
+                          };
             Process.Start(psi);
         }
     }
