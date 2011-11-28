@@ -61,7 +61,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="State\Completion.cs" />
     <Compile Include="State\IState.cs" />
-    <Compile Include="State\KeyDownResult.cs" />
     <Compile Include="State\Normal.cs" />
     <Compile Include="State\WishArgs.cs" />
     <Compile Include="Views\WishView.xaml.cs">
