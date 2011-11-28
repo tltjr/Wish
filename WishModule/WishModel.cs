@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using ICSharpCode.AvalonEdit;
 using ICSharpCode.AvalonEdit.CodeCompletion;
 using Wish.Commands;
 using Wish.Commands.Runner;
@@ -12,6 +11,7 @@ using Wish.Common;
 using Wish.Input;
 using Wish.Scripts;
 using Wish.SearchBox;
+using Wish.State;
 
 namespace Wish
 {
@@ -33,11 +33,12 @@ namespace Wish
             _runner = runner;
         }
 
-        public CommandResult Raise(Key key, string workingDirectory, string text)
+        public CommandResult Raise(WishArgs wishArgs)
         {
-            switch (key)
+            var text = wishArgs.TextEditor.Text;
+            switch (wishArgs.Key)
             {
-                case Key.Enter: return Execute(text, workingDirectory);
+                case Key.Enter: return Execute(text, wishArgs.WorkingDirectory);
                 case Key.Up: return _repl.Up(text);
                 case Key.Down: return _repl.Down(text);
             }
@@ -45,9 +46,9 @@ namespace Wish
         }
 
         private CompletionWindow _completionWindow;
-        public CommandResult Complete(TextEditor textEditor, Action onClosed, Action execute)
+        public CommandResult Complete(WishArgs wishArgs)
         {
-            var command = _repl.Read(textEditor.Text);
+            var command = _repl.Read(wishArgs.TextEditor.Text);
             var args = command.Arguments.ToList();
             string completionTarget;
             List<string> completions;
@@ -63,7 +64,7 @@ namespace Wish
                 completions = command.Function.Complete().ToList();
             }
             if(completions.Count() == 0) return new CommandResult { FullyProcessed = true, Handled = true };
-            _completionWindow = new CompletionWindow(textEditor.TextArea)
+            _completionWindow = new CompletionWindow(wishArgs.TextEditor.TextArea)
                                              {
                                                  SizeToContent = SizeToContent.WidthAndHeight,
                                                  MinWidth = 150
@@ -78,15 +79,15 @@ namespace Wish
             _completionWindow.Show();
             _completionWindow.Closed += delegate
                                             {
-                                                onClosed.Invoke();
+                                                wishArgs.OnClosed.Invoke();
                                                 _completionWindow = null;
                                             };
             _completionWindow.CompletionList.InsertionRequested += delegate
                                                                        {
-                                                                           execute.Invoke();
+                                                                           wishArgs.Execute.Invoke();
                                                                        };
             //completionWindow.CompletionList.SelectedItem = completionData[0];
-            return new CommandResult{ FullyProcessed = true, Handled = false, State = State.Tabbing };
+            return new CommandResult{ FullyProcessed = true, Handled = false, State = Common.State.Tabbing  };
         }
 
         public CommandResult Start()
