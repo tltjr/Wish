@@ -81,10 +81,6 @@ namespace Wish
                                                 wishArgs.OnClosed.Invoke();
                                                 _completionWindow = null;
                                             };
-            _completionWindow.CompletionList.InsertionRequested += delegate
-                                                                       {
-                                                                           wishArgs.Execute.Invoke();
-                                                                       };
             return new CommandResult{ FullyProcessed = true, Handled = false, State = Common.State.Tabbing  };
         }
 
