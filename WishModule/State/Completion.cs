@@ -24,6 +24,8 @@ namespace Wish.State
                     return new CommandResult { State = Common.State.Tabbing, FullyProcessed = true};
                 case Key.Tab:
                     return new CommandResult { State = Common.State.Tabbing, FullyProcessed = true};
+                case Key.Oem5:
+                    return new CommandResult { State = Common.State.Tabbing, FullyProcessed = true};
                 case Key.Escape:
                     _wishModel.CloseCompletionWindow();
                     break;

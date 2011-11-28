@@ -179,6 +179,9 @@ namespace ICSharpCode.AvalonEdit.CodeCompletion
 					e.Handled = true;
 					RequestInsertion(e);
 					break;
+				case Key.Oem5:
+					RequestInsertion(e);
+					break;
 			}
 		}
 		
