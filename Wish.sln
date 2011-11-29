@@ -10,10 +10,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICSharpCode.AvalonEdit.Tests", "ICSharpCode.AvalonEdit.Tests\ICSharpCode.AvalonEdit.Tests.csproj", "{6222A3A1-83CE-47A3-A4E4-A018F82D44D8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9762B3C5-6F95-40E6-86A5-59B6EA61899C}"
-	ProjectSection(SolutionItems) = preProject
-		star.ico = star.ico
-		star.png = star.png
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvalonDock", "AvalonDock\AvalonDock.csproj", "{87E61430-4243-45F2-B74E-0A4C096CEBF3}"
 EndProject

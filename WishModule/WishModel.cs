@@ -105,7 +105,7 @@ namespace Wish
             if (isReserved)
             {
                 reserved.Execute(commandLine, workingDirectory);
-                return new CommandResult {FullyProcessed = true, Handled = true};
+                return _repl.ExecuteReserved(text);
             }
             return _repl.Loop(_runner, text);
         }

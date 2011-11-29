@@ -25,6 +25,17 @@ namespace Wish.Scripts
         public UniqueList<string> RecentDirectories { get; set; }
         public UniqueList<string> RecentArguments { get; set; }
 
+        public CommandResult ExecuteReserved(string text)
+        {
+            var command = Read(text);
+            History.Add(command);
+            RecentArguments.AddRange(command.Arguments.Select(o => o.PartialPath.Text));
+            InsertNewPrompt();
+            InsertLineBeforePrompt();
+            InsertLineBeforePrompt();
+            return new CommandResult {Text = Text, Handled = true};
+        }
+
         public CommandResult Start()
         {
             History = new History();
@@ -147,7 +158,8 @@ namespace Wish.Scripts
 			var startIndex = LastPromptIndex - _prompt.Current.Length;
 			var oldPromptIndex = LastPromptIndex;
             var temp = _result.Text;
-            temp += temp.EndsWith("\n") ? String.Empty : "\n";
+            //temp += temp.EndsWith("\n") ? String.Empty : "\n";
+            temp += "\n";
             Text = Text.Insert(startIndex, temp);
 			LastPromptIndex = oldPromptIndex + temp.Length;
             _result.Text = temp;
