@@ -282,8 +282,10 @@ namespace Wish.Views
 
         private void Append(string obj)
         {
-            textEditor.Text += obj;
+            textEditor.Text = textEditor.Text.TrimEnd();
+            textEditor.Text += " " + obj;
             ClearPopups();
+            textEditor.Focus();
         }
     }
 }
