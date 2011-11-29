@@ -48,30 +48,18 @@ namespace Wish.Scripts
             Text = _prompt.Current;
             var command = new Command("cd " + _prompt.WorkingDirectory);
             command.Execute();
-            var pshell = new Powershell();
-            var home = Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%");
-            string profileInfo = null;
-            if(!string.IsNullOrEmpty(home))
+            var profile = new Profile();
+            if (profile.Exists)
             {
-                var profile = Path.Combine(home, "_wishrc");
-                var fi = new FileInfo(profile);
-                if (fi.Exists)
+                var profileInfo = profile.Load(Text);
+                if(!string.IsNullOrWhiteSpace(profileInfo))
                 {
-                    profileInfo = pshell.Execute(File.ReadAllText(profile));
+                    Text = profileInfo + "\n\n" + Text;
                 }
-            }
-            string tempText;
-            if(string.IsNullOrWhiteSpace(profileInfo))
-            {
-                tempText = Text;
-            }
-            else
-            {
-                tempText = profileInfo + "\n\n" + Text;
             }
             return new CommandResult
                        {
-                           Text = tempText,
+                           Text = Text,
                            WorkingDirectory = _prompt.WorkingDirectory,
                            PromptLength = _prompt.Current.Length + 1,
                            FullyProcessed = false
