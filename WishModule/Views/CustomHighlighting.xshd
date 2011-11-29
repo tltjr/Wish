@@ -64,6 +64,14 @@
     <Keywords fontWeight="bold" foreground="Red">
       <Word>>></Word>
     </Keywords>
+
+    <Rule foreground="Green" fontWeight="bold">
+      \+[\+]+
+    </Rule>
+    
+    <Rule foreground="Red" fontWeight="bold">
+      -[-]+
+    </Rule>
     
 	</RuleSet>
 </SyntaxDefinition>

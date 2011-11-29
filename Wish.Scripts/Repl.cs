@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using Wish.Commands;
+using Wish.Commands.Runner;
 using Wish.Common;
 
 namespace Wish.Scripts
@@ -46,6 +48,8 @@ namespace Wish.Scripts
             Text = _prompt.Current;
             var command = new Command("cd " + _prompt.WorkingDirectory);
             command.Execute();
+            var pshell = new Powershell();
+            var blah = pshell.Execute(File.ReadAllText(@"C:\temp\prof.ps1"));
             return new CommandResult
                        {
                            Text = Text,
@@ -164,7 +168,5 @@ namespace Wish.Scripts
 			LastPromptIndex = oldPromptIndex + temp.Length;
             _result.Text = temp;
 		}
-
     }
-
 }

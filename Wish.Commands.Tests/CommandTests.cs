@@ -121,9 +121,10 @@ namespace Wish.Commands.Tests
         }
 
         [Test]
-        [Ignore]
-        public void SetAStandardForUnityContainerAndMeetItOrRemoveIt()
+        public void Profile()
         {
+            var powershell = new Powershell();
+            powershell.Execute(@"C:\temp\prof.ps1");
         }
 
         [Test]
