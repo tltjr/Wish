@@ -40,25 +40,39 @@
       ^d.*
     </Rule>
     
+    <!-- cmd directory regex -->
+    <Rule foreground="#5555FF" fontWeight="bold">
+      [01][0-9]/[0123][0-9]/[12][0-9]{3}[\s]+[01][0-9]:[0-9]{2}[\s][\w]{2}[\s]+[^\s]DIR[^\s].*
+    </Rule>
+    
     <!-- archives -->
     <Rule foreground="#FF0000" fontWeight="bold">
-      <!--.*.7z[\s]+ | .*.zip[\s]+ | .*.tgz[\s]+ | .*.tar.gz[\s]+-->
-      <!--.*.(7z|zip|tgz|tar.gz)[\s]+-->
-      [\w|-]{5}[\s]+([1-9]|1[012])/([1-9]|[12][0-9]|3[01])/(19|20)\d\d[\s]+([1-9]|1[012]):\d\d\s(AM|PM)[\s]+(\d)*[\s]+[\w\d]+.(7z|zip|tgz|tar.gz)
+      [\w|-]{5}[\s]+([1-9]|1[012])/([1-9]|[12][0-9]|3[01])/(19|20)\d\d[\s]+([1-9]|1[012]):\d\d\s(AM|PM)[\s]+(\d)*[\s]+.*.(7z|zip|tgz|tar.gz)
+    </Rule>
+    
+    <!-- cmd archives -->
+    <Rule foreground="#FF0000" fontWeight="bold">
+      [01][0-9]/[0123][0-9]/[12][0-9]{3}[\s]+[01][0-9]:[0-9]{2}[\s][\w]{2}[\s]+[^\s]+[\s].*.(7z|zip|tgz|tar.gz)
     </Rule>
     
     <!-- executables -->
     <Rule foreground="#2DD700" fontWeight="bold">
-      <!--.*.exe[\s]+ | .*.bat[\s]+ | .*.cmd[\s]+ | .*.jar[\s]+ | .*.awk[\s]+ | .*.com[\s]+ | .*.csh[\s]+ | .*.js[\s]+-->
-      <!--.*.(exe|bat|cmd|jar|awk|com|csh|js)[\s]+-->
-      [\w|-]{5}[\s]+([1-9]|1[012])/([1-9]|[12][0-9]|3[01])/(19|20)\d\d[\s]+([1-9]|1[012]):\d\d\s(AM|PM)[\s]+(\d)*[\s]+[\w\d]+.(exe|bat|jar|cmd|awk|com|csh|js)
+      [\w|-]{5}[\s]+([1-9]|1[012])/([1-9]|[12][0-9]|3[01])/(19|20)\d\d[\s]+([1-9]|1[012]):\d\d\s(AM|PM)[\s]+(\d)*[\s]+.*.(exe|bat|jar|cmd|awk|com|csh|js|ps1)
+    </Rule>
+    
+    <!-- cmd executables -->
+    <Rule foreground="#2DD700" fontWeight="bold">
+      [01][0-9]/[0123][0-9]/[12][0-9]{3}[\s]+[01][0-9]:[0-9]{2}[\s][\w]{2}[\s]+[^\s]+[\s].*.(exe|bat|jar|cmd|awk|com|csh|js|ps1)
     </Rule>
     
     <!-- images -->
     <Rule foreground="#F66F89" fontWeight="bold">
-      <!--.*.jpg[\s]+ | .*.gif[\s]+ | .*.bmp[\s]+ | .*.png[\s]+-->
-      <!--.*.(jpg|gif|bmp|png)[\s]+-->
-      [\w|-]{5}[\s]+([1-9]|1[012])/([1-9]|[12][0-9]|3[01])/(19|20)\d\d[\s]+([1-9]|1[012]):\d\d\s(AM|PM)[\s]+(\d)*[\s]+[\w\d]+.(jpg|gif|bmp|png)
+      [\w|-]{5}[\s]+([1-9]|1[012])/([1-9]|[12][0-9]|3[01])/(19|20)\d\d[\s]+([1-9]|1[012]):\d\d\s(AM|PM)[\s]+(\d)*[\s]+.*.(jpg|gif|bmp|png)
+    </Rule>
+    
+    <!-- cmd images -->
+    <Rule foreground="#F66F89" fontWeight="bold">
+      [01][0-9]/[0123][0-9]/[12][0-9]{3}[\s]+[01][0-9]:[0-9]{2}[\s][\w]{2}[\s]+[^\s]+[\s].*.(jpg|gif|bmp|png)
     </Rule>
     
     <Keywords fontWeight="bold" foreground="Red">

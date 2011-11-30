@@ -24,7 +24,7 @@ namespace Wish
         public WishModel()
         {
             Repl = new Repl();
-            //_runner = new Powershell();
+            //Runner = new Powershell();
             Runner = new Cmd();
         }
         

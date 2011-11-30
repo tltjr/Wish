@@ -11,7 +11,7 @@ namespace Wish.Commands.Runner
             switch (CommandType(script))
             {
                 case CdCommand.Prompt:
-                    WorkingDirectory = commandLine.Function;
+                    WorkingDirectory = commandLine.Function.ToUpper() + "\\";
                     break;
                 case CdCommand.Slash:
                     WorkingDirectory = WorkingDirectory.Substring(0, 3);
@@ -27,13 +27,32 @@ namespace Wish.Commands.Runner
                         }
                         else
                         {
-                            if (WorkingDirectory.EndsWith("\\"))
+                            if (arg.Contains(".."))
                             {
-                                WorkingDirectory = WorkingDirectory + arg;
+                                var levels = Regex.Matches(arg, @"\.\.").Count;
+                                var segments = WorkingDirectory.Split('\\');
+                                var count = segments.Count();
+                                var newLevels = count - levels;
+                                if (newLevels < 2)
+                                {
+                                    WorkingDirectory = segments.First() + "\\";
+                                }
+                                else
+                                {
+                                    var newSegs = segments.Take(newLevels);
+                                    WorkingDirectory = string.Join("\\", newSegs);
+                                }
                             }
                             else
                             {
-                                WorkingDirectory = WorkingDirectory + "\\" + arg;
+                                if (WorkingDirectory.EndsWith("\\"))
+                                {
+                                    WorkingDirectory = WorkingDirectory + arg;
+                                }
+                                else
+                                {
+                                    WorkingDirectory = WorkingDirectory + "\\" + arg;
+                                }
                             }
                         }
                     }
