@@ -18,14 +18,19 @@ namespace Wish
     public class WishModel
     {
         public IRepl Repl { get; set; }
-        public IRunner Runner { get; set; }
+        private IRunner _runner;
         private bool _started;
 
         public WishModel()
         {
             Repl = new Repl();
-            Runner = new Powershell();
-            //Runner = new Cmd();
+            _runner = new Powershell();
+        }
+
+        public void SetRunner(IRunner runner, string workingDirectory)
+        {
+            _runner = runner;
+            _runner.Execute(new RunnerArgs { Script = "cd " + workingDirectory});
         }
         
         public CommandResult Raise(WishArgs wishArgs)
@@ -84,7 +89,7 @@ namespace Wish
             if (!_started)
             {
                 _started = true;
-                return Repl.Start(Runner);
+                return Repl.Start(_runner);
             }
             return new CommandResult
                        {
@@ -102,7 +107,7 @@ namespace Wish
                 reserved.Execute(commandLine, workingDirectory);
                 return Repl.ExecuteReserved(text);
             }
-            return Repl.Loop(Runner, text);
+            return Repl.Loop(_runner, text);
         }
 
         public void RequestHistorySearch(Popup popup, Action<string> callback)

@@ -11,25 +11,25 @@ namespace Wish.Module.Tests
     [TestFixture]
     public class WishModelTests
     {
-        private WishModel _wishModel;
-        private static TestRunner _testRunner;
+        //private WishModel _wishModel;
+        //private static TestRunner _testRunner;
 
-        [SetUp]
-        public void Init()
-        {
-            var mock = CreateMockRepl("stub", true, false, string.Empty);
-            _testRunner = new TestRunner();
-            _wishModel = new WishModel {Repl = mock.Object, Runner = _testRunner};
-        }
+        //[SetUp]
+        //public void Init()
+        //{
+        //    var mock = CreateMockRepl("stub", true, false, string.Empty);
+        //    _testRunner = new TestRunner();
+        //    _wishModel = new WishModel {Repl = mock.Object, Runner = _testRunner};
+        //}
 
-        private static Mock<IRepl> CreateMockRepl(string input, bool handled, bool isExit, string text)
-        {
-            var mock = new Mock<IRepl>();
-            mock.Setup(o => o.Start(_testRunner)).Returns(new CommandResult { Text = "test" });
-            mock.Setup(o => o.Loop(_testRunner, input))
-                .Returns(new CommandResult { FullyProcessed = handled, IsExit = isExit, Text = text });
-            return mock;
-        }
+        //private static Mock<IRepl> CreateMockRepl(string input, bool handled, bool isExit, string text)
+        //{
+        //    var mock = new Mock<IRepl>();
+        //    mock.Setup(o => o.Start(_testRunner)).Returns(new CommandResult { Text = "test" });
+        //    mock.Setup(o => o.Loop(_testRunner, input))
+        //        .Returns(new CommandResult { FullyProcessed = handled, IsExit = isExit, Text = text });
+        //    return mock;
+        //}
 
         //[Test]
         //public void RaiseKeyPressUnregisteredKeyNotHandled()
@@ -106,25 +106,25 @@ namespace Wish.Module.Tests
         //    mock.Verify(o => o.Down("doesnt matter"));
         //}
 
-        [Test]
-        public void FirstStart()
-        {
-            var mock = CreateMockRepl(@"blah", true, true, string.Empty);
-            _wishModel = new WishModel {Repl = mock.Object, Runner = _testRunner};
-            var result = _wishModel.Start();
-            mock.Verify(o => o.Start(_testRunner), Times.Exactly(1));
-            Assert.AreEqual("test", result.Text);
-        }
+        //[Test]
+        //public void FirstStart()
+        //{
+        //    var mock = CreateMockRepl(@"blah", true, true, string.Empty);
+        //    _wishModel = new WishModel {Repl = mock.Object, Runner = _testRunner};
+        //    var result = _wishModel.Start();
+        //    mock.Verify(o => o.Start(_testRunner), Times.Exactly(1));
+        //    Assert.AreEqual("test", result.Text);
+        //}
 
-        [Test]
-        public void SecondStart()
-        {
-            var mock = CreateMockRepl(@"blah", true, true, string.Empty);
-            _wishModel = new WishModel {Repl = mock.Object, Runner = _testRunner};
-            _wishModel.Start();
-            var result = _wishModel.Start();
-            Assert.True(result.FullyProcessed);
-        }
+        //[Test]
+        //public void SecondStart()
+        //{
+        //    var mock = CreateMockRepl(@"blah", true, true, string.Empty);
+        //    _wishModel = new WishModel {Repl = mock.Object, Runner = _testRunner};
+        //    _wishModel.Start();
+        //    var result = _wishModel.Start();
+        //    Assert.True(result.FullyProcessed);
+        //}
 
     }
 

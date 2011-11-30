@@ -291,15 +291,25 @@ namespace Wish.Views
         private void CmdSelected(object sender, RoutedEventArgs e)
         {
             pshell.IsChecked = false;
+            vsPrompt.IsChecked = false;
             cmd.IsChecked = true;
-            _wishModel.Runner = new Cmd();
+            _wishModel.SetRunner(new Cmd(), Title);
         }
 
         private void PowershellSelected(object sender, RoutedEventArgs e)
         {
             cmd.IsChecked = false;
+            vsPrompt.IsChecked = false;
             pshell.IsChecked = true;
-            _wishModel.Runner = new Powershell();
+            _wishModel.SetRunner(new Powershell(), Title);
+        }
+
+        private void VsSelected(object sender, RoutedEventArgs e)
+        {
+            cmd.IsChecked = false;
+            pshell.IsChecked = false;
+            vsPrompt.IsChecked = true;
+            _wishModel.SetRunner(new Powershell(), Title);
         }
     }
 }

@@ -44,6 +44,7 @@
                 <MenuItem Header="Command Engine">
                     <MenuItem Header="Powershell" IsChecked="true" x:Name="pshell" Click="PowershellSelected"/>
                     <MenuItem Header="cmd" x:Name="cmd" Click="CmdSelected"/>
+                    <MenuItem Header="Visual Studio Command Prompt" x:Name="vsPrompt" Click="VsSelected"/>
                 </MenuItem>
             </ContextMenu>
         </avalonEdit:TextEditor.ContextMenu>
