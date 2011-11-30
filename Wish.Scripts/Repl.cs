@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Wish.Commands;
+using Wish.Commands.Runner;
 using Wish.Common;
 
 namespace Wish.Scripts
@@ -46,13 +47,16 @@ namespace Wish.Scripts
             Text = _prompt.Current;
             var command = new Command(runner, "cd " + _prompt.WorkingDirectory);
             command.Execute();
-            var profile = new Profile(runner);
-            if (profile.Exists)
+            if (runner.GetType() == typeof(Powershell))
             {
-                var profileInfo = profile.Load(Text);
-                if(!string.IsNullOrWhiteSpace(profileInfo))
+                var profile = new Profile();
+                if (profile.Exists)
                 {
-                    Text = profileInfo + "\n\n" + Text;
+                    var profileInfo = profile.Load(Text);
+                    if (!string.IsNullOrWhiteSpace(profileInfo))
+                    {
+                        Text = profileInfo + "\n\n" + Text;
+                    }
                 }
             }
             return new CommandResult

@@ -13,9 +13,9 @@ namespace Wish.Scripts
         private readonly string _profile;
         public bool Exists { get; set; }
 
-        public Profile(IRunner runner)
+        public Profile()
         {
-            _runner = runner;
+            _runner = new Powershell();
             _home = Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%");
             if (string.IsNullOrEmpty(_home)) return;
             _profile = Path.Combine(_home, RcFile);
@@ -26,7 +26,7 @@ namespace Wish.Scripts
         public string Load(string text)
         {
             if (!Exists) return string.Empty;
-            return _runner.Execute(new RunnerArgs { Script = File.ReadAllText(_profile)});
+            return _runner.Execute(new RunnerArgs {Script = File.ReadAllText(_profile)});
         }
     }
 }
