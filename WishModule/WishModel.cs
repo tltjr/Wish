@@ -24,8 +24,8 @@ namespace Wish
         public WishModel()
         {
             Repl = new Repl();
-            //Runner = new Powershell();
-            Runner = new Cmd();
+            Runner = new Powershell();
+            //Runner = new Cmd();
         }
         
         public CommandResult Raise(WishArgs wishArgs)

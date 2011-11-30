@@ -17,14 +17,14 @@
         <CommandBinding Command="{x:Static Views:WishView.ControlD}" Executed="ExecuteControlD"/>
         <CommandBinding Command="{x:Static Views:WishView.ControlA}" Executed="ExecuteControlA"/>
     </UserControl.CommandBindings>
-        <avalonEdit:TextEditor x:Name="textEditor"
+    <avalonEdit:TextEditor x:Name="textEditor"
              FontFamily="Consolas"
              FontSize="14"
              TextChanged="ScrollToEnd"
              Focusable="True">
-            <avalonEdit:TextEditor.Template>
-                <ControlTemplate>
-                    <ScrollViewer 
+        <avalonEdit:TextEditor.Template>
+            <ControlTemplate>
+                <ScrollViewer 
                         Focusable="False"
 						Name="PART_ScrollViewer"
 						CanContentScroll="True"
@@ -37,7 +37,15 @@
 						Padding="{TemplateBinding Padding}"
 						BorderBrush="{TemplateBinding BorderBrush}"
 						BorderThickness="{TemplateBinding BorderThickness}" />
-                </ControlTemplate>
-            </avalonEdit:TextEditor.Template>
-        </avalonEdit:TextEditor>
+            </ControlTemplate>
+        </avalonEdit:TextEditor.Template>
+        <avalonEdit:TextEditor.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Command Engine">
+                    <MenuItem Header="Powershell" IsChecked="true" x:Name="pshell" Click="PowershellSelected"/>
+                    <MenuItem Header="cmd" x:Name="cmd" Click="CmdSelected"/>
+                </MenuItem>
+            </ContextMenu>
+        </avalonEdit:TextEditor.ContextMenu>
+    </avalonEdit:TextEditor>
 </UserControl>

@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Xml;
 using ICSharpCode.AvalonEdit.Highlighting;
 using Microsoft.Practices.Prism.Regions;
+using Wish.Commands.Runner;
 using Wish.Common;
 using Wish.State;
 
@@ -285,6 +286,20 @@ namespace Wish.Views
             textEditor.Text += " " + obj;
             ClearPopups();
             textEditor.Focus();
+        }
+
+        private void CmdSelected(object sender, RoutedEventArgs e)
+        {
+            pshell.IsChecked = false;
+            cmd.IsChecked = true;
+            _wishModel.Runner = new Cmd();
+        }
+
+        private void PowershellSelected(object sender, RoutedEventArgs e)
+        {
+            cmd.IsChecked = false;
+            pshell.IsChecked = true;
+            _wishModel.Runner = new Powershell();
         }
     }
 }
