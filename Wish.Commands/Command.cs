@@ -13,8 +13,14 @@ namespace Wish.Commands
         public Function Function { get; set; }
         public IEnumerable<Argument> Arguments { get; set; }
         public bool IsExit { get; set; }
-
         public string Text { get; set; }
+        private readonly string _workingDirectory;
+
+        public Command(IRunner runner, string command, string workingDirectory) : this(command)
+        {
+            _runner = runner;
+            _workingDirectory = workingDirectory;
+        }
 
         public Command(IRunner runner, string command) : this(command)
         {
@@ -33,7 +39,7 @@ namespace Wish.Commands
 
         public CommandResult Execute()
         {
-            var text = _runner.Execute(Text);
+            var text = _runner.Execute(new RunnerArgs { Script = Text, WorkingDirectory = _workingDirectory});
             var result = new CommandResult {Text = text, WorkingDirectory = _runner.WorkingDirectory};
             return result;
         }

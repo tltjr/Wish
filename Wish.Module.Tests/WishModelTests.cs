@@ -2,6 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using Wish.Commands;
+using Wish.Commands.Runner;
 using Wish.Common;
 using Wish.Scripts;
 
@@ -18,13 +19,13 @@ namespace Wish.Module.Tests
         {
             var mock = CreateMockRepl("stub", true, false, string.Empty);
             _testRunner = new TestRunner();
-            _wishModel = new WishModel(mock.Object, _testRunner);
+            _wishModel = new WishModel {Repl = mock.Object, Runner = _testRunner};
         }
 
         private static Mock<IRepl> CreateMockRepl(string input, bool handled, bool isExit, string text)
         {
             var mock = new Mock<IRepl>();
-            mock.Setup(o => o.Start()).Returns(new CommandResult { Text = "test" });
+            mock.Setup(o => o.Start(_testRunner)).Returns(new CommandResult { Text = "test" });
             mock.Setup(o => o.Loop(_testRunner, input))
                 .Returns(new CommandResult { FullyProcessed = handled, IsExit = isExit, Text = text });
             return mock;
@@ -109,9 +110,9 @@ namespace Wish.Module.Tests
         public void FirstStart()
         {
             var mock = CreateMockRepl(@"blah", true, true, string.Empty);
-            _wishModel = new WishModel(mock.Object, _testRunner);
+            _wishModel = new WishModel {Repl = mock.Object, Runner = _testRunner};
             var result = _wishModel.Start();
-            mock.Verify(o => o.Start(), Times.Exactly(1));
+            mock.Verify(o => o.Start(_testRunner), Times.Exactly(1));
             Assert.AreEqual("test", result.Text);
         }
 
@@ -119,7 +120,7 @@ namespace Wish.Module.Tests
         public void SecondStart()
         {
             var mock = CreateMockRepl(@"blah", true, true, string.Empty);
-            _wishModel = new WishModel(mock.Object, _testRunner);
+            _wishModel = new WishModel {Repl = mock.Object, Runner = _testRunner};
             _wishModel.Start();
             var result = _wishModel.Start();
             Assert.True(result.FullyProcessed);
@@ -129,7 +130,7 @@ namespace Wish.Module.Tests
 
     public class TestRunner : IRunner
     {
-        public string Execute(string line)
+        public string Execute(RunnerArgs args)
         {
             throw new NotImplementedException();
         }

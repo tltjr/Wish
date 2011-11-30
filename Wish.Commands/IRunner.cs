@@ -1,8 +1,10 @@
-﻿namespace Wish.Commands
+﻿using Wish.Commands.Runner;
+
+namespace Wish.Commands
 {
     public interface IRunner
     {
-        string Execute(string line);
+        string Execute(RunnerArgs line);
         string WorkingDirectory { get; }
     }
 }

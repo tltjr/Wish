@@ -7,7 +7,6 @@ using System.Xml;
 using ICSharpCode.AvalonEdit.Highlighting;
 using Microsoft.Practices.Prism.Regions;
 using Wish.Common;
-using Wish.Scripts;
 using Wish.State;
 
 namespace Wish.Views
@@ -34,7 +33,7 @@ namespace Wish.Views
             SetInputGestures();
             SetSyntaxHighlighting();
             _mainRegion = mainRegion;
-            _wishModel = new WishModel(new Repl());
+            _wishModel = new WishModel();
             _state = new Normal(_wishModel);
         }
 

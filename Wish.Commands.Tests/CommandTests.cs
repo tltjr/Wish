@@ -40,7 +40,7 @@ namespace Wish.Commands.Tests
         {
             const string command = @"cd somedir";
             var mock = new Mock<IRunner>();
-            mock.Setup(o => o.Execute(command)).Returns("testing");
+            mock.Setup(o => o.Execute(new RunnerArgs { Script = command })).Returns("testing");
             mock.Setup(o => o.WorkingDirectory).Returns(@"T:\somewhere\somedir");
             _command = new Command(mock.Object, command);
         }
@@ -113,18 +113,11 @@ namespace Wish.Commands.Tests
         {
             const string command = @"command";
             var mock = new Mock<IRunner>();
-            mock.Setup(o => o.Execute(command)).Returns("testing");
+            mock.Setup(o => o.Execute(new RunnerArgs { Script = command})).Returns("testing");
             mock.Setup(o => o.WorkingDirectory).Returns(@"T:\somewhere\somedir");
             _command = new Command(mock.Object, command);
             var result = _command.Execute();
             Assert.AreEqual(@"T:\somewhere\somedir", result.WorkingDirectory);
-        }
-
-        [Test]
-        public void Profile()
-        {
-            var powershell = new Powershell();
-            powershell.Execute(@"C:\temp\prof.ps1");
         }
 
         [Test]

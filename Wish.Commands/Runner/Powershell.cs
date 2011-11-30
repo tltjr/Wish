@@ -17,10 +17,10 @@ namespace Wish.Commands.Runner
             _runspace = RunspaceSingleton.Instance;
         }
 
-        public string Execute(string line)
+        public string Execute(RunnerArgs args)
         {
             _pipeline = _runspace.CreatePipeline();
-            _pipeline.Commands.AddScript(line);
+            _pipeline.Commands.AddScript(args.Script);
             _pipeline.Commands.Add("Out-String");
             Collection<PSObject> psObjects;
             try

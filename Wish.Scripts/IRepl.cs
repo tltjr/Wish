@@ -16,7 +16,7 @@ namespace Wish.Scripts
         /// changes to the appropriate directory.
         /// </summary>
         /// <returns>A CommandResult with the text and starting working directory.</returns>
-        CommandResult Start();
+        CommandResult Start(IRunner runner);
         CommandResult Up(string text);
         CommandResult Down(string text);
         History History { get; set; }

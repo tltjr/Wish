@@ -1,8 +1,6 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using Wish.Commands;
-using Wish.Commands.Runner;
 using Wish.Common;
 
 namespace Wish.Scripts
@@ -38,7 +36,7 @@ namespace Wish.Scripts
             return new CommandResult {Text = Text, Handled = true};
         }
 
-        public CommandResult Start()
+        public CommandResult Start(IRunner runner)
         {
             History = new History();
             RecentDirectories = new UniqueList<string>();
@@ -46,9 +44,9 @@ namespace Wish.Scripts
             _prompt = new Prompt();
             LastPromptIndex = _prompt.Current.Length;
             Text = _prompt.Current;
-            var command = new Command("cd " + _prompt.WorkingDirectory);
+            var command = new Command(runner, "cd " + _prompt.WorkingDirectory);
             command.Execute();
-            var profile = new Profile();
+            var profile = new Profile(runner);
             if (profile.Exists)
             {
                 var profileInfo = profile.Load(Text);
@@ -70,7 +68,7 @@ namespace Wish.Scripts
         {
             Text = text;
             var line = GetLine(text);
-            return new Command(runner, line);
+            return new Command(runner, line, _prompt.WorkingDirectory);
         }
 
         public ICommand Read(string text)

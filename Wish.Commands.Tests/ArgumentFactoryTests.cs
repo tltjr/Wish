@@ -24,7 +24,7 @@ namespace Wish.Commands.Tests
 
     public class TestRunner : IRunner
     {
-        public string Execute(string line)
+        public string Execute(RunnerArgs args)
         {
             throw new System.NotImplementedException();
         }

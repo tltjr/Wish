@@ -1,20 +1,21 @@
 ﻿using System;
 using System.IO;
+using Wish.Commands;
 using Wish.Commands.Runner;
 
 namespace Wish.Scripts
 {
     public class Profile
     {
-        private readonly Powershell _powershell;
+        private readonly IRunner _runner;
         private readonly string _home;
         private const string RcFile = "_wishrc";
         private readonly string _profile;
         public bool Exists { get; set; }
 
-        public Profile()
+        public Profile(IRunner runner)
         {
-            _powershell = new Powershell();
+            _runner = runner;
             _home = Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%");
             if (string.IsNullOrEmpty(_home)) return;
             _profile = Path.Combine(_home, RcFile);
@@ -25,7 +26,7 @@ namespace Wish.Scripts
         public string Load(string text)
         {
             if (!Exists) return string.Empty;
-            return _powershell.Execute(File.ReadAllText(_profile));
+            return _runner.Execute(new RunnerArgs { Script = File.ReadAllText(_profile)});
         }
     }
 }

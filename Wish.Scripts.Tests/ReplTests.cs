@@ -4,6 +4,7 @@ using System.Linq;
 using Moq;
 using NUnit.Framework;
 using Wish.Commands;
+using Wish.Commands.Runner;
 
 namespace Wish.Scripts.Tests
 {
@@ -20,7 +21,7 @@ namespace Wish.Scripts.Tests
 
         private void StartAndOverrideDefaultPrompt()
         {
-            _repl.Start();
+            _repl.Start(new Powershell());
             _repl.Prompt = new Prompt { Current = "> " };
             _repl.Eval(new Command("cd " + Directory.GetCurrentDirectory()));
         }
@@ -122,9 +123,9 @@ namespace Wish.Scripts.Tests
         {
             // super fragile, will break with any change to file structure
             var text = ExecuteLs();
-            text += "ls";
+            text += new RunnerArgs { Script = "ls" };
             var comm = _repl.Read(text);
-            Assert.AreEqual("ls", comm.Function.Name);
+            Assert.AreEqual(new RunnerArgs { Script = "ls" }, comm.Function.Name);
         }
 
         [Test]
@@ -144,7 +145,7 @@ namespace Wish.Scripts.Tests
         public void LoopNonExit()
         {
             var mock = new Mock<IRunner>();
-            mock.Setup(o => o.Execute("ls")).Returns("some ls output");
+            mock.Setup(o => o.Execute(new RunnerArgs { Script = "ls" })).Returns("some ls output");
             StartAndOverrideDefaultPrompt();
             var result = _repl.Loop(mock.Object, "> ls");
             Assert.False(result.IsExit);
@@ -154,7 +155,7 @@ namespace Wish.Scripts.Tests
         public void LoopNonExitNotHandled()
         {
             var mock = new Mock<IRunner>();
-            mock.Setup(o => o.Execute("ls")).Returns("some ls output");
+            mock.Setup(o => o.Execute(new RunnerArgs { Script = "ls" })).Returns("some ls output");
             StartAndOverrideDefaultPrompt();
             var result = _repl.Loop(mock.Object, "> ls");
             Assert.False(result.FullyProcessed);
@@ -180,7 +181,7 @@ namespace Wish.Scripts.Tests
         public void WorkingDirectoryChangesReturnedInResult()
         {
             var mock = new Mock<IRunner>();
-            mock.Setup(o => o.Execute("cd ..")).Returns("test");
+            mock.Setup(o => o.Execute(new RunnerArgs { Script = "cd .."})).Returns("test");
             mock.Setup(o => o.WorkingDirectory).Returns("testdir");
             StartAndOverrideDefaultPrompt();
             var result = _repl.Loop(mock.Object, "> cd ..");
@@ -190,7 +191,7 @@ namespace Wish.Scripts.Tests
         [Test]
         public void PromptDefaultsToHomeDirectory()
         {
-            _repl.Start();
+            _repl.Start(new Powershell());
             var expected = @"AMR\tlthorn1@TLTHORN1-DESK1 " + Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%") + " >> ";
             Assert.AreEqual(expected, _repl.Text);
         }
@@ -204,12 +205,12 @@ namespace Wish.Scripts.Tests
         }
 
         private const string BaseText = @"AMR\tlthorn1@TLTHORN1-DESK1 C:\Users\tlthorn1.AMR >> ";
-        private const string UpdatedText = @"AMR\tlthorn1@TLTHORN1-DESK1 C:\Users\tlthorn1.AMR >> "  + "ls";
+        private const string UpdatedText = @"AMR\tlthorn1@TLTHORN1-DESK1 C:\Users\tlthorn1.AMR >> " + "ls";
 
         [Test]
         public void HistoryRequest()
         {
-            _repl.Start();
+            _repl.Start(new Powershell());
             Assert.AreEqual(BaseText, _repl.Text);
             _repl.Eval(new Command("ls"));
             var result = _repl.Up(BaseText);
@@ -220,7 +221,7 @@ namespace Wish.Scripts.Tests
         [Test]
         public void HistoryRequestBlank()
         {
-            _repl.Start();
+            _repl.Start(new Powershell());
             Assert.AreEqual(BaseText, _repl.Text);
             _repl.Eval(new Command("ls"));
             var result = _repl.Up(BaseText);
@@ -234,7 +235,7 @@ namespace Wish.Scripts.Tests
         [Test]
         public void HistoryRequestWithExistingTypingReplacesTyping()
         {
-            _repl.Start();
+            _repl.Start(new Powershell());
             Assert.AreEqual(BaseText, _repl.Text);
             _repl.Eval(new Command("ls"));
             var result = _repl.Up(BaseText + "some gibberish a user typed in");
@@ -245,7 +246,7 @@ namespace Wish.Scripts.Tests
         [Test]
         public void Down()
         {
-            _repl.Start();
+            _repl.Start(new Powershell());
             Assert.AreEqual(BaseText, _repl.Text);
             _repl.Eval(new Command("ls"));
             var result = _repl.Down(UpdatedText);

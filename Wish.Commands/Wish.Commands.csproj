@@ -58,7 +58,10 @@
     <Compile Include="PartialPath.cs" />
     <Compile Include="PowershellArgument.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Runner\Cmd.cs" />
+    <Compile Include="Runner\CmdDirectoryManager.cs" />
     <Compile Include="Runner\Powershell.cs" />
+    <Compile Include="Runner\RunnerArgs.cs" />
     <Compile Include="Runner\RunspaceSingleton.cs" />
     <Compile Include="WorkingDirectory.cs" />
   </ItemGroup>
