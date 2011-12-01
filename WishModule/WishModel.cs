@@ -31,6 +31,7 @@ namespace Wish
         {
             _runner = runner;
             _runner.Execute(new RunnerArgs { Script = "cd " + workingDirectory});
+            Repl.Prompt.Runner = runner;
         }
         
         public CommandResult Raise(WishArgs wishArgs)
@@ -141,6 +142,5 @@ namespace Wish
         {
             _completionWindow.Close();
         }
-
     }
 }

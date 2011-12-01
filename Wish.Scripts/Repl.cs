@@ -42,7 +42,7 @@ namespace Wish.Scripts
             History = new History();
             RecentDirectories = new UniqueList<string>();
             RecentArguments = new UniqueList<string>();
-            _prompt = new Prompt();
+            _prompt = new Prompt(runner);
             LastPromptIndex = _prompt.Current.Length;
             Text = _prompt.Current;
             var command = new Command(runner, "cd " + _prompt.WorkingDirectory);

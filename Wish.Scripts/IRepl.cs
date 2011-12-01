@@ -23,5 +23,6 @@ namespace Wish.Scripts
         UniqueList<string> RecentDirectories { get; set; }
         UniqueList<string> RecentArguments { get; set; }
         CommandResult ExecuteReserved(string text);
+        Prompt Prompt { get; set; }
     }
 }

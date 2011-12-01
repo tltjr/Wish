@@ -21,8 +21,9 @@ namespace Wish.Scripts.Tests
 
         private void StartAndOverrideDefaultPrompt()
         {
-            _repl.Start(new Powershell());
-            _repl.Prompt = new Prompt { Current = "> " };
+            var runner = new Powershell();
+            _repl.Start(runner);
+            _repl.Prompt = new Prompt(runner) { Current = "> " };
             _repl.Eval(new Command("cd " + Directory.GetCurrentDirectory()));
         }
 

@@ -66,5 +66,10 @@ namespace Wish.Commands.Runner
 // ReSharper restore PossibleNullReferenceException
             }
         }
+
+        public override string ToString()
+        {
+            return "[P]";
+        }
     }
 }

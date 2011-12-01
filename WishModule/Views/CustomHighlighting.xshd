@@ -30,9 +30,13 @@
     <!--<Keywords fontWeight="bold" foreground="Green">
       <Word>AMR\tlthorn1@TLTHORN1-DESK1</Word>
     </Keywords>-->
+    
+    <Rule foreground="Cyan" fontWeight="bold">
+      ^\[[\w]\]
+    </Rule>
 
     <Rule foreground="Green" fontWeight="bold">
-      ^[^\s]+@[^\s]+ # standard prompt
+      [^\s]+@[^\s]+ # standard prompt
     </Rule>
 
     <!-- shitty directory regex -->

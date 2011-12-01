@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Principal;
 using System.Text;
+using Wish.Commands;
 
 namespace Wish.Scripts
 {
@@ -8,9 +9,11 @@ namespace Wish.Scripts
     {
         public string Current { get; set; }
         public string WorkingDirectory { get; set; }
+        public IRunner Runner { get; set; }
 
-        public Prompt()
+        public Prompt(IRunner runner)
         {
+            Runner = runner;
             var homedrive = Environment.GetEnvironmentVariable("HOMEDRIVE");
             var homepath = Environment.GetEnvironmentVariable("HOMEPATH");
             if (null != homedrive && null != homepath)
@@ -28,6 +31,7 @@ namespace Wish.Scripts
         {
             if (workingDirectory == null) return;
             var sb = new StringBuilder();
+            sb.Append(Runner + " ");
             WorkingDirectory = workingDirectory;
             sb.Append(WindowsIdentity.GetCurrent().Name);
             sb.Append("@");

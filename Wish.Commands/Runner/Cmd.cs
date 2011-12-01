@@ -32,5 +32,10 @@ namespace Wish.Commands.Runner
         {
             get { return _cmdDirectoryManager.WorkingDirectory; }
         }
+
+        public override string ToString()
+        {
+            return "[C]";
+        }
     }
 }
