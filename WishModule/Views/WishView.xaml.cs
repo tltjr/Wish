@@ -324,5 +324,10 @@ namespace Wish.Views
             //_wishModel.SetRunner(new Powershell(), Title);
             throw new NotImplementedException();
         }
+
+        private void NewTab(object sender, RoutedEventArgs e)
+        {
+            ExecuteNewTab(sender, null);
+        }
     }
 }

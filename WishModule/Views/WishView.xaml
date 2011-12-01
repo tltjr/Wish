@@ -44,9 +44,12 @@
         </avalonEdit:TextEditor.Template>
         <avalonEdit:TextEditor.ContextMenu>
             <ContextMenu>
+                <MenuItem Header="New Tab" Click="NewTab" InputGestureText="Ctrl+T"/>
+                <MenuItem Header="Copy" Command="ApplicationCommands.Copy" InputGestureText="Ctrl+C"/>
+                <MenuItem Header="Paste" Command="ApplicationCommands.Paste" InputGestureText="Ctrl+V"/>
                 <MenuItem Header="Command Engine">
                     <MenuItem Header="Powershell" IsChecked="true" x:Name="pshell" Click="PowershellSelected" InputGestureText="Ctrl+Shift+P"/>
-                    <MenuItem Header="cmd" x:Name="cmd" Click="CmdSelected" InputGestureText="Ctrl+Shift+C"/>
+                    <MenuItem Header="Cmd" x:Name="cmd" Click="CmdSelected" InputGestureText="Ctrl+Shift+C"/>
                     <MenuItem Header="Visual Studio Command Prompt" x:Name="vsPrompt" Click="VsSelected" InputGestureText="Ctrl+Shift+V"/>
                 </MenuItem>
             </ContextMenu>
