@@ -12,9 +12,9 @@ namespace Wish.Commands.Runner
         private readonly Runspace _runspace;
         private Pipeline _pipeline;
 
-        public Powershell()
+        public Powershell(int id)
         {
-            _runspace = RunspaceSingleton.Instance;
+            _runspace = RunspaceSingleton.GetInstance(id);
         }
 
         public string Execute(RunnerArgs args)

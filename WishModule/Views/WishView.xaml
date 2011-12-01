@@ -6,6 +6,7 @@
              xmlns:Views="clr-namespace:Wish.Views" 
              xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
              mc:Ignorable="d" 
+             x:Name="uc"
              Background="Black"
              d:DesignHeight="450" d:DesignWidth="500"
              Loaded="OnUserControlLoaded">

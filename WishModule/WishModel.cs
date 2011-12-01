@@ -21,10 +21,10 @@ namespace Wish
         private IRunner _runner;
         private bool _started;
 
-        public WishModel()
+        public WishModel(int next)
         {
             Repl = new Repl();
-            _runner = new Powershell();
+            _runner = new Powershell(next);
         }
 
         public void SetRunner(IRunner runner, string workingDirectory)
@@ -49,7 +49,7 @@ namespace Wish
         private CompletionWindow _completionWindow;
         public CommandResult Complete(WishArgs wishArgs)
         {
-            var command = Repl.Read(wishArgs.TextEditor.Text);
+            var command = Repl.Read(_runner, wishArgs.TextEditor.Text);
             var args = command.Arguments.ToList();
             string completionTarget;
             List<string> completions;
@@ -101,7 +101,7 @@ namespace Wish
         public CommandResult Execute(string text, string workingDirectory)
         {
             var reserved = new ReservedCommands();
-            var commandLine = Repl.Read(text).CommandLine.Text;
+            var commandLine = Repl.Read(_runner, text).CommandLine.Text;
             var isReserved = reserved.IsReservedCommand(commandLine);
             if (isReserved)
             {

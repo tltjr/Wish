@@ -28,7 +28,7 @@ namespace Wish.Scripts
 
         public CommandResult ExecuteReserved(string text)
         {
-            var command = Read(text);
+            var command = Read(null, text);
             History.Add(command);
             RecentArguments.AddRange(command.Arguments.Select(o => o.PartialPath.Text));
             InsertNewPrompt();
@@ -49,7 +49,7 @@ namespace Wish.Scripts
             command.Execute();
             if (runner.GetType() == typeof(Powershell))
             {
-                var profile = new Profile();
+                var profile = new Profile(runner);
                 if (profile.Exists)
                 {
                     var profileInfo = profile.Load(Text);
@@ -75,12 +75,12 @@ namespace Wish.Scripts
             return new Command(runner, line, _prompt.WorkingDirectory);
         }
 
-        public ICommand Read(string text)
-        {
-            Text = text;
-            var line = GetLine(text);
-            return new Command(line);
-        }
+        //public ICommand Read(string text)
+        //{
+        //    Text = text;
+        //    var line = GetLine(text);
+        //    return new Command(line);
+        //}
 
         public void Eval(ICommand command)
         {
@@ -108,13 +108,13 @@ namespace Wish.Scripts
             return _result;
         }
 
-        public CommandResult Loop(string text)
-        {
-            var command = Read(text);
-            ProcessCommand(command);
-            _result.WorkingDirectory = _prompt.WorkingDirectory;
-            return _result;
-        }
+        //public CommandResult Loop(string text)
+        //{
+        //    var command = Read(text);
+        //    ProcessCommand(command);
+        //    _result.WorkingDirectory = _prompt.WorkingDirectory;
+        //    return _result;
+        //}
 
         public CommandResult Up(string text)
         {

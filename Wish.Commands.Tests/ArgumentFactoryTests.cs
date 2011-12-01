@@ -9,7 +9,7 @@ namespace Wish.Commands.Tests
         [Test]
         public void PowershellArgumentType()
         {
-            var result = ArgumentFactory.Create(new Powershell(), "arg");
+            var result = ArgumentFactory.Create(new Powershell(1), "arg");
             Assert.IsInstanceOf(typeof(PowershellArgument), result);
         }
 

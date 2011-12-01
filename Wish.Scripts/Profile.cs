@@ -13,9 +13,9 @@ namespace Wish.Scripts
         private readonly string _profile;
         public bool Exists { get; set; }
 
-        public Profile()
+        public Profile(IRunner runner)
         {
-            _runner = new Powershell();
+            _runner = runner;
             _home = Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%");
             if (string.IsNullOrEmpty(_home)) return;
             _profile = Path.Combine(_home, RcFile);

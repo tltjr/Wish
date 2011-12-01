@@ -21,10 +21,10 @@ namespace Wish.Scripts.Tests
 
         private void StartAndOverrideDefaultPrompt()
         {
-            var runner = new Powershell();
+            var runner = new Powershell(1);
             _repl.Start(runner);
             _repl.Prompt = new Prompt(runner) { Current = "> " };
-            _repl.Eval(new Command("cd " + Directory.GetCurrentDirectory()));
+            _repl.Eval(new Command(null, "cd " + Directory.GetCurrentDirectory()));
         }
 
         [Test]
@@ -38,7 +38,7 @@ namespace Wish.Scripts.Tests
         public void ReadFunction()
         {
             StartAndOverrideDefaultPrompt();
-            var command = _repl.Read("> cp ./blah.txt ./temp/blahdir");
+            var command = _repl.Read(null, "> cp ./blah.txt ./temp/blahdir");
             Assert.AreEqual("cp", command.Function.Name);
         }
 
@@ -46,7 +46,7 @@ namespace Wish.Scripts.Tests
         public void ReadArgs()
         {
             StartAndOverrideDefaultPrompt();
-            var command = _repl.Read("> cp ./blah.txt ./temp/blahdir");
+            var command = _repl.Read(null, "> cp ./blah.txt ./temp/blahdir");
             var args = command.Arguments.Select(o => o.PartialPath.Text).ToList();
             Assert.True(args.Contains("./blah.txt"));
             Assert.True(args.Contains("./temp/blahdir"));
@@ -73,7 +73,7 @@ namespace Wish.Scripts.Tests
         {
             // actual execution - relative to Wish.Scripts.Tests\bin\Debug
             StartAndOverrideDefaultPrompt();
-            var command = _repl.Read("> ls");
+            var command = _repl.Read(null, "> ls");
             _repl.Eval(command);
             var result = _repl.Print();
             Assert.True(result.Contains(@"Mode"), "Result was: {0}", result);
@@ -125,7 +125,7 @@ namespace Wish.Scripts.Tests
             // super fragile, will break with any change to file structure
             var text = ExecuteLs();
             text += new RunnerArgs { Script = "ls" };
-            var comm = _repl.Read(text);
+            var comm = _repl.Read(null, text);
             Assert.AreEqual(new RunnerArgs { Script = "ls" }, comm.Function.Name);
         }
 
@@ -135,7 +135,7 @@ namespace Wish.Scripts.Tests
             // super fragile, will break with any change to file structure
             var text = ExecuteLs();
             text += @"cp .\blah.txt .\targetdir";
-            var comm = _repl.Read(text);
+            var comm = _repl.Read(null, text);
             Assert.AreEqual("cp", comm.Function.Name);
             var args = comm.Arguments.Select(o => o.PartialPath.Text).ToList();
             Assert.True(args.Contains(@".\blah.txt"));
@@ -166,7 +166,7 @@ namespace Wish.Scripts.Tests
         public void LoopExitHandled()
         {
             StartAndOverrideDefaultPrompt();
-            var result = _repl.Loop("> exit");
+            var result = _repl.Loop(null, "> exit");
             Assert.True(result.FullyProcessed);
         }
 
@@ -174,7 +174,7 @@ namespace Wish.Scripts.Tests
         public void LoopExit()
         {
             StartAndOverrideDefaultPrompt();
-            var result = _repl.Loop("> exit");
+            var result = _repl.Loop(null, "> exit");
             Assert.True(result.IsExit);
         }
 
@@ -192,7 +192,7 @@ namespace Wish.Scripts.Tests
         [Test]
         public void PromptDefaultsToHomeDirectory()
         {
-            _repl.Start(new Powershell());
+            _repl.Start(new Powershell(1));
             var expected = @"AMR\tlthorn1@TLTHORN1-DESK1 " + Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%") + " >> ";
             Assert.AreEqual(expected, _repl.Text);
         }
@@ -201,7 +201,7 @@ namespace Wish.Scripts.Tests
         public void DirectoryChangesReflectedInPrompt()
         {
             StartAndOverrideDefaultPrompt();
-            _repl.Loop("> cd ..");
+            _repl.Loop(null, "> cd ..");
             Assert.AreEqual(@"AMR\tlthorn1@TLTHORN1-DESK1 T:\src\dotnet\wish-all\Wish\Wish.Scripts.Tests\bin >> ", _repl.Prompt.Current);
         }
 
@@ -211,9 +211,9 @@ namespace Wish.Scripts.Tests
         [Test]
         public void HistoryRequest()
         {
-            _repl.Start(new Powershell());
+            _repl.Start(new Powershell(1));
             Assert.AreEqual(BaseText, _repl.Text);
-            _repl.Eval(new Command("ls"));
+            _repl.Eval(new Command(null, "ls"));
             var result = _repl.Up(BaseText);
             Assert.AreEqual(UpdatedText, result.Text);
             Assert.AreEqual(UpdatedText, _repl.Text);
@@ -222,9 +222,9 @@ namespace Wish.Scripts.Tests
         [Test]
         public void HistoryRequestBlank()
         {
-            _repl.Start(new Powershell());
+            _repl.Start(new Powershell(1));
             Assert.AreEqual(BaseText, _repl.Text);
-            _repl.Eval(new Command("ls"));
+            _repl.Eval(new Command(null, "ls"));
             var result = _repl.Up(BaseText);
             Assert.AreEqual(UpdatedText, result.Text);
             Assert.AreEqual(UpdatedText, _repl.Text);
@@ -236,9 +236,9 @@ namespace Wish.Scripts.Tests
         [Test]
         public void HistoryRequestWithExistingTypingReplacesTyping()
         {
-            _repl.Start(new Powershell());
+            _repl.Start(new Powershell(1));
             Assert.AreEqual(BaseText, _repl.Text);
-            _repl.Eval(new Command("ls"));
+            _repl.Eval(new Command(null, "ls"));
             var result = _repl.Up(BaseText + "some gibberish a user typed in");
             Assert.AreEqual(UpdatedText, result.Text);
             Assert.AreEqual(UpdatedText, _repl.Text);
@@ -247,9 +247,9 @@ namespace Wish.Scripts.Tests
         [Test]
         public void Down()
         {
-            _repl.Start(new Powershell());
+            _repl.Start(new Powershell(1));
             Assert.AreEqual(BaseText, _repl.Text);
-            _repl.Eval(new Command("ls"));
+            _repl.Eval(new Command(null, "ls"));
             var result = _repl.Down(UpdatedText);
             Assert.AreEqual(UpdatedText, result.Text);
             Assert.AreEqual(UpdatedText, _repl.Text);
@@ -258,7 +258,7 @@ namespace Wish.Scripts.Tests
         private string ExecuteLs()
         {
             StartAndOverrideDefaultPrompt();
-            var command = _repl.Read("> ls");
+            var command = _repl.Read(null, "> ls");
             _repl.Eval(command);
             var text = _repl.Print();
             return text;

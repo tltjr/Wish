@@ -14,7 +14,7 @@ namespace Wish.Commands.Tests
         [SetUp]
         public void Init()
         {
-            _command = new Command(@"cd somedir");
+            _command = new Command(null, @"cd somedir");
         }
 
         [Test]
@@ -32,7 +32,7 @@ namespace Wish.Commands.Tests
         [Test]
         public void CompleteNoArgumentReturnsFalse()
         {
-            _command = new Command(@"func");
+            _command = new Command(null, @"func");
             Assert.IsEmpty((ICollection) _command.Complete());
         }
 
@@ -76,28 +76,28 @@ namespace Wish.Commands.Tests
         [Test]
         public void TestIsExitWithoutRunner()
         {
-            var c = new Command("cd");
+            var c = new Command(null, "cd");
             Assert.False(c.IsExit);
         }
 
         [Test]
         public void TestIsExitTrue()
         {
-            var c = new Command(new Powershell(), "exit");
+            var c = new Command(null, "exit");
             Assert.True(c.IsExit);
         }
 
         [Test]
         public void TestIsExitTrueWithoutRunner()
         {
-            var c = new Command("exit");
+            var c = new Command(null, "exit");
             Assert.True(c.IsExit);
         }
 
         [Test]
         public void TestToString()
         {
-            var c = new Command("cd blah");
+            var c = new Command(null, "cd blah");
             Assert.AreEqual("cd blah", c.ToString());
         }
 

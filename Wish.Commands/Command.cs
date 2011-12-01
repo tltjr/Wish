@@ -16,25 +16,19 @@ namespace Wish.Commands
         public string Text { get; set; }
         private readonly string _workingDirectory;
 
-        public Command(IRunner runner, string command, string workingDirectory) : this(command)
+        public Command(IRunner runner, string command, string workingDirectory) : this(runner, command)
         {
-            _runner = runner;
             _workingDirectory = workingDirectory;
         }
 
-        public Command(IRunner runner, string command) : this(command)
+        public Command(IRunner runner, string command)
         {
             _runner = runner;
-        }
-
-        public Command(string command)
-        {
             CommandLine = new CommandLine(command);
             Function = new Function(CommandLine.Function);
             IsExit = Function.Name.Equals("exit", StringComparison.InvariantCultureIgnoreCase);
             Arguments = CreateArguments(CommandLine.Arguments);
             Text = CommandLine.Text;
-            _runner = new Powershell();
         }
 
         public CommandResult Execute()

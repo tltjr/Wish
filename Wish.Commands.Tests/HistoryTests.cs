@@ -22,7 +22,7 @@ namespace Wish.Commands.Tests
 
         private Command AddLs()
         {
-            var command = new Command("ls"); 
+            var command = new Command(null, "ls"); 
             _history.Add(command);
             return command;
         }
@@ -39,7 +39,7 @@ namespace Wish.Commands.Tests
         public void AddTwo()
         {
             var command = AddLs();
-            var command2 = new Command("command 2");
+            var command2 = new Command(null, "command 2");
             _history.Add(command2);
             var result = _history.Up();
             Assert.AreEqual(command2, result);
@@ -53,7 +53,7 @@ namespace Wish.Commands.Tests
             AddLs();
             _history.Up();
             var result = _history.Down();
-            Assert.AreEqual(new Command(string.Empty), result);
+            Assert.AreEqual(new Command(null, string.Empty), result);
         }
 
         [Test]
@@ -68,7 +68,7 @@ namespace Wish.Commands.Tests
         public void UpWrapping()
         {
             AddLs();
-            var expected = new Command("command 2");
+            var expected = new Command(null, "command 2");
             _history.Add(expected);
             _history.Up();
             _history.Up();
@@ -80,7 +80,7 @@ namespace Wish.Commands.Tests
         [Test]
         public void ResetSetsIndexToNegOne()
         {
-            _history.Add(new Command(""));
+            _history.Add(new Command(null, ""));
             _history.Reset();
             Assert.AreEqual(-1, _history.Index);
         }
@@ -96,7 +96,7 @@ namespace Wish.Commands.Tests
         public void NoDuplicates()
         {
             AddLs();
-            _history.Add(new Command("ls"));
+            _history.Add(new Command(null, "ls"));
             Assert.AreEqual(1, _history.Count);
         }
     }

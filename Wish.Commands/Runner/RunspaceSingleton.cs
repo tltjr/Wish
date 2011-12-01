@@ -1,27 +1,24 @@
-﻿using System.Management.Automation.Runspaces;
+﻿using System.Collections.Generic;
+using System.Management.Automation.Runspaces;
 
 namespace Wish.Commands.Runner
 {
     public class RunspaceSingleton
     {
-        private static Runspace _runspace;
+        private static readonly IDictionary<int, Runspace> Runspaces = new Dictionary<int, Runspace>();
 
-        private static void CreateRunspace()
+        private static Runspace CreateRunspace(int id)
         {
-            _runspace = RunspaceFactory.CreateRunspace();
-            _runspace.Open();
+            var rspace = RunspaceFactory.CreateRunspace();
+            rspace.Open();
+            Runspaces.Add(id, rspace);
+            return rspace;
         }
 
-        public static Runspace Instance
+        public static Runspace GetInstance(int id)
         {
-            get
-            {
-                if (_runspace == null)
-                {
-                    CreateRunspace();
-                }
-                return _runspace;
-            }
+            Runspace runspace;
+            return Runspaces.TryGetValue(id, out runspace) ? runspace : CreateRunspace(id);
         }
     }
 }

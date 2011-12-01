@@ -6,11 +6,11 @@ namespace Wish.Scripts
     public interface IRepl
     {
         ICommand Read(IRunner runner, string text);
-        ICommand Read(string text);
+        //ICommand Read(string text);
         void Eval(ICommand command);
         string Print();
         CommandResult Loop(IRunner runner, string text);
-        CommandResult Loop(string text);
+        //CommandResult Loop(string text);
         /// <summary>
         /// Initilizes the repl, inserts a prompt and
         /// changes to the appropriate directory.

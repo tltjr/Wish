@@ -58,11 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompletionData.cs" />
+    <Compile Include="ModifierKeyExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="State\Completion.cs" />
     <Compile Include="State\IState.cs" />
     <Compile Include="State\Normal.cs" />
     <Compile Include="State\WishArgs.cs" />
+    <Compile Include="Views\ViewId.cs" />
     <Compile Include="Views\WishView.xaml.cs">
       <DependentUpon>WishView.xaml</DependentUpon>
     </Compile>

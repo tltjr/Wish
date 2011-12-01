@@ -14,7 +14,7 @@ namespace Wish.Commands
             {
                 Index = -1;
             }
-            return Index == -1 ? new Command(string.Empty) : this[Index];
+            return Index == -1 ? new Command(null, string.Empty) : this[Index];
         }
 
         public ICommand Down()
@@ -23,7 +23,7 @@ namespace Wish.Commands
             Index--;
             if (Index == -1)
             {
-                return new Command(string.Empty);
+                return new Command(null, string.Empty);
             }
             if (Index < -1)
             {

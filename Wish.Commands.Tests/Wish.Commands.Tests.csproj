@@ -61,7 +61,6 @@
     <Compile Include="PartialPathTests.cs" />
     <Compile Include="PowershellArgumentTests.cs" />
     <Compile Include="FunctionTests.cs" />
-    <Compile Include="PowershellTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
