@@ -5,6 +5,6 @@
         xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock" 
         Title="Wish" Height="650" Width="1025">
     <ad:DockingManager>
-        <ad:DocumentPane cal:RegionManager.RegionName="MainRegion"/>
+        <ad:DocumentPane cal:RegionManager.RegionName="MainRegion" x:Name="blah"/>
     </ad:DockingManager>
 </Window>
