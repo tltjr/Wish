@@ -26,9 +26,9 @@ namespace Wish.Scripts
         public UniqueList<string> RecentDirectories { get; set; }
         public UniqueList<string> RecentArguments { get; set; }
 
-        public CommandResult ExecuteReserved(string text)
+        public CommandResult ExecuteReserved(IRunner runner, string text)
         {
-            var command = Read(null, text);
+            var command = Read(runner, text);
             History.Add(command);
             RecentArguments.AddRange(command.Arguments.Select(o => o.PartialPath.Text));
             InsertNewPrompt();

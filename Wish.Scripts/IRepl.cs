@@ -22,7 +22,7 @@ namespace Wish.Scripts
         History History { get; set; }
         UniqueList<string> RecentDirectories { get; set; }
         UniqueList<string> RecentArguments { get; set; }
-        CommandResult ExecuteReserved(string text);
+        CommandResult ExecuteReserved(IRunner runner, string text);
         Prompt Prompt { get; set; }
     }
 }

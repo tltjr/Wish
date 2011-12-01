@@ -6,9 +6,8 @@
              xmlns:Views="clr-namespace:Wish.Views" 
              xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
              mc:Ignorable="d" 
-             x:Name="uc"
              Background="Black"
-             d:DesignHeight="450" d:DesignWidth="500"
+             d:DesignHeight="450" d:DesignWidth="1000"
              Loaded="OnUserControlLoaded">
     <UserControl.CommandBindings>
         <CommandBinding Command="{x:Static Views:WishView.TabNew}" Executed="ExecuteNewTab"/>
