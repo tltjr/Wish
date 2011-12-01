@@ -25,6 +25,9 @@ namespace Wish.Views
         public static RoutedCommand ControlN = new RoutedCommand();
         public static RoutedCommand ControlD = new RoutedCommand();
         public static RoutedCommand ControlA = new RoutedCommand();
+        public static RoutedCommand ControlShiftP = new RoutedCommand();
+        public static RoutedCommand ControlShiftC = new RoutedCommand();
+        public static RoutedCommand ControlShiftV = new RoutedCommand();
         private int _promptLength;
         private IState _state;
 
@@ -60,6 +63,15 @@ namespace Wish.Views
 
             var controlA = new KeyGesture(Key.A, ModifierKeys.Control);
             ControlA.InputGestures.Add(controlA);
+
+            var controlShiftP = new KeyGesture(Key.P, ModifierKeys.Control | ModifierKeys.Shift);
+            ControlShiftP.InputGestures.Add(controlShiftP);
+
+            var controlShiftC = new KeyGesture(Key.C, ModifierKeys.Control | ModifierKeys.Shift);
+            ControlShiftC.InputGestures.Add(controlShiftC);
+
+            var controlShiftV = new KeyGesture(Key.V, ModifierKeys.Control | ModifierKeys.Shift);
+            ControlShiftV.InputGestures.Add(controlShiftV);
         }
 
         private void ScrollToEnd(object sender, EventArgs eventArgs)
@@ -306,10 +318,11 @@ namespace Wish.Views
 
         private void VsSelected(object sender, RoutedEventArgs e)
         {
-            cmd.IsChecked = false;
-            pshell.IsChecked = false;
-            vsPrompt.IsChecked = true;
-            _wishModel.SetRunner(new Powershell(), Title);
+            //cmd.IsChecked = false;
+            //pshell.IsChecked = false;
+            //vsPrompt.IsChecked = true;
+            //_wishModel.SetRunner(new Powershell(), Title);
+            throw new NotImplementedException();
         }
     }
 }

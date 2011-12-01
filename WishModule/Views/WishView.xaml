@@ -16,6 +16,9 @@
         <CommandBinding Command="{x:Static Views:WishView.ControlN}" Executed="ExecuteControlN"/>
         <CommandBinding Command="{x:Static Views:WishView.ControlD}" Executed="ExecuteControlD"/>
         <CommandBinding Command="{x:Static Views:WishView.ControlA}" Executed="ExecuteControlA"/>
+        <CommandBinding Command="{x:Static Views:WishView.ControlShiftP}" Executed="PowershellSelected"/>
+        <CommandBinding Command="{x:Static Views:WishView.ControlShiftC}" Executed="CmdSelected"/>
+        <CommandBinding Command="{x:Static Views:WishView.ControlShiftV}" Executed="VsSelected"/>
     </UserControl.CommandBindings>
     <avalonEdit:TextEditor x:Name="textEditor"
              FontFamily="Consolas"
@@ -42,9 +45,9 @@
         <avalonEdit:TextEditor.ContextMenu>
             <ContextMenu>
                 <MenuItem Header="Command Engine">
-                    <MenuItem Header="Powershell" IsChecked="true" x:Name="pshell" Click="PowershellSelected"/>
-                    <MenuItem Header="cmd" x:Name="cmd" Click="CmdSelected"/>
-                    <MenuItem Header="Visual Studio Command Prompt" x:Name="vsPrompt" Click="VsSelected"/>
+                    <MenuItem Header="Powershell" IsChecked="true" x:Name="pshell" Click="PowershellSelected" InputGestureText="Ctrl+Shift+P"/>
+                    <MenuItem Header="cmd" x:Name="cmd" Click="CmdSelected" InputGestureText="Ctrl+Shift+C"/>
+                    <MenuItem Header="Visual Studio Command Prompt" x:Name="vsPrompt" Click="VsSelected" InputGestureText="Ctrl+Shift+V"/>
                 </MenuItem>
             </ContextMenu>
         </avalonEdit:TextEditor.ContextMenu>
