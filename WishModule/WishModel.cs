@@ -18,17 +18,17 @@ namespace Wish
 {
     public class WishModel
     {
-        public IRepl Repl { get; set; }
+        private readonly IRepl _repl;
         private IRunner _runner;
         private bool _started;
         private readonly Runspace _runspace;
 
         public WishModel()
         {
-            Repl = new Repl();
             _runspace = RunspaceFactory.CreateRunspace();
             _runspace.Open();
             _runner = new Powershell(_runspace);
+            _repl = new Repl(_runner);
         }
 
         public void SetRunner(IRunner runner, string workingDirectory)
@@ -36,7 +36,7 @@ namespace Wish
             _runner = runner;
             _runner.Runspace = _runspace;
             _runner.Execute(new RunnerArgs { Script = "cd " + workingDirectory});
-            Repl.Prompt.Runner = runner;
+            _repl.Runner = runner;
         }
         
         public CommandResult Raise(WishArgs wishArgs)
@@ -45,8 +45,8 @@ namespace Wish
             switch (wishArgs.Key)
             {
                 case Key.Enter: return Execute(text, wishArgs.WorkingDirectory);
-                case Key.Up: return Repl.Up(text);
-                case Key.Down: return Repl.Down(text);
+                case Key.Up: return _repl.Up(text);
+                case Key.Down: return _repl.Down(text);
             }
             return new CommandResult { FullyProcessed = true };
         }
@@ -54,7 +54,7 @@ namespace Wish
         private CompletionWindow _completionWindow;
         public CommandResult Complete(WishArgs wishArgs)
         {
-            var command = Repl.Read(_runner, wishArgs.TextEditor.Text);
+            var command = _repl.Read(wishArgs.TextEditor.Text);
             var args = command.Arguments.ToList();
             string completionTarget;
             List<string> completions;
@@ -95,7 +95,7 @@ namespace Wish
             if (!_started)
             {
                 _started = true;
-                return Repl.Start(_runner);
+                return _repl.Start();
             }
             return new CommandResult
                        {
@@ -106,31 +106,31 @@ namespace Wish
         public CommandResult Execute(string text, string workingDirectory)
         {
             var reserved = new ReservedCommands();
-            var commandLine = Repl.Read(_runner, text).CommandLine.Text;
+            var commandLine = _repl.Read(text).CommandLine.Text;
             var isReserved = reserved.IsReservedCommand(commandLine);
             if (isReserved)
             {
                 reserved.Execute(commandLine, workingDirectory);
-                return Repl.ExecuteReserved(_runner, text);
+                return _repl.ExecuteReserved(text);
             }
-            return Repl.Loop(_runner, text);
+            return _repl.Loop(text);
         }
 
         public void RequestHistorySearch(Popup popup, Action<string> callback)
         {
-            var history = Repl.History.Select(x => x.ToString());
+            var history = _repl.History.Select(x => x.ToString());
             CreatePopup(popup, callback, history, SearchType.CommandHistory);
         }
 
         public void RequestRecentDirectory(Popup popup, Action<string> callback)
         {
-            var dirs = Repl.RecentDirectories;
+            var dirs = _repl.RecentDirectories;
             CreatePopup(popup, callback, dirs, SearchType.RecentDirectories);
         }
 
         public void RequestRecentArgument(Popup popup, Action<string> callback)
         {
-            var args = Repl.RecentArguments;
+            var args = _repl.RecentArguments;
             CreatePopup(popup, callback, args, SearchType.RecentArguments);
         }
 

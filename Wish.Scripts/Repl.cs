@@ -9,7 +9,6 @@ namespace Wish.Scripts
     public class Repl : IRepl
     {
         private Prompt _prompt;
-        // for testing purposes
         public Prompt Prompt
         {
             get { return _prompt; }
@@ -19,6 +18,7 @@ namespace Wish.Scripts
                 LastPromptIndex = _prompt.Current.Length;
             }
         }
+
         public int LastPromptIndex { get; set; }
         public string Text { get; set; }
         private CommandResult _result;
@@ -26,9 +26,25 @@ namespace Wish.Scripts
         public UniqueList<string> RecentDirectories { get; set; }
         public UniqueList<string> RecentArguments { get; set; }
 
-        public CommandResult ExecuteReserved(IRunner runner, string text)
+        private IRunner _runner;
+        public IRunner Runner
         {
-            var command = Read(runner, text);
+            set
+            {
+                Prompt.Runner = value;
+                _runner = value;
+            }
+        }
+
+        public Repl(IRunner runner)
+        {
+            _runner = runner;
+            _prompt = new Prompt(_runner);
+        }
+
+        public CommandResult ExecuteReserved(string text)
+        {
+            var command = Read(text);
             History.Add(command);
             RecentArguments.AddRange(command.Arguments.Select(o => o.PartialPath.Text));
             InsertNewPrompt();
@@ -37,19 +53,18 @@ namespace Wish.Scripts
             return new CommandResult {Text = Text, Handled = true};
         }
 
-        public CommandResult Start(IRunner runner)
+        public CommandResult Start()
         {
             History = new History();
             RecentDirectories = new UniqueList<string>();
             RecentArguments = new UniqueList<string>();
-            _prompt = new Prompt(runner);
             LastPromptIndex = _prompt.Current.Length;
             Text = _prompt.Current;
-            var command = new Command(runner, "cd " + _prompt.WorkingDirectory);
+            var command = new Command(_runner, "cd " + _prompt.WorkingDirectory);
             command.Execute();
-            if (runner.GetType() == typeof(Powershell))
+            if (_runner.GetType() == typeof(Powershell))
             {
-                var profile = new Profile(runner);
+                var profile = new Profile(_runner);
                 if (profile.Exists)
                 {
                     var profileInfo = profile.Load(Text);
@@ -68,19 +83,12 @@ namespace Wish.Scripts
                        };
         }
 
-        public ICommand Read(IRunner runner, string text)
+        public ICommand Read(string text)
         {
             Text = text;
             var line = GetLine(text);
-            return new Command(runner, line, _prompt.WorkingDirectory);
+            return new Command(_runner, line, _prompt.WorkingDirectory);
         }
-
-        //public ICommand Read(string text)
-        //{
-        //    Text = text;
-        //    var line = GetLine(text);
-        //    return new Command(line);
-        //}
 
         public void Eval(ICommand command)
         {
@@ -100,21 +108,13 @@ namespace Wish.Scripts
             return Text;
         }
 
-        public CommandResult Loop(IRunner runner, string text)
+        public CommandResult Loop(string text)
         {
-            var command = Read(runner, text);
+            var command = Read(text);
             ProcessCommand(command);
             _result.WorkingDirectory = _prompt.WorkingDirectory;
             return _result;
         }
-
-        //public CommandResult Loop(string text)
-        //{
-        //    var command = Read(text);
-        //    ProcessCommand(command);
-        //    _result.WorkingDirectory = _prompt.WorkingDirectory;
-        //    return _result;
-        //}
 
         public CommandResult Up(string text)
         {
