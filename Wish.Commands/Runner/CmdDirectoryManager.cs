@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Wish.Commands.Runner
@@ -11,10 +12,10 @@ namespace Wish.Commands.Runner
             switch (CommandType(script))
             {
                 case CdCommand.Prompt:
-                    WorkingDirectory = commandLine.Function.ToUpper() + "\\";
+                    _workingDirectory = commandLine.Function.ToUpper() + "\\";
                     break;
                 case CdCommand.Slash:
-                    WorkingDirectory = WorkingDirectory.Substring(0, 3);
+                    _workingDirectory = WorkingDirectory.Substring(0, 3);
                     break;
                 case CdCommand.Regular:
                     var args = commandLine.Arguments;
@@ -23,7 +24,7 @@ namespace Wish.Commands.Runner
                         var arg = args.First();
                         if(arg.Contains(":"))
                         {
-                            WorkingDirectory = arg;
+                            _workingDirectory = arg;
                         }
                         else
                         {
@@ -35,23 +36,23 @@ namespace Wish.Commands.Runner
                                 var newLevels = count - levels;
                                 if (newLevels < 2)
                                 {
-                                    WorkingDirectory = segments.First() + "\\";
+                                    _workingDirectory = segments.First() + "\\";
                                 }
                                 else
                                 {
                                     var newSegs = segments.Take(newLevels);
-                                    WorkingDirectory = string.Join("\\", newSegs);
+                                    _workingDirectory = string.Join("\\", newSegs);
                                 }
                             }
                             else
                             {
                                 if (WorkingDirectory.EndsWith("\\"))
                                 {
-                                    WorkingDirectory = WorkingDirectory + arg;
+                                    _workingDirectory = WorkingDirectory + arg;
                                 }
                                 else
                                 {
-                                    WorkingDirectory = WorkingDirectory + "\\" + arg;
+                                    _workingDirectory = WorkingDirectory + "\\" + arg;
                                 }
                             }
                         }
@@ -80,6 +81,24 @@ namespace Wish.Commands.Runner
             Prompt, Slash, Regular, None
         }
 
-        public string WorkingDirectory { get; set; }
+        private string _workingDirectory;
+        public string WorkingDirectory
+        {
+            get
+            {
+                if (_workingDirectory != null) return _workingDirectory;
+                var homedrive = Environment.GetEnvironmentVariable("HOMEDRIVE");
+                var homepath = Environment.GetEnvironmentVariable("HOMEPATH");
+                if (null != homedrive && null != homepath)
+                {
+                    _workingDirectory = Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%");
+                }
+                else
+                {
+                    _workingDirectory = @"C:\";
+                }
+                return _workingDirectory;
+            } 
+        }
     }
 }

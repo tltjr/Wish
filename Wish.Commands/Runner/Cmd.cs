@@ -21,17 +21,29 @@ namespace Wish.Commands.Runner
                                                   }
                               };
             process.Start();
-            var error = process.StandardError.ReadToEnd();
-            if (!string.IsNullOrEmpty(error)) return error;
+            /* can't read both error and output
+             * see: http://msdn.microsoft.com/en-us/library/system.diagnostics.process.standarderror(v=vs.71).aspx
+             * ctrl + f -> A similar problem
+             * Both error and output would need thier own threads
+             */
+            //var error = process.StandardError.ReadToEnd();
+            //if (!string.IsNullOrEmpty(error)) return error;
             var output = process.StandardOutput.ReadToEnd();
-            process.WaitForExit();
+            if(!process.WaitForExit(1000))
+            {
+                process.Kill();
+                return "An error has occurred";
+            }
             _cmdDirectoryManager.UpdateWorkingDirectory(args.Script);
             return output;
         }
 
         public string WorkingDirectory
         {
-            get { return _cmdDirectoryManager.WorkingDirectory; }
+            get
+            {
+                return _cmdDirectoryManager.WorkingDirectory;
+            }
         }
 
         // implements interface but isn't used

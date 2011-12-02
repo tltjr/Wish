@@ -29,7 +29,16 @@ namespace Wish.Commands
                 var args = new List<string>();
                 var match = Regex.Match(Text.Trim() + " ", @"^(.+?)(?:\s+|$)(.*)");
                 var argsLine = match.Groups[2].Value.Trim();
-                var pattern = argsLine.Contains("'") ? @"[^\s']+|'[^']*'[^\s]+|'[^']*'" : @"(?<!\\)"".*?(?<!\\)""|[\S]+";
+                string pattern; 
+                if(argsLine.Contains("'"))
+                {
+                    pattern = @"[^\s']+|'[^']*'[^\s]+|'[^']*'";
+                }
+                else
+                {
+                    pattern = argsLine.Contains("\"") ? @"[^\s""]+|""[^""]*""[^\s]+|""[^""]*""" : @"(?<!\\)"".*?(?<!\\)""|[\S]+";
+                }
+
                 var argMatches = Regex.Match(argsLine + " ", pattern);
                 while (argMatches.Success)
                 {
