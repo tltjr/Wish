@@ -21,7 +21,7 @@ namespace Wish.Scripts.Tests
 
         private void StartAndOverrideDefaultPrompt()
         {
-            var runner = new Powershell(1);
+            var runner = new Powershell();
             _repl.Start(runner);
             _repl.Prompt = new Prompt(runner) { Current = "> " };
             _repl.Eval(new Command(null, "cd " + Directory.GetCurrentDirectory()));
@@ -192,7 +192,7 @@ namespace Wish.Scripts.Tests
         [Test]
         public void PromptDefaultsToHomeDirectory()
         {
-            _repl.Start(new Powershell(1));
+            _repl.Start(new Powershell());
             var expected = @"AMR\tlthorn1@TLTHORN1-DESK1 " + Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%") + " >> ";
             Assert.AreEqual(expected, _repl.Text);
         }
@@ -211,7 +211,7 @@ namespace Wish.Scripts.Tests
         [Test]
         public void HistoryRequest()
         {
-            _repl.Start(new Powershell(1));
+            _repl.Start(new Powershell());
             Assert.AreEqual(BaseText, _repl.Text);
             _repl.Eval(new Command(null, "ls"));
             var result = _repl.Up(BaseText);
@@ -222,7 +222,7 @@ namespace Wish.Scripts.Tests
         [Test]
         public void HistoryRequestBlank()
         {
-            _repl.Start(new Powershell(1));
+            _repl.Start(new Powershell());
             Assert.AreEqual(BaseText, _repl.Text);
             _repl.Eval(new Command(null, "ls"));
             var result = _repl.Up(BaseText);
@@ -236,7 +236,7 @@ namespace Wish.Scripts.Tests
         [Test]
         public void HistoryRequestWithExistingTypingReplacesTyping()
         {
-            _repl.Start(new Powershell(1));
+            _repl.Start(new Powershell());
             Assert.AreEqual(BaseText, _repl.Text);
             _repl.Eval(new Command(null, "ls"));
             var result = _repl.Up(BaseText + "some gibberish a user typed in");
@@ -247,7 +247,7 @@ namespace Wish.Scripts.Tests
         [Test]
         public void Down()
         {
-            _repl.Start(new Powershell(1));
+            _repl.Start(new Powershell());
             Assert.AreEqual(BaseText, _repl.Text);
             _repl.Eval(new Command(null, "ls"));
             var result = _repl.Down(UpdatedText);

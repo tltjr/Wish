@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Management.Automation.Runspaces;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
@@ -20,16 +21,20 @@ namespace Wish
         public IRepl Repl { get; set; }
         private IRunner _runner;
         private bool _started;
+        private readonly Runspace _runspace;
 
-        public WishModel(int next)
+        public WishModel()
         {
             Repl = new Repl();
-            _runner = new Powershell(next);
+            _runspace = RunspaceFactory.CreateRunspace();
+            _runspace.Open();
+            _runner = new Powershell(_runspace);
         }
 
         public void SetRunner(IRunner runner, string workingDirectory)
         {
             _runner = runner;
+            _runner.Runspace = _runspace;
             _runner.Execute(new RunnerArgs { Script = "cd " + workingDirectory});
             Repl.Prompt.Runner = runner;
         }

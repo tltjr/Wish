@@ -30,7 +30,6 @@ namespace Wish.Views
         public static RoutedCommand ControlShiftV = new RoutedCommand();
         private int _promptLength;
         private IState _state;
-        private readonly int _id;
 
         public WishView(IRegion mainRegion)
         {
@@ -38,8 +37,7 @@ namespace Wish.Views
             SetInputGestures();
             SetSyntaxHighlighting();
             _mainRegion = mainRegion;
-            _id = ViewId.Next;
-            _wishModel = new WishModel(_id);
+            _wishModel = new WishModel();
             _state = new Normal(_wishModel);
         }
 
@@ -316,7 +314,7 @@ namespace Wish.Views
             cmd.IsChecked = false;
             vsPrompt.IsChecked = false;
             pshell.IsChecked = true;
-            _wishModel.SetRunner(new Powershell(_id), Title);
+            _wishModel.SetRunner(new Powershell(), Title);
         }
 
         private void VsSelected(object sender, RoutedEventArgs e)

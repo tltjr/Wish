@@ -64,7 +64,6 @@
     <Compile Include="State\IState.cs" />
     <Compile Include="State\Normal.cs" />
     <Compile Include="State\WishArgs.cs" />
-    <Compile Include="Views\ViewId.cs" />
     <Compile Include="Views\WishView.xaml.cs">
       <DependentUpon>WishView.xaml</DependentUpon>
     </Compile>

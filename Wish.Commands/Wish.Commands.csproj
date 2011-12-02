@@ -62,7 +62,6 @@
     <Compile Include="Runner\CmdDirectoryManager.cs" />
     <Compile Include="Runner\Powershell.cs" />
     <Compile Include="Runner\RunnerArgs.cs" />
-    <Compile Include="Runner\RunspaceSingleton.cs" />
     <Compile Include="WorkingDirectory.cs" />
   </ItemGroup>
   <ItemGroup>

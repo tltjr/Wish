@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Management.Automation.Runspaces;
 
 namespace Wish.Commands.Runner
 {
@@ -32,6 +33,9 @@ namespace Wish.Commands.Runner
         {
             get { return _cmdDirectoryManager.WorkingDirectory; }
         }
+
+        // implements interface but isn't used
+        public Runspace Runspace { get; set; }
 
         public override string ToString()
         {

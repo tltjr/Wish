@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Management.Automation.Runspaces;
+using NUnit.Framework;
 using Wish.Commands.Runner;
 
 namespace Wish.Commands.Tests
@@ -9,7 +10,7 @@ namespace Wish.Commands.Tests
         [Test]
         public void PowershellArgumentType()
         {
-            var result = ArgumentFactory.Create(new Powershell(1), "arg");
+            var result = ArgumentFactory.Create(new Powershell(), "arg");
             Assert.IsInstanceOf(typeof(PowershellArgument), result);
         }
 
@@ -33,5 +34,7 @@ namespace Wish.Commands.Tests
         {
             get { throw new System.NotImplementedException(); }
         }
+
+        public Runspace Runspace { get; set; }
     }
 }

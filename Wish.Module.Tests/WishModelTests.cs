@@ -1,5 +1,5 @@
 ﻿using System;
-using Moq;
+using System.Management.Automation.Runspaces;
 using NUnit.Framework;
 using Wish.Commands;
 using Wish.Commands.Runner;
@@ -139,5 +139,7 @@ namespace Wish.Module.Tests
         {
             get { throw new NotImplementedException(); }
         }
+
+        public Runspace Runspace { get; set; }
     }
 }

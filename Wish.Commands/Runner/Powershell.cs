@@ -9,17 +9,19 @@ namespace Wish.Commands.Runner
 {
     public class Powershell : IRunner
     {
-        private readonly Runspace _runspace;
         private Pipeline _pipeline;
+        public Runspace Runspace { get; set; }
 
-        public Powershell(int id)
+        public Powershell() { }
+
+        public Powershell(Runspace runspace)
         {
-            _runspace = RunspaceSingleton.GetInstance(id);
+            Runspace = runspace;
         }
 
         public string Execute(RunnerArgs args)
         {
-            _pipeline = _runspace.CreatePipeline();
+            _pipeline = Runspace.CreatePipeline();
             _pipeline.Commands.AddScript(args.Script);
             _pipeline.Commands.Add("Out-String");
             Collection<PSObject> psObjects;
@@ -58,7 +60,7 @@ namespace Wish.Commands.Runner
         {
             get
             {
-                var pipeline = _runspace.CreatePipeline();
+                var pipeline = Runspace.CreatePipeline();
                 pipeline.Commands.AddScript("pwd");
                 var results = pipeline.Invoke();
 // ReSharper disable PossibleNullReferenceException
