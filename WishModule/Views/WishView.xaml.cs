@@ -307,6 +307,7 @@ namespace Wish.Views
             vsPrompt.IsChecked = false;
             cmd.IsChecked = true;
             _wishModel.SetRunner(new Cmd(), Title);
+            Execute();
         }
 
         private void PowershellSelected(object sender, RoutedEventArgs e)
@@ -315,6 +316,7 @@ namespace Wish.Views
             vsPrompt.IsChecked = false;
             pshell.IsChecked = true;
             _wishModel.SetRunner(new Powershell(), Title);
+            Execute();
         }
 
         private void VsSelected(object sender, RoutedEventArgs e)
