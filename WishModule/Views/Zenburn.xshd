@@ -1,0 +1,67 @@
+﻿<?xml version="1.0"?>
+<SyntaxDefinition name="Custom Highlighting" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+	<Color name="Comment" foreground="Black" />
+	<Color name="String" foreground="#dca3a3" />
+	
+	<!-- This is the main ruleset. -->
+	<RuleSet>
+		<Span color="Comment" begin="//" />
+		<Span color="Comment" multiline="true" begin="/\*" end="\*/" />
+		
+		<Span color="String">
+			<Begin>"</Begin>
+			<End>"</End>
+			<RuleSet>
+				<!-- nested span for escape sequences -->
+				<Span begin="\\" end="." />
+			</RuleSet>
+		</Span>
+		
+		<!-- Digits -->
+		<!--<Rule foreground="#848484">
+            \b0[xX][0-9a-fA-F]+  # hex number
+        |    \b
+            (    \d+(\.[0-9]+)?   #number with optional floating point
+            |    \.[0-9]+         #or just starting with floating point
+            )
+            ([eE][+-]?[0-9]+)? # optional exponent
+        </Rule>-->
+
+    <!--<Keywords fontWeight="bold" foreground="Green">
+      <Word>AMR\tlthorn1@TLTHORN1-DESK1</Word>
+    </Keywords>-->
+    
+    <Rule foreground="#dac6a5" fontWeight="bold">
+      ^\[[\w]\]
+    </Rule>
+
+    <Rule foreground="#ffe188" fontWeight="bold">
+      [^\s]+@[^\s]+ # standard prompt
+    </Rule>
+
+    <!-- shitty directory regex -->
+    <Rule foreground="#7d9b7d" fontWeight="bold">
+      ^d.*
+    </Rule>
+    
+    <!-- archives -->
+    <Rule foreground="#2b91af" fontWeight="bold">
+      [\w|-]{5}[\s]+([1-9]|1[012])/([1-9]|[12][0-9]|3[01])/(19|20)\d\d[\s]+([1-9]|1[012]):\d\d\s(AM|PM)[\s]+(\d)*[\s]+.*.(7z|zip|tgz|tar.gz)
+    </Rule>
+    
+    <!-- executables -->
+    <Rule foreground="#efefaf" fontWeight="bold">
+      [\w|-]{5}[\s]+([1-9]|1[012])/([1-9]|[12][0-9]|3[01])/(19|20)\d\d[\s]+([1-9]|1[012]):\d\d\s(AM|PM)[\s]+(\d)*[\s]+.*.(exe|bat|jar|cmd|awk|com|csh|js|ps1)
+    </Rule>
+    
+    <!-- images -->
+    <Rule foreground="#3cb371" fontWeight="bold">
+      [\w|-]{5}[\s]+([1-9]|1[012])/([1-9]|[12][0-9]|3[01])/(19|20)\d\d[\s]+([1-9]|1[012]):\d\d\s(AM|PM)[\s]+(\d)*[\s]+.*.(jpg|gif|bmp|png)
+    </Rule>
+    
+    <Keywords fontWeight="bold" foreground="#dca3a3">
+      <Word>>></Word>
+    </Keywords>
+
+	</RuleSet>
+</SyntaxDefinition>

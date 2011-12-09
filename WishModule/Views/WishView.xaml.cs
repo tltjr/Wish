@@ -232,7 +232,7 @@ namespace Wish.Views
         {
             IHighlightingDefinition customHighlighting;
             var type = typeof(WishView);
-            using (var s = type.Assembly.GetManifestResourceStream("Wish.Views.CustomHighlighting.xshd"))
+            using (var s = type.Assembly.GetManifestResourceStream("Wish.Views.Zenburn.xshd"))
             {
                 if (s == null)
                 {

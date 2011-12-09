@@ -35,8 +35,8 @@
 						Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TextArea}"
 						VerticalContentAlignment="Top"
 						HorizontalContentAlignment="Left"
-                        Background="Black"
-                        Foreground="White"
+                        Background="#3f3f3f"
+                        Foreground="#d7d7c8"
 						Padding="{TemplateBinding Padding}"
 						BorderBrush="{TemplateBinding BorderBrush}"
 						BorderThickness="{TemplateBinding BorderThickness}" />
