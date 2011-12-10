@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Wish.Extensions;
@@ -16,22 +17,35 @@ namespace Wish.Commands
 
         protected List<string> GetDirectories(string workingDirectory)
         {
-            var directories = GetStringDirectories(workingDirectory);
-            return directories.Select(directory => PartialPath.Base + new DirectoryInfo(directory).Name).ToList();
+            try
+            {
+                var directories = GetStringDirectories(workingDirectory);
+                return directories.Select(directory => PartialPath.Base + new DirectoryInfo(directory).Name).ToList();
+            }
+            catch(Exception)
+            {
+                return new List<string>();
+            }
         }
 
         private IEnumerable<string> GetStringDirectories(string workingDirectory)
         {
             var pattern = PartialPath.Pattern;
+            string path;
+            string searchPattern;
             if (pattern.Contains(":"))
             {
                 var split = pattern.Split('\\');
                 var segments = split.Take(split.Count() - 1).ToList();
-                var basePath = GetBasePath(segments);
-                var searchPattern = split.Last();
-                return Directory.GetFileSystemEntries(basePath, searchPattern);
+                path = GetBasePath(segments);
+                searchPattern = split.Last();
             }
-            return Directory.GetFileSystemEntries(workingDirectory, PartialPath.Pattern);
+            else
+            {
+                path = workingDirectory;
+                searchPattern = PartialPath.Pattern;
+            }
+            return Directory.GetFileSystemEntries(path, searchPattern);
         }
 
         private static string GetBasePath(List<string> segments)

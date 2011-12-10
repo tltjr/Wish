@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Wish.Commands
 {
@@ -14,6 +15,7 @@ namespace Wish.Commands
         public override IEnumerable<string> Complete()
         {
             var list = GetDirectories(_runner.WorkingDirectory);
+            if (list.Count == 0) return Enumerable.Empty<string>();
             var dotSlashed = new List<string>();
             foreach (var dir in list)
             {
