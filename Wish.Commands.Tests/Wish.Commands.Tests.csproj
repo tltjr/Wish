@@ -59,6 +59,7 @@
     <Compile Include="CommandLineTests.cs" />
     <Compile Include="CommandTests.cs" />
     <Compile Include="HistoryTests.cs" />
+    <Compile Include="MatchStrategyTests.cs" />
     <Compile Include="PartialPathTests.cs" />
     <Compile Include="PowershellArgumentTests.cs" />
     <Compile Include="FunctionTests.cs" />

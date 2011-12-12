@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Wish.Commands
 {
@@ -6,7 +7,7 @@ namespace Wish.Commands
     {
         private readonly IRunner _runner;
 
-        public CmdArgument(IRunner runner, string text) : base(text)
+        public CmdArgument(IRunner runner)
         {
             _runner = runner;
         }
@@ -14,6 +15,7 @@ namespace Wish.Commands
         public override IEnumerable<string> Complete()
         {
             var list = GetDirectories(_runner.WorkingDirectory);
+            if (list.Count == 0) return Enumerable.Empty<string>();
             return QuoteSpaces(list, "\"");
         }
     }

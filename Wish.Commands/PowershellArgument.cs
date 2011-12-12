@@ -7,7 +7,7 @@ namespace Wish.Commands
     {
         private readonly IRunner _runner;
         
-        public PowershellArgument(IRunner runner, string text) : base(text)
+        public PowershellArgument(IRunner runner)
         {
             _runner = runner;
         }

@@ -65,20 +65,21 @@ namespace Wish.Commands.Tests
             var results = GetResult(@"'T:\src'\dotne");
             Assert.AreEqual(@"T:\src\dotnet", results.First());
         }
-
-
     }
 
-    public class TestArgument : Argument 
+    public class TestArgument : Argument
     {
-        public TestArgument(string text) : base(text) { }
+        private string _text;
+
+        public TestArgument(string text)
+        {
+            _text = text;
+        }
 
         public override IEnumerable<string> Complete()
         {
-            var list = GetDirectories(Path.Combine(Environment.CurrentDirectory, "Test"));
+            var list = Directory.GetFileSystemEntries(Path.Combine(Environment.CurrentDirectory, "Test"), _text);
             return QuoteSpaces(list, "'");
         }
     }
-
-
 }

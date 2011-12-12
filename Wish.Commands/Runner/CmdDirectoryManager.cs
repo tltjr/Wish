@@ -32,15 +32,18 @@ namespace Wish.Commands.Runner
                             {
                                 var levels = Regex.Matches(arg, @"\.\.").Count;
                                 var segments = WorkingDirectory.Split('\\');
+                                var argSegs = arg.Split('\\');
+                                var trailingDirs = argSegs.SkipWhile(o => o.Equals(".."));
                                 var count = segments.Count();
                                 var newLevels = count - levels;
                                 if (newLevels < 2)
                                 {
-                                    _workingDirectory = segments.First() + "\\";
+                                    _workingDirectory = segments.First() + "\\" + string.Join("\\", trailingDirs);
                                 }
                                 else
                                 {
-                                    var newSegs = segments.Take(newLevels);
+                                    var newSegs = segments.Take(newLevels).ToList();
+                                    newSegs.AddRange(trailingDirs);
                                     _workingDirectory = string.Join("\\", newSegs);
                                 }
                             }

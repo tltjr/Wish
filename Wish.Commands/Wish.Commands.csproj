@@ -55,6 +55,7 @@
     <Compile Include="History.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="IRunner.cs" />
+    <Compile Include="MatchStrategy.cs" />
     <Compile Include="PartialPath.cs" />
     <Compile Include="PowershellArgument.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

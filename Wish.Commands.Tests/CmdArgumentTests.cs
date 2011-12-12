@@ -16,7 +16,7 @@ namespace Wish.Commands.Tests
         {
             var mock = new Mock<IRunner>();
             mock.Setup(o => o.WorkingDirectory).Returns(Path.Combine(Environment.CurrentDirectory, "Test"));
-            _argument = new CmdArgument(mock.Object, text);
+            _argument = ArgumentFactory.Create(mock.Object, text);
             return _argument.Complete();
         }
 
