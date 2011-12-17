@@ -1,0 +1,40 @@
+body {
+	font-size: small;
+}
+
+h1 {
+	font-size: 250%;
+}
+
+#wrapper {
+	width: 925px;
+	margin: 0 auto;
+}
+
+#main {
+	float: left;
+	clear: both;
+	border-top: double 4px #DBD9D4;
+	width: 100%;
+}
+
+#content {
+	float: right;
+	width: 70%;
+	border-left: solid #DBD9D4 1px;
+	padding-left: 5%;
+	/* for testing */
+	height: 1000px;
+}
+
+#sidebar {
+	float: left;
+	width: 20%;
+	margin-right: 5%;
+	/* for testing */
+	height: 1000px;
+}
+
+header {
+}
+
