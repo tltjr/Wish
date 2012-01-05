@@ -35,11 +35,12 @@
 						Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TextArea}"
 						VerticalContentAlignment="Top"
 						HorizontalContentAlignment="Left"
-                        Background="#3f3f3f"
+                        Background="black"
                         Foreground="#d7d7c8"
 						Padding="{TemplateBinding Padding}"
 						BorderBrush="{TemplateBinding BorderBrush}"
 						BorderThickness="{TemplateBinding BorderThickness}" />
+            <!--           Background="#3f3f3f"-->
             </ControlTemplate>
         </avalonEdit:TextEditor.Template>
         <avalonEdit:TextEditor.ContextMenu>
