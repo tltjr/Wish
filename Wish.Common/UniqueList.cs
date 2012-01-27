@@ -9,7 +9,10 @@ namespace Wish.Common
 // ReSharper disable CompareNonConstrainedGenericWithNull
             if (null == item) return;
 // ReSharper restore CompareNonConstrainedGenericWithNull
-            if (Contains(item)) return;
+            if (Contains(item))
+            {
+                Remove(item);
+            }
             Insert(0, item);
         }
 

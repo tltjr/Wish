@@ -31,7 +31,7 @@
                         Focusable="False"
 						Name="PART_ScrollViewer"
 						CanContentScroll="True"
-                        HorizontalScrollBarVisibility="Hidden"
+                        HorizontalScrollBarVisibility="Auto"
 						Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TextArea}"
 						VerticalContentAlignment="Top"
 						HorizontalContentAlignment="Left"

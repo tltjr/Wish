@@ -50,6 +50,7 @@ namespace Wish.Scripts
             InsertNewPrompt();
             InsertLineBeforePrompt();
             InsertLineBeforePrompt();
+            History.Reset();
             return new CommandResult {Text = Text, Handled = true};
         }
 
@@ -113,6 +114,7 @@ namespace Wish.Scripts
             var command = Read(text);
             ProcessCommand(command);
             _result.WorkingDirectory = _prompt.WorkingDirectory;
+            History.Reset();
             return _result;
         }
 

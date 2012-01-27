@@ -77,7 +77,8 @@ namespace Wish.Views
         private void ScrollToEnd(object sender, EventArgs eventArgs)
         {
             EnsureCorrectCaretPosition();
-            textEditor.ScrollToEnd();
+            var line = textEditor.TextArea.Caret.Line;
+            textEditor.ScrollTo(line, textEditor.TextArea.Caret.Column);
         }
 
         private void OnUserControlLoaded(object sender, RoutedEventArgs e)
