@@ -4,7 +4,14 @@
         xmlns:cal="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism" 
         xmlns:ad="clr-namespace:AvalonDock;assembly=AvalonDock" 
         Title="Wish" Height="650" Width="1025">
-    <ad:DockingManager>
-        <ad:DocumentPane cal:RegionManager.RegionName="MainRegion" x:Name="blah"/>
-    </ad:DockingManager>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="22" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <UserControl Grid.Row="0" cal:RegionManager.RegionName="MenuRegion" />
+        <ad:DockingManager Grid.Row="1">
+            <ad:DocumentPane cal:RegionManager.RegionName="MainRegion" x:Name="blah"/>
+        </ad:DockingManager>
+    </Grid>
 </Window>

@@ -40,12 +40,13 @@
 						Padding="{TemplateBinding Padding}"
 						BorderBrush="{TemplateBinding BorderBrush}"
 						BorderThickness="{TemplateBinding BorderThickness}" />
-            <!--           Background="#3f3f3f"-->
+                <!--           Background="#3f3f3f"-->
             </ControlTemplate>
         </avalonEdit:TextEditor.Template>
         <avalonEdit:TextEditor.ContextMenu>
             <ContextMenu>
                 <MenuItem Header="New Tab" Click="NewTab" InputGestureText="Ctrl+T"/>
+                <MenuItem Header="_Cut" Command="ApplicationCommands.Cut" InputGestureText="Ctrl+X"/>
                 <MenuItem Header="Copy" Command="ApplicationCommands.Copy" InputGestureText="Ctrl+C"/>
                 <MenuItem Header="Paste" Command="ApplicationCommands.Paste" InputGestureText="Ctrl+V"/>
                 <MenuItem Header="Command Engine">
