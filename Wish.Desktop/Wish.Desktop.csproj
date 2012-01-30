@@ -121,6 +121,10 @@
       <Project>{87E61430-4243-45F2-B74E-0A4C096CEBF3}</Project>
       <Name>AvalonDock</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Wish.Menu\Wish.Menu.csproj">
+      <Project>{AECF37EE-78E8-4CDD-8AEF-2B0D86191407}</Project>
+      <Name>Wish.Menu</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WishModule\Wish.Module.csproj">
       <Project>{F6A61085-69F1-499B-BFCE-E65E32BEDCC9}</Project>
       <Name>Wish.Module</Name>

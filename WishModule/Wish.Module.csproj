@@ -64,6 +64,8 @@
     <Compile Include="State\IState.cs" />
     <Compile Include="State\Normal.cs" />
     <Compile Include="State\WishArgs.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\WishViewModel.cs" />
     <Compile Include="Views\WishView.xaml.cs">
       <DependentUpon>WishView.xaml</DependentUpon>
     </Compile>
@@ -112,6 +114,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

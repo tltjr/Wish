@@ -16,15 +16,18 @@
         <CommandBinding Command="{x:Static Views:WishView.ControlN}" Executed="ExecuteControlN"/>
         <CommandBinding Command="{x:Static Views:WishView.ControlD}" Executed="ExecuteControlD"/>
         <CommandBinding Command="{x:Static Views:WishView.ControlA}" Executed="ExecuteControlA"/>
-        <CommandBinding Command="{x:Static Views:WishView.ControlShiftP}" Executed="PowershellSelected"/>
-        <CommandBinding Command="{x:Static Views:WishView.ControlShiftC}" Executed="CmdSelected"/>
-        <CommandBinding Command="{x:Static Views:WishView.ControlShiftV}" Executed="VsSelected"/>
+        <!--<CommandBinding Command="{x:Static Views:WishView.ControlShiftP}" Executed="PowershellSelected"/>-->
+        <!--<CommandBinding Command="{x:Static Views:WishView.ControlShiftC}" Executed="CmdSelected"/>-->
+        <!--<CommandBinding Command="{x:Static Views:WishView.ControlShiftV}" Executed="VsSelected"/>-->
     </UserControl.CommandBindings>
+    <!--<UserControl.Resources>
+        <ViewModels:WishViewModel x:Key="ViewModel"/>
+    </UserControl.Resources>-->
     <avalonEdit:TextEditor x:Name="textEditor"
              FontFamily="Consolas"
              FontSize="14"
              TextChanged="ScrollToEnd"
-             Focusable="True">
+             Focusable="True"> 
         <avalonEdit:TextEditor.Template>
             <ControlTemplate>
                 <ScrollViewer 
@@ -44,15 +47,16 @@
             </ControlTemplate>
         </avalonEdit:TextEditor.Template>
         <avalonEdit:TextEditor.ContextMenu>
+            <!--<ContextMenu DataContext="{Binding Source={StaticResource ViewModel}}">-->
             <ContextMenu>
                 <MenuItem Header="New Tab" Click="NewTab" InputGestureText="Ctrl+T"/>
                 <MenuItem Header="_Cut" Command="ApplicationCommands.Cut" InputGestureText="Ctrl+X"/>
-                <MenuItem Header="Copy" Command="ApplicationCommands.Copy" InputGestureText="Ctrl+C"/>
-                <MenuItem Header="Paste" Command="ApplicationCommands.Paste" InputGestureText="Ctrl+V"/>
+                <MenuItem Header="_Copy" Command="ApplicationCommands.Copy" InputGestureText="Ctrl+C"/>
+                <MenuItem Header="_Paste" Command="ApplicationCommands.Paste" InputGestureText="Ctrl+V"/>
                 <MenuItem Header="Command Engine">
-                    <MenuItem Header="Powershell" IsChecked="true" x:Name="pshell" Click="PowershellSelected" InputGestureText="Ctrl+Shift+P"/>
-                    <MenuItem Header="Cmd" x:Name="cmd" Click="CmdSelected" InputGestureText="Ctrl+Shift+C"/>
-                    <MenuItem Header="Visual Studio Command Prompt" x:Name="vsPrompt" Click="VsSelected" InputGestureText="Ctrl+Shift+V"/>
+                    <MenuItem Header="Powershell" IsChecked="{Binding PowershellChecked}" x:Name="pshell" Command="{Binding PowershellSelected}" InputGestureText="Ctrl+Shift+P"/>
+                    <MenuItem Header="Cmd" IsChecked="{Binding CmdChecked}"  x:Name="cmd" Command="{Binding CmdSelected}" InputGestureText="Ctrl+Shift+C"/>
+                    <MenuItem Header="Visual Studio Command Prompt" IsChecked="{Binding VsChecked}"  x:Name="vsPrompt" Command="{Binding VsSelected}" InputGestureText="Ctrl+Shift+V"/>
                 </MenuItem>
             </ContextMenu>
         </avalonEdit:TextEditor.ContextMenu>

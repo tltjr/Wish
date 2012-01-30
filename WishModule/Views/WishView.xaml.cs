@@ -6,9 +6,9 @@ using System.Windows.Input;
 using System.Xml;
 using ICSharpCode.AvalonEdit.Highlighting;
 using Microsoft.Practices.Prism.Regions;
-using Wish.Commands.Runner;
 using Wish.Common;
 using Wish.State;
+using Wish.ViewModels;
 
 namespace Wish.Views
 {
@@ -30,8 +30,9 @@ namespace Wish.Views
         public static RoutedCommand ControlShiftV = new RoutedCommand();
         private int _promptLength;
         private IState _state;
+        private readonly WishViewModel _viewModel;
 
-        public WishView(IRegion mainRegion)
+        public WishView(IRegion mainRegion, WishViewModel viewModel)
         {
             InitializeComponent();
             SetInputGestures();
@@ -39,6 +40,8 @@ namespace Wish.Views
             _mainRegion = mainRegion;
             _wishModel = new WishModel();
             _state = new Normal(_wishModel);
+            _viewModel = viewModel;
+            DataContext = viewModel;
         }
 
         private static void SetInputGestures()
@@ -87,7 +90,7 @@ namespace Wish.Views
             var result = _wishModel.Start();
             if (result.FullyProcessed) return;
             textEditor.Text = result.Text;
-            Title = result.WorkingDirectory;
+            _viewModel.Title = result.WorkingDirectory;
         }
 
         protected override void OnPreviewKeyDown(KeyEventArgs e)
@@ -118,7 +121,7 @@ namespace Wish.Views
                            OnClosed = StateNormal,
                            Execute = Execute,
                            Key = e.Key,
-                           WorkingDirectory = Title
+                           WorkingDirectory = _viewModel.Title
                        };
             var result = _state.OnPreviewKeyDown(args);
             if(result.IsExit)
@@ -158,7 +161,7 @@ namespace Wish.Views
 
         void Execute()
         {
-            var args = new WishArgs {Key = Key.Enter, WorkingDirectory = Title, TextEditor = textEditor};
+            var args = new WishArgs {Key = Key.Enter, WorkingDirectory = _viewModel.Title, TextEditor = textEditor};
             var result = _wishModel.Raise(args);
             ClearPopups();
             textEditor.Focus();
@@ -189,22 +192,16 @@ namespace Wish.Views
 
         private Popup _popup;
 
-        public string Title
-        {
-            get { return GetValue(TitleProperty) as string; }
-            set { SetValue(TitleProperty, value); }
-        }
-
         private void ExecuteNewTab(object sender, ExecutedRoutedEventArgs e)
         {
-            var view = new WishView(_mainRegion);
+            var view = new WishView(_mainRegion, _viewModel);
             _mainRegion.Add(view);
         }
 
         private void Process(string text)
         {
             textEditor.Text += text;
-            var args = new WishArgs {Key = Key.Enter, WorkingDirectory = Title, TextEditor = textEditor};
+            var args = new WishArgs {Key = Key.Enter, WorkingDirectory = _viewModel.Title, TextEditor = textEditor};
             var result = _wishModel.Raise(args);
             var state = result.State;
             switch (state)
@@ -252,7 +249,7 @@ namespace Wish.Views
 
         private void ExecuteControlP(object sender, ExecutedRoutedEventArgs e)
         {
-            var args = new WishArgs {Key = Key.Up, WorkingDirectory = Title, TextEditor = textEditor};
+            var args = new WishArgs {Key = Key.Up, WorkingDirectory = _viewModel.Title, TextEditor = textEditor};
             var result = _wishModel.Raise(args);
             ClearPopups();
             textEditor.Focus();
@@ -261,7 +258,7 @@ namespace Wish.Views
 
         private void ExecuteControlN(object sender, ExecutedRoutedEventArgs e)
         {
-            var args = new WishArgs {Key = Key.Down, WorkingDirectory = Title, TextEditor = textEditor};
+            var args = new WishArgs {Key = Key.Down, WorkingDirectory = _viewModel.Title, TextEditor = textEditor};
             var result = _wishModel.Raise(args);
             ClearPopups();
             textEditor.Focus();
@@ -274,7 +271,7 @@ namespace Wish.Views
             var wdir = result.WorkingDirectory;
             if (null != wdir)
             {
-                Title = result.WorkingDirectory;
+                _viewModel.Title = result.WorkingDirectory;
             }
             _promptLength = result.PromptLength;
             textEditor.ScrollToEnd();
@@ -301,33 +298,6 @@ namespace Wish.Views
             textEditor.Text += " " + obj;
             ClearPopups();
             textEditor.Focus();
-        }
-
-        private void CmdSelected(object sender, RoutedEventArgs e)
-        {
-            pshell.IsChecked = false;
-            vsPrompt.IsChecked = false;
-            cmd.IsChecked = true;
-            _wishModel.SetRunner(new Cmd(), Title);
-            Execute();
-        }
-
-        private void PowershellSelected(object sender, RoutedEventArgs e)
-        {
-            cmd.IsChecked = false;
-            vsPrompt.IsChecked = false;
-            pshell.IsChecked = true;
-            _wishModel.SetRunner(new Powershell(), Title);
-            Execute();
-        }
-
-        private void VsSelected(object sender, RoutedEventArgs e)
-        {
-            //cmd.IsChecked = false;
-            //pshell.IsChecked = false;
-            //vsPrompt.IsChecked = true;
-            //_wishModel.SetRunner(new Powershell(), Title);
-            throw new NotImplementedException();
         }
 
         private void NewTab(object sender, RoutedEventArgs e)

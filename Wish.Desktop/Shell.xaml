@@ -9,7 +9,7 @@
             <RowDefinition Height="22" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <UserControl Grid.Row="0" cal:RegionManager.RegionName="MenuRegion" />
+        <ContentControl Grid.Row="0" cal:RegionManager.RegionName="MenuRegion" />
         <ad:DockingManager Grid.Row="1">
             <ad:DocumentPane cal:RegionManager.RegionName="MainRegion" x:Name="blah"/>
         </ad:DockingManager>

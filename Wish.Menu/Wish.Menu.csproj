@@ -60,7 +60,12 @@
       <DependentUpon>MenuView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\WishModule\Wish.Module.csproj">
+      <Project>{F6A61085-69F1-499B-BFCE-E65E32BEDCC9}</Project>
+      <Name>Wish.Module</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Views\MenuView.xaml">
       <SubType>Designer</SubType>

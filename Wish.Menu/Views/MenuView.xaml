@@ -17,9 +17,9 @@
             </MenuItem>
             <MenuItem Header="_Theme" />
             <MenuItem Header="_Engine">
-                <MenuItem Header="Powershell" IsChecked="true" x:Name="pshell" Click="PowershellSelected" InputGestureText="Ctrl+Shift+P"/>
-                <MenuItem Header="Cmd" x:Name="cmd" Click="CmdSelected" InputGestureText="Ctrl+Shift+C"/>
-                <MenuItem Header="Visual Studio Command Prompt" x:Name="vsPrompt" Click="VsSelected" InputGestureText="Ctrl+Shift+V"/>
+                <MenuItem Header="Powershell" IsChecked="{Binding PowershellChecked}" x:Name="pshell" Command="{Binding PowershellSelected}" InputGestureText="Ctrl+Shift+P"/>
+                <MenuItem Header="Cmd" IsChecked="{Binding CmdChecked}"  x:Name="cmd" Command="{Binding CmdSelected}" InputGestureText="Ctrl+Shift+C"/>
+                <MenuItem Header="Visual Studio Command Prompt" IsChecked="{Binding VsChecked}"  x:Name="vsPrompt" Command="{Binding VsSelected}" InputGestureText="Ctrl+Shift+V"/>
             </MenuItem>
             <MenuItem Header="_Help" />
         </Menu>
