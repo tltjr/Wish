@@ -6,26 +6,25 @@ using ICSharpCode.AvalonEdit.Highlighting;
 using System.Xml;
 using Wish.Commands.Runner;
 using Wish.Views;
+using System.Windows.Controls.Primitives;
 
 namespace Wish.ViewModels
 {
     [Export, PartCreationPolicy(CreationPolicy.Shared)]
     public class WishViewModel : ViewModelBase
     {
-        private bool _powershellChecked = true;
-        private bool _cmdChecked;
-        private bool _vsChecked;
-        private bool _darkChecked;
-        private bool _zenburnChecked = true;
-        private bool _lightChecked;
-        private DelegateCommand _powershellSelectedCommand;
-        private DelegateCommand _cmdSelectedCommand;
-        private DelegateCommand _vsSelectedCommand;
-        private DelegateCommand _darkSelectedCommand;
-        private DelegateCommand _zenburnSelectedCommand;
-        private DelegateCommand _lightSelectedCommand;
-        private string _title;
         public WishModel Model { get; set; }
+        private Popup _popup;
+
+        [ImportingConstructor]
+        public WishViewModel(WishModel model)
+        {
+            Model = model;
+            // need to change initial bg and fg based on theme
+            SetSyntaxHighlighting("Wish.Views.Zenburn.xshd");
+            Background = "#3f3f3f";
+            Foreground = "#d7d7c8";
+        }
 
         private string _background;
         public string Background 
@@ -49,22 +48,10 @@ namespace Wish.ViewModels
             }
         }
 
-        [ImportingConstructor]
-        public WishViewModel(WishModel model)
-        {
-            Model = model;
-            // need to change initial bg and fg based on theme
-            SetSyntaxHighlighting("Wish.Views.Zenburn.xshd");
-            Background = "#3f3f3f";
-            Foreground = "#d7d7c8";
-        }
-
+        private bool _powershellChecked = true;
         public bool PowershellChecked
-        {
-            get
-            {
-                return _powershellChecked;
-            }
+        { 
+            get { return _powershellChecked; }
             set
             {
                 _powershellChecked = value;
@@ -72,12 +59,10 @@ namespace Wish.ViewModels
             }
         }
 
+        private bool _cmdChecked;
         public bool CmdChecked
         {
-            get
-            {
-                return _cmdChecked;
-            }
+            get { return _cmdChecked; }
             set
             {
                 _cmdChecked = value;
@@ -85,12 +70,10 @@ namespace Wish.ViewModels
             }
         }
 
+        private bool _vsChecked;
         public bool VsChecked
         {
-            get
-            {
-                return _vsChecked;
-            }
+            get { return _vsChecked; }
             set
             {
                 _vsChecked = value;
@@ -98,12 +81,10 @@ namespace Wish.ViewModels
             }
         }
 
+        private bool _darkChecked;
         public bool DarkChecked
         {
-            get
-            {
-                return _darkChecked;
-            }
+            get { return _darkChecked; }
             set
             {
                 _darkChecked = value;
@@ -111,12 +92,10 @@ namespace Wish.ViewModels
             }
         }
 
+        private bool _zenburnChecked = true;
         public bool ZenburnChecked
         {
-            get
-            {
-                return _zenburnChecked;
-            }
+            get { return _zenburnChecked; }
             set
             {
                 _zenburnChecked = value;
@@ -124,12 +103,10 @@ namespace Wish.ViewModels
             }
         }
 
+        private bool _lightChecked;
         public bool LightChecked
         {
-            get
-            {
-                return _lightChecked;
-            }
+            get { return _lightChecked; }
             set
             {
                 _lightChecked = value;
@@ -146,12 +123,10 @@ namespace Wish.ViewModels
             //Execute();
         }
 
-        public ICommand PowershellSelected
+        private DelegateCommand _powershellSelectedCommand;
+        public ICommand PowershellSelected 
         {
-            get 
-            {
-                return _powershellSelectedCommand ?? (_powershellSelectedCommand = new DelegateCommand(DoPowershellSelected));
-            }
+            get { return _powershellSelectedCommand ?? (_powershellSelectedCommand = new DelegateCommand(DoPowershellSelected)); }
         }
 
         public void DoCmdSelected()
@@ -162,12 +137,10 @@ namespace Wish.ViewModels
             Model.SetRunner(new Cmd(), Title);
         }
 
-        public ICommand CmdSelected
+        private DelegateCommand _cmdSelectedCommand;
+        public ICommand CmdSelected 
         {
-            get
-            {
-                return _cmdSelectedCommand ?? (_cmdSelectedCommand = new DelegateCommand(DoCmdSelected));
-            }
+            get { return _cmdSelectedCommand ?? (_cmdSelectedCommand = new DelegateCommand(DoCmdSelected)); }
         }
 
         public void DoVsSelected()
@@ -178,20 +151,16 @@ namespace Wish.ViewModels
             //Model.SetRunner(new Vs(), Title);
         }
 
-        public ICommand VsSelected
+        private DelegateCommand _vsSelectedCommand;
+        public ICommand VsSelected 
         {
-            get
-            {
-                return _vsSelectedCommand ?? (_vsSelectedCommand = new DelegateCommand(DoVsSelected));
-            }
+            get { return _vsSelectedCommand ?? (_vsSelectedCommand = new DelegateCommand(DoVsSelected)); }
         }
 
+        private DelegateCommand _darkSelectedCommand;
         public ICommand DarkSelected
         {
-            get
-            {
-                return _darkSelectedCommand ?? (_darkSelectedCommand = new DelegateCommand(DoDarkSelected));
-            }
+            get { return _darkSelectedCommand ?? (_darkSelectedCommand = new DelegateCommand(DoDarkSelected)); }
         }
 
         private void DoDarkSelected()
@@ -204,12 +173,10 @@ namespace Wish.ViewModels
             SetSyntaxHighlighting("Wish.Views.Dark.xshd");
         }
 
+        private DelegateCommand _zenburnSelectedCommand;
         public ICommand ZenburnSelected
         {
-            get
-            {
-                return _zenburnSelectedCommand ?? (_zenburnSelectedCommand = new DelegateCommand(DoZenburnSelected));
-            }
+            get { return _zenburnSelectedCommand ?? (_zenburnSelectedCommand = new DelegateCommand(DoZenburnSelected)); }
         }
 
         private void DoZenburnSelected()
@@ -222,12 +189,10 @@ namespace Wish.ViewModels
             SetSyntaxHighlighting("Wish.Views.Zenburn.xshd");
         }
 
+        private DelegateCommand _lightSelectedCommand;
         public ICommand LightSelected
         {
-            get
-            {
-                return _lightSelectedCommand ?? (_lightSelectedCommand = new DelegateCommand(DoLightSelected));
-            }
+            get { return _lightSelectedCommand ?? (_lightSelectedCommand = new DelegateCommand(DoLightSelected)); }
         }
 
         private void DoLightSelected()
@@ -238,6 +203,18 @@ namespace Wish.ViewModels
             Background = "white";
             Foreground = "black";
             SetSyntaxHighlighting("Wish.Views.Light.xshd");
+        }
+
+        private DelegateCommand _newTab;
+        public ICommand NewTab
+        {
+            get { return _newTab ?? (_newTab = new DelegateCommand(DoNewTab)); }
+        }
+
+        private void DoNewTab()
+        {
+            var view = new WishView(_mainRegion, new WishViewModel(new WishModel()));
+            _mainRegion.Add(view);
         }
 
         public void SetSyntaxHighlighting(string xshdFile)
@@ -271,6 +248,7 @@ namespace Wish.ViewModels
             }
         }
 
+        private string _title;
         public string Title
         {
             get { return _title; }
@@ -279,6 +257,44 @@ namespace Wish.ViewModels
                 _title = value;
                 NotifyPropertyChanged("Title");
             }
+        }
+
+        public void DoNothingSelected()
+        {
+            return;
+        }
+        
+        private DelegateCommand _searchHistory;
+        public ICommand SearchHistory
+        {
+            get { return _searchHistory ?? (_searchHistory = new DelegateCommand(DoSearchHistory)); }
+        }
+
+        private void DoSearchHistory()
+        {
+            _popup = _state.RequestPopup(_wishModel.RequestHistorySearch, Process, textEditor);
+        }
+
+        private DelegateCommand _searchRecentDirectories;
+        public ICommand SearchRecentDirectories
+        {
+            get { return _searchRecentDirectories ?? (_searchRecentDirectories = new DelegateCommand(DoSearchRecentDirectories)); }
+        }
+
+        private void DoSearchRecentDirectories()
+        {
+            _popup = _state.RequestPopup(_wishModel.RequestRecentDirectory, Process, textEditor);
+        }
+
+        private DelegateCommand _searchRecentArguments;
+        public ICommand SearchRecentArguments
+        {
+            get { return _searchRecentArguments ?? (_searchRecentArguments = new DelegateCommand(DoSearchRecentArguments)); }
+        }
+
+        private void DoSearchRecentArguments()
+        {
+            _popup = _state.RequestPopup(_wishModel.RequestRecentArgument, Append, textEditor);
         }
     }
 }

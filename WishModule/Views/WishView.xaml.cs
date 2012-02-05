@@ -19,15 +19,6 @@ namespace Wish.Views
     {
         private readonly IRegion _mainRegion;
         private readonly WishModel _wishModel;
-        public static RoutedCommand TabNew = new RoutedCommand();
-        public static RoutedCommand ControlR = new RoutedCommand();
-        public static RoutedCommand ControlP = new RoutedCommand();
-        public static RoutedCommand ControlN = new RoutedCommand();
-        public static RoutedCommand ControlD = new RoutedCommand();
-        public static RoutedCommand ControlA = new RoutedCommand();
-        public static RoutedCommand ControlShiftP = new RoutedCommand();
-        public static RoutedCommand ControlShiftC = new RoutedCommand();
-        public static RoutedCommand ControlShiftV = new RoutedCommand();
         private int _promptLength;
         private IState _state;
         private readonly WishViewModel _viewModel;
@@ -35,45 +26,11 @@ namespace Wish.Views
         public WishView(IRegion mainRegion, WishViewModel viewModel)
         {
             InitializeComponent();
-            SetInputGestures();
             _mainRegion = mainRegion;
             _wishModel = viewModel.Model;
             _state = new Normal(_wishModel);
             _viewModel = viewModel;
             DataContext = viewModel;
-        }
-
-        private static void SetInputGestures()
-        {
-            var cntrlShftT = new KeyGesture(Key.T, ModifierKeys.Control | ModifierKeys.Shift);
-            TabNew.InputGestures.Add(cntrlShftT);
-
-            var controlT = new KeyGesture(Key.T, ModifierKeys.Control);
-            TabNew.InputGestures.Add(controlT);
-
-            var controlR = new KeyGesture(Key.R, ModifierKeys.Control);
-            ControlR.InputGestures.Add(controlR);
-
-            var controlP = new KeyGesture(Key.P, ModifierKeys.Control);
-            ControlP.InputGestures.Add(controlP);
-
-            var controlN = new KeyGesture(Key.N, ModifierKeys.Control);
-            ControlN.InputGestures.Add(controlN);
-
-            var controlD = new KeyGesture(Key.D, ModifierKeys.Control);
-            ControlD.InputGestures.Add(controlD);
-
-            var controlA = new KeyGesture(Key.A, ModifierKeys.Control);
-            ControlA.InputGestures.Add(controlA);
-
-            var controlShiftP = new KeyGesture(Key.P, ModifierKeys.Control | ModifierKeys.Shift);
-            ControlShiftP.InputGestures.Add(controlShiftP);
-
-            var controlShiftC = new KeyGesture(Key.C, ModifierKeys.Control | ModifierKeys.Shift);
-            ControlShiftC.InputGestures.Add(controlShiftC);
-
-            var controlShiftV = new KeyGesture(Key.V, ModifierKeys.Control | ModifierKeys.Shift);
-            ControlShiftV.InputGestures.Add(controlShiftV);
         }
 
         private void ScrollToEnd(object sender, EventArgs eventArgs)
@@ -256,20 +213,6 @@ namespace Wish.Views
             textEditor.ScrollToEnd();
         }
 
-        private void ExecuteControlR(object sender, ExecutedRoutedEventArgs e)
-        {
-            _popup = _state.RequestPopup(_wishModel.RequestHistorySearch, Process, textEditor);
-        }
-
-        private void ExecuteControlD(object sender, ExecutedRoutedEventArgs e)
-        {
-            _popup = _state.RequestPopup(_wishModel.RequestRecentDirectory, Process, textEditor);
-        }
-
-        private void ExecuteControlA(object sender, ExecutedRoutedEventArgs e)
-        {
-            _popup = _state.RequestPopup(_wishModel.RequestRecentArgument, Append, textEditor);
-        }
 
         private void Append(string obj)
         {
@@ -277,26 +220,6 @@ namespace Wish.Views
             textEditor.Text += " " + obj;
             ClearPopups();
             textEditor.Focus();
-        }
-
-        private void NewTab(object sender, RoutedEventArgs e)
-        {
-            ExecuteNewTab(sender, null);
-        }
-
-        private void PowershellSelected(object sender, RoutedEventArgs e)
-        {
-            _viewModel.DoPowershellSelected();
-        }
-
-        private void CmdSelected(object sender, RoutedEventArgs e)
-        {
-            _viewModel.DoCmdSelected();
-        }
-
-        private void VsSelected(object sender, RoutedEventArgs e)
-        {
-            _viewModel.DoVsSelected();
         }
     }
 }

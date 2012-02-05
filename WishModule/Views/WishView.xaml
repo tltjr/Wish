@@ -20,6 +20,17 @@
         <CommandBinding Command="{x:Static Views:WishView.ControlShiftC}" Executed="CmdSelected"/>
         <CommandBinding Command="{x:Static Views:WishView.ControlShiftV}" Executed="VsSelected"/>
     </UserControl.CommandBindings>
+    <UserControl.InputBindings>
+        <KeyBinding Command="{Binding NothingSelected}" Gesture="CTRL+Z"/>
+        <KeyBinding Command="{Binding SearchHistory}" Gesture="CTRL+R"/>
+        <KeyBinding Command="{Binding EmacsPrevious}" Gesture="CTRL+P"/>
+        <KeyBinding Command="{Binding EmacsNext}" Gesture="CTRL+N"/>
+        <KeyBinding Command="{Binding SearchRecentDirectories}" Gesture="CTRL+D"/>
+        <KeyBinding Command="{Binding SearchRecentArguments}" Gesture="CTRL+A"/>
+        <KeyBinding Command="{Binding PowershellSelected}" Gesture="CTRL+SHIFT+P"/>
+        <KeyBinding Command="{Binding CmdSelected}" Gesture="CTRL+SHIFT+C"/>
+        <KeyBinding Command="{Binding VsSelected}" Gesture="CTRL+SHIFT+V"/>
+    </UserControl.InputBindings>
     <avalonEdit:TextEditor x:Name="textEditor"
              FontFamily="Consolas"
              FontSize="14"
