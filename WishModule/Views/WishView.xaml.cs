@@ -36,7 +36,6 @@ namespace Wish.Views
         {
             InitializeComponent();
             SetInputGestures();
-            SetSyntaxHighlighting();
             _mainRegion = mainRegion;
             _wishModel = viewModel.Model;
             _state = new Normal(_wishModel);
@@ -226,26 +225,6 @@ namespace Wish.Views
             _popup = null;
         }
 
-        private void SetSyntaxHighlighting()
-        {
-            IHighlightingDefinition customHighlighting;
-            var type = typeof(WishView);
-            //using (var s = type.Assembly.GetManifestResourceStream("Wish.Views.Zenburn.xshd"))
-            using (var s = type.Assembly.GetManifestResourceStream("Wish.Views.CustomHighlighting.xshd"))
-            {
-                if (s == null)
-                {
-                    throw new InvalidOperationException("Could not find embedded resource");
-                }
-                using (XmlReader reader = new XmlTextReader(s))
-                {
-                    customHighlighting = ICSharpCode.AvalonEdit.Highlighting.Xshd.
-                        HighlightingLoader.Load(reader, HighlightingManager.Instance);
-                }
-            }
-            HighlightingManager.Instance.RegisterHighlighting("Custom Highlighting", null, customHighlighting);
-            textEditor.SyntaxHighlighting = customHighlighting;
-        }
 
         private void ExecuteControlP(object sender, ExecutedRoutedEventArgs e)
         {

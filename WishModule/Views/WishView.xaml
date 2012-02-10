@@ -23,6 +23,7 @@
     <avalonEdit:TextEditor x:Name="textEditor"
              FontFamily="Consolas"
              FontSize="14"
+             SyntaxHighlighting="{Binding Theme}"
              TextChanged="ScrollToEnd"
              Focusable="True"> 
         <avalonEdit:TextEditor.Template>
@@ -35,12 +36,11 @@
 						Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TextArea}"
 						VerticalContentAlignment="Top"
 						HorizontalContentAlignment="Left"
-                        Background="black"
-                        Foreground="#d7d7c8"
+                        Background="{Binding Background}"
+                        Foreground="{Binding Foreground}"
 						Padding="{TemplateBinding Padding}"
 						BorderBrush="{TemplateBinding BorderBrush}"
 						BorderThickness="{TemplateBinding BorderThickness}" />
-                <!--           Background="#3f3f3f"-->
             </ControlTemplate>
         </avalonEdit:TextEditor.Template>
         <avalonEdit:TextEditor.ContextMenu>
