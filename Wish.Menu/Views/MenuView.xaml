@@ -15,7 +15,11 @@
             <MenuItem Header="_Copy" Command="ApplicationCommands.Copy" InputGestureText="Ctrl+C"/>
             <MenuItem Header="_Paste" Command="ApplicationCommands.Paste" InputGestureText="Ctrl+V"/>
         </MenuItem>
-        <MenuItem Header="_Theme" />
+        <MenuItem Header="_Theme">
+            <MenuItem Header="Dark" IsChecked="{Binding DarkChecked}" Command="{Binding DarkSelected}" />
+            <MenuItem Header="Zenburn" IsChecked="{Binding ZenburnChecked}" Command="{Binding ZenburnSelected}" />
+            <MenuItem Header="Light" IsChecked="{Binding LightChecked}" Command="{Binding LightSelected}" />
+        </MenuItem>
         <MenuItem Header="_Engine">
             <MenuItem Header="Powershell" IsChecked="{Binding PowershellChecked}" x:Name="pshell" Command="{Binding PowershellSelected}" InputGestureText="Ctrl+Shift+P"/>
             <MenuItem Header="Cmd" IsChecked="{Binding CmdChecked}"  x:Name="cmd" Command="{Binding CmdSelected}" InputGestureText="Ctrl+Shift+C"/>

@@ -11,9 +11,15 @@ namespace Wish.ViewModels
         private bool _powershellChecked = true;
         private bool _cmdChecked;
         private bool _vsChecked;
+        private bool _darkChecked = true;
+        private bool _zenburnChecked;
+        private bool _lightChecked;
         private DelegateCommand _powershellSelectedCommand;
         private DelegateCommand _cmdSelectedCommand;
         private DelegateCommand _vsSelectedCommand;
+        private DelegateCommand _darkSelectedCommand;
+        private DelegateCommand _zenburnSelectedCommand;
+        private DelegateCommand _lightSelectedCommand;
         private string _title;
         public WishModel Model { get; set; }
 
@@ -60,6 +66,45 @@ namespace Wish.ViewModels
             {
                 _vsChecked = value;
                 NotifyPropertyChanged("VsChecked");
+            }
+        }
+
+        public bool DarkChecked
+        {
+            get
+            {
+                return _darkChecked;
+            }
+            set
+            {
+                _darkChecked = value;
+                NotifyPropertyChanged("DarkChecked");
+            }
+        }
+
+        public bool ZenburnChecked
+        {
+            get
+            {
+                return _zenburnChecked;
+            }
+            set
+            {
+                _zenburnChecked = value;
+                NotifyPropertyChanged("ZenburnChecked");
+            }
+        }
+
+        public bool LightChecked
+        {
+            get
+            {
+                return _lightChecked;
+            }
+            set
+            {
+                _lightChecked = value;
+                NotifyPropertyChanged("LightChecked");
             }
         }
 
@@ -110,6 +155,51 @@ namespace Wish.ViewModels
             {
                 return _vsSelectedCommand ?? (_vsSelectedCommand = new DelegateCommand(DoVsSelected));
             }
+        }
+
+        public ICommand DarkSelected
+        {
+            get
+            {
+                return _darkSelectedCommand ?? (_darkSelectedCommand = new DelegateCommand(DoDarkSelected));
+            }
+        }
+
+        private void DoDarkSelected()
+        {
+            DarkChecked = true;
+            ZenburnChecked = false;
+            LightChecked = false;
+        }
+
+        public ICommand ZenburnSelected
+        {
+            get
+            {
+                return _zenburnSelectedCommand ?? (_zenburnSelectedCommand = new DelegateCommand(DoZenburnSelected));
+            }
+        }
+
+        private void DoZenburnSelected()
+        {
+            DarkChecked = false;
+            ZenburnChecked = true;
+            LightChecked = false;
+        }
+
+        public ICommand LightSelected
+        {
+            get
+            {
+                return _lightSelectedCommand ?? (_lightSelectedCommand = new DelegateCommand(DoLightSelected));
+            }
+        }
+
+        private void DoLightSelected()
+        {
+            DarkChecked = false;
+            ZenburnChecked = false;
+            LightChecked = true;
         }
 
         public string Title
