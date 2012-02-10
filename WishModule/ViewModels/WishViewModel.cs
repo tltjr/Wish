@@ -1,19 +1,28 @@
 ﻿using System.ComponentModel.Composition;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
+using Wish.Commands.Runner;
 
 namespace Wish.ViewModels
 {
     [Export, PartCreationPolicy(CreationPolicy.Shared)]
     public class WishViewModel : ViewModelBase
     {
-        private bool _powershellChecked;
-        private bool _cmdChecked = true;
+        private bool _powershellChecked = true;
+        private bool _cmdChecked;
         private bool _vsChecked;
         private DelegateCommand _powershellSelectedCommand;
         private DelegateCommand _cmdSelectedCommand;
         private DelegateCommand _vsSelectedCommand;
         private string _title;
+        public WishModel Model { get; set; }
+
+
+        [ImportingConstructor]
+        public WishViewModel(WishModel model)
+        {
+            Model = model;
+        }
 
         public bool PowershellChecked
         {
@@ -54,12 +63,12 @@ namespace Wish.ViewModels
             }
         }
 
-        private void DoPowershellSelected()
+        public void DoPowershellSelected()
         {
             CmdChecked = false;
             VsChecked = false;
             PowershellChecked = true;
-            //_wishModel.SetRunner(new Powershell(), Title);
+            Model.SetRunner(new Powershell(), Title);
             //Execute();
         }
 
@@ -71,11 +80,12 @@ namespace Wish.ViewModels
             }
         }
 
-        private void DoCmdSelected()
+        public void DoCmdSelected()
         {
             CmdChecked = true;
             VsChecked = false;
             PowershellChecked = false;
+            Model.SetRunner(new Cmd(), Title);
         }
 
         public ICommand CmdSelected
@@ -86,11 +96,12 @@ namespace Wish.ViewModels
             }
         }
 
-        private void DoVsSelected()
+        public void DoVsSelected()
         {
             CmdChecked = false;
             VsChecked = true;
             PowershellChecked = false;
+            //Model.SetRunner(new Vs(), Title);
         }
 
         public ICommand VsSelected

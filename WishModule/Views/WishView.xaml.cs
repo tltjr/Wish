@@ -38,7 +38,7 @@ namespace Wish.Views
             SetInputGestures();
             SetSyntaxHighlighting();
             _mainRegion = mainRegion;
-            _wishModel = new WishModel();
+            _wishModel = viewModel.Model;
             _state = new Normal(_wishModel);
             _viewModel = viewModel;
             DataContext = viewModel;
@@ -194,7 +194,7 @@ namespace Wish.Views
 
         private void ExecuteNewTab(object sender, ExecutedRoutedEventArgs e)
         {
-            var view = new WishView(_mainRegion, _viewModel);
+            var view = new WishView(_mainRegion, new WishViewModel(new WishModel()));
             _mainRegion.Add(view);
         }
 
@@ -303,6 +303,21 @@ namespace Wish.Views
         private void NewTab(object sender, RoutedEventArgs e)
         {
             ExecuteNewTab(sender, null);
+        }
+
+        private void PowershellSelected(object sender, RoutedEventArgs e)
+        {
+            _viewModel.DoPowershellSelected();
+        }
+
+        private void CmdSelected(object sender, RoutedEventArgs e)
+        {
+            _viewModel.DoCmdSelected();
+        }
+
+        private void VsSelected(object sender, RoutedEventArgs e)
+        {
+            _viewModel.DoVsSelected();
         }
     }
 }

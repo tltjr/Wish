@@ -4,23 +4,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d">
-        <Menu IsMainMenu="True">
-            <MenuItem Header="_File">
-                <MenuItem Header="_New">
-                    <MenuItem Header="_Tab" Click="NewTab" InputGestureText="Ctrl+T"/>
-                </MenuItem>
+    <Menu IsMainMenu="True">
+        <MenuItem Header="_File">
+            <MenuItem Header="_New">
+                <MenuItem Header="_Tab" Click="NewTab" InputGestureText="Ctrl+T"/>
             </MenuItem>
-            <MenuItem Header="_Edit">
-                <MenuItem Header="_Cut" Command="ApplicationCommands.Cut" InputGestureText="Ctrl+X"/>
-                <MenuItem Header="_Copy" Command="ApplicationCommands.Copy" InputGestureText="Ctrl+C"/>
-                <MenuItem Header="_Paste" Command="ApplicationCommands.Paste" InputGestureText="Ctrl+V"/>
-            </MenuItem>
-            <MenuItem Header="_Theme" />
-            <MenuItem Header="_Engine">
-                <MenuItem Header="Powershell" IsChecked="{Binding PowershellChecked}" x:Name="pshell" Command="{Binding PowershellSelected}" InputGestureText="Ctrl+Shift+P"/>
-                <MenuItem Header="Cmd" IsChecked="{Binding CmdChecked}"  x:Name="cmd" Command="{Binding CmdSelected}" InputGestureText="Ctrl+Shift+C"/>
-                <MenuItem Header="Visual Studio Command Prompt" IsChecked="{Binding VsChecked}"  x:Name="vsPrompt" Command="{Binding VsSelected}" InputGestureText="Ctrl+Shift+V"/>
-            </MenuItem>
-            <MenuItem Header="_Help" />
-        </Menu>
+        </MenuItem>
+        <MenuItem Header="_Edit">
+            <MenuItem Header="_Cut" Command="ApplicationCommands.Cut" InputGestureText="Ctrl+X"/>
+            <MenuItem Header="_Copy" Command="ApplicationCommands.Copy" InputGestureText="Ctrl+C"/>
+            <MenuItem Header="_Paste" Command="ApplicationCommands.Paste" InputGestureText="Ctrl+V"/>
+        </MenuItem>
+        <MenuItem Header="_Theme" />
+        <MenuItem Header="_Engine">
+            <MenuItem Header="Powershell" IsChecked="{Binding PowershellChecked}" x:Name="pshell" Command="{Binding PowershellSelected}" InputGestureText="Ctrl+Shift+P"/>
+            <MenuItem Header="Cmd" IsChecked="{Binding CmdChecked}"  x:Name="cmd" Command="{Binding CmdSelected}" InputGestureText="Ctrl+Shift+C"/>
+            <MenuItem Header="Visual Studio Command Prompt" IsChecked="{Binding VsChecked}"  x:Name="vsPrompt" Command="{Binding VsSelected}" InputGestureText="Ctrl+Shift+V"/>
+        </MenuItem>
+        <MenuItem Header="_Help" />
+    </Menu>
 </UserControl>

@@ -13,9 +13,11 @@ using Wish.Input;
 using Wish.Scripts;
 using Wish.SearchBox;
 using Wish.State;
+using System.ComponentModel.Composition;
 
 namespace Wish
 {
+    [Export]
     public class WishModel
     {
         private readonly IRepl _repl;

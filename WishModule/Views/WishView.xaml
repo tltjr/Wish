@@ -16,13 +16,10 @@
         <CommandBinding Command="{x:Static Views:WishView.ControlN}" Executed="ExecuteControlN"/>
         <CommandBinding Command="{x:Static Views:WishView.ControlD}" Executed="ExecuteControlD"/>
         <CommandBinding Command="{x:Static Views:WishView.ControlA}" Executed="ExecuteControlA"/>
-        <!--<CommandBinding Command="{x:Static Views:WishView.ControlShiftP}" Executed="PowershellSelected"/>-->
-        <!--<CommandBinding Command="{x:Static Views:WishView.ControlShiftC}" Executed="CmdSelected"/>-->
-        <!--<CommandBinding Command="{x:Static Views:WishView.ControlShiftV}" Executed="VsSelected"/>-->
+        <CommandBinding Command="{x:Static Views:WishView.ControlShiftP}" Executed="PowershellSelected"/>
+        <CommandBinding Command="{x:Static Views:WishView.ControlShiftC}" Executed="CmdSelected"/>
+        <CommandBinding Command="{x:Static Views:WishView.ControlShiftV}" Executed="VsSelected"/>
     </UserControl.CommandBindings>
-    <!--<UserControl.Resources>
-        <ViewModels:WishViewModel x:Key="ViewModel"/>
-    </UserControl.Resources>-->
     <avalonEdit:TextEditor x:Name="textEditor"
              FontFamily="Consolas"
              FontSize="14"
@@ -47,7 +44,6 @@
             </ControlTemplate>
         </avalonEdit:TextEditor.Template>
         <avalonEdit:TextEditor.ContextMenu>
-            <!--<ContextMenu DataContext="{Binding Source={StaticResource ViewModel}}">-->
             <ContextMenu>
                 <MenuItem Header="New Tab" Click="NewTab" InputGestureText="Ctrl+T"/>
                 <MenuItem Header="_Cut" Command="ApplicationCommands.Cut" InputGestureText="Ctrl+X"/>
