@@ -5,10 +5,10 @@ _ReSharper*
 *.ReSharper.user
 
 # bin directories
-[Bb]in
+[Bb]in/
 
 # obj directories
-[Oo]bj
+[Oo]bj/
 
 # vim swap files
 *.swp
@@ -26,3 +26,5 @@ packages/
 _UpgradeReport_Files/
 
 *.vdproj
+
+*.dotCover
