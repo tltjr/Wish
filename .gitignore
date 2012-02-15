@@ -26,3 +26,5 @@ packages/
 _UpgradeReport_Files/
 
 *.vdproj
+
+*.dotcover
