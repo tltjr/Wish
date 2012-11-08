@@ -10,9 +10,8 @@ using System.Windows;
 [assembly: AssemblyTitle("Wish")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Wish")]
+[assembly: AssemblyCompany("Thomas Thornton")]
 [assembly: AssemblyProduct("Wish")]
-[assembly: AssemblyCopyright("Copyright © Wish 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
