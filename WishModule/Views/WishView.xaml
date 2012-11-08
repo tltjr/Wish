@@ -52,8 +52,8 @@
                 <MenuItem Header="Command Engine">
                     <MenuItem Header="Powershell" IsChecked="true" x:Name="pshell" Click="PowershellSelected" InputGestureText="Ctrl+Shift+P"/>
                     <MenuItem Header="Cmd" x:Name="cmd" Click="CmdSelected" InputGestureText="Ctrl+Shift+C"/>
-                    <MenuItem Header="Git Bash" x:Name="gitBash" Click="GitBashSelected" InputGestureText="Ctrl+Shift+G" />
-                    <MenuItem Header="Visual Studio Command Prompt" x:Name="vsPrompt" Click="VsSelected" InputGestureText="Ctrl+Shift+V"/>
+                    <MenuItem Header="Git Bash" x:Name="gitBash" Click="GitBashSelected" InputGestureText="Ctrl+Shift+G" IsEnabled="False"/>
+                    <MenuItem Header="Visual Studio Command Prompt" x:Name="vsPrompt" Click="VsSelected" InputGestureText="Ctrl+Shift+V" IsEnabled="False"/>
                 </MenuItem>
             </ContextMenu>
         </avalonEdit:TextEditor.ContextMenu>

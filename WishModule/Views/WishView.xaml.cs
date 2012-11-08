@@ -328,7 +328,6 @@ namespace Wish.Views
             //pshell.IsChecked = false;
             //vsPrompt.IsChecked = true;
             //_wishModel.SetRunner(new Powershell(), Title);
-            throw new NotImplementedException();
         }
 
         private void GitBashSelected(object sender, RoutedEventArgs e)
@@ -337,7 +336,6 @@ namespace Wish.Views
             //pshell.IsChecked = false;
             //vsPrompt.IsChecked = true;
             //_wishModel.SetRunner(new Powershell(), Title);
-            throw new NotImplementedException();
         }
 
         private void NewTab(object sender, RoutedEventArgs e)
