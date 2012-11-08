@@ -39,7 +39,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wish.Common.Tests", "Wish.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wish.Input", "Wish.Input\Wish.Input.csproj", "{7F67FEDC-310F-4036-B9AE-F1D075C9E8E1}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Wish", "Wish\Wish.vdproj", "{000357BC-6394-4C19-B41E-4B7E9767673E}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Wish", "Wish\Wish.vdproj", "{3A3CE716-7EA0-4F02-B235-1C13AF2D07D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -231,12 +231,12 @@ Global
 		{7F67FEDC-310F-4036-B9AE-F1D075C9E8E1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{7F67FEDC-310F-4036-B9AE-F1D075C9E8E1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{7F67FEDC-310F-4036-B9AE-F1D075C9E8E1}.Release|x86.ActiveCfg = Release|Any CPU
-		{000357BC-6394-4C19-B41E-4B7E9767673E}.Debug|Any CPU.ActiveCfg = Debug
-		{000357BC-6394-4C19-B41E-4B7E9767673E}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{000357BC-6394-4C19-B41E-4B7E9767673E}.Debug|x86.ActiveCfg = Debug
-		{000357BC-6394-4C19-B41E-4B7E9767673E}.Release|Any CPU.ActiveCfg = Release
-		{000357BC-6394-4C19-B41E-4B7E9767673E}.Release|Mixed Platforms.ActiveCfg = Release
-		{000357BC-6394-4C19-B41E-4B7E9767673E}.Release|x86.ActiveCfg = Release
+		{3A3CE716-7EA0-4F02-B235-1C13AF2D07D2}.Debug|Any CPU.ActiveCfg = Debug
+		{3A3CE716-7EA0-4F02-B235-1C13AF2D07D2}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{3A3CE716-7EA0-4F02-B235-1C13AF2D07D2}.Debug|x86.ActiveCfg = Debug
+		{3A3CE716-7EA0-4F02-B235-1C13AF2D07D2}.Release|Any CPU.ActiveCfg = Release
+		{3A3CE716-7EA0-4F02-B235-1C13AF2D07D2}.Release|Mixed Platforms.ActiveCfg = Release
+		{3A3CE716-7EA0-4F02-B235-1C13AF2D07D2}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -19,6 +19,7 @@
         <CommandBinding Command="{x:Static Views:WishView.ControlShiftP}" Executed="PowershellSelected"/>
         <CommandBinding Command="{x:Static Views:WishView.ControlShiftC}" Executed="CmdSelected"/>
         <CommandBinding Command="{x:Static Views:WishView.ControlShiftV}" Executed="VsSelected"/>
+        <CommandBinding Command="{x:Static Views:WishView.ControlShiftG}" Executed="GitBashSelected"/>
     </UserControl.CommandBindings>
     <avalonEdit:TextEditor x:Name="textEditor"
              FontFamily="Consolas"
@@ -51,6 +52,7 @@
                 <MenuItem Header="Command Engine">
                     <MenuItem Header="Powershell" IsChecked="true" x:Name="pshell" Click="PowershellSelected" InputGestureText="Ctrl+Shift+P"/>
                     <MenuItem Header="Cmd" x:Name="cmd" Click="CmdSelected" InputGestureText="Ctrl+Shift+C"/>
+                    <MenuItem Header="Git Bash" x:Name="gitBash" Click="GitBashSelected" InputGestureText="Ctrl+Shift+G" />
                     <MenuItem Header="Visual Studio Command Prompt" x:Name="vsPrompt" Click="VsSelected" InputGestureText="Ctrl+Shift+V"/>
                 </MenuItem>
             </ContextMenu>

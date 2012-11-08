@@ -28,6 +28,7 @@ namespace Wish.Views
         public static RoutedCommand ControlShiftP = new RoutedCommand();
         public static RoutedCommand ControlShiftC = new RoutedCommand();
         public static RoutedCommand ControlShiftV = new RoutedCommand();
+        public static RoutedCommand ControlShiftG = new RoutedCommand();
         private int _promptLength;
         private IState _state;
 
@@ -322,6 +323,15 @@ namespace Wish.Views
         }
 
         private void VsSelected(object sender, RoutedEventArgs e)
+        {
+            //cmd.IsChecked = false;
+            //pshell.IsChecked = false;
+            //vsPrompt.IsChecked = true;
+            //_wishModel.SetRunner(new Powershell(), Title);
+            throw new NotImplementedException();
+        }
+
+        private void GitBashSelected(object sender, RoutedEventArgs e)
         {
             //cmd.IsChecked = false;
             //pshell.IsChecked = false;

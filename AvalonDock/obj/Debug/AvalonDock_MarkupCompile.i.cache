@@ -4,7 +4,7 @@
 library
 C#
 .cs
-T:\src\dotnet\Wish\AvalonDock\obj\Debug\
+E:\src\dotnet\Wish\AvalonDock\obj\Debug\
 AvalonDock
 none
 false
@@ -12,9 +12,9 @@ TRACE;DEBUG;NET4
 
 16415095740
 
-59-448966615
-131917025316
+59-1845126816
+13-1688940725
 Resources\Brushes.xaml;Resources\Common.xaml;Resources\DockablePaneStyles.xaml;Resources\DockingManagerStyles.xaml;Resources\DocumentNavigatorWindowStyle.xaml;Resources\DocumentPaneStyles.xaml;Resources\FloatingWindowStyle.xaml;Resources\ManagedContentStyle.xaml;Resources\NavigatorWindowStyle.xaml;Resources\OverlayWindowStyle.xaml;Themes\aero.normalcolor.brushes.xaml;Themes\aero.normalcolor.xaml;Themes\classic.brushes.xaml;Themes\classic.xaml;Themes\generic.xaml;Themes\luna.normalcolor.xaml;
 
-True
+False
 
