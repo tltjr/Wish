@@ -27,10 +27,6 @@
             ([eE][+-]?[0-9]+)? # optional exponent
         </Rule>-->
 
-    <!--<Keywords fontWeight="bold" foreground="Green">
-      <Word>AMR\tlthorn1@TLTHORN1-DESK1</Word>
-    </Keywords>-->
-    
     <Rule foreground="Cyan" fontWeight="bold">
       ^\[[\w]\]
     </Rule>
@@ -38,10 +34,6 @@
     <Rule foreground="Green" fontWeight="bold">
       [^\s]+@[^\s]+ # standard prompt
     </Rule>
-
-    <Keywords foreground="Green" fontWeight="bold">
-		<Word>tltjr</Word>
-    </Keywords>
 
     <!-- shitty directory regex -->
     <Rule foreground="#5555FF" fontWeight="bold">
