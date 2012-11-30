@@ -7,7 +7,6 @@ C:\lib\AvalonEdit\src\ICSharpCode.AvalonEdit.Tests\obj\Debug\ICSharpCode.AvalonE
 C:\src\dotnet\Wish\bin\Debug\ICSharpCode.AvalonEdit.Tests.dll.config
 C:\src\dotnet\Wish\bin\Debug\ICSharpCode.AvalonEdit.Tests.dll
 C:\src\dotnet\Wish\bin\Debug\ICSharpCode.AvalonEdit.Tests.pdb
-C:\src\dotnet\Wish\ICSharpCode.AvalonEdit.Tests\obj\Debug\ResolveAssemblyReference.cache
 C:\src\dotnet\Wish\ICSharpCode.AvalonEdit.Tests\obj\Debug\ICSharpCode.AvalonEdit.Tests.dll
 C:\src\dotnet\Wish\ICSharpCode.AvalonEdit.Tests\obj\Debug\ICSharpCode.AvalonEdit.Tests.pdb
 T:\src\dotnet\Wish\bin\Debug\ICSharpCode.AvalonEdit.Tests.dll.config
@@ -22,3 +21,4 @@ T:\src\dotnet\wish-all\Wish\bin\Debug\ICSharpCode.AvalonEdit.Tests.pdb
 T:\src\dotnet\wish-all\Wish\ICSharpCode.AvalonEdit.Tests\obj\Debug\ResolveAssemblyReference.cache
 T:\src\dotnet\wish-all\Wish\ICSharpCode.AvalonEdit.Tests\obj\Debug\ICSharpCode.AvalonEdit.Tests.dll
 T:\src\dotnet\wish-all\Wish\ICSharpCode.AvalonEdit.Tests\obj\Debug\ICSharpCode.AvalonEdit.Tests.pdb
+C:\src\dotnet\Wish\ICSharpCode.AvalonEdit.Tests\obj\Debug\ICSharpCode.AvalonEdit.Tests.csprojResolveAssemblyReference.cache
