@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wish.Desktop", "Wish.Desktop\Wish.Desktop.csproj", "{702B536A-E766-4C55-838E-14424FA8F101}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wish.Module", "WishModule\Wish.Module.csproj", "{F6A61085-69F1-499B-BFCE-E65E32BEDCC9}"
@@ -38,8 +38,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wish.Common.Tests", "Wish.Common.Tests\Wish.Common.Tests.csproj", "{5D099C5A-EEF0-4759-82D5-623BC15BB584}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wish.Input", "Wish.Input\Wish.Input.csproj", "{7F67FEDC-310F-4036-B9AE-F1D075C9E8E1}"
-EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Wish", "Wish\Wish.vdproj", "{0F9C2A99-48A4-441B-9A93-7134915859FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -231,12 +229,6 @@ Global
 		{7F67FEDC-310F-4036-B9AE-F1D075C9E8E1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{7F67FEDC-310F-4036-B9AE-F1D075C9E8E1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{7F67FEDC-310F-4036-B9AE-F1D075C9E8E1}.Release|x86.ActiveCfg = Release|Any CPU
-		{0F9C2A99-48A4-441B-9A93-7134915859FE}.Debug|Any CPU.ActiveCfg = Debug
-		{0F9C2A99-48A4-441B-9A93-7134915859FE}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{0F9C2A99-48A4-441B-9A93-7134915859FE}.Debug|x86.ActiveCfg = Debug
-		{0F9C2A99-48A4-441B-9A93-7134915859FE}.Release|Any CPU.ActiveCfg = Release
-		{0F9C2A99-48A4-441B-9A93-7134915859FE}.Release|Mixed Platforms.ActiveCfg = Release
-		{0F9C2A99-48A4-441B-9A93-7134915859FE}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
